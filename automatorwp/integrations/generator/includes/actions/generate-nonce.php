@@ -42,7 +42,7 @@ class AutomatorWP_Generator_Generate_Nonce extends AutomatorWP_Integration_Actio
                         ),
                      ) )
             ),
-            'tags'  => automatorwp_generator_get_actions_random_nonce_tags()
+            'tags'  => function_exists( 'automatorwp_generator_get_actions_random_nonce_tags' ) ? automatorwp_generator_get_actions_random_nonce_tags() : array(),
         ) );
 
     }
@@ -84,6 +84,12 @@ class AutomatorWP_Generator_Generate_Nonce extends AutomatorWP_Integration_Actio
      */
     public function hooks() {
 
+        // Configuration notice
+        add_filter( 'automatorwp_automation_ui_after_item_label', array( $this, 'configuration_notice' ), 10, 2 );
+		
+		// Admin notice
+		add_action( 'admin_notices', array( $this, 'admin_notice' ) );
+
         // Log meta data
         add_filter( 'automatorwp_user_completed_action_log_meta', array( $this, 'log_meta' ), 10, 5 );
 
@@ -91,6 +97,59 @@ class AutomatorWP_Generator_Generate_Nonce extends AutomatorWP_Integration_Actio
         add_filter( 'automatorwp_log_fields', array( $this, 'log_fields' ), 10, 5 );
 
         parent::hooks();
+
+    }
+
+    /**
+     * Configuration notice
+     *
+     * @since 1.0.0
+     *
+     * @param stdClass  $object     The trigger/action object
+     * @param string    $item_type  The object type (trigger|action)
+     */
+    public function configuration_notice( $object, $item_type ) {
+
+        // Bail if action type don't match this action
+        if( $item_type !== 'action' ) {
+            return;
+        }
+
+        if( $object->type !== $this->action ) {
+            return;
+        }
+
+        // Warn user if file was deleted
+        if( ! function_exists( 'automatorwp_generator_get_actions_random_nonce_tags' ) ) : ?>
+            <div class="automatorwp-notice-warning" style="margin-top: 10px; margin-bottom: 0;">
+                <?php echo 
+                    __( 'The generate a nonce function was not found and may have been accidentally removed by a security plugin on your site.<br>', 'automatorwp' ); ?>
+                <?php echo
+                    __( 'Please report this to the security plugin to add an exception to AutomatorWP and reinstall AutomatorWP to restore the deleted code.', 'automatorwp' ); ?>
+            </div>
+        <?php endif;
+
+    }
+	
+	 /**
+     * Configuration notice
+     *
+     * @since 1.0.0
+     *
+     */
+    public function admin_notice( ) {
+		
+		// Warn user if file was deleted
+        if( ! function_exists( 'automatorwp_generator_get_actions_random_nonce_tags' ) ) : ?>
+            <div id="message-error" class="notice notice-error is-dismissible">
+            <?php echo 
+                    __( '<strong>AutomatorWP found an issue:</strong><br>', 'automatorwp' ); ?>
+                <?php echo 
+                    __( 'The generate a nonce function was not found and may have been accidentally removed by a security plugin on your site.<br>', 'automatorwp' ); ?>
+                <?php echo
+                    __( 'Please report this to the security plugin to add an exception to AutomatorWP and reinstall AutomatorWP to restore the deleted code.', 'automatorwp' ); ?>
+            </div>
+        <?php endif;
 
     }
 

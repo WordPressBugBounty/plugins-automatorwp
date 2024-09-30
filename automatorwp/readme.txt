@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.6
-Stable tag: 5.0.5
+Stable tag: 5.0.6
 License: GNU AGPL v3.0
 License URI: http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -324,10 +324,15 @@ No, We're unable to provide custom development services, as our focus is develop
 
 == Changelog ==
 
+= 5.0.6 =
+
+* **Improvements**
+* Generator: Check to avoid false positives in security plugins.
+
 = 5.0.5 =
 
 * **Improvements**
-* Generator: Check to avoid false positives in antivirus.
+* Generator: Check to avoid false positives in security plugins.
 
 = 5.0.4 =
 
