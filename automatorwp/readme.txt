@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.6
-Stable tag: 5.0.7
+Stable tag: 5.0.8
 License: GNU AGPL v3.0
 License URI: http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -128,6 +128,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [Formidable Forms](https://automatorwp.com/add-ons/formidable-forms/)
 * [Forminator](https://automatorwp.com/add-ons/forminator/)
 * [GamiPress](https://automatorwp.com/add-ons/gamipress/)
+* [GeoDirectory](https://automatorwp.com/add-ons/geodirectory/)
 * [Gravity Forms](https://automatorwp.com/add-ons/gravity-forms/)
 * [Gravity Kit](https://automatorwp.com/add-ons/gravity-kit/)
 * [Groundhogg](https://automatorwp.com/add-ons/groundhogg/)
@@ -155,6 +156,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [Popup Maker](https://automatorwp.com/add-ons/popup-maker/)
 * [Presto Player](https://automatorwp.com/add-ons/presto-player/)
 * [PrettyLinks](https://automatorwp.com/add-ons/pretty-link/)
+* [Quiz and Survey Master](https://automatorwp.com/add-ons/qsm/)
 * [Restrict Content Pro](https://automatorwp.com/add-ons/restrict-content-pro/)
 * [Sensei LMS](https://automatorwp.com/add-ons/sensei-lms/)
 * [SliceWP](https://automatorwp.com/add-ons/slicewp/)
@@ -174,6 +176,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [WooCommerce](https://automatorwp.com/add-ons/woocommerce/)
 * [WooCommerce Shipstation](https://automatorwp.com/add-ons/woocommerce-shipstation/)
 * [WP All Import](https://automatorwp.com/add-ons/wp-all-import/)
+* [WP Booking Calendar](https://automatorwp.com/add-ons/wp-booking-calendar/)
 * [WP Fluent Forms](https://automatorwp.com/add-ons/fluentform/)
 * [WP Fusion](https://automatorwp.com/add-ons/wp-fusion/)
 * [WP Job Manager](https://automatorwp.com/add-ons/wp-job-manager/)
@@ -323,6 +326,20 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.0.8 =
+
+* **New Features**
+* New integration: Geodirectory.
+* Geodirectory: New trigger: User reviews a place.
+* Geodirectory: New trigger: User adds a new place.
+* Geodirectory: New trigger: Guest reviews a place.
+* New integration: Quiz and Survey Master.
+* Quiz and Survey Master: New trigger: User submits a Quiz.
+* Quiz and Survey Master: New trigger: Guest submits a Quiz.
+* New integration: Booking Calendar.
+* WP Booking Calendar: New trigger: A booking is approved.
+* WP Booking Calendar: New trigger: A booking is cancelled.
 
 = 5.0.7 =
 
