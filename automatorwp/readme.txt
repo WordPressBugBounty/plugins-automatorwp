@@ -2,8 +2,8 @@
 Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flabernardez
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
-Tested up to: 6.6
-Stable tag: 5.0.8
+Tested up to: 6.7
+Stable tag: 5.0.9
 License: GNU AGPL v3.0
 License URI: http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -326,6 +326,11 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.0.9 =
+
+* **Bug fixes**
+* LearnPress: Fixed bug related Enroll user in course action.
 
 = 5.0.8 =
 
