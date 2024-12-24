@@ -1,4 +1,4 @@
-=== AutomatorWP - The #1 automator plugin for no-code automation in WordPress ===
+=== AutomatorWP - Automator plugin for no-code automations, webhooks & custom integrations in WordPress ===
 Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flabernardez
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
