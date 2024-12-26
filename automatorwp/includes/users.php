@@ -554,6 +554,11 @@ function automatorwp_get_trigger_last_completion_log( $trigger, $user_id, $conte
             // Get the last anonymous trigger log if parsing tags for an anonymous user
             $log = automatorwp_get_log_object( $automatorwp_last_anonymous_trigger_log_id );
 
+        } else if ( $trigger->type === 'automatorwp_import_file' ) {
+
+            // For all users automations, the log object is common to all users
+            $log = automatorwp_get_object_last_log( $trigger->id, 'trigger' );
+
         } else if ( $trigger->type === 'automatorwp_all_users' ) {
 
             // For all users automations, the log object is common to all users
@@ -616,6 +621,11 @@ function automatorwp_get_action_last_completion_log( $action, $user_id, $content
     if( ! $log ) {
 
         if ( $action->type === 'automatorwp_all_users' ) {
+
+            // For all users automations, the log object is common to all users
+            $log = automatorwp_get_object_last_log( $action->id, 'action' );
+
+        } else if ( $action->type === 'automatorwp_import_file' ) {
 
             // For all users automations, the log object is common to all users
             $log = automatorwp_get_object_last_log( $action->id, 'action' );

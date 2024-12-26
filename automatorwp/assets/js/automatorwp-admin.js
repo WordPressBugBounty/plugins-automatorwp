@@ -1414,6 +1414,8 @@
             items_per_loop = $('input#users_per_loop').val();
         } else if( automation_type === 'all-posts' ) {
             items_per_loop = $('input#posts_per_loop').val();
+        } else if( automation_type === 'import-file' ) {
+            items_per_loop = $('input#lines_per_loop').val();
         }
 
         // Disable the button and switch labels
@@ -1450,6 +1452,8 @@
             items_per_loop = $('input#users_per_loop').val();
         } else if( automation_type === 'all-posts' ) {
             items_per_loop = $('input#posts_per_loop').val();
+        } else if( automation_type === 'import-file' ) {
+            items_per_loop = $('input#lines_per_loop').val();
         }
 
         automatorwp_run_automation( automation_id, items_per_loop );

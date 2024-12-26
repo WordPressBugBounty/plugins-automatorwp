@@ -457,7 +457,7 @@ function automatorwp_ajax_run_automation() {
     // Sanitize parameters
     $automation_id = absint( $_POST['automation_id'] );
     $items_per_loop = ( isset( $_POST['items_per_loop'] ) ? absint( $_POST['items_per_loop'] ) : 0 );
-
+    
     $automation = automatorwp_get_automation_object( $automation_id );
 
     // Bail if automation not found
@@ -495,6 +495,18 @@ function automatorwp_ajax_run_automation() {
 
             if( $items_per_loop !== $original_posts_per_loop ) {
                 automatorwp_update_automation_meta( $automation->id, 'posts_per_loop', $items_per_loop );
+            }
+        } else if( $automation->type === 'import-file' ) {
+            // Import file
+            if( $items_per_loop <= 0 ) {
+                wp_send_json_error( __( 'Lines per loop need to be higher than 0.', 'automatorwp' ) );
+            }
+
+            // Update the lines per loop
+            $original_lines_per_loop = absint( automatorwp_get_automation_meta( $automation->id, 'lines_per_loop', true ) );
+
+            if( $items_per_loop !== $original_lines_per_loop ) {
+                automatorwp_update_automation_meta( $automation->id, 'lines_per_loop', $items_per_loop );
             }
         }
 

@@ -637,7 +637,10 @@ body.edit-all-users-automation .cmb2-id-times-per-user,
 body.edit-all-users-automation #cmb-field-js-controls-times_per_user-after,
 body.edit-all-users-automation #cmb-field-js-controls-posts_per_loop-before,
 body.edit-all-users-automation .cmb2-id-posts-per-loop,
-body.edit-all-users-automation #cmb-field-js-controls-posts_per_loop-after {
+body.edit-all-users-automation #cmb-field-js-controls-posts_per_loop-after,
+body.edit-all-users-automation #cmb-field-js-controls-lines_per_loop-before,
+body.edit-all-users-automation .cmb2-id-lines-per-loop,
+body.edit-all-users-automation #cmb-field-js-controls-lines_per_loop-after {
     display: none;
 }
 
@@ -652,7 +655,28 @@ body.edit-all-posts-automation .cmb2-id-times-per-user,
 body.edit-all-posts-automation #cmb-field-js-controls-times_per_user-after,
 body.edit-all-posts-automation #cmb-field-js-controls-users_per_loop-before,
 body.edit-all-posts-automation .cmb2-id-users-per-loop,
-body.edit-all-posts-automation #cmb-field-js-controls-users_per_loop-after{
+body.edit-all-posts-automation #cmb-field-js-controls-users_per_loop-after,
+body.edit-all-posts-automation #cmb-field-js-controls-lines_per_loop-before,
+body.edit-all-posts-automation .cmb2-id-lines-per-loop,
+body.edit-all-posts-automation #cmb-field-js-controls-lines_per_loop-after {
+    display: none;
+}
+
+/* -------------------------------------------
+    Import File Automations
+   ------------------------------------------- */
+
+body.edit-import-file-automation .automatorwp-sequential-field,
+body.edit-import-file-automation #automatorwp_triggers .automatorwp-add-trigger,
+body.edit-import-file-automation #cmb-field-js-controls-times_per_user-before,
+body.edit-import-file-automation .cmb2-id-times-per-user,
+body.edit-import-file-automation #cmb-field-js-controls-times_per_user-after,
+body.edit-import-file-automation #cmb-field-js-controls-users_per_loop-before,
+body.edit-import-file-automation .cmb2-id-users-per-loop,
+body.edit-import-file-automation #cmb-field-js-controls-users_per_loop-after,
+body.edit-import-file-automation #cmb-field-js-controls-posts_per_loop-before,
+body.edit-import-file-automation .cmb2-id-posts-per-loop,
+body.edit-import-file-automation #cmb-field-js-controls-posts_per_loop-after {
     display: none;
 }
 

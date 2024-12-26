@@ -572,6 +572,10 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
         $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-all-posts.svg';
     }
 
+    if( $item_type === 'trigger' && $object->type === 'automatorwp_import_file' ) {
+        $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-import-file.svg';
+    }
+
     if( $item_type === 'action' && $object->type === 'automatorwp_anonymous_user' ) {
         $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-anonymous.svg';
     }
@@ -630,6 +634,16 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
     // All posts
     if( $automation->type === 'all-posts' ) {
         if( $object->type === 'automatorwp_all_posts' ) {
+            $classes[] = 'automatorwp-no-grab';
+            unset( $actions['move-up'] );
+            unset( $actions['move-down'] );
+            unset( $actions['delete'] );
+        }
+    }
+
+    // Import file
+    if( $automation->type === 'import-file' ) {
+        if( $object->type === 'automatorwp_import_file' ) {
             $classes[] = 'automatorwp-no-grab';
             unset( $actions['move-up'] );
             unset( $actions['move-down'] );
@@ -862,6 +876,50 @@ function automatorwp_check_automation_required_triggers( $automation, $triggers 
                 'automation_id' => $automation->id,
                 'title' => __( 'Run automation on all posts', 'automatorwp' ),
                 'type' => 'automatorwp_all_posts',
+                'status' => 'active',
+                'position' => 0,
+                'date' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
+            );
+
+            // Insert the new trigger
+            $trigger_id = ct_insert_object( $trigger_data );
+
+            if( $trigger_id ) {
+                $trigger_data['id'] = $trigger_id;
+
+                $trigger_data = (object) $trigger_data;
+
+                // Prepend the new trigger at start of the triggers list
+                array_unshift( $triggers, $trigger_data );
+            }
+
+            ct_reset_setup_table();
+        }
+
+    }
+
+    // All users
+    if( $automation->type === 'import-file' ) {
+
+        $create = false;
+
+        // Check if the first action is the action required for anonymous automations
+        if( ! isset( $triggers[0] ) ) {
+            $create = true;
+        }
+
+        if( isset( $triggers[0] ) && $triggers[0]->type !== 'automatorwp_import_file' ) {
+            $create = true;
+        }
+
+        if( $create ) {
+            ct_setup_table( 'automatorwp_triggers' );
+
+            // Setup the trigger data
+            $trigger_data = array(
+                'automation_id' => $automation->id,
+                'title' => __( 'Run automation on file', 'automatorwp' ),
+                'type' => 'automatorwp_import_file',
                 'status' => 'active',
                 'position' => 0,
                 'date' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
@@ -1571,25 +1629,16 @@ function automatorwp_integrations_api() {
     $request = wp_remote_get( $url, $http_args );
 
     if ( $ssl && is_wp_error( $request ) ) {
-        trigger_error(
-            sprintf(
-                __( 'An unexpected error occurred. Something may be wrong with automatorwp.com or this server&#8217;s configuration. If you continue to have problems, please try to <a href="%s">contact us</a>.', 'automatorwp' ),
-                'https://automatorwp.com/contact-us/'
-            ) . ' ' . __( '(WordPress could not establish a secure connection to automatorwp.com. Please contact your server administrator.)' ),
-            headers_sent() || WP_DEBUG ? E_USER_WARNING : E_USER_NOTICE
-        );
-
+        // Try again without SSL
         $request = wp_remote_get( $http_url, $http_args );
     }
 
     if ( is_wp_error( $request ) ) {
-        $res = new WP_Error( 'automatorwp_integrations_api_failed',
-            sprintf(
-                __( 'An unexpected error occurred. Something may be wrong with automatorwp.com or this server&#8217;s configuration. If you continue to have problems, please try to <a href="%s">contact us</a>.', 'automatorwp' ),
-                'https://automatorwp.com/contact-us/'
-            ),
-            $request->get_error_message()
-        );
+        // No way to contact server
+        $res = array();
+
+        // Set a transient for 1 day
+        set_transient( 'automatorwp_integrations_api', $res, ( 24 * 1 ) * HOUR_IN_SECONDS );
     } else {
         $res = json_decode( $request['body'] );
 
