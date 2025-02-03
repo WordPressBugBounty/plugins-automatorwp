@@ -55,6 +55,7 @@ function automatorwp_run_scheduled_automations() {
     global $wpdb;
 
     $datetime = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
+    
     $automations = AutomatorWP()->db->automations;
     $automations_meta = AutomatorWP()->db->automations_meta;
 
@@ -69,13 +70,64 @@ function automatorwp_run_scheduled_automations() {
         AND a.status = 'active' 
         AND ( am1.meta_value = 'on' OR am2.meta_value = 'on' )
         AND am3.meta_value <= '{$datetime}'" );
-
+        
+    
     if( is_array( $results ) ) {
         foreach ( $results as $automation ) {
-            // Run automations
-            automatorwp_run_automation( $automation->id );
+            $schedule_run = (bool) automatorwp_get_automation_meta( $automation->id, 'schedule_run', true );
+            
+            $last_log = automatorwp_get_object_last_log( $automation->id, 'automation' );
+
+            $automation_schedule_id = automatorwp_check_scheduled_automations_time( $automation->id, $last_log );
+
+            // Schedule automations
+            if ( ! empty( $schedule_run ) && ( empty( $last_log ) || ! empty( $automation_schedule_id ) ) ){
+                // Run automations
+                automatorwp_run_automation( $automation->id );
+            } 
+            
+            // Recurring Automations
+            if ( empty( $schedule_run ) ) {
+                // Run automations
+                automatorwp_run_automation( $automation->id );
+            }
+            
         }
     }
 
 }
 add_action( 'automatorwp_run_scheduled_automations_event', 'automatorwp_run_scheduled_automations' );
+
+/**
+ * Process to check scheduled automations time
+ *
+ * @since 2.2.2
+ */
+function automatorwp_check_scheduled_automations_time( $automation_id, $last_log ) {
+
+    global $wpdb;
+
+    $automations = AutomatorWP()->db->automations;
+    $automations_meta = AutomatorWP()->db->automations_meta;
+
+    if ( ! isset( $last_log->date ) )
+        return false;
+    
+    $timestamp = strtotime( $last_log->date );
+    
+    // Get scheduled automations
+    $results = $wpdb->get_results( "
+        SELECT id
+        FROM {$automations_meta} 
+        WHERE meta_key = 'schedule_run'
+            AND meta_value = 'on'
+            AND id IN (
+                SELECT id
+                FROM {$automations_meta}
+                WHERE meta_key = 'schedule_run_datetime'
+                AND meta_value > {$timestamp} 
+            ) ");
+
+    return $results;
+
+}

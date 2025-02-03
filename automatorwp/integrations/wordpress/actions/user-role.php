@@ -32,14 +32,6 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
      */
     public function register() {
 
-        $role_options = array();
-        $editable_roles = apply_filters( 'editable_roles', wp_roles()->roles );
-
-        foreach( $editable_roles as $role => $details ) {
-            /* translators: %1$s: Role key (subscriber, editor). %2$s: Role name (Subscriber, Editor). */
-            $role_options[] = sprintf( __( '<code>%1$s</code> for %2$s', 'automatorwp' ), $role, translate_user_role( $details['name'] ) );
-        }
-
         automatorwp_register_action( $this->action, array(
             'integration'       => $this->integration,
             'label'             => __( 'Add, change or remove role to user', 'automatorwp' ),
@@ -64,14 +56,18 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
                         ),
                     )
                 ),
-                'role' => automatorwp_utilities_role_option( array(
-                    'option_none_value' => '',
-                    'option_none_label' => __( 'another role', 'automatorwp' ),
-                    'option_custom'     => true,
-                    'option_custom_desc'    => __( 'Role name.', 'automatorwp' )
-                        . ' ' . automatorwp_toggleable_options_list( $role_options ),
-                    'default'           => ''
-                ) ),
+                'role' => array(
+                    'from' => 'role',
+                    'default' => '',
+                    'fields' => array(
+                        'role' => automatorwp_utilities_role_field( array(
+                            'option_custom' => true,
+                        ) ),
+                        'role_custom' => automatorwp_utilities_custom_field( array(
+                            'option_custom_desc' => __( 'Role name.', 'automatorwp' )
+                        ) ),
+                    )
+                ),
                 'user' => array(
                     'default' => __ ( 'user', 'automatorwp' ),
                     'fields' => array(
@@ -113,13 +109,37 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
             $user_id_target = $user_id;
         }
 
+        $user = get_userdata( $user_id_target );
+
+        $this->user_id = $user_id_target;
+
+        // The user fields
+        $user_fields = array(
+            'user_login',
+            'user_email',
+            'first_name',
+            'last_name',
+            'user_url',
+            'user_pass',
+            'display_name',
+        );
+
+        foreach( $user_fields as $user_field ) {
+                $this->user_data[$user_field] = $user->$user_field;
+        }
+
+        // Bail if user does not exists
+        if( ! $user ) {
+            return;
+        }
+
         // Ensure operation default value
         if( empty( $operation ) ) {
             $operation = 'add';
         }
 
         // Bail if empty role to assign
-        if( empty( $role ) ) {
+        if( $role === 'any' || empty( $role ) ) {
             return;
         }
 
@@ -127,15 +147,6 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
 
         // Bail if empty role to assign
         if( ! isset( $roles[$role] ) ) {
-            return;
-        }
-
-        $user = get_userdata( $user_id_target );
-
-        $this->user_id = $user_id_target;
-
-        // Bail if user does not exists
-        if( ! $user ) {
             return;
         }
 
@@ -162,21 +173,6 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
                 // Remove the role to the user
                 $user->remove_role( $role );
                 break;
-        }
-
-        // The user fields
-        $user_fields = array(
-            'user_login',
-            'user_email',
-            'first_name',
-            'last_name',
-            'user_url',
-            'user_pass',
-            'display_name',
-        );
-
-        foreach( $user_fields as $user_field ) {
-                $this->user_data[$user_field] = $user->$user_field;
         }
 
     }

@@ -50,14 +50,6 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
      */
     public function register() {
 
-        $role_options = array();
-        $editable_roles = apply_filters( 'editable_roles', wp_roles()->roles );
-
-        foreach( $editable_roles as $role => $details ) {
-            /* translators: %1$s: Role key (subscriber, editor). %2$s: Role name (Subscriber, Editor). */
-            $role_options[] = sprintf( __( '<code>%1$s</code> for %2$s', 'automatorwp' ), $role, translate_user_role( $details['name'] ) );
-        }
-
         automatorwp_register_action( $this->action, array(
             'integration'       => $this->integration,
             'label'             => __( 'Create a user', 'automatorwp' ),
@@ -108,13 +100,13 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
                             'type' => 'text',
                             'default' => ''
                         ),
-                        'role' => array(
-                            'name' => __( 'Role:', 'automatorwp' ),
-                            'desc' => __( 'The user\'s role. By default, "subscriber".', 'automatorwp' )
-                                . ' ' . automatorwp_toggleable_options_list( $role_options ),
-                            'type' => 'text',
-                            'default' => ''
-                        ),
+                        'role' => automatorwp_utilities_role_field( array(
+                                    'option_custom' => true,
+                                    'desc' => __( 'The user\'s role. By default, "subscriber".', 'automatorwp' ),
+                        ) ),
+                        'role_custom' => automatorwp_utilities_custom_field( array(
+                            'option_custom_desc' => __( 'Role name.', 'automatorwp' )
+                        ) ),
                         'send_user_notification' => array(
                             'name' => __( 'Send User Notification:', 'automatorwp' ),
                             'desc' => __( 'Send the new user an email about their account.', 'automatorwp' ),
@@ -179,7 +171,6 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
         // Check the user role
         $roles = automatorwp_get_editable_roles();
 
-        // Bail if empty role to assign
         if( ! isset( $roles[$user_data['role']] ) ) {
             $user_data['role'] = 'subscriber';
         }
