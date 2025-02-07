@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.7
-Stable tag: 5.1.3
+Stable tag: 5.1.4
 License: GNU AGPL v3.0
 License URI: http://www.gnu.org/licenses/agpl-3.0.html
 
@@ -326,6 +326,20 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.1.4 =
+
+* **New Features**
+* New integration: FluentCommunity.
+* FluentCommunity: New trigger: User writes a post in a space.
+* FluentCommunity: New trigger: User adds a comment in a space.
+* FluentCommunity: New trigger: User joins a space.
+* FluentCommunity: New trigger: User completes a course.
+* FluentCommunity: New action: Add user to a space.
+* New integration: Paid Membership Subscriptions.
+* Paid Membership Subscriptions: New trigger: User purchases a subscription of a membership level.
+* **Improvements**
+* Improved automation export.
 
 = 5.1.3 =
 

@@ -963,6 +963,6 @@ function automatorwp_get_url_param( url, param, default_value = false ) {
  * @return {boolean}
  */
 function automatorwp_is_valid_url( url ) {
-    var result = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
+    var result = url.match(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,10}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g);
     return ( result !== null )
 }

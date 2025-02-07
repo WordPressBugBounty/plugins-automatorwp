@@ -1794,7 +1794,7 @@ function automatorwp_run_all_users_automation( $automation ) {
 
         $user_id = absint( $user_id );
         $automatorwp_event['user_id'] = $user_id;
-
+        
         foreach( $trigger_options as $option => $value ) {
             // Replace all tags by their replacements
             $trigger_options[$option] = automatorwp_parse_automation_tags( $automation->id, $user_id, $value );
@@ -1878,7 +1878,7 @@ function automatorwp_run_all_posts_automation( $automation ) {
         $user_id = absint( get_post_field( 'post_author', $post_id ) );
         $automatorwp_event['post_id'] = $post_id;
         $automatorwp_event['user_id'] = $user_id;
-
+        
         foreach( $trigger_options as $option => $value ) {
             // Replace all tags by their replacements
             $trigger_options[$option] = automatorwp_parse_automation_tags( $automation->id, $user_id, $value );
@@ -1925,7 +1925,7 @@ function automatorwp_run_import_file_automation( $automation ) {
         return false;
     }
 
-    // Get the all users trigger
+    // Get the import file trigger
     $trigger = automatorwp_get_import_file_trigger( $automation );
 
     // Bail if trigger not found
@@ -1943,23 +1943,26 @@ function automatorwp_run_import_file_automation( $automation ) {
         automatorwp_run_automation_started( $automation, $trigger, $trigger_options );
     }
 
-    // Get the users to apply the filters and run the actions
-    $users_ids = automatorwp_get_import_file_automation_users_ids( $automation );
+    // Get the rows to apply the filters and run the actions
+    $line_ids = automatorwp_get_import_file_automation_lines_ids( $automation );
 
-    if( $users_ids === false ) {
+    if( $line_ids === false ) {
         return false;
     }
 
     // Set up a false event since the following functions require it
     $automatorwp_event = array(
-        'user_id' => 0
+        'line_id' => 0,
+        'user_id' => 0,
     );
 
-    foreach ( $users_ids as $user_id ) {
+    foreach ( $line_ids as $line_id ) {
 
-        $user_id = absint( $user_id );
+        $line_id = absint( $line_id );
+        $user_id = get_current_user_id();
+        $automatorwp_event['line_id'] = $line_id;
         $automatorwp_event['user_id'] = $user_id;
-
+       
         foreach( $trigger_options as $option => $value ) {
             // Replace all tags by their replacements
             $trigger_options[$option] = automatorwp_parse_automation_tags( $automation->id, $user_id, $value );
