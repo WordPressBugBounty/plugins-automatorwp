@@ -1766,6 +1766,9 @@ function automatorwp_get_option_form_values( form ) {
                 window.tinyMCE.editors[$(this).attr('id')].save();
                 value = $(this).val();
             }
+        } else if( $(this).hasClass('cmb2-upload-file') || $(this).hasClass('cmb2-upload-file-id') ) {
+            // File field
+            value = $(this).closest('.cmb-td').find('.cmb2-upload-file').val();
         }
 
         if( option !== undefined ) {

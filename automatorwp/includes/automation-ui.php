@@ -1493,12 +1493,12 @@ function automatorwp_automation_item_option_field_args( $object, $item_type, $op
     // Setup the fields tags selector
 
     // Set a specific sanitization callback for fields that support HTML and URLs
-    if( in_array( $field['type'], array( 'textarea', 'wysiwyg', 'oembed' ) ) ) {
+    if( in_array( $field['type'], array( 'textarea', 'wysiwyg', 'oembed', 'file' ) ) ) {
         $field['sanitization_cb'] = 'automatorwp_textarea_sanitization_cb';
     }
 
     // Check if field type is compatible with tags selector
-    if( in_array( $field['type'], array( 'text', 'textarea', 'wysiwyg' ) ) ) {
+    if( in_array( $field['type'], array( 'text', 'textarea', 'wysiwyg', 'file' ) ) ) {
         $field['after_field'] = automatorwp_get_tags_selector_html( $automation, $object, $item_type );
     }
 

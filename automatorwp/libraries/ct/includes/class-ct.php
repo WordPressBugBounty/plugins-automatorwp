@@ -52,7 +52,6 @@ if ( ! class_exists( 'CT' ) ) :
                 self::$instance->includes();
                 self::$instance->compatibility();
                 self::$instance->hooks();
-                self::$instance->load_textdomain();
 
             }
 
@@ -130,6 +129,7 @@ if ( ! class_exists( 'CT' ) ) :
 
             add_action( 'plugins_loaded', array( $this, 'init' ), 11 );
             add_action( 'after_setup_theme', array( $this, 'init' ), 11 );
+            add_action( 'init', array( $this, 'load_textdomain' ), 10 );
 
         }
 

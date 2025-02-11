@@ -1056,6 +1056,49 @@ body.edit-import-file-automation #cmb-field-js-controls-posts_per_loop-after {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
 }
 
+/* File */
+.automatorwp-form  .cmb-type-file .cmb2-upload-button {
+    margin-left: 0 !important;
+    margin-top: 8px;
+}
+
+.automatorwp-form  .cmb-type-file .cmb2-upload-button  {
+    background: #404459;
+    border: #404459;
+    color: #fff;
+}
+
+.automatorwp-form  .cmb-type-file .cmb2-upload-button :hover {
+    background: #4b5068;
+    border: #4b5068;
+    color: #fff;
+}
+
+.automatorwp-form  .cmb-type-file .cmb2-upload-button :focus,
+.automatorwp-form  .cmb-type-file .cmb2-upload-button :active {
+    background: #36394a;
+    border: #36394a;
+    color: #fff;
+}
+
+.automatorwp-form  .cmb-type-file .cmb2-metabox-description {
+    width: calc(100% - 38px) !important;
+    padding-bottom: .5em;
+}
+
+.automatorwp-form  .cmb-type-file.automatorwp-hide-preview .cmb2-media-status {
+    display: none !important;
+}
+
+.automatorwp-form  .cmb-type-file .cmb2-media-status {
+    display: inline-block;
+    width: calc(100% - 38px) !important;
+}
+
+
+.automatorwp-form  .cmb-type-file .cmb2-remove-file-button {
+    color: #a00;
+}
 /* -------------------------------------------
     Select2
    ------------------------------------------- */
