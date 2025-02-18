@@ -38,6 +38,7 @@ function automatorwp_register_custom_tables() {
             'list' => array(
                 'menu_title' => __( 'Automations', 'automatorwp' ),
                 'parent_slug' => 'automatorwp',
+                'priority' => 10,
             ),
         ),
         'schema' => array(
@@ -186,6 +187,7 @@ function automatorwp_register_custom_tables() {
             'list' => array(
                 'menu_title' => __( 'Logs', 'automatorwp' ),
                 'parent_slug' => 'automatorwp',
+                'priority' => 10,
             ),
             'add' => false,
         ),

@@ -73,7 +73,7 @@ function automatorwp_admin_submenu() {
     add_submenu_page( 'automatorwp', __( 'Import Automation', 'automatorwp' ), __( 'Import Automation', 'automatorwp' ), $minimum_role, 'automatorwp_import_automation', 'automatorwp_import_automation_page' );
 
 }
-add_action( 'admin_menu', 'automatorwp_admin_submenu', 12 );
+add_action( 'admin_menu', 'automatorwp_admin_submenu', 15 );
 
 /**
  * Add AutomatorWP admin bar menu
@@ -145,14 +145,6 @@ function automatorwp_admin_bar_menu_bottom( $wp_admin_bar ) {
         return;
     }
 
-    // Add-ons
-    $wp_admin_bar->add_node( array(
-        'id'     => 'automatorwp-add-ons',
-        'title'  => __( 'Add-ons', 'automatorwp' ),
-        'parent' => 'automatorwp',
-        'href'   => admin_url( 'admin.php?page=automatorwp_add_ons' )
-    ) );
-
     // Licenses
     $wp_admin_bar->add_node( array(
         'id'     => 'automatorwp-licenses',
@@ -169,8 +161,17 @@ function automatorwp_admin_bar_menu_bottom( $wp_admin_bar ) {
         'href'   => admin_url( 'admin.php?page=automatorwp_settings' )
     ) );
 
+    // Add-ons
+    $wp_admin_bar->add_node( array(
+        'id'     => 'automatorwp-add-ons',
+        'title'  => __( 'Add-ons', 'automatorwp' ),
+        'parent' => 'automatorwp',
+        'href'   => admin_url( 'admin.php?page=automatorwp_add_ons' )
+    ) );
+
 }
 add_action( 'admin_bar_menu', 'automatorwp_admin_bar_menu_bottom', 999 );
+
 
 /**
  * Processes all GamiPress actions sent via POST and GET by looking for the 'automatorwp-action' request and running do_action() to call the function

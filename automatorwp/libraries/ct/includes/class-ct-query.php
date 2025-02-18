@@ -127,6 +127,15 @@ if ( ! class_exists( 'CT_Query' ) ) :
          */
         public $max_num_pages = 0;
 
+        /**
+         * stopwords used when parsing search terms
+         *
+         * @since 1.0.0
+         * @access public
+         * @var array
+         */
+        public $stopwords = array();
+
 
         public function __construct( $query = '' ) {
 
@@ -150,6 +159,7 @@ if ( ! class_exists( 'CT_Query' ) ) :
             unset( $this->result );
             $this->found_results = 0;
             $this->max_num_pages = 0;
+            $this->stopwords = array();
 
         }
 

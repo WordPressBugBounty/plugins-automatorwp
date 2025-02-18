@@ -44,6 +44,10 @@ if ( ! class_exists( 'CT_View' ) ) :
                 'menu_icon' => '',
                 'menu_position' => null,
                 'capability' => 'manage_options',
+                'priority' => null, // Used for the hook 'admin_menu'
+                'admin_bar' => false,
+                'admin_bar_parent' => false,
+                'admin_bar_priority' => null, // Used for the hook 'admin_bar_menu'
             ) );
 
             $this->add_hooks();
@@ -59,14 +63,22 @@ if ( ! class_exists( 'CT_View' ) ) :
 
             add_action( 'admin_init', array( $this, 'admin_init' ) );
 
+            if( $this->args['priority'] === null ) {
+                $this->args['priority'] = empty( $this->args['parent_slug'] ) ? 20 : 21;
+            }
+
             // Note: sub-menus need to be registered after parent
-            add_action( 'admin_menu', array( $this, 'admin_menu' ), empty( $this->args['parent_slug'] ) ? 10 : 11 );
+            add_action( 'admin_menu', array( $this, 'admin_menu' ), $this->args['priority'] );
 
             add_filter( 'parent_file', array( $this, 'parent_file' ), 10 );
 
             add_filter( 'submenu_file', array( $this, 'submenu_file' ), 10, 2 );
 
             add_action( 'adminmenu', array( $this, 'restore_plugin_page' ), 10, 2 );
+
+            if( $this->args['admin_bar'] ) {
+                add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), ( $this->args['admin_bar_priority'] === null ? 999 : $this->args['admin_bar_priority'] ) );
+            }
 
             add_filter( 'screen_options_show_screen', array( $this, 'show_screen_options' ), 10, 2 );
 
@@ -361,6 +373,17 @@ if ( ! class_exists( 'CT_View' ) ) :
                     $plugin_page = $this->args['menu_slug'];
                 }
             }
+
+        }
+
+        public function admin_bar_menu( $wp_admin_bar ) {
+
+            $wp_admin_bar->add_node( array(
+                'id'     => $this->args['menu_slug'],
+                'title'  => $this->args['page_title'],
+                'parent' => $this->args['admin_bar_parent'],
+                'href'   => admin_url( 'admin.php?page=' . $this->args['menu_slug'] )
+            ) );
 
         }
 
