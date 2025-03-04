@@ -41,8 +41,9 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
 
         automatorwp_register_trigger( $this->trigger, array(
             'integration'       => $this->integration,
-            'label'             => '',
+            'label'             => __( 'Run automation on all posts', 'automatorwp' ),
             'select_option'     => '',
+            'show_in_selector'  => false,
             /* translators: %1$s: Automation title. %2$s: Number of times. */
             'edit_label'        => sprintf( __( 'Run automation on %1$s', 'automatorwp' ), '{all_posts_conditions}' ),
             /* translators: %1$s: Automation title. */
@@ -124,7 +125,23 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
         parent::hooks();
 
         add_filter( 'automatorwp_get_automation_item_option_replacement', array( $this, 'dynamic_item_option_replacement' ), 10, 5 );
-        add_filter( 'automatorwp_get_all_posts_automation_sql', array( $this, 'get_sql' ), 10, 7 );
+        add_filter( 'automatorwp_get_all-posts_automation_sql', array( $this, 'get_sql' ), 10, 7 );
+
+        // Override edit item HTML
+        add_filter( 'automatorwp_automation_item_edit_html_integration', array( $this, 'override_item_edit_html_integration' ), 10, 4 );
+        add_filter( 'automatorwp_automations_column_triggers_integration', array( $this, 'override_item_edit_html_integration' ), 10, 4 );
+        add_filter( 'automatorwp_get_log_integration_icon_integration', array( $this, 'override_item_edit_html_integration' ), 10, 4 );
+        add_filter( 'automatorwp_automation_item_edit_html_classes', array( $this, 'override_item_edit_html_classes' ), 10, 4 );
+        add_filter( 'automatorwp_automation_item_edit_html_actions', array( $this, 'override_item_edit_html_actions' ), 10, 4 );
+
+        // Times tag, register as "no user trigger"
+        add_filter( 'automatorwp_get_trigger_tag_replacement_times_no_user_triggers', array( $this, 'add_type_to_array' ) );
+        add_filter( 'automatorwp_get_trigger_last_completion_log_no_user_types', array( $this, 'add_type_to_array' ) );
+        add_filter( 'automatorwp_get_action_last_completion_log_no_user_types', array( $this, 'add_type_to_array' ) );
+
+        // Extend log object on last completion log
+        add_filter( 'automatorwp_get_trigger_last_completion_log_extend_log', array( $this, 'extend_las_completion_log' ), 10, 2 );
+        add_filter( 'automatorwp_get_action_last_completion_log_extend_log', array( $this, 'extend_las_completion_log' ), 10, 2 );
 
     }
 
@@ -197,10 +214,10 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
      * @param stdClass  $trigger            The trigger object
      * @param bool      $count              True if is looking for the SQL to count the number of posts
      * @param array     $trigger_options    The trigger's stored options
-     * @param int       $posts_per_loop     The automation posts per loop option
+     * @param int       $items_per_loop     The automation items per loop option
      * @param int       $loop               The current loop
      */
-    public function get_sql( $sql, $automation, $trigger, $count, $trigger_options, $posts_per_loop, $loop ) {
+    public function get_sql( $sql, $automation, $trigger, $count, $trigger_options, $items_per_loop, $loop ) {
 
         global $wpdb;
 
@@ -283,10 +300,63 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
             // The count SQL query
             return "SELECT COUNT(*) FROM {$wpdb->posts} AS p {$joins} {$where}";
         } else {
-            $offset = $loop * $posts_per_loop;
+            $offset = $loop * $items_per_loop;
 
             // The normal SQL query
-            return "SELECT p.ID FROM {$wpdb->posts} AS p {$joins} {$where} LIMIT $offset, {$posts_per_loop}";
+            return "SELECT p.ID FROM {$wpdb->posts} AS p {$joins} {$where} LIMIT $offset, {$items_per_loop}";
+        }
+
+    }
+
+    public function override_item_edit_html_integration( $integration, $object, $item_type, $automation ) {
+
+        if( $item_type === 'trigger' && $object->type === $this->trigger ) {
+            $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-all-posts.svg';
+        }
+
+        return $integration;
+
+    }
+
+    public function override_item_edit_html_classes( $classes, $object, $item_type, $automation ) {
+
+        if( $automation->type === 'all-posts' && $object->type === $this->trigger ) {
+            $classes[] = 'automatorwp-no-grab';
+        }
+
+        return $classes;
+
+    }
+
+    public function override_item_edit_html_actions( $actions, $object, $item_type, $automation ) {
+
+        if( $automation->type === 'all-posts' && $object->type === $this->trigger ) {
+            unset( $actions['move-up'] );
+            unset( $actions['move-down'] );
+            unset( $actions['delete'] );
+        }
+
+        return $actions;
+
+    }
+
+    public function add_type_to_array( $no_user_triggers ) {
+
+        $no_user_triggers[] = $this->trigger;
+
+        return $no_user_triggers;
+
+    }
+
+    public function extend_las_completion_log( $log, $trigger ) {
+
+        global $automatorwp_event;
+
+        if( $trigger->type === $this->type ) {
+            // Update the post ID for tag parsing
+            if( is_array( $automatorwp_event ) && isset( $automatorwp_event['post_id'] ) ) {
+                $log->post_id = absint( $automatorwp_event['post_id'] );
+            }
         }
 
     }

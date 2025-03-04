@@ -23,6 +23,7 @@ function automatorwp_register_action( $action, $args ) {
         'integration'       => '',
         'label'             => '',
         'select_option'     => '',
+        'show_in_selector'  => true,
         'edit_label'        => '',
         'options'           => array(),
         'tags'              => array(),

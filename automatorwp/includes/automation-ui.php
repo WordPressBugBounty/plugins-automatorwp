@@ -35,18 +35,30 @@ function automatorwp_render_automation_type_dialog() {
     <div class="automatorwp-automation-type-dialog-wrapper" style="display: none;">
 
         <div class="automatorwp-automation-type-dialog">
-            <h2><?php _e( 'Automation type', 'automatorwp' ); ?></h2>
+            <h2 class="automatorwp-automation-type-dialog-title"><?php _e( 'Automation type', 'automatorwp' ); ?></h2>
             <div class="automatorwp-automation-types">
-                <?php foreach( $types as $type => $args ) : ?>
+                <?php foreach( $types as $type => $args ) :
+                    if( in_array( $type, automatorwp_get_automation_loop_types() ) ) continue; ?>
                     <div class="automatorwp-automation-type automatorwp-automation-type-<?php echo $type; ?>" data-type="<?php echo $type; ?>">
                         <img src="<?php echo $args['image']; ?>" alt="<?php echo $args['label']; ?>">
                         <div class="automatorwp-automation-type-description">
                             <strong><?php echo $args['label']; ?></strong>
                             <span><?php echo $args['desc']; ?></span>
                         </div>
-                        <?php if ( isset( $args['info'] ) && ! empty( $args['info'] ) ) : ?>
-                            <div class="automatorwp-automation-type-info"><?php echo $args['info']; ?></div>
-                        <?php endif; ?>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <h3 class="automatorwp-automation-type-dialog-automation-loop-title"><?php _e( 'Loop Automations', 'automatorwp' ); ?></h3>
+            <p class="automatorwp-automation-type-dialogautomation-loop-desc"><?php _e( 'Designed to run actions on a <b>group of elements</b>. Can be run <b>manually</b>, on a <b>specific date</b> or on a <b>recurring</b> basis.', 'automatorwp' ); ?></p>
+            <div class="automatorwp-automation-types automatorwp-automation-loop-types">
+                <?php foreach( $types as $type => $args ) :
+                    if( ! in_array( $type, automatorwp_get_automation_loop_types() ) ) continue; ?>
+                    <div class="automatorwp-automation-type automatorwp-automation-type-<?php echo $type; ?>" data-type="<?php echo $type; ?>">
+                        <img src="<?php echo $args['image']; ?>" alt="<?php echo $args['label']; ?>">
+                        <div class="automatorwp-automation-type-description">
+                            <strong><?php echo $args['label']; ?></strong>
+                            <span><?php echo $args['desc']; ?></span>
+                        </div>
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -165,6 +177,8 @@ function automatorwp_automation_ui_admin_body_class( $classes ) {
     $automation = $ct_table->db->get( $automation_id );
 
     $classes .= ' edit-' . $automation->type . '-automation ';
+
+    $classes = apply_filters( 'automatorwp_automation_ui_admin_body_class', $classes, $automation );
 
     return $classes;
 
@@ -297,7 +311,9 @@ function automatorwp_automation_ui_actions_meta_box( $automation, $type ) {
  */
 function automatorwp_automation_ui_add_item_form( $automation, $item_type ) {
 
-    $choices_filters = array();
+    $choices_filters = array(
+        'show_in_selector' => true,
+    );
 
     if( $item_type === 'trigger' ) {
         $choices_filters['anonymous'] = (bool) ( $automation->type === 'anonymous' );
@@ -404,7 +420,6 @@ function automatorwp_automation_ui_add_item_form( $automation, $item_type ) {
                                 <option value=""></option>
                             <?php foreach( automatorwp_get_integration_triggers( $integration, $choices_filters ) as $trigger => $args ) :
 
-                                // Skip no label items
                                 if( empty( $args['select_option'] ) && empty( $args['label'] ) ) {
                                     continue;
                                 } ?>
@@ -441,7 +456,7 @@ function automatorwp_automation_ui_add_item_form( $automation, $item_type ) {
 
                             <option value=""></option>
                             <?php foreach( automatorwp_get_integration_actions( $integration, $choices_filters ) as $action => $args ) :
-                                // Skip no label items
+
                                 if( empty( $args['select_option'] ) && empty( $args['label'] ) ) {
                                     continue;
                                 } ?>
@@ -564,18 +579,6 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
         return;
     }
 
-    if( $item_type === 'trigger' && $object->type === 'automatorwp_all_users' ) {
-        $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-all-users.svg';
-    }
-
-    if( $item_type === 'trigger' && $object->type === 'automatorwp_all_posts' ) {
-        $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-all-posts.svg';
-    }
-
-    if( $item_type === 'trigger' && $object->type === 'automatorwp_import_file' ) {
-        $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-import-file.svg';
-    }
-
     if( $item_type === 'action' && $object->type === 'automatorwp_anonymous_user' ) {
         $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-anonymous.svg';
     }
@@ -621,35 +624,19 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
         }
     }
 
-    // All users
-    if( $automation->type === 'all-users' ) {
-        if( $object->type === 'automatorwp_all_users' ) {
-            $classes[] = 'automatorwp-no-grab';
-            unset( $actions['move-up'] );
-            unset( $actions['move-down'] );
-            unset( $actions['delete'] );
-        }
-    }
-
-    // All posts
-    if( $automation->type === 'all-posts' ) {
-        if( $object->type === 'automatorwp_all_posts' ) {
-            $classes[] = 'automatorwp-no-grab';
-            unset( $actions['move-up'] );
-            unset( $actions['move-down'] );
-            unset( $actions['delete'] );
-        }
-    }
-
-    // Import file
-    if( $automation->type === 'import-file' ) {
-        if( $object->type === 'automatorwp_import_file' ) {
-            $classes[] = 'automatorwp-no-grab';
-            unset( $actions['move-up'] );
-            unset( $actions['move-down'] );
-            unset( $actions['delete'] );
-        }
-    }
+    /**
+     * Filter to modify the integration args of the trigger/action edit HTML
+     *
+     * @since 1.0.0
+     *
+     * @param array     $integration The integration args
+     * @param stdClass  $object The trigger/action object
+     * @param string    $item_type The item type (trigger|action)
+     * @param stdClass  $automation The automation object
+     *
+     * @return array
+     */
+    $integration = apply_filters( 'automatorwp_automation_item_edit_html_integration', $integration, $object, $item_type, $automation );
 
     /**
      * Filter to modify the CSS classes of the trigger/action edit HTML
@@ -810,139 +797,7 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
  */
 function automatorwp_check_automation_required_triggers( $automation, $triggers ) {
 
-    // All users
-    if( $automation->type === 'all-users' ) {
-
-        $create = false;
-
-        // Check if the first action is the action required for anonymous automations
-        if( ! isset( $triggers[0] ) ) {
-            $create = true;
-        }
-
-        if( isset( $triggers[0] ) && $triggers[0]->type !== 'automatorwp_all_users' ) {
-            $create = true;
-        }
-
-        if( $create ) {
-            ct_setup_table( 'automatorwp_triggers' );
-
-            // Setup the trigger data
-            $trigger_data = array(
-                'automation_id' => $automation->id,
-                'title' => __( 'Run automation on all users', 'automatorwp' ),
-                'type' => 'automatorwp_all_users',
-                'status' => 'active',
-                'position' => 0,
-                'date' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
-            );
-
-            // Insert the new trigger
-            $trigger_id = ct_insert_object( $trigger_data );
-
-            if( $trigger_id ) {
-                $trigger_data['id'] = $trigger_id;
-
-                $trigger_data = (object) $trigger_data;
-
-                // Prepend the new trigger at start of the triggers list
-                array_unshift( $triggers, $trigger_data );
-            }
-
-            ct_reset_setup_table();
-        }
-
-    }
-
-    // All posts
-    if( $automation->type === 'all-posts' ) {
-
-        $create = false;
-
-        // Check if the first action is the action required for anonymous automations
-        if( ! isset( $triggers[0] ) ) {
-            $create = true;
-        }
-
-        if( isset( $triggers[0] ) && $triggers[0]->type !== 'automatorwp_all_posts' ) {
-            $create = true;
-        }
-
-        if( $create ) {
-            ct_setup_table( 'automatorwp_triggers' );
-
-            // Setup the trigger data
-            $trigger_data = array(
-                'automation_id' => $automation->id,
-                'title' => __( 'Run automation on all posts', 'automatorwp' ),
-                'type' => 'automatorwp_all_posts',
-                'status' => 'active',
-                'position' => 0,
-                'date' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
-            );
-
-            // Insert the new trigger
-            $trigger_id = ct_insert_object( $trigger_data );
-
-            if( $trigger_id ) {
-                $trigger_data['id'] = $trigger_id;
-
-                $trigger_data = (object) $trigger_data;
-
-                // Prepend the new trigger at start of the triggers list
-                array_unshift( $triggers, $trigger_data );
-            }
-
-            ct_reset_setup_table();
-        }
-
-    }
-
-    // All users
-    if( $automation->type === 'import-file' ) {
-
-        $create = false;
-
-        // Check if the first action is the action required for anonymous automations
-        if( ! isset( $triggers[0] ) ) {
-            $create = true;
-        }
-
-        if( isset( $triggers[0] ) && $triggers[0]->type !== 'automatorwp_import_file' ) {
-            $create = true;
-        }
-
-        if( $create ) {
-            ct_setup_table( 'automatorwp_triggers' );
-
-            // Setup the trigger data
-            $trigger_data = array(
-                'automation_id' => $automation->id,
-                'title' => __( 'Run automation on file', 'automatorwp' ),
-                'type' => 'automatorwp_import_file',
-                'status' => 'active',
-                'position' => 0,
-                'date' => date( 'Y-m-d H:i:s', current_time( 'timestamp' ) ),
-            );
-
-            // Insert the new trigger
-            $trigger_id = ct_insert_object( $trigger_data );
-
-            if( $trigger_id ) {
-                $trigger_data['id'] = $trigger_id;
-
-                $trigger_data = (object) $trigger_data;
-
-                // Prepend the new trigger at start of the triggers list
-                array_unshift( $triggers, $trigger_data );
-            }
-
-            ct_reset_setup_table();
-        }
-
-    }
-
-    return $triggers;
+    return apply_filters( 'automatorwp_check_automation_required_triggers', $triggers, $automation );
 
 }
 
@@ -1000,7 +855,7 @@ function automatorwp_check_automation_required_actions( $automation, $actions ) 
 
     }
 
-    return $actions;
+    return apply_filters( 'automatorwp_check_automation_required_actions', $actions, $automation );
 
 }
 

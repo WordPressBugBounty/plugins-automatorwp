@@ -742,9 +742,74 @@ function automatorwp_utilities_post_tags( $post_label = '' ) {
             'type'      => 'text',
             'preview'   => sprintf( __( '%s meta value, replace "META_KEY" by the %s meta key', 'automatorwp' ), $post_label, strtolower( $post_label ) ),
         ),
-    ) );
+    ), $post_label );
 
 }
+
+/**
+ * Post meta tags from a GROUP BY from the database
+ *
+ * @since 1.0.0
+ *
+ * @param array     $tags       The post tags
+ * @param string    $post_label The post label
+ *
+ * @return array
+ */
+function automatorwp_utilities_post_meta_tags( $tags, $post_label ) {
+
+    global $wpdb;
+
+    $cache = automatorwp_get_cache( 'post_meta_tags', array(), false );
+
+    // If result already cached, return it
+    if( is_array( $cache ) && count( $cache ) ) {
+        return array_merge( $tags, $cache );
+    }
+
+    $metas = get_transient( 'automatorwp_post_metas_query' );
+
+    if ( $metas === false ) {
+        $postmeta = AutomatorWP()->db->postmeta;
+
+        // Query all post meta keys
+        $metas = $wpdb->get_results("SELECT * FROM {$postmeta} AS um GROUP BY um.meta_key ORDER BY um.meta_key ASC");
+
+        // Store the result for an hour
+        set_transient( 'automatorwp_post_metas_query', $metas, HOUR_IN_SECONDS );
+    }
+
+    // post_meta:META_KEY
+    $meta_tags['post_meta:META_KEY'] = array(
+        /* translators: %s: Post label (by default: Post). */
+        'label'     => sprintf( __( '%s Meta', 'automatorwp' ), $post_label ),
+        'type'      => 'text',
+        'preview'   => sprintf( __( '%s meta value, replace "META_KEY" by the %s meta key', 'automatorwp' ), $post_label, strtolower( $post_label ) ),
+    );
+
+    foreach( $metas as $meta ) {
+
+        $meta_value = $meta->meta_value;
+
+        if( empty( $meta_value ) ) {
+            $meta_value = __( '(no preview available)', 'automatorwp' );
+        }
+
+        // Shortcuts for the post_meta:META_KEY
+        $meta_tags['post_meta:' . $meta->meta_key] = array(
+            'label'     => $meta->meta_key,
+            'type'      => 'text',
+            'preview'   => $meta_value,
+        );
+
+    }
+
+    automatorwp_set_cache( 'post_meta_tags', $meta_tags );
+
+    return array_merge( $tags, $meta_tags );
+
+}
+add_filter( 'automatorwp_utilities_post_tags', 'automatorwp_utilities_post_meta_tags', 10, 2 );
 
 /**
  * Utility function to get the comment tags

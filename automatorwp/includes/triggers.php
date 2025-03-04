@@ -24,6 +24,7 @@ function automatorwp_register_trigger( $trigger, $args ) {
         'anonymous'         => false,
         'label'             => '',
         'select_option'     => '',
+        'show_in_selector'  => true,
         'edit_label'        => '',
         'log_label'         => '',
         'action'            => '',

@@ -186,13 +186,13 @@ function automatorwp_get_log_integration_icon( $log ) {
 
             if( $integration ) :
 
-                if( $log->type === 'trigger' && $object->type === 'automatorwp_all_posts' ) {
-                    $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-all-posts.svg';
-                }
-
                 if( $log->type === 'action' && $object->type === 'automatorwp_anonymous_user' ) {
                     $integration['icon'] = AUTOMATORWP_URL . 'assets/img/automatorwp-anonymous.svg';
-                } ?>
+                }
+
+                $integration = apply_filters( 'automatorwp_get_log_integration_icon_integration', $integration, $object, $log->type, $log );
+
+                ?>
 
                 <div class="automatorwp-integration-icon">
                     <img src="<?php echo esc_attr( $integration['icon'] ); ?>" title="<?php echo esc_attr( $integration['label'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">

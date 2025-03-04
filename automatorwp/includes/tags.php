@@ -132,6 +132,8 @@ function automatorwp_get_tags() {
         'preview'   => __( 'User meta value, replace "META_KEY" by the user meta key.', 'automatorwp' ),
     );
 
+    $tags = automatorwp_user_meta_tags( $tags );
+
     // ---------------------------------
     // Date and time tags
     // ---------------------------------
@@ -176,6 +178,75 @@ function automatorwp_get_tags() {
      * @return array
      */
     return apply_filters( 'automatorwp_get_tags', $tags );
+
+}
+
+/**
+ * User meta tags from a GROUP BY from the database
+ *
+ * @since 1.0.0
+ *
+ * @param array $tags The global tags
+ *
+ * @return array
+ */
+function automatorwp_user_meta_tags( $tags ) {
+
+    global $wpdb;
+
+    $cache = automatorwp_get_cache( 'user_meta_tags', array(), false );
+
+    // If result already cached, return it
+    if( is_array( $cache ) && count( $cache ) ) {
+        return array_merge( $tags, $cache );
+    }
+
+    $metas = get_transient( 'automatorwp_user_metas_query' );
+
+    if ( $metas === false ) {
+        $usermeta = AutomatorWP()->db->usermeta;
+
+        // Query all user meta keys
+        $metas = $wpdb->get_results("SELECT * FROM {$usermeta} AS um GROUP BY um.meta_key ORDER BY um.meta_key ASC");
+
+        // Store the result for an hour
+        set_transient( 'automatorwp_user_metas_query', $metas, HOUR_IN_SECONDS );
+    }
+
+    // User Meta group
+    $meta_tags['user_meta'] = array(
+        'label' => __( 'User Meta', 'automatorwp' ),
+        'tags'  => array(),
+        'icon'  => AUTOMATORWP_URL . 'assets/img/integration-default.svg',
+    );
+
+    // user_meta:META_KEY
+    $meta_tags['user_meta']['tags']['user_meta:META_KEY'] = array(
+        'label'     => __( 'User Meta', 'automatorwp' ),
+        'type'      => 'text',
+        'preview'   => __( 'User meta value, replace "META_KEY" by the user meta key.', 'automatorwp' ),
+    );
+
+    foreach( $metas as $meta ) {
+
+        $meta_value = $meta->meta_value;
+
+        if( empty( $meta_value ) ) {
+            $meta_value = __( '(no preview available)', 'automatorwp' );
+        }
+
+        // Shortcuts for the user_meta:META_KEY
+        $meta_tags['user_meta']['tags']['user_meta:' . $meta->meta_key] = array(
+            'label'     => $meta->meta_key,
+            'type'      => 'text',
+            'preview'   => $meta_value,
+        );
+
+    }
+
+    automatorwp_set_cache( 'user_meta_tags', $meta_tags );
+
+    return array_merge( $tags, $meta_tags );
 
 }
 
@@ -858,7 +929,9 @@ function automatorwp_get_trigger_tag_replacement( $tag_name, $trigger, $user_id,
 
     switch( $tag_name ) {
         case 'times':
-            if( in_array( $trigger->type, array( 'automatorwp_all_users', 'automatorwp_all_posts' ) ) ) {
+            $no_user_triggers = apply_filters( 'automatorwp_get_trigger_tag_replacement_times_no_user_triggers', array() );
+
+            if( in_array( $trigger->type, $no_user_triggers ) ) {
                 $replacement = automatorwp_get_object_completion_times( $trigger->id, 'trigger' );
             } else {
                 $replacement = automatorwp_get_user_completion_times( $trigger->id, $user_id, 'trigger' );

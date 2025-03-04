@@ -23,6 +23,7 @@ function automatorwp_register_filter( $filter, $args ) {
         'integration'       => '',
         'label'             => '',
         'select_option'     => '',
+        'show_in_selector'  => true,
         'edit_label'        => '',
         'log_label'         => '',
         'options'            => array(),

@@ -206,7 +206,7 @@ function automatorwp_add_meta_box( $id, $title, $object_types, $fields, $args = 
     $hook_id = str_replace( '-', '_', $id );
 
     /**
-     * Filter box fields to allow extend it
+     * Filter box fields to allow to extend it
      *
      * @since  1.0.8
      *

@@ -59,17 +59,23 @@ function automatorwp_run_scheduled_automations() {
     $automations = AutomatorWP()->db->automations;
     $automations_meta = AutomatorWP()->db->automations_meta;
 
+    $loop_types = automatorwp_get_automation_loop_types();
+
+    $patterns = implode( ', ', array_fill( 0, count( $loop_types ), '%s' ) );
+
     // Get scheduled automations
-    $results = $wpdb->get_results( "
+    $results = $wpdb->get_results( $wpdb->prepare( "
         SELECT a.id
         FROM {$automations} AS a 
         LEFT JOIN {$automations_meta} AS am1 ON ( am1.id = a.id AND am1.meta_key = 'schedule_run' )
         LEFT JOIN {$automations_meta} AS am2 ON ( am2.id = a.id AND am2.meta_key = 'recurring_run' )
         LEFT JOIN {$automations_meta} AS am3 ON ( am3.id = a.id AND am3.meta_key = 'next_run_date' )
-        WHERE a.type IN ( 'all-users', 'all-posts', 'import-file' ) 
+        WHERE a.type IN ( {$patterns} ) 
         AND a.status = 'active' 
         AND ( am1.meta_value = 'on' OR am2.meta_value = 'on' )
-        AND am3.meta_value <= '{$datetime}'" );
+        AND am3.meta_value <= '{$datetime}'",
+        $loop_types
+    ) );
         
     
     if( is_array( $results ) ) {

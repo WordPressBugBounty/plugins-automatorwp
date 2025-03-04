@@ -114,7 +114,7 @@ class AutomatorWP_LearnPress_User_Course extends AutomatorWP_Integration_Action 
             // Create a new order
             $order = new LP_Order();
             $order->set_customer_note( __( 'Order created by AutomatorWP', 'automatorwp' ) );
-            $order->set_status( learn_press_default_order_status( 'lp-' ) );
+            $order->set_status( LP_ORDER_PENDING );
             $order->set_user_id( $user_id );
             $order->set_user_ip_address( learn_press_get_ip() );
             $order->set_user_agent( learn_press_get_user_agent() );

@@ -456,8 +456,7 @@ function automatorwp_ajax_run_automation() {
 
     // Sanitize parameters
     $automation_id = absint( $_POST['automation_id'] );
-    $items_per_loop = ( isset( $_POST['items_per_loop'] ) ? absint( $_POST['items_per_loop'] ) : 0 );
-    
+
     $automation = automatorwp_get_automation_object( $automation_id );
 
     // Bail if automation not found
@@ -465,54 +464,14 @@ function automatorwp_ajax_run_automation() {
         wp_send_json_error( sprintf( __( 'Automation with ID %d not found.', 'automatorwp' ), $automation_id ) );
     }
 
-    // Get the loop before gets updated
-    $loop = absint( automatorwp_get_automation_meta( $automation->id, 'current_loop', true ) );
-
-    // First loop checks
-    if( $loop === 0 ) {
-        if( $automation->type === 'all-users' ) {
-            // All users
-
-            if( $items_per_loop <= 0 ) {
-                wp_send_json_error( __( 'Users per loop need to be higher than 0.', 'automatorwp' ) );
-            }
-
-            // Update the users per loop
-            $original_users_per_loop = absint( automatorwp_get_automation_meta( $automation->id, 'users_per_loop', true ) );
-
-            if( $items_per_loop !== $original_users_per_loop ) {
-                automatorwp_update_automation_meta( $automation->id, 'users_per_loop', $items_per_loop );
-            }
-        } else if( $automation->type === 'all-posts' ) {
-            // All posts
-
-            if( $items_per_loop <= 0 ) {
-                wp_send_json_error( __( 'Posts per loop need to be higher than 0.', 'automatorwp' ) );
-            }
-
-            // Update the posts per loop
-            $original_posts_per_loop = absint( automatorwp_get_automation_meta( $automation->id, 'posts_per_loop', true ) );
-
-            if( $items_per_loop !== $original_posts_per_loop ) {
-                automatorwp_update_automation_meta( $automation->id, 'posts_per_loop', $items_per_loop );
-            }
-        } else if( $automation->type === 'import-file' ) {
-            // Import file
-            if( $items_per_loop <= 0 ) {
-                wp_send_json_error( __( 'Lines per loop need to be higher than 0.', 'automatorwp' ) );
-            }
-
-            // Update the lines per loop
-            $original_lines_per_loop = absint( automatorwp_get_automation_meta( $automation->id, 'lines_per_loop', true ) );
-
-            if( $items_per_loop !== $original_lines_per_loop ) {
-                automatorwp_update_automation_meta( $automation->id, 'lines_per_loop', $items_per_loop );
-            }
-        }
-
-        // Update a flag to meet that is a manual run
-        automatorwp_update_automation_meta( $automation->id, 'manual_run', '1' );
-    }
+    /**
+     * Hook when running automation through ajax
+     *
+     * @since 2.2.2
+     *
+     * @param stdClass $automation The automation object
+     */
+    do_action( 'automatorwp_ajax_run_automation', $automation );
 
     // Run the automation
     $result = automatorwp_run_automation( $automation_id );
@@ -558,7 +517,6 @@ function automatorwp_ajax_cancel_automation_run() {
     $result = automatorwp_cancel_automation_run( $automation_id );
 
     if( $result ) {
-
         wp_send_json_success();
     } else {
         wp_send_json_error( array(

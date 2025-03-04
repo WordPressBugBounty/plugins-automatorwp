@@ -1107,7 +1107,7 @@
             hide: { effect: 'fadeOut', duration: 200 },
             resizable: false,
             height: 'auto',
-            width: 600,
+            width: 800,
             modal: true,
             draggable: false,
             closeOnEscape: false,
@@ -1123,6 +1123,17 @@
 
     // Automation type dialog confirm button
     $('body').on('click', '.automatorwp-automation-type-dialog .automatorwp-automation-type-dialog-confirm', function(e) {
+
+        var $this = $(this);
+
+        if( $this.hasClass('disabled') ) {
+            return;
+        }
+
+        // Disable the button
+        $this.addClass('disabled');
+
+        $this.closest('.automatorwp-dialog-buttons').prepend('<span class="spinner is-active" style="float: none;"></span>');
 
         var type = 'user';
         var selected = $('.automatorwp-automation-type-dialog .automatorwp-automation-type-selected');
@@ -1408,14 +1419,13 @@
 
         var automation_id = $('input#object_id').val();
         var automation_type = $('select#type').val();
-        var items_per_loop = 0;
 
-        if( automation_type === 'all-users' ) {
-            items_per_loop = $('input#users_per_loop').val();
-        } else if( automation_type === 'all-posts' ) {
-            items_per_loop = $('input#posts_per_loop').val();
-        } else if( automation_type === 'import-file' ) {
-            items_per_loop = $('input#lines_per_loop').val();
+        // Used for automation loop
+        var items_per_loop = 0;
+        var items_per_loop_input = $('input#items_per_loop');
+
+        if( items_per_loop_input.length ) {
+            items_per_loop = items_per_loop_input.val();
         }
 
         // Disable the button and switch labels
@@ -1446,14 +1456,13 @@
     if( $('.automatorwp-run-automation.automatorwp-is-running').length ) {
         var automation_id = $('input#object_id').val();
         var automation_type = $('select#type').val();
-        var items_per_loop = 0;
 
-        if( automation_type === 'all-users' ) {
-            items_per_loop = $('input#users_per_loop').val();
-        } else if( automation_type === 'all-posts' ) {
-            items_per_loop = $('input#posts_per_loop').val();
-        } else if( automation_type === 'import-file' ) {
-            items_per_loop = $('input#lines_per_loop').val();
+        // Used for automation loop
+        var items_per_loop = 0;
+        var items_per_loop_input = $('input#items_per_loop');
+
+        if( items_per_loop_input.length ) {
+            items_per_loop = items_per_loop_input.val();
         }
 
         automatorwp_run_automation( automation_id, items_per_loop );

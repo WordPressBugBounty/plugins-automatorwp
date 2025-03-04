@@ -9,6 +9,10 @@
 // Exit if accessed directly
 if( !defined( 'ABSPATH' ) ) exit;
 
+// Automations
+require_once plugin_dir_path( __FILE__ ) . 'automations/all-users.php';
+require_once plugin_dir_path( __FILE__ ) . 'automations/all-posts.php';
+
 // Triggers
 require_once plugin_dir_path( __FILE__ ) . 'triggers/complete-automation.php';
 require_once plugin_dir_path( __FILE__ ) . 'triggers/user-created.php';
@@ -20,6 +24,7 @@ require_once plugin_dir_path( __FILE__ ) . 'actions/anonymous-user.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/redirect-user.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/call-function.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/do-action.php';
+require_once plugin_dir_path( __FILE__ ) . 'actions/add-log.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/run-all-users-automation.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/run-all-posts-automation.php';
 // Filters

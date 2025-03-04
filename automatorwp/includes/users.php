@@ -549,30 +549,19 @@ function automatorwp_get_trigger_last_completion_log( $trigger, $user_id, $conte
 
     if( ! $log ) {
 
+        $no_user_types = apply_filters( 'automatorwp_get_trigger_last_completion_log_no_user_types', array() );
+
         if( $user_id === 0 && absint( $automatorwp_last_anonymous_trigger_log_id ) !== 0 ) {
 
             // Get the last anonymous trigger log if parsing tags for an anonymous user
             $log = automatorwp_get_log_object( $automatorwp_last_anonymous_trigger_log_id );
 
-        } else if ( $trigger->type === 'automatorwp_import_file' ) {
+        } else if ( in_array( $trigger->type, $no_user_types ) ) {
 
-            // For all users automations, the log object is common to all users
+            // For automation loops, the log object is common to all entries
             $log = automatorwp_get_object_last_log( $trigger->id, 'trigger' );
 
-        } else if ( $trigger->type === 'automatorwp_all_users' ) {
-
-            // For all users automations, the log object is common to all users
-            $log = automatorwp_get_object_last_log( $trigger->id, 'trigger' );
-
-        } else if ( $trigger->type === 'automatorwp_all_posts' ) {
-
-            // For all posts automations, the log object is common to all users
-            $log = automatorwp_get_object_last_log( $trigger->id, 'trigger' );
-
-            // Update the post ID for tag parsing
-            if( is_array( $automatorwp_event ) && isset( $automatorwp_event['post_id'] ) ) {
-                $log->post_id = absint( $automatorwp_event['post_id'] );
-            }
+            $log = apply_filters( 'automatorwp_get_trigger_last_completion_log_extend_log', $log, $trigger );
 
         } else {
 
@@ -620,25 +609,14 @@ function automatorwp_get_action_last_completion_log( $action, $user_id, $content
 
     if( ! $log ) {
 
-        if ( $action->type === 'automatorwp_all_users' ) {
+        $no_user_types = apply_filters( 'automatorwp_get_action_last_completion_log_no_user_types', array() );
 
-            // For all users automations, the log object is common to all users
-            $log = automatorwp_get_object_last_log( $action->id, 'action' );
+        if ( in_array( $action->type, $no_user_types ) ) {
 
-        } else if ( $action->type === 'automatorwp_import_file' ) {
+            // For automation loops, the log object is common to all entries
+            $log = automatorwp_get_object_last_log( $action->id, 'trigger' );
 
-            // For all users automations, the log object is common to all users
-            $log = automatorwp_get_object_last_log( $action->id, 'action' );
-
-        } else if ( $action->type === 'automatorwp_all_posts' ) {
-
-            // For all posts automations, the log object is common to all users
-            $log = automatorwp_get_object_last_log( $action->id, 'action' );
-
-            // Update the post ID for tag parsing
-            if( is_array( $automatorwp_event ) && isset( $automatorwp_event['post_id'] ) ) {
-                $log->post_id = absint( $automatorwp_event['post_id'] );
-            }
+            $log = apply_filters( 'automatorwp_get_action_last_completion_log_extend_log', $log, $action );
 
         } else {
 
