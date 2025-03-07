@@ -96,6 +96,16 @@
     background-color: #fff;
 }
 
+/* Options Page */
+.cmb2-options-page .cmb2-switch.cmb-type-checkbox input {
+    left: 12px;
+}
+
+.cmb2-options-page .cmb2-switch.cmb-type-checkbox input + label:before,
+.cmb2-options-page .cmb2-switch.cmb-type-checkbox input + label:after {
+    left: 14px;
+}
+
 /* Multicheck */
 .cmb2-switch .cmb2-list li {
     position: relative;
@@ -113,6 +123,16 @@
     display: inline-block;
     margin-left: 0;
     margin-top: 28px;
+}
+
+/* CT Edit Screen */
+#ct_edit_form #postbox-container-2 .cmb2-switch.cmb-type-checkbox input {
+    top: 23px;
+}
+
+#ct_edit_form #postbox-container-2 .cmb2-switch.cmb-type-checkbox input + label:before,
+#ct_edit_form #postbox-container-2 .cmb2-switch.cmb-type-checkbox input + label:after {
+    top: 25px;
 }
 
 /* RTL */

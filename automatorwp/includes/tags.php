@@ -132,7 +132,8 @@ function automatorwp_get_tags() {
         'preview'   => __( 'User meta value, replace "META_KEY" by the user meta key.', 'automatorwp' ),
     );
 
-    $tags = automatorwp_user_meta_tags( $tags );
+    // To check
+    //$tags = automatorwp_user_meta_tags( $tags );
 
     // ---------------------------------
     // Date and time tags

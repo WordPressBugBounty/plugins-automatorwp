@@ -759,7 +759,7 @@ function automatorwp_utilities_post_tags( $post_label = '' ) {
 function automatorwp_utilities_post_meta_tags( $tags, $post_label ) {
 
     global $wpdb;
-
+    
     $cache = automatorwp_get_cache( 'post_meta_tags', array(), false );
 
     // If result already cached, return it
@@ -773,10 +773,9 @@ function automatorwp_utilities_post_meta_tags( $tags, $post_label ) {
         $postmeta = AutomatorWP()->db->postmeta;
 
         // Query all post meta keys
-        $metas = $wpdb->get_results("SELECT * FROM {$postmeta} AS um GROUP BY um.meta_key ORDER BY um.meta_key ASC");
-
+        $metas = $wpdb->get_results("SELECT um.meta_key, um.meta_value FROM {$postmeta} AS um GROUP BY um.meta_key ORDER BY um.meta_key ASC");
         // Store the result for an hour
-        set_transient( 'automatorwp_post_metas_query', $metas, HOUR_IN_SECONDS );
+        set_transient( 'automatorwp_post_metas_query', $metas, DAY_IN_SECONDS );
     }
 
     // post_meta:META_KEY
@@ -805,11 +804,11 @@ function automatorwp_utilities_post_meta_tags( $tags, $post_label ) {
     }
 
     automatorwp_set_cache( 'post_meta_tags', $meta_tags );
-
+    
     return array_merge( $tags, $meta_tags );
 
 }
-add_filter( 'automatorwp_utilities_post_tags', 'automatorwp_utilities_post_meta_tags', 10, 2 );
+//add_filter( 'automatorwp_utilities_post_tags', 'automatorwp_utilities_post_meta_tags', 10, 2 );
 
 /**
  * Utility function to get the comment tags
