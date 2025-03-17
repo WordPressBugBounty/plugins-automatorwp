@@ -43,7 +43,7 @@ function automatorwp_convertkit_ajax_authorize() {
 
     // Update settings
     update_option( 'automatorwp_settings', $settings );
-    $admin_url = str_replace( 'http://', 'http://', get_admin_url() )  . 'admin.php?page=automatorwp_settings&tab=opt-tab-convertkit';
+    $admin_url = admin_url( 'admin.php?page=automatorwp_settings&tab=opt-tab-convertkit' );
    
     wp_send_json_success( array(
         'message' => __( 'Correct data to connect with ConvertKit', 'automatorwp-convertkit' ),

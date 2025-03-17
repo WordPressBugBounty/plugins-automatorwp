@@ -228,7 +228,7 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
             'menu_order'    => '0',
             'post_password' => '',
         ) );
-
+        
         // Format post date
         if( ! empty( $post_data['post_date'] ) ) {
             $post_data['post_date'] = date( 'Y-m-d H:i:s', strtotime( $post_data['post_date'] ) );

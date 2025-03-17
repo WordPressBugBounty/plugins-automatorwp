@@ -140,8 +140,8 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
         add_filter( 'automatorwp_get_action_last_completion_log_no_user_types', array( $this, 'add_type_to_array' ) );
 
         // Extend log object on last completion log
-        add_filter( 'automatorwp_get_trigger_last_completion_log_extend_log', array( $this, 'extend_las_completion_log' ), 10, 2 );
-        add_filter( 'automatorwp_get_action_last_completion_log_extend_log', array( $this, 'extend_las_completion_log' ), 10, 2 );
+        add_filter( 'automatorwp_get_trigger_last_completion_log_extend_log', array( $this, 'extend_last_completion_log' ), 10, 2 );
+        add_filter( 'automatorwp_get_action_last_completion_log_extend_log', array( $this, 'extend_last_completion_log' ), 10, 2 );
 
     }
 
@@ -348,17 +348,19 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
 
     }
 
-    public function extend_las_completion_log( $log, $trigger ) {
-
+    public function extend_last_completion_log( $log, $trigger ) {
+    
         global $automatorwp_event;
-
-        if( $trigger->type === $this->type ) {
+        
+        if( $trigger->type === $this->trigger ) {        
+        
             // Update the post ID for tag parsing
             if( is_array( $automatorwp_event ) && isset( $automatorwp_event['post_id'] ) ) {
                 $log->post_id = absint( $automatorwp_event['post_id'] );
             }
         }
 
+        return $log;
     }
 
 }

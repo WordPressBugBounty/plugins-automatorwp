@@ -17,12 +17,15 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
         protected $columns = array();
 
+        public $add_form = false;
+
         public function __construct( $name, $args ) {
 
             parent::__construct( $name, $args );
 
             $this->per_page = isset( $args['per_page'] ) ? $args['per_page'] : 20;
             $this->columns  = isset( $args['columns'] ) ? $args['columns'] : array();
+            $this->add_form  = isset( $args['add_form'] ) ? $args['add_form'] : false;
 
         }
 
@@ -115,6 +118,11 @@ if ( ! class_exists( 'CT_List_View' ) ) :
                     $this->delete();
                 }
 
+            }
+
+            if( isset( $_POST['ct-add'] ) ) {
+                // Add new
+                $this->add_new();
             }
 
             // Setup the query and the list table objects
@@ -364,6 +372,53 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
         }
 
+        public function add_new() {
+
+            global $ct_registered_tables, $ct_table;
+
+            // If not CT object, die
+            if ( ! $ct_table )
+                wp_die( __( 'Invalid item type.' ) );
+
+            // If not CT object allow ui, die
+            if ( ! $ct_table->show_ui ) {
+                wp_die( __( 'Sorry, you are not allowed to add items of this type.' ) );
+            }
+
+            // Nonce check
+            if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
+                wp_die( __( 'Sorry, you are not allowed to add new items.' ) );
+            }
+
+            if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'ct_add_new' ) ) {
+                wp_die( __( 'Sorry, you are not allowed to add new items.' ) );
+            }
+
+            $object_data = &$_POST;
+
+            unset( $object_data['ct-add'] );
+
+            // Insert a default object
+            $success = ct_insert_object( array() );
+
+            if( $success ) {
+                $object_data[$ct_table->db->primary_key] = $success;
+                $success = ct_update_object( $object_data );
+            }
+
+            $location = $this->get_link();
+
+            if( $success ) {
+                $location = add_query_arg( array( 'added' => 1 ), $location );
+            } else {
+                $location = add_query_arg( array( 'added' => 0 ), $location );
+            }
+
+            wp_redirect( $location );
+            exit;
+
+        }
+
         /**
          * View content.
          *
@@ -376,6 +431,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
             $ct_list_table->prepare_items();
 
             $bulk_counts = array(
+                'added'     => isset( $_REQUEST['added'] )   ? absint( $_REQUEST['added'] )   : 0,
                 'updated'   => isset( $_REQUEST['updated'] )   ? absint( $_REQUEST['updated'] )   : 0,
                 'locked'    => isset( $_REQUEST['locked'] )    ? absint( $_REQUEST['locked'] )    : 0,
                 'deleted'   => isset( $_REQUEST['deleted'] )   ? absint( $_REQUEST['deleted'] )   : 0,
@@ -384,6 +440,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
             );
 
             $bulk_messages = array(
+                'added'   => _n( '%s item added.', '%s items added.', $bulk_counts['added'] ),
                 'updated'   => _n( '%s item updated.', '%s items updated.', $bulk_counts['updated'] ),
                 'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 item not updated, somebody is editing it.' ) :
                     _n( '%s item not updated, somebody is editing it.', '%s items not updated, somebody is editing them.', $bulk_counts['locked'] ),
@@ -433,26 +490,85 @@ if ( ! class_exists( 'CT_List_View' ) ) :
                 unset( $messages );
 
                 $_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated', 'deleted', 'trashed', 'untrashed' ), $_SERVER['REQUEST_URI'] );
-                ?>
 
-                <?php $ct_list_table->views(); ?>
+                if ( $this->add_form ) : ?>
 
-                <form id="ct-list-filter" method="get">
+                <div id="col-container" class="wp-clearfix">
+                    <div id="col-left">
+                        <div id="col-wrap">
+                            <?php $this->render_add_form(); ?>
+                        </div>
+                    </div>
+                    <div id="col-right">
+                        <div id="col-wrap">
+                            <?php $this->render_table(); ?>
+                        </div>
+                    </div>
+                </div>
 
-                    <input type="hidden" name="page" value="<?php echo esc_attr( $this->args['menu_slug'] ); ?>" />
+                <?php else :
 
-                    <?php $ct_list_table->search_box( $ct_table->labels->search_items, $ct_table->name ); ?>
+                    $this->render_table();
 
-                    <?php $ct_list_table->display(); ?>
-
-                </form>
-
-                <div id="ajax-response"></div>
-                <br class="clear" />
+                endif; ?>
 
             </div>
 
             <?php
+        }
+
+        function render_add_form() {
+
+            global $ct_table, $ct_list_table;
+
+            ?>
+
+            <div id="form-wrap">
+
+                <h2><?php echo $ct_table->labels->add_new_item; ?></h2>
+
+                <form name="ct_add_form" action="" method="post" id="ct_add_form">
+
+                    <?php wp_nonce_field( 'ct_add_new' ); ?>
+
+                    <?php do_action( "ct_render_{$ct_table->name}_edit_form", 0 ); ?>
+
+                    <p class="submit">
+                        <?php submit_button( $ct_table->labels->add_new_item, 'primary', 'ct-add', false ); ?>
+                        <input type="button" name="" id="ct-add-disabled" class="button button-primary" value="<?php echo esc_attr( $ct_table->labels->add_new_item ); ?>" disabled="disabled" style="display: none;">
+                        <span class="spinner"></span>
+                    </p>
+
+                </form>
+
+            </div>
+
+            <?php
+        }
+
+        function render_table() {
+
+            global $ct_table, $ct_list_table;
+
+            ?>
+
+            <?php $ct_list_table->views(); ?>
+
+            <form id="ct-list-filter" method="get">
+
+                <input type="hidden" name="page" value="<?php echo esc_attr( $this->args['menu_slug'] ); ?>" />
+
+                <?php $ct_list_table->search_box( $ct_table->labels->search_items, $ct_table->name ); ?>
+
+                <?php $ct_list_table->display(); ?>
+
+            </form>
+
+            <div id="ajax-response"></div>
+            <br class="clear" />
+
+            <?php
+
         }
 
     }

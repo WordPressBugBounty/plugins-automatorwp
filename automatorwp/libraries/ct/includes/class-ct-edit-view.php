@@ -310,6 +310,8 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
                     <div id="publishing-action">
                         <span class="spinner"></span>
                         <?php submit_button( $submit_label, 'primary large', 'ct-save', false ); ?>
+                        <input type="button" name="" id="ct-save-disabled" class="button button-primary" value="<?php echo esc_attr( $submit_label ); ?>" disabled="disabled" style="display: none;">
+
                     </div>
 
                     <div class="clear"></div>

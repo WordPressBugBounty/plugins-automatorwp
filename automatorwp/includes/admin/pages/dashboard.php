@@ -226,7 +226,9 @@ function automatorwp_dashboard_docs_box() {
         <li><a href="https://automatorwp.com/docs/getting-started/automations/" target="_blank"><?php _e( 'Automations', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/anonymous-automations/" target="_blank"><?php _e( 'Anonymous Automations', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/all-users-automations/" target="_blank"><?php _e( 'All Users Automations', 'automatorwp' ); ?></a></li>
-        <li><a href="https://automatorwp.com/docs/getting-started/all-pòsts-automations/" target="_blank"><?php _e( 'All Posts Automations', 'automatorwp' ); ?></a></li>
+        <li><a href="https://automatorwp.com/docs/getting-started/all-posts-automations/" target="_blank"><?php _e( 'All Posts Automations', 'automatorwp' ); ?></a></li>
+        <li><a href="https://automatorwp.com/docs/getting-started/import-file-automations/" target="_blank"><?php _e( 'Import File Automations', 'automatorwp' ); ?></a></li>
+        <li><a href="https://automatorwp.com/docs/getting-started/restrict-content-automations/" target="_blank"><?php _e( 'Restrict Content Automations', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/triggers/" target="_blank"><?php _e( 'Triggers', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/actions/" target="_blank"><?php _e( 'Actions', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/filters/" target="_blank"><?php _e( 'Filters', 'automatorwp' ); ?></a></li>

@@ -34,6 +34,13 @@ function ct_cmb2_admin_init() {
 
     foreach( $ct_registered_tables as $ct_registered_table ) {
 
+        // Check if is a list page slug (to allow work in the add form)
+        if( $_GET['page'] === $ct_registered_table->views->list->get_slug()
+        && $ct_registered_table->views->list->add_form ) {
+            // Let know to this compatibility module it needs to operate
+            $ct_cmb2_override = true;
+        }
+
         // Check if is edit page slug
         if( $_GET['page'] === $ct_registered_table->views->edit->get_slug() ) {
             // Let know to this compatibility module it needs to operate
@@ -99,7 +106,11 @@ function ct_cmb2_save_object( $object_id, $object ) {
     }
 
     // Return if user is not allowed
-    if ( ! current_user_can( $ct_table->cap->edit_item, $object_id ) ) {
+    if ( $object_id !== 0 && ! current_user_can( $ct_table->cap->edit_item, $object_id ) ) {
+        return;
+    }
+
+    if ( $object_id === 0 && ! current_user_can( $ct_table->cap->edit_items ) ) {
         return;
     }
 
@@ -257,3 +268,163 @@ function ct_cmb2_override_meta_remove( $check, $args, $field_args, $field ) {
 
 }
 add_filter( 'cmb2_override_meta_remove', 'ct_cmb2_override_meta_remove', 10, 4 );
+
+function ct_cmb_get_new_field( $field_args, $field_group = null ) {
+
+    if ( $field_group ) {
+        $args = array(
+            'field_args'  => $field_args,
+            'group_field' => $field_group,
+        );
+    } else {
+        $args = array(
+            'field_args'  => $field_args,
+//            'object_type' => $this->object_type(),
+//            'object_id'   => $this->object_id(),
+//            'cmb_id'      => $this->cmb_id,
+        );
+    }
+
+    return new CMB2_Field( $args );
+}
+
+/**
+ * Helper function to sanitize data when inserting objects
+ *
+ * @param CMB2  $cmb    CMB2 object
+ * @param array $data   Data to sanitize
+ *
+ * @return array        Sanitized data
+ */
+function ct_cmb_get_sanitized_data( $cmb, $data ) {
+
+    $sanitized_data = array();
+
+    foreach ( $cmb->prop( 'fields' ) as $field_args ) {
+
+        switch ( $field_args['type'] ) {
+
+            case 'group':
+                if ( ! isset( $field_args['id'], $field_args['fields'] ) || ! is_array( $field_args['fields'] ) ) {
+                    break;
+                }
+
+                $field_group = ct_cmb_get_new_field( $field_args );
+
+                $sanitized_data[$field_group->id( true )] = ct_cmb_get_group_sanitized_data( $cmb, $field_group, $data );
+
+                break;
+
+            case 'title':
+                // Don't process title fields.
+                break;
+
+            default:
+                $field = ct_cmb_get_new_field( $field_args );
+
+                $value = isset( $data[ $field->id( true ) ] )
+                    ? $data[ $field->id( true ) ]
+                    : null;
+
+                $sanitized_data[$field->id( true )] = $field->sanitization_cb( $value );
+
+                break;
+        }
+
+    }
+
+    return apply_filters( 'ct_cmb2_get_sanitized_data', $sanitized_data, $data, $cmb );
+
+}
+
+/**
+ * Helper function to sanitize data from a group field
+ *
+ * @param CMB2          $cmb            CMB2 object
+ * @param CMB2_Field    $field_group    Field group object
+ * @param array         $data           Data to sanitize
+ *
+ * @return array        Sanitized data
+ */
+function ct_cmb_get_group_sanitized_data( $cmb, $field_group, $data ) {
+
+    $base_id = $field_group->id();
+
+    if ( ! isset( $data[ $base_id ] ) ) {
+        return array();
+    }
+
+    $old        = $field_group->get_data();
+    // Check if group field has sanitization_cb.
+    $group_vals = $field_group->sanitization_cb( $data[ $base_id ] );
+    $saved      = array();
+
+    $field_group->index = 0;
+    $field_group->data_to_save = $data;
+
+    foreach ( array_values( $field_group->fields() ) as $field_args ) {
+        if ( 'title' === $field_args['type'] ) {
+            // Don't process title fields.
+            continue;
+        }
+
+        $field  = ct_cmb_get_new_field( $field_args, $field_group );
+        $sub_id = $field->id( true );
+        if ( empty( $saved[ $field_group->index ] ) ) {
+            $saved[ $field_group->index ] = array();
+        }
+
+        foreach ( (array) $group_vals as $field_group->index => $post_vals ) {
+
+            // Get value.
+            $new_val = isset( $group_vals[ $field_group->index ][ $sub_id ] )
+                ? $group_vals[ $field_group->index ][ $sub_id ]
+                : false;
+
+            // Sanitize.
+            $new_val = $field->sanitization_cb( $new_val );
+
+            if ( is_array( $new_val ) && $field->args( 'has_supporting_data' ) ) {
+                if ( $field->args( 'repeatable' ) ) {
+                    $_new_val = array();
+                    foreach ( $new_val as $group_index => $grouped_data ) {
+                        // Add the supporting data to the $saved array stack.
+                        $saved[ $field_group->index ][ $grouped_data['supporting_field_id'] ][] = $grouped_data['supporting_field_value'];
+                        // Reset var to the actual value.
+                        $_new_val[ $group_index ] = $grouped_data['value'];
+                    }
+                    $new_val = $_new_val;
+                } else {
+                    // Add the supporting data to the $saved array stack.
+                    $saved[ $field_group->index ][ $new_val['supporting_field_id'] ] = $new_val['supporting_field_value'];
+                    // Reset var to the actual value.
+                    $new_val = $new_val['value'];
+                }
+            }
+
+            // Get old value.
+            $old_val = is_array( $old ) && isset( $old[ $field_group->index ][ $sub_id ] )
+                ? $old[ $field_group->index ][ $sub_id ]
+                : false;
+
+            $is_updated = ( ! CMB2_Utils::isempty( $new_val ) && $new_val !== $old_val );
+            $is_removed = ( CMB2_Utils::isempty( $new_val ) && ! CMB2_Utils::isempty( $old_val ) );
+
+            // Compare values and add to `$updated` array.
+            if ( $is_updated || $is_removed ) {
+                //$cmb->updated[] = $base_id . '::' . $field_group->index . '::' . $sub_id;
+            }
+
+            // Add to `$saved` array.
+            $saved[ $field_group->index ][ $sub_id ] = $new_val;
+
+        }// End foreach.
+
+        $saved[ $field_group->index ] = CMB2_Utils::filter_empty( $saved[ $field_group->index ] );
+    }// End foreach.
+
+    $saved = CMB2_Utils::filter_empty( $saved );
+
+    return $saved;
+
+}

@@ -441,6 +441,13 @@ if ( ! class_exists( 'CT_Table' ) ) :
         public $description;
 
         /**
+         * @since 4.7.4
+         * @access public
+         * @var array $relationship
+         */
+        public $relationship;
+
+        /**
          * Constructor.
          *
          * Will populate object properties from the provided arguments and assign other
@@ -508,6 +515,7 @@ if ( ! class_exists( 'CT_Table' ) ) :
                 'capabilities'          => array(),
                 'map_meta_cap'          => null,
                 'supports'              => array(),
+                'relationship'          => array(),
                 'register_meta_box_cb'  => null,
                 //'taxonomies'            => array(),
                 'has_archive'           => false,
@@ -644,6 +652,12 @@ if ( ! class_exists( 'CT_Table' ) ) :
 
             $this->label  = $this->labels->name;
 
+            if( isset( $args['relationship'] ) ) {
+                $this->relationship = (object) $args['relationship'];
+            } else {
+                $this->relationship = false;
+            }
+
             // Table database
 
             if( isset( $args['db'] ) ) {
@@ -672,6 +686,7 @@ if ( ! class_exists( 'CT_Table' ) ) :
                     // Specific view args
                     'per_page'      => 20,
                     'columns'       => array(),
+                    'add_form'      => false,
                 ),
                 'add' => array(
                     'page_title'    => $this->labels->add_new,

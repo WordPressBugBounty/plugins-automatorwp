@@ -953,7 +953,7 @@ function automatorwp_get_trigger_tag_replacement( $tag_name, $trigger, $user_id,
     if( ! empty( $comment_replacement ) ) {
         $replacement = $comment_replacement;
     }
-
+    
     /**
      * Filter the trigger tag replacement
      *

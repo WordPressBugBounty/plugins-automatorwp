@@ -10,7 +10,7 @@
  * @copyright GamiPress <contact@gamipress.com>, Ruben Garcia <rubengcdev@gamil.com>
  * @credits   Justin Sternberg (https://jtsternberg.com), Jhon James Jacob (https://jjj.blog)
  * @license   GPL-2.0+
- * @version   1.0.7
+ * @version   1.0.8
  * @link      https://gamipress.com
  */
 
@@ -35,16 +35,16 @@
 /**
  * Loader versioning: http://jtsternberg.github.io/wp-lib-loader/
  */
-if ( ! class_exists( 'CT_Loader_107', false ) ) {
+if ( ! class_exists( 'CT_Loader_108', false ) ) {
 
-    class CT_Loader_107 {
+    class CT_Loader_108 {
 
         /**
          * CT_Loader version number
          * @var   string
          * @since 1.0.0
          */
-        const VERSION = '1.0.7';
+        const VERSION = '1.0.8';
 
         /**
          * Setup constants
@@ -82,19 +82,22 @@ if ( ! class_exists( 'CT_Loader_107', false ) ) {
          */
         public function __construct() {
 
+            $priority = 99999 - absint( str_replace( '.', '', self::VERSION ) );
+
             if ( ! defined( 'CT_LOADER_PRIORITY' ) ) {
                 // Calculate priority converting version into a number (eg: 1.0.0 to 100)
-                define( 'CT_LOADER_PRIORITY', 99999 - absint( str_replace( '.', '', self::VERSION ) ) );
+                define( 'CT_LOADER_PRIORITY', $priority );
             }
+
 
             if ( ! defined( 'CT_LOADED' ) ) {
                 // A constant you can use to check if Custom Tables (CT) is loaded for your plugins/themes with CT dependency.
                 // Can also be used to determine the priority of the hook in use for the currently loaded version.
-                define( 'CT_LOADED', CT_LOADER_PRIORITY );
+                define( 'CT_LOADED', $priority );
             }
 
             // Use the hook system to ensure only the newest version is loaded.
-            add_action( 'ct_loader_load', array( $this, 'include_lib' ), CT_LOADER_PRIORITY );
+            add_action( 'ct_loader_load', array( $this, 'include_lib' ), $priority );
 
             // Try to fire our hook as soon as possible,including right now (required for activation hooks).
             self::fire_hook();
@@ -137,5 +140,5 @@ if ( ! class_exists( 'CT_Loader_107', false ) ) {
     }
 
     // Kick it off.
-    new CT_Loader_107;
+    new CT_Loader_108;
 }

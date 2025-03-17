@@ -12,7 +12,7 @@
 defined( 'ABSPATH' ) || exit;
 
 /*
- * Copyright (c) GamiPress (contact@gamipress.com), Ruben Garcia (rubengcdev@gmail.com)
+ * Copyright (c) GamiPress (contact@gamipress.com), AutomatorWP (contact@automatorwp.com), Ruben Garcia (rubengcdev@gmail.com)
  *
  * This program is free software: you can redistribute it and/or modify it
  * under the terms of the GNU Affero General Public License, version 3,
@@ -102,6 +102,8 @@ if ( ! class_exists( 'CT' ) ) :
             // Rest of includes
             require_once CT_DIR . 'includes/functions.php';
             require_once CT_DIR . 'includes/hooks.php';
+            require_once CT_DIR . 'includes/scripts.php';
+            require_once CT_DIR . 'includes/taxonomy.php';
 
         }
 
