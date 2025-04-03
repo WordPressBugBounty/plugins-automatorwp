@@ -56,7 +56,7 @@ function ct_render_ajax_list_table( $table, $query_args = array(), $view_args = 
 
         ?>
 
-        <div class="wrap ct-ajax-list-table" data-object="<?php echo $ct_table->name; ?>" data-query-args="<?php echo str_replace( '"', "'", json_encode( $query_args ) ); ?>">
+        <div class="wrap ct-ajax-list-table" data-object="<?php echo esc_attr( $ct_table->name ); ?>" data-query-args="<?php echo esc_attr( str_replace( '"', "'", json_encode( $query_args ) ) ); ?>">
 
             <?php
             if( $view_args['views'] ) {
@@ -74,7 +74,7 @@ function ct_render_ajax_list_table( $table, $query_args = array(), $view_args = 
 
                 <?php ct_render_ajax_list_tablenav( $ct_list_table, 'top' ); ?>
 
-                <table class="wp-list-table <?php echo implode( ' ', $ct_list_table->get_table_classes() ); ?>">
+                <table class="wp-list-table <?php echo sanitize_html_class( implode( ' ', $ct_list_table->get_table_classes() ) ); ?>">
                     <thead>
                     <tr>
                         <?php $ct_list_table->print_column_headers(); ?>
@@ -84,7 +84,7 @@ function ct_render_ajax_list_table( $table, $query_args = array(), $view_args = 
                     <?php $singular = $ct_list_table->_args['singular']; ?>
                     <tbody id="the-list"<?php
                     if ( $singular ) {
-                        echo " data-wp-lists='list:$singular'";
+                        echo " data-wp-lists='list:" . esc_attr( $singular ) . "'";
                     } ?>>
                     <?php $ct_list_table->display_rows_or_placeholder(); ?>
                     </tbody>

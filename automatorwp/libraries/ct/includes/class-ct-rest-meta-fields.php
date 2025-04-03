@@ -138,7 +138,7 @@ class CT_REST_Meta_Fields extends WP_REST_Meta_Fields {
             return new WP_Error(
                 'rest_cannot_update',
                 /* translators: %s: custom field key */
-                sprintf( __( 'Sorry, you are not allowed to edit the %s custom field.' ), $name ),
+                sprintf( __( 'Sorry, you are not allowed to edit the %s custom field.', 'ct' ), $name ),
                 array( 'key' => $name, 'status' => rest_authorization_required_code() )
             );
         }
@@ -156,7 +156,7 @@ class CT_REST_Meta_Fields extends WP_REST_Meta_Fields {
         if ( ! ct_update_object_meta( $object_id, wp_slash( $meta_key ), wp_slash( $value ) ) ) {
             return new WP_Error(
                 'rest_meta_database_error',
-                __( 'Could not update meta value in database.' ),
+                __( 'Could not update meta value in database.', 'ct' ),
                 array( 'key' => $name, 'status' => WP_Http::INTERNAL_SERVER_ERROR )
             );
         }

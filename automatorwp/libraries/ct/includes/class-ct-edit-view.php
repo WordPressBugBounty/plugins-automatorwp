@@ -32,7 +32,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
             global $ct_registered_tables, $ct_table;
 
             if( ! isset( $ct_registered_tables[$this->name] ) ) {
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
             }
 
             // Setup global $ct_table
@@ -40,11 +40,11 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( __( 'Sorry, you are not allowed to edit items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to edit items of this type.', 'ct' ) );
             }
 
             if( isset( $_POST['ct-save'] ) ) {
@@ -68,12 +68,12 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
                 // If not object, die
                 if ( ! $this->object ) {
-                    wp_die( __( 'You attempted to edit an item that doesn&#8217;t exist. Perhaps it was deleted?' ) );
+                    wp_die( esc_html__( 'You attempted to edit an item that doesn&#8217;t exist. Perhaps it was deleted?', 'ct' ) );
                 }
 
                 // If not current user can edit, die
                 if ( ! current_user_can( $ct_table->cap->edit_item, $this->object_id ) ) {
-                    wp_die( __( 'Sorry, you are not allowed to edit this item.' ) );
+                    wp_die( esc_html__( 'Sorry, you are not allowed to edit this item.', 'ct' ) );
                 }
 
             } else {
@@ -90,12 +90,12 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
                 // If not object, die
                 if ( ! $this->object )
-                    wp_die( __( 'Unable to create the draft item.' ) );
+                    wp_die( esc_html__( 'Unable to create the draft item.', 'ct' ) );
 
                 // If not current user can create, die
                 if ( ! current_user_can( $ct_table->cap->create_items, $this->object_id )
                     && ! current_user_can( $ct_table->cap->edit_item, $this->object_id ) ) {
-                    wp_die( __( 'Sorry, you are not allowed to create items of this type.' ) );
+                    wp_die( esc_html__( 'Sorry, you are not allowed to create items of this type.', 'ct' ) );
                 }
 
                 // Redirect to edit screen to prevent add a draft item multiples times
@@ -149,7 +149,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
             ?>
 
             <fieldset class="metabox-prefs">
-                <legend><?php _e( 'Boxes' ); ?></legend>
+                <legend><?php esc_html_e( 'Boxes' ); ?></legend>
                 <?php meta_box_prefs( $ct_table->name ); ?>
             </fieldset>
 
@@ -177,10 +177,10 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
             ?>
             <fieldset class='columns-prefs'>
-                <legend class="screen-layout"><?php _e( 'Layout' ); ?></legend><?php
+                <legend class="screen-layout"><?php esc_html_e( 'Layout' ); ?></legend><?php
                 for ( $i = 1; $i <= $num; ++$i ):
                     ?>
-                    <label class="columns-prefs-<?php echo $i; ?>">
+                    <label class="columns-prefs-<?php echo esc_attr ( $i ); ?>">
                         <input type='radio' name='screen_columns' value='<?php echo esc_attr( $i ); ?>'
                             <?php checked( $screen_layout_columns, $i ); ?> />
                         <?php printf( _n( '%s column', '%s columns', $i ), number_format_i18n( $i ) ); ?>
@@ -299,7 +299,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
                             '<a href="%s" class="submitdelete deletion" onclick="%s" aria-label="%s">%s</a>',
                             ct_get_delete_link( $ct_table->name, $object_id ),
                             "return confirm('" .
-                            esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete." ) ) .
+                            esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'ct' ) ) .
                             "');",
                             esc_attr( __( 'Delete permanently' ) ),
                             __( 'Delete Permanently' )
@@ -354,31 +354,31 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( __( 'Sorry, you are not allowed to edit items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to edit items of this type.' ) );
             }
 
             $primary_key = $ct_table->db->primary_key;
 
             if( ! isset( $_POST[$primary_key] ) ) {
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.' ) );
             }
 
             $object_id = $_POST[$primary_key];
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( __( 'Sorry, you are not allowed to edit this item.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to edit this item.' ) );
             }
 
-            if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'ct_edit_' . $object_id ) ) {
-                wp_die( __( 'Sorry, you are not allowed to edit this item.' ) );
+            if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'ct_edit_' . $object_id ) ) {
+                wp_die( esc_html__( 'Sorry, you are not allowed to edit this item.' ) );
             }
 
-            $object_data = &$_POST;
+            $object_data =  map_deep( $_POST, 'sanitize_text_field' );
 
             unset( $object_data['ct-save'] );
 
@@ -417,9 +417,10 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
             // Setup screen message
             if ( isset($_GET['message']) ) {
+                $message_key = sanitize_key( $_GET['message'] );
 
-                if ( isset($messages[$_GET['message']]) )
-                    $this->message = sprintf( $messages[$_GET['message']], $ct_table->labels->singular_name );
+                if ( isset($messages[$message_key]) )
+                    $this->message = sprintf( $messages[$message_key], $ct_table->labels->singular_name );
 
             }
 
@@ -492,10 +493,10 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
             <div class="wrap">
 
-                <h1 class="wp-heading-inline"><?php echo $title; ?></h1>
+                <h1 class="wp-heading-inline"><?php echo $title ; ?></h1>
 
                 <?php if ( isset( $new_url ) && $new_url && current_user_can( $ct_table->cap->create_items ) ) :
-                    echo ' <a href="' . esc_url( $new_url ) . '" class="page-title-action">' . esc_html( $ct_table->labels->add_new_item ) . '</a>';
+                    echo ' <a href="' . esc_url( $new_url ) . '" class="page-title-action">' . $ct_table->labels->add_new_item . '</a>';
                 endif; ?>
 
                 <hr class="wp-header-end">
@@ -506,7 +507,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
                 <form name="ct_edit_form" action="" method="post" id="ct_edit_form">
 
-                    <input type="hidden" id="object_id" name="<?php echo $ct_table->db->primary_key; ?>" value="<?php echo $this->object_id; ?>">
+                    <input type="hidden" id="object_id" name="<?php echo esc_attr( $ct_table->db->primary_key ); ?>" value="<?php echo esc_attr( $this->object_id) ; ?>">
                     <?php wp_nonce_field( 'ct_edit_' . $this->object_id ); ?>
 
                     <?php

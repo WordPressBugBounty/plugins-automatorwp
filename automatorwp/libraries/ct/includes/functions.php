@@ -119,9 +119,9 @@ function ct_get_table_object( $name ) {
 function ct_get_table_labels( $ct_table ) {
 
     $default_labels = array(
-        'name' => __('%1$s', 'ct'),
-        'singular_name' => __('%1$s', 'ct'),
-        'plural_name' => __('%2$s', 'ct'),
+        'name' => '%1$s',
+        'singular_name' => '%1$s',
+        'plural_name' => '%2$s',
         'add_new' => __('Add New', 'ct'),
         'add_new_item' => __('Add New %1$s', 'ct'),
         'edit_item' => __('Edit %1$s', 'ct'),
@@ -300,7 +300,7 @@ function ct_get_table_capabilities( $args ) {
 
     // Remember meta capabilities for future reference.
     if ( $args->map_meta_cap ) {
-        _ct_meta_capabilities( $capabilities );
+        ct_meta_capabilities( $capabilities );
     }
 
     // Shortcut to override all capabilities by a specific capability
@@ -323,7 +323,7 @@ function ct_get_table_capabilities( $args ) {
  *
  * @param array $capabilities Post type meta capabilities.
  */
-function _ct_meta_capabilities( $capabilities = null ) {
+function ct_meta_capabilities( $capabilities = null ) {
     global $ct_meta_caps;
 
     foreach ( $capabilities as $core => $custom ) {
@@ -507,7 +507,7 @@ function ct_insert_object( $object_data, $wp_error = false ) {
     global $wpdb, $ct_table;
 
     if( ! is_a( $ct_table, 'CT_Table' ) ) {
-        return new WP_Error( 'invalid_ct_table', __( 'Invalid CT Table object.' ) );
+        return new WP_Error( 'invalid_ct_table', __( 'Invalid CT Table object.', 'ct' ) );
     }
 
     /**
@@ -540,7 +540,7 @@ function ct_insert_object( $object_data, $wp_error = false ) {
         if ( is_null( $original_object_data ) ) {
 
             if ( $wp_error ) {
-                return new WP_Error( 'invalid_object', __( 'Invalid object ID.' ) );
+                return new WP_Error( 'invalid_object', __( 'Invalid object ID.', 'ct' ) );
             }
 
             return 0;
@@ -1522,12 +1522,12 @@ function ct_meta_form( $object = null ) {
         $meta_key_input_id = 'metakeyinput';
     }
     ?>
-    <p><strong><?php _e( 'Add New Custom Field:' ) ?></strong></p>
+    <p><strong><?php esc_html_e( 'Add New Custom Field:' ) ?></strong></p>
     <table id="newmeta">
         <thead>
         <tr>
             <th class="left"><label for="<?php echo $meta_key_input_id; ?>"><?php _ex( 'Name', 'meta name' ) ?></label></th>
-            <th><label for="metavalue"><?php _e( 'Value' ) ?></label></th>
+            <th><label for="metavalue"><?php esc_html_e( 'Value' ) ?></label></th>
         </tr>
         </thead>
 
@@ -1536,7 +1536,7 @@ function ct_meta_form( $object = null ) {
             <td id="newmetaleft" class="left">
                 <?php if ( $keys ) { ?>
                     <select id="metakeyselect" name="metakeyselect">
-                        <option value="#NONE#"><?php _e( '&mdash; Select &mdash;' ); ?></option>
+                        <option value="#NONE#"><?php esc_html_e( '&mdash; Select &mdash;' ); ?></option>
                         <?php
 
                         foreach ( $keys as $key ) {
@@ -1548,8 +1548,8 @@ function ct_meta_form( $object = null ) {
                     </select>
                     <input class="hide-if-js" type="text" id="metakeyinput" name="metakeyinput" value="" />
                     <a href="#postcustomstuff" class="hide-if-no-js" onclick="jQuery('#metakeyinput, #metakeyselect, #enternew, #cancelnew').toggle();return false;">
-                        <span id="enternew"><?php _e('Enter new'); ?></span>
-                        <span id="cancelnew" class="hidden"><?php _e('Cancel'); ?></span></a>
+                        <span id="enternew"><?php esc_html_e('Enter new'); ?></span>
+                        <span id="cancelnew" class="hidden"><?php esc_html_e('Cancel'); ?></span></a>
                 <?php } else { ?>
                     <input type="text" id="metakeyinput" name="metakeyinput" value="" />
                 <?php } ?>

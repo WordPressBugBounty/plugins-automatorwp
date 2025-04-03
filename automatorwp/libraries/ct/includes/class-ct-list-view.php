@@ -177,7 +177,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
                     $id = "$column-hide";
                     echo '<label>';
-                    echo '<input class="hide-column-tog" name="' . $id . '" type="checkbox" id="' . $id . '" value="' . $column . '"' . checked( ! in_array( $column, $hidden ), true, false ) . ' />';
+                    echo '<input class="hide-column-tog" name="' . esc_attr( $id ) . '" type="checkbox" id="' . esc_attr( $id ) . '" value="' . esc_attr( $column ) . '"' . checked( ! in_array( $column, $hidden ), true, false ) . ' />';
                     echo "$title</label>\n";
                 }
                 ?>
@@ -199,7 +199,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
             }
 
             // Set up vars
-            $per_page_label = __( 'Number of items per page:' );
+            $per_page_label = __( 'Number of items per page:', 'ct' );
 
             $option = str_replace( '-', '_', "edit_{$ct_table->name}_per_page" );
 
@@ -215,9 +215,9 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             ?>
             <fieldset class="screen-options">
-                <legend><?php _e( 'Pagination' ); ?></legend>
+                <legend><?php esc_html_e( 'Pagination' ); ?></legend>
                 <?php if ( $per_page_label ) : ?>
-                    <label for="<?php echo esc_attr( $option ); ?>"><?php echo $per_page_label; ?></label>
+                    <label for="<?php echo esc_attr( $option ); ?>"><?php echo esc_html( $per_page_label ); ?></label>
                     <input type="number" step="1" min="1" max="999" class="screen-per-page" name="wp_screen_options[value]"
                            id="<?php echo esc_attr( $option ); ?>" maxlength="3"
                            value="<?php echo esc_attr( $per_page ); ?>" />
@@ -281,20 +281,20 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( __( 'Sorry, you are not allowed to delete items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
             }
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( __( 'Sorry, you are not allowed to delete items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
             }
 
-            if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'bulk-' . sanitize_key( $ct_table->labels->plural_name ) ) ) {
-                wp_die( __( 'Sorry, you are not allowed to delete items of this type.' ) );
+            if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'bulk-' . sanitize_key( $ct_table->labels->plural_name ) ) ) {
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
             }
 
             $object_ids = array();
@@ -310,11 +310,11 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
                 // If not current user can delete, die
                 if ( ! current_user_can( $ct_table->cap->delete_item, $object_id ) ) {
-                    wp_die( __( 'Sorry, you are not allowed to delete this item.' ) );
+                    wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
                 }
 
                 if ( ! ct_delete_object( $object_id, true ) )
-                    wp_die( __( 'Error in deleting.' ) );
+                    wp_die( esc_html__( 'Error in deleting.', 'ct' ) );
 
                 $deleted++;
             }
@@ -331,39 +331,39 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table ) {
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
             }
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( __( 'Sorry, you are not allowed to delete items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
             }
 
             $primary_key = $ct_table->db->primary_key;
 
             // Object ID is required
             if( ! isset( $_GET[$primary_key] ) ) {
-                wp_die( __( 'Sorry, you are not allowed to delete items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
             }
 
             $object_id = (int) $_GET[$primary_key];
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( __( 'Sorry, you are not allowed to delete this item.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
             }
 
-            if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'ct_delete_' . $object_id ) ) {
-                wp_die( __( 'Sorry, you are not allowed to delete this item.' ) );
+            if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'ct_delete_' . $object_id ) ) {
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
             }
 
             // If user can not delete it, bail
             if ( ! current_user_can( $ct_table->cap->delete_item, $object_id ) ) {
-                wp_die( __( 'Sorry, you are not allowed to delete this item.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
             }
 
             if ( ! ct_delete_object( $object_id ) )
-                wp_die( __( 'Error in deleting.' ) );
+                wp_die( esc_html__( 'Error in deleting.', 'ct' ) );
 
             $location = add_query_arg( array( 'deleted' => 1 ), $this->get_link() );
 
@@ -378,23 +378,23 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( __( 'Invalid item type.' ) );
+                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( __( 'Sorry, you are not allowed to add items of this type.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to add items of this type.', 'ct' ) );
             }
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( __( 'Sorry, you are not allowed to add new items.' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to add new items.', 'ct' ) );
             }
 
-            if ( ! wp_verify_nonce( $_REQUEST['_wpnonce'], 'ct_add_new' ) ) {
-                wp_die( __( 'Sorry, you are not allowed to add new items.' ) );
+            if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'ct_add_new' ) ) {
+                wp_die( esc_html__( 'Sorry, you are not allowed to add new items.', 'ct' ) );
             }
 
-            $object_data = &$_POST;
+            $object_data =  map_deep( $_POST, 'sanitize_text_field' );
 
             unset( $object_data['ct-add'] );
 
@@ -442,7 +442,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
             $bulk_messages = array(
                 'added'   => _n( '%s item added.', '%s items added.', $bulk_counts['added'] ),
                 'updated'   => _n( '%s item updated.', '%s items updated.', $bulk_counts['updated'] ),
-                'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 item not updated, somebody is editing it.' ) :
+                'locked'    => ( 1 == $bulk_counts['locked'] ) ? __( '1 item not updated, somebody is editing it.', 'ct' ) :
                     _n( '%s item not updated, somebody is editing it.', '%s items not updated, somebody is editing them.', $bulk_counts['locked'] ),
                 'deleted'   => _n( '%s item permanently deleted.', '%s items permanently deleted.', $bulk_counts['deleted'] ),
                 'trashed'   => _n( '%s item moved to the Trash.', '%s items moved to the Trash.', $bulk_counts['trashed'] ),
@@ -467,7 +467,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
                 <h1 class="wp-heading-inline"><?php echo $ct_table->labels->plural_name; ?></h1>
 
                 <?php if ( property_exists( $ct_table->views, 'add' ) && $ct_table->views->add && current_user_can( $ct_table->cap->create_items ) ) :
-                    echo ' <a href="' . esc_url( $ct_table->views->add->get_link() ) . '" class="page-title-action">' . esc_html( $ct_table->labels->add_new_item ) . '</a>';
+                    echo ' <a href="' . esc_url( $ct_table->views->add->get_link() ) . '" class="page-title-action">' .  esc_html( $ct_table->labels->add_new_item ) . '</a>';
                 endif; ?>
 
                 <hr class="wp-header-end">
@@ -489,7 +489,7 @@ if ( ! class_exists( 'CT_List_View' ) ) :
                     echo '<div id="message" class="updated notice is-dismissible"><p>' . join( ' ', $messages ) . '</p></div>';
                 unset( $messages );
 
-                $_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated', 'deleted', 'trashed', 'untrashed' ), $_SERVER['REQUEST_URI'] );
+                $_SERVER['REQUEST_URI'] = remove_query_arg( array( 'locked', 'skipped', 'updated', 'deleted', 'trashed', 'untrashed' ), sanitize_text_field( $_SERVER['REQUEST_URI'] ) );
 
                 if ( $this->add_form ) : ?>
 

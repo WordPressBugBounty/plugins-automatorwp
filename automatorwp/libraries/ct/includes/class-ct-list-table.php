@@ -50,15 +50,24 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
 
             $input_id = $input_id . '-search-input';
 
-            if ( ! empty( $_REQUEST['orderby'] ) )
-                echo '<input type="hidden" name="orderby" value="' . esc_attr( $_REQUEST['orderby'] ) . '" />';
-            if ( ! empty( $_REQUEST['order'] ) )
-                echo '<input type="hidden" name="order" value="' . esc_attr( $_REQUEST['order'] ) . '" />';
+            if ( ! empty( $_REQUEST['orderby'] ) ) {
+                if ( is_array( $_REQUEST['orderby'] ) ) {
+                    foreach ( $_REQUEST['orderby'] as $key => $value ) {
+                        echo '<input type="hidden" name="orderby[' . esc_attr( $key ) . ']" value="' . esc_attr( $value ) . '" />';
+                    }
+                } else {
+                    echo '<input type="hidden" name="orderby" value="' . esc_attr( $_REQUEST['orderby'] ) . '" />';
+                }
+            }
+
+            if ( ! empty( $_REQUEST['order'] ) ) {
+                echo '<input type="hidden" name="order" value="' . esc_attr( sanitize_text_field( $_REQUEST['order'] ) ) . '" />';
+            }
             ?>
             <p class="search-box">
-                <label class="screen-reader-text" for="<?php echo $input_id ?>"><?php echo $text; ?>:</label>
-                <input type="search" id="<?php echo $input_id ?>" name="s" value="<?php _admin_search_query(); ?>" />
-                <?php submit_button( $text, 'button', false, false, array( 'ID' => 'search-submit' ) ); ?>
+                <label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo $text; ?>:</label>
+                <input type="search" id="<?php echo esc_attr( $input_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" />
+                <?php submit_button( $text, 'button', false, false, array( 'id' => 'search-submit' ) ); ?>
             </p>
             <?php
         }
@@ -113,11 +122,16 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
                 }
 
                 $list_link = ct_get_list_link( $ct_table->name );
-                $current = isset( $_GET[$field_id] ) ? $_GET[$field_id] : '';
+                $list_link = add_query_arg( '_ctviewnonce', wp_create_nonce( 'ct_views_filter' ), $list_link );
+                $current = '';
+
+                if( isset( $_GET['_ctviewnonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash ( $_GET['_ctviewnonce'] ) ), 'ct_views_filter' ) ) {
+                    $current = isset( $_GET[$field_id] ) ? sanitize_text_field( $_GET[$field_id] ) : '';
+                }
 
                 // Setup the 'All' view
                 $all_count =  absint( $wpdb->get_var( "SELECT COUNT( * ) FROM {$ct_table->db->table_name}" ) );
-                $views['all'] = '<a href="' . $list_link . '" class="' . ( empty( $current ) ? 'current' : '' ) . '">' . __( 'All', 'ct' ) . ' <span class="count">(' . $all_count . ')</span></a>';
+                $views['all'] = '<a href="' . esc_attr( $list_link ) . '" class="' . ( empty( $current ) ? 'current' : '' ) . '">' . esc_html__( 'All', 'ct' ) . ' <span class="count">(' . $all_count . ')</span></a>';
 
                 foreach( $counts as $value => $count ) {
 
@@ -129,7 +143,7 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
                     $label = $field_labels[$value];
                     $url = $list_link . '&' . $field_id . '=' . $value;
 
-                    $views[$value] = '<a href="' . $url . '" class="' . ( $current === $value ? 'current' : '' ) . '">' . $label . ' <span class="count">(' . $count . ')</span>' . '</a>';
+                    $views[$value] = '<a href="' . esc_attr( $url ) . '" class="' . ( $current === $value ? 'current' : '' ) . '">' . $label . ' <span class="count">(' . $count . ')</span>' . '</a>';
                 }
 
             }
@@ -282,14 +296,14 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
             if( $column_name === $columns_keys[$first_column_index] && $can_edit_item ) {
 
                 // Turns first column into a text link with url to edit the item
-                $value = sprintf( '<a href="%s" aria-label="%s">%s</a>',
-                    ct_get_edit_link( $ct_table->name, $item->$primary_key ),
+                $value = sprintf( '<strong><a href="%s" aria-label="%s">%s</a></strong>',
+                    esc_attr( ct_get_edit_link( $ct_table->name, $item->$primary_key ) ),
                     esc_attr( sprintf( __( 'Edit &#8220;%s&#8221;' ), $value ) ),
                     $value
                 );
 
                 // Small screens toggle
-                $value .= '<button type="button" class="toggle-row"><span class="screen-reader-text">' . __( 'Show more details' ) . '</span></button>';
+                $value .= '<button type="button" class="toggle-row"><span class="screen-reader-text">' . esc_html__( 'Show more details' ) . '</span></button>';
 
             }
 
@@ -321,9 +335,9 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
             if ( $ct_table->views->edit && current_user_can( $ct_table->cap->edit_item, $item->$primary_key ) ) {
                 $actions['edit'] = sprintf(
                     '<a href="%s" aria-label="%s">%s</a>',
-                    ct_get_edit_link( $ct_table->name, $item->$primary_key ),
+                    esc_attr( ct_get_edit_link( $ct_table->name, $item->$primary_key ) ),
                     esc_attr( __( 'Edit' ) ),
-                    __( 'Edit' )
+                    esc_html__( 'Edit' )
                 );
             }
 
@@ -332,10 +346,10 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
                     '<a href="%s" class="submitdelete" onclick="%s" aria-label="%s">%s</a>',
                     ct_get_delete_link( $ct_table->name, $item->$primary_key ),
                     "return confirm('" .
-                        esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete." ) ) .
+                        esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'ct' ) ) .
                     "');",
                     esc_attr( __( 'Delete permanently' ) ),
-                    __( 'Delete Permanently' )
+                    esc_html__( 'Delete Permanently' )
                 );
             }
 
@@ -369,18 +383,18 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
             $primary_key = $ct_table->db->primary_key;
 
             if ( current_user_can( $ct_table->cap->edit_items ) ): ?>
-                <label class="screen-reader-text" for="cb-select-<?php echo $item->$primary_key; ?>"><?php
-                    printf( __( 'Select Item #%d' ), $item->$primary_key );
+                <label class="screen-reader-text" for="cb-select-<?php echo esc_attr( $item->$primary_key ); ?>"><?php
+                    echo sprintf( __( 'Select Item #%d' ), $item->$primary_key );
                     ?></label>
-                <input id="cb-select-<?php echo $item->$primary_key; ?>" type="checkbox" name="item[]" value="<?php echo $item->$primary_key; ?>" />
+                <input id="cb-select-<?php echo esc_attr( $item->$primary_key ); ?>" type="checkbox" name="item[]" value="<?php echo esc_attr( $item->$primary_key ); ?>" />
                 <div class="locked-indicator">
                     <span class="locked-indicator-icon" aria-hidden="true"></span>
                     <span class="screen-reader-text"><?php
-                        printf(
+                        echo esc_html( sprintf(
                         /* translators: %d: item ID */
                             __( '&#8220;Item #%d&#8221; is locked' ),
                             $item->$primary_key
-                        );
+                        ) );
                         ?></span>
                 </div>
             <?php endif;

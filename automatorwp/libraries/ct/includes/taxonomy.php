@@ -92,6 +92,12 @@ function ct_register_relationship_table( $table_a, $table_b, $args ) {
             $object_id = $args['relationship']['object_id'];
         }
 
+    } else {
+        $args['relationship'] = array(
+            'type' => 'single',
+            'term_id' => $term_id,
+            'object_id' => $object_id,
+        );
     }
 
     // Override schema
@@ -116,10 +122,61 @@ function ct_register_relationship_table( $table_a, $table_b, $args ) {
 
     $ct_table = ct_register_table( $table_name, $args );
 
-    $ct_relationships[$table_name] = $ct_table;
+    $ct_relationships[$table_name] = (object) $args['relationship'];
 
     return $ct_relationships[$table_name];
 
+}
+
+/**
+ * Find object relationship
+ *
+ * @since 1.0.0
+ *
+ * @param integer           $object_id
+ * @param integer           $term_id
+ *
+ * @return bool
+ */
+function ct_get_relationship_id( $object_id, $term_id ) {
+
+    global $ct_table, $ct_relationships, $wpdb;
+
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
+        return false;
+    }
+
+    $r = $ct_relationships[$ct_table->name];
+
+    $object_id_field = $r->object_id;
+    $term_id_field = $r->term_id;
+
+    $found = absint( $wpdb->get_var( $wpdb->prepare(
+        "SELECT {$ct_table->db->primary_key}
+                FROM {$ct_table->db->table_name} 
+                WHERE 1=1
+                AND {$object_id_field} = %d
+                AND {$term_id_field} = %d",
+        absint( $object_id ),
+        absint( $term_id ),
+    ) ) );
+
+    return $found;
+}
+
+/**
+ * Add object relationships (without remove old ones)
+ *
+ * @since 1.0.0
+ *
+ * @param integer           $object_id
+ * @param integer|array     $term_id
+ *
+ * @return bool
+ */
+function ct_add_object_relationship( $object_id, $term_id ) {
+
+    return ct_update_object_relationships( $object_id, $term_id, false );
 }
 
 /**
@@ -129,35 +186,40 @@ function ct_register_relationship_table( $table_a, $table_b, $args ) {
  *
  * @param integer           $object_id
  * @param integer|array     $term_id
+ * @param bool              $remove_old
  *
  * @return bool
  */
-function ct_update_object_relationships( $object_id, $term_id ) {
+function ct_update_object_relationships( $object_id, $term_id, $remove_old = true ) {
 
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return false;
     }
 
-    // First, remove all old relationships
-    ct_delete_object_relationships( $object_id );
+    $r = $ct_relationships[$ct_table->name];
+
+    // Remove all old relationships
+    if( $remove_old ) {
+        ct_delete_object_relationships( $object_id );
+    }
 
     if( ! is_array( $term_id ) ) {
         $term_id = array( $term_id );
     }
 
-    $object_id_field = $ct_table->relationship->object_id;
-    $term_id_field = $ct_table->relationship->term_id;
+    $object_id_field = $r->object_id;
+    $term_id_field = $r->term_id;
 
-    if( $ct_table->relationship->type === 'single' ) {
+    if( $r->type === 'single' ) {
         // Adds the relationship
         ct_insert_object( array(
             $object_id_field => $object_id,
             $term_id_field => $term_id[0],
         ) );
 
-    } else if( $ct_table->relationship->type === 'multiple' ) {
+    } else if( $r->type === 'multiple' ) {
 
         foreach( $term_id as $id ) {
 
@@ -170,7 +232,6 @@ function ct_update_object_relationships( $object_id, $term_id ) {
         }
 
     }
-
 
     return true;
 }
@@ -186,14 +247,16 @@ function ct_update_object_relationships( $object_id, $term_id ) {
  */
 function ct_delete_object_relationships( $object_id ) {
 
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return false;
     }
 
+    $r = $ct_relationships[$ct_table->name];
+
     $wpdb->query( $wpdb->prepare(
-        "DELETE FROM {$ct_table->db->table_name} WHERE {$ct_table->relationship->object_id} = %d",
+        "DELETE FROM {$ct_table->db->table_name} WHERE {$r->object_id} = %d",
         $object_id
     ) );
 
@@ -213,15 +276,17 @@ function ct_delete_object_relationships( $object_id ) {
  * @return stdClass|array|null
  */
 function ct_get_object_relationships( $object_id, $output = OBJECT ) {
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return null;
     }
 
+    $r = $ct_relationships[$ct_table->name];
+
     // Get all relationships of the given object
     $relationships = $wpdb->get_results( $wpdb->prepare(
-        "SELECT * FROM {$ct_table->db->table_name} WHERE {$ct_table->relationship->object_id} = %d",
+        "SELECT * FROM {$ct_table->db->table_name} WHERE {$r->object_id} = %d",
         $object_id
     ), $output );
 
@@ -238,15 +303,17 @@ function ct_get_object_relationships( $object_id, $output = OBJECT ) {
  * @return stdClass|array|null
  */
 function ct_get_object_relationships_count( $object_id ) {
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return 0;
     }
 
+    $r = $ct_relationships[$ct_table->name];
+
     // Get all relationships of the given object
     $count = absint( $wpdb->get_var( $wpdb->prepare(
-        "SELECT COUNT({$ct_table->db->primary_key}) FROM {$ct_table->db->table_name} WHERE {$ct_table->relationship->object_id} = %d",
+        "SELECT COUNT({$ct_table->db->primary_key}) FROM {$ct_table->db->table_name} WHERE {$r->object_id} = %d",
         $object_id
     ) ) );
 
@@ -265,15 +332,17 @@ function ct_get_object_relationships_count( $object_id ) {
  * @return stdClass|array|null
  */
 function ct_get_term_relationships( $term_id, $output = OBJECT ) {
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return null;
     }
 
+    $r = $ct_relationships[$ct_table->name];
+
     // Get all relationships of the given object
     $relationships = $wpdb->get_results( $wpdb->prepare(
-        "SELECT * FROM {$ct_table->db->table_name} WHERE {$ct_table->relationship->term_id} = %d",
+        "SELECT * FROM {$ct_table->db->table_name} WHERE {$r->term_id} = %d",
         $term_id
     ), $output );
 
@@ -290,15 +359,17 @@ function ct_get_term_relationships( $term_id, $output = OBJECT ) {
  * @return stdClass|array|null
  */
 function ct_get_term_relationships_count( $term_id ) {
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return 0;
     }
 
+    $r = $ct_relationships[$ct_table->name];
+
     // Get all relationships of the given object
     $count = absint( $wpdb->get_var( $wpdb->prepare(
-        "SELECT COUNT({$ct_table->db->primary_key}) FROM {$ct_table->db->table_name} WHERE {$ct_table->relationship->term_id} = %d",
+        "SELECT COUNT({$ct_table->db->primary_key}) FROM {$ct_table->db->table_name} WHERE {$r->term_id} = %d",
         $term_id
     ) ) );
 
@@ -317,21 +388,23 @@ function ct_get_term_relationships_count( $term_id ) {
  * @return stdClass|array|null
  */
 function ct_get_object_terms_ids( $object_id, $output = OBJECT ) {
-    global $ct_table, $wpdb;
+    global $ct_table, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return null;
     }
 
+    $r = $ct_relationships[$ct_table->name];
+
     $limit = '';
 
-    if( $ct_table->relationship->type === 'single' ) {
+    if( $r->type === 'single' ) {
         $limit = 'LIMIT 1';
     }
 
     // Get all terms ids from the relationship table
     $terms_ids = $wpdb->get_col( $wpdb->prepare(
-        "SELECT {$ct_table->relationship->term_id} FROM {$ct_table->db->table_name} WHERE {$ct_table->relationship->object_id} = %d {$limit}",
+        "SELECT {$r->term_id} FROM {$ct_table->db->table_name} WHERE {$r->object_id} = %d {$limit}",
         $object_id
     ) );
 
@@ -350,11 +423,13 @@ function ct_get_object_terms_ids( $object_id, $output = OBJECT ) {
  * @return stdClass|array|null
  */
 function ct_get_object_terms( $object_id, $output = OBJECT ) {
-    global $ct_table, $ct_registered_tables, $wpdb;
+    global $ct_table, $ct_registered_tables, $ct_relationships, $wpdb;
 
-    if( ! $ct_table->relationship ) {
+    if( ! isset( $ct_relationships[$ct_table->name] ) ) {
         return null;
     }
+
+    $r = $ct_relationships[$ct_table->name];
 
     $terms_ids = ct_get_object_terms_ids( $object_id, ARRAY_N );
 
@@ -369,7 +444,7 @@ function ct_get_object_terms( $object_id, $output = OBJECT ) {
 
     $limit = '';
 
-    if( $ct_table->relationship->type === 'single' ) {
+    if( $r->type === 'single' ) {
         $limit = 'LIMIT 1';
     }
 

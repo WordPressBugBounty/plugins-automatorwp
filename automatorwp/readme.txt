@@ -3,9 +3,9 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.7
-Stable tag: 5.1.9
-License: GNU AGPL v3.0
-License URI: http://www.gnu.org/licenses/agpl-3.0.html
+Stable tag: 5.2.0
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Connect your WordPress plugins, sites & apps together to create automated workflows with the most powerful no-code automator plugin!
 
@@ -231,6 +231,10 @@ If you’re looking for something endorsed and maintained by the developers who 
 * [Multimedia Content](https://automatorwp.com/add-ons/multimedia-content/): New triggers based on multimedia content creation and interaction.
 * [Block Users](https://automatorwp.com/add-ons/block-users/): Block users and roles for being able to complete any automation of your choice.
 * [Button](https://automatorwp.com/add-ons/button/) & [Link](https://automatorwp.com/add-ons/link/): Launch any automation through buttons and links clicks.
+* [Restrict Content](https://automatorwp.com/add-ons/restrict-content/): allows you to manage access to any post or page.
+* [Custom User Fields](https://automatorwp.com/add-ons/custom-user-fields/): allows you to create new fields for WordPress users.
+* [CSV](https://automatorwp.com/add-ons/csv/): adds new trigger to let you read content from a CSV or Google Sheets spreadsheet.
+* [User Lists](https://automatorwp.com/add-ons/user-lists/): lets you to create, organize, and manage user lists .
 
 [View all add-ons](https://automatorwp.com/add-ons/)
 
@@ -326,6 +330,17 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.2.0 =
+
+* **Improvements**
+* Improved CT and CMB2 libraries.
+
+= 5.1.9.1 =
+
+* **Developer notes**
+* Updated PHP version required.
+* Updated license to meet WordPress org requirements.
 
 = 5.1.9 =
 

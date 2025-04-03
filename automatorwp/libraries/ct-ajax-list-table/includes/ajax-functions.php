@@ -20,7 +20,7 @@ function ct_ajax_list_table_handle_request() {
         wp_send_json_error();
     }
 
-    $ct_table = ct_setup_table( $_GET['object'] );
+    $ct_table = ct_setup_table( sanitize_text_field( $_GET['object'] ) );
 
     if( ! is_object( $ct_table ) ) {
         wp_send_json_error();
@@ -30,9 +30,11 @@ function ct_ajax_list_table_handle_request() {
     @define( 'IS_CT_AJAX_LIST_TABLE', true );
 
     if( is_array( $_GET['query_args'] ) ) {
-        $query_args = $_GET['query_args'];
+        $query_args = map_deep( $_GET['query_args'], 'sanitize_text_field' );
     } else {
         $query_args = json_decode( str_replace( "\\'", "\"", $_GET['query_args'] ), true );
+        // Sanitize
+        $query_args = map_deep( $query_args, 'sanitize_text_field' );
     }
 
     $query_args = wp_parse_args( $query_args, array(
@@ -40,8 +42,8 @@ function ct_ajax_list_table_handle_request() {
         'items_per_page' => 20,
     ) );
 
-    if( isset( $_GET['paged'] ) ) {
-        $query_args['paged'] = $_GET['paged'];
+    if( isset( $query_args['paged'] ) ) {
+        $query_args['paged'] = absint( $query_args['paged'] );
     }
 
     $ct_ajax_list_items_per_page = $query_args['items_per_page'];

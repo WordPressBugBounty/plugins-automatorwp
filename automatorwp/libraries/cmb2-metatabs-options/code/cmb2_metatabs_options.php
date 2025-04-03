@@ -215,7 +215,7 @@ class Cmb2_Metatabs_Options {
 	 */
 	private function set_ID() {
 		
-		return 'cmo' . rand( 1000, 9999 );
+		return 'cmo' . wp_rand( 1000, 9999 );
 	}
 	
 	/**
@@ -306,7 +306,7 @@ class Cmb2_Metatabs_Options {
 		if ( self::$props[ $this->id ]['regkey'] ) {
 			add_action(
 				'admin_init',
-				array( $this, 'register_setting' )
+				array( $this, 'register' )
 			);
 		}
 		
@@ -383,9 +383,14 @@ class Cmb2_Metatabs_Options {
 	 *
 	 * @since 1.0.0
 	 */
-	public function register_setting() {
+	public function register() {
+
+        $options_key = sanitize_key( self::$props[ $this->id ]['key'] );
 		
-		register_setting( self::$props[ $this->id ]['key'], self::$props[ $this->id ]['key'] );
+		register_setting( $options_key, $options_key, array(
+            'type' => 'array',
+            'sanitize_callback' => 'cmb2_metatabs_options_settings_sanitization_cb',
+        ) );
 	}
 	
 	/**
@@ -549,7 +554,7 @@ class Cmb2_Metatabs_Options {
 			self::$props[ $this->id ]['page'] . '-admin',
 			self::$props[ $this->id ]['jsuri'],
 			array( 'postbox' ),
-			FALSE,
+			'1.0.0',
 			TRUE
 		);
 		
@@ -605,16 +610,16 @@ class Cmb2_Metatabs_Options {
 		// add css to clean up tab styles in admin when used in a postbox
 		if ( self::$props[ $this->id ]['plugincss'] === TRUE ) {
 			$css .= '<style type="text/css" id="CMO-cleanup-css">';
-			$css .= '.' . self::$props[ $this->id ]['page'] . '.cmb2-options-page #poststuff h2.nav-tab-wrapper{padding-bottom:0;margin-bottom: 20px;}';
-			$css .= '.' . self::$props[ $this->id ]['page'] . '.cmb2-options-page .opt-hidden{display:none;}';
-			$css .= '.' . self::$props[ $this->id ]['page'] . '.cmb2-options-page #side-sortables{padding-top:22px;}';
+			$css .= '.' . esc_html( self::$props[ $this->id ]['page'] ) . '.cmb2-options-page #poststuff h2.nav-tab-wrapper{padding-bottom:0;margin-bottom: 20px;}';
+			$css .= '.' . esc_html( self::$props[ $this->id ]['page'] ) . '.cmb2-options-page .opt-hidden{display:none;}';
+			$css .= '.' . esc_html( self::$props[ $this->id ]['page'] ) . '.cmb2-options-page #side-sortables{padding-top:22px;}';
 			$css .= '</style>';
 		}
 		
 		// add user-injected CSS; added as separate style tag in case it is malformed
 		if ( ! empty( self::$props[ $this->id ]['admincss'] ) ) {
 			$css = '<style type="text/css" id="CMO-exta-css">';
-			$css .= self::$props[ $this->id ]['admincss'];
+			$css .= esc_html( self::$props[ $this->id ]['admincss'] );
 			$css .= '</style>';
 		}
 		
@@ -798,7 +803,7 @@ class Cmb2_Metatabs_Options {
 		}
 		
 		// does the nonce match?
-		if ( ! wp_verify_nonce( $_POST[ $cmb->nonce() ], $cmb->nonce() ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST[ $cmb->nonce() ] ) ), $cmb->nonce() ) ) {
 			return FALSE;
 		}
 		
@@ -835,7 +840,7 @@ class Cmb2_Metatabs_Options {
 		}
 		
 		// does the nonce match?
-		if ( ! wp_verify_nonce( $_POST[ $cmb->nonce() ], $cmb->nonce() ) ) {
+		if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST[ $cmb->nonce() ] ) ), $cmb->nonce() ) ) {
 			return FALSE;
 		}
 		
@@ -1042,7 +1047,7 @@ class Cmb2_Metatabs_Options {
 	 */
 	public function render_save_button( $text = '' ) {
 		
-		return $text ? '<input type="submit" name="submit-cmb" value="' . $text . '" class="button-primary">' : '';
+		return $text ? '<input type="submit" name="submit-cmb" value="' . esc_attr( $text ) . '" class="button-primary">' : '';
 	}
 	
 	/**
@@ -1085,8 +1090,8 @@ class Cmb2_Metatabs_Options {
 		foreach ( self::$props[ $this->id ]['tabs'] as $tab ) {
 			
 			// add tabs navigation
-			$tabs .= '<a href="#" id="opt-tab-' . $tab['id'] . '" class="nav-tab opt-tab" ';
-			$tabs .= 'data-optcontent="#opt-content-' . $tab['id'] . '">';
+			$tabs .= '<a href="#" id="opt-tab-' . esc_attr( $tab['id'] ) . '" class="nav-tab opt-tab" ';
+			$tabs .= 'data-optcontent="#opt-content-' . esc_attr( $tab['id'] ) . '">';
 			$tabs .= $tab['title'];
 			$tabs .= '</a>';
 			
@@ -1094,8 +1099,8 @@ class Cmb2_Metatabs_Options {
 			$contents = implode( ',', $tab['boxes'] );
 			
 			// tab container markup
-			$containers .= '<div class="opt-content" id="opt-content-' . $tab['id'] . '" ';
-			$containers .= ' data-boxes="' . $contents . '">';
+			$containers .= '<div class="opt-content" id="opt-content-' . esc_attr( $tab['id'] ) . '" ';
+			$containers .= ' data-boxes="' . esc_attr( $contents ) . '">';
 			$containers .= $tab['desc'];
 			$containers .= '<div class="meta-box-sortables ui-sortable">';
 			$containers .= '</div>';
@@ -1162,4 +1167,19 @@ class Cmb2_Metatabs_Options {
 		
 		return $tabs;
 	}
+}
+
+if( ! function_exists( 'cmb2_metatabs_options_settings_sanitization_cb' ) ) {
+    function cmb2_metatabs_options_settings_sanitization_cb( $settings ) {
+        global $cmb2_metatabs_options_settings_sanitizated;
+
+        if( $cmb2_metatabs_options_settings_sanitizated === true ) {
+            return $settings;
+        }
+
+        $cmb2_metatabs_options_settings_sanitizated = true;
+
+        return map_deep( $settings, 'sanitize_text_field' );
+    }
+
 }

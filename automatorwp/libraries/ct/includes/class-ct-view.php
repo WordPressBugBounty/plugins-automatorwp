@@ -179,10 +179,10 @@ if ( ! class_exists( 'CT_View' ) ) :
                     return;
                 }
 
-                $option = $_POST['wp_screen_options']['option'];
-                $value = $_POST['wp_screen_options']['value'];
+                $option = sanitize_key( $_POST['wp_screen_options']['option'] );
+                $value = sanitize_text_field( $_POST['wp_screen_options']['value'] );
 
-                if ( $option != sanitize_key( $option ) ) {
+                if ( empty( $option ) ) {
                     return;
                 }
 
