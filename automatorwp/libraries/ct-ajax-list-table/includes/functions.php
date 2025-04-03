@@ -74,7 +74,7 @@ function ct_render_ajax_list_table( $table, $query_args = array(), $view_args = 
 
                 <?php ct_render_ajax_list_tablenav( $ct_list_table, 'top' ); ?>
 
-                <table class="wp-list-table <?php echo sanitize_html_class( implode( ' ', $ct_list_table->get_table_classes() ) ); ?>">
+                <table class="wp-list-table <?php echo implode( ' ', $ct_list_table->get_table_classes() ); ?>">
                     <thead>
                     <tr>
                         <?php $ct_list_table->print_column_headers(); ?>
