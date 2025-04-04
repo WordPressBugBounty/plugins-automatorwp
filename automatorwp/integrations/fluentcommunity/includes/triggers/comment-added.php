@@ -32,7 +32,7 @@ class AutomatorWP_FluentCommunity_Comment_Added extends AutomatorWP_Integration_
             'action'            => 'fluent_community/comment_added',
             'function'          => array($this, 'listener'),
             'priority'          => 10,
-            'accepted_args'     => 3,
+            'accepted_args'     => 2,
             'options'           => array(
                 'space' => automatorwp_utilities_ajax_selector_option( array(
                     'field'             => 'space',
@@ -57,10 +57,9 @@ class AutomatorWP_FluentCommunity_Comment_Added extends AutomatorWP_Integration_
      * @since 1.0.0
      *
      * @param object    $comment    
-     * @param object    $feed   
-     * @param array     $mentionedUsers   
+     * @param object    $feed  
      */
-    public function listener( $comment, $feed, $mentionedUsers ) {
+    public function listener( $comment, $feed ) {
 
         $user_id = get_current_user_id();
  
