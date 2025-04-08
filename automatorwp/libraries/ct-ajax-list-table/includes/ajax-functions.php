@@ -37,6 +37,10 @@ function ct_ajax_list_table_handle_request() {
         $query_args = map_deep( $query_args, 'sanitize_text_field' );
     }
 
+    if( isset( $_GET['paged'] ) ) {
+        $query_args['paged'] = absint( $_GET['paged'] );
+    }
+
     $query_args = wp_parse_args( $query_args, array(
         'paged' => 1,
         'items_per_page' => 20,
