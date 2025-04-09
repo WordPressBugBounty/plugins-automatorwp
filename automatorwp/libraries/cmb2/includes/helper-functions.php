@@ -321,7 +321,7 @@ function cmb2_print_metabox_form( $meta_box, $object_id = 0, $args = array() ) {
 		$cmb->prop( 'save_fields' )
 		// check nonce.
 		&& isset( $_POST['submit-cmb'], $_POST['object_id'], $_POST[ $cmb->nonce() ] )
-		&& wp_verify_nonce( $_POST[ $cmb->nonce() ], $cmb->nonce() )
+		&& wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST[ $cmb->nonce() ] ) ), $cmb->nonce() )
 		&& $object_id && $_POST['object_id'] == $object_id
 	) {
 		$cmb->save_fields( $object_id, $cmb->object_type(), $_POST );
@@ -390,7 +390,7 @@ if ( ! function_exists( 'date_create_from_format' ) ) {
 		 * %Y, %m and %d correspond to date()'s Y m and d.
 		 * %I corresponds to H, %M to i and %p to a
 		 */
-		$parsed_time = strptime( $date_value, $schedule_format );
+		$parsed_time = date_parse_from_format( $schedule_format, $date_value );
 
 		$ymd = sprintf(
 			/**

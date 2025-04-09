@@ -378,7 +378,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
                 wp_die( esc_html__( 'Sorry, you are not allowed to edit this item.' ) );
             }
 
-            $object_data =  map_deep( $_POST, 'sanitize_text_field' );
+            $object_data =  map_deep( $_POST, 'wp_kses_post' );
 
             unset( $object_data['ct-save'] );
 

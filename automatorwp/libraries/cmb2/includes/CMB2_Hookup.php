@@ -936,7 +936,7 @@ class CMB2_Hookup extends CMB2_Hookup_Base {
 			$this->cmb->prop( 'save_fields' )
 			// check nonce.
 			&& isset( $_POST[ $this->cmb->nonce() ] )
-			&& wp_verify_nonce( $_POST[ $this->cmb->nonce() ], $this->cmb->nonce() )
+			&& wp_verify_nonce( sanitize_text_field( wp_unslash ( $_POST[ $this->cmb->nonce() ] ) ), $this->cmb->nonce() )
 			// check if autosave.
 			&& ! ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )
 			// get the metabox types & compare it to this type.

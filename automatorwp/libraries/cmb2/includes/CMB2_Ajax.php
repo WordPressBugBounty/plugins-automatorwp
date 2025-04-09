@@ -63,7 +63,7 @@ class CMB2_Ajax {
 	public function oembed_handler() {
 
 		// Verify our nonce.
-		if ( ! ( isset( $_REQUEST['cmb2_ajax_nonce'], $_REQUEST['oembed_url'] ) && wp_verify_nonce( $_REQUEST['cmb2_ajax_nonce'], 'ajax_nonce' ) ) ) {
+		if ( ! ( isset( $_REQUEST['cmb2_ajax_nonce'], $_REQUEST['oembed_url'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['cmb2_ajax_nonce'] ) ), 'ajax_nonce' ) ) ) {
 			die();
 		}
 
