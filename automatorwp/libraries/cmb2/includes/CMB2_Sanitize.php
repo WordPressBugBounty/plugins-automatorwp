@@ -431,6 +431,9 @@ class CMB2_Sanitize {
 	 * @return string       Sanitized data
 	 */
 	public function textarea() {
+		if ( $this->value === null )
+			$this->value = '';
+		
 		return is_array( $this->value ) ? array_map( 'wp_kses_post', $this->value ) : wp_kses_post( $this->value );
 	}
 
