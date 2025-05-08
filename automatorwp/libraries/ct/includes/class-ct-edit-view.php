@@ -32,7 +32,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
             global $ct_registered_tables, $ct_table;
 
             if( ! isset( $ct_registered_tables[$this->name] ) ) {
-                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
             }
 
             // Setup global $ct_table
@@ -40,11 +40,11 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to edit items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'edit_items_not_allowed' ) ) );
             }
 
             if( isset( $_POST['ct-save'] ) ) {
@@ -68,12 +68,12 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
 
                 // If not object, die
                 if ( ! $this->object ) {
-                    wp_die( esc_html__( 'You attempted to edit an item that doesn&#8217;t exist. Perhaps it was deleted?', 'ct' ) );
+                    wp_die( esc_html( ct_get_table_label( $ct_table->name, 'edit_item_deleted' ) ) );
                 }
 
                 // If not current user can edit, die
                 if ( ! current_user_can( $ct_table->cap->edit_item, $this->object_id ) ) {
-                    wp_die( esc_html__( 'Sorry, you are not allowed to edit this item.', 'ct' ) );
+                    wp_die( esc_html( ct_get_table_label( $ct_table->name, 'edit_item_not_allowed' ) ) );
                 }
 
             } else {
@@ -95,7 +95,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
                 // If not current user can create, die
                 if ( ! current_user_can( $ct_table->cap->create_items, $this->object_id )
                     && ! current_user_can( $ct_table->cap->edit_item, $this->object_id ) ) {
-                    wp_die( esc_html__( 'Sorry, you are not allowed to create items of this type.', 'ct' ) );
+                    wp_die( esc_html( ct_get_table_label( $ct_table->name, 'edit_items_not_allowed' ) ) );
                 }
 
                 // Redirect to edit screen to prevent add a draft item multiples times
@@ -299,7 +299,7 @@ if ( ! class_exists( 'CT_Edit_View' ) ) :
                             '<a href="%s" class="submitdelete deletion" onclick="%s" aria-label="%s">%s</a>',
                             ct_get_delete_link( $ct_table->name, $object_id ),
                             "return confirm('" .
-                            esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'ct' ) ) .
+                            esc_attr( ct_get_table_label( $ct_table->name, 'delete_item_confirm' ) ) .
                             "');",
                             esc_attr( __( 'Delete permanently' ) ),
                             __( 'Delete Permanently' )

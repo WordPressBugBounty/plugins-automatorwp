@@ -76,6 +76,46 @@ function automatorwp_admin_submenu() {
 add_action( 'admin_menu', 'automatorwp_admin_submenu', 15 );
 
 /**
+ * Add Try GamiPress submenu
+ *
+ * @since 2.0.0
+ */
+function automatorwp_try_gamipress_admin_submenu() {
+
+    if( class_exists( 'GamiPress' ) ) {
+        return;
+    }
+
+    // Set minimum role setting for menus
+    $minimum_role = automatorwp_get_manager_capability();
+
+    $badge = '<span class="automatorwp-admin-menu-badge">' . __( 'New', 'automatorwp' ) . '</span>';
+
+    add_submenu_page( 'automatorwp', __( 'Try GamiPress!', 'automatorwp' ), __( 'Try GamiPress!', 'automatorwp' ) . $badge, $minimum_role, 'https://wordpress.org/plugins/gamipress/', null );
+}
+add_action( 'admin_menu', 'automatorwp_try_gamipress_admin_submenu', 9999 );
+
+/**
+ * Add Try ShortLinks Pro submenu
+ *
+ * @since 2.0.0
+ */
+function automatorwp_try_shortlinkspro_admin_submenu() {
+
+    if( class_exists( 'ShortLinksPro' ) ) {
+        return;
+    }
+
+    // Set minimum role setting for menus
+    $minimum_role = automatorwp_get_manager_capability();
+
+    $badge = '<span class="automatorwp-admin-menu-badge">' . __( 'New', 'automatorwp' ) . '</span>';
+
+    add_submenu_page( 'automatorwp', __( 'Try ShortLinks Pro!', 'automatorwp' ), __( 'Try ShortLinks Pro!', 'automatorwp' ) . $badge, $minimum_role, 'https://wordpress.org/plugins/shortlinkspro/', null );
+}
+add_action( 'admin_menu', 'automatorwp_try_shortlinkspro_admin_submenu', 9999 );
+
+/**
  * Add AutomatorWP admin bar menu
  *
  * @since 1.3.2
@@ -171,6 +211,68 @@ function automatorwp_admin_bar_menu_bottom( $wp_admin_bar ) {
 
 }
 add_action( 'admin_bar_menu', 'automatorwp_admin_bar_menu_bottom', 999 );
+
+/**
+ * Add Try AutomatorWP admin bar submenu
+ *
+ * @since 2.0.0
+ *
+ * @param object $wp_admin_bar The WordPress toolbar object
+ */
+function automatorwp_try_gamipress_admin_bar_submenu( $wp_admin_bar ) {
+
+    // Bail if admin bar menu disabled
+    if( (bool) automatorwp_get_option( 'disable_admin_bar_menu', false ) ) {
+        return;
+    }
+
+    if( class_exists( 'GamiPress' ) ) {
+        return;
+    }
+
+    $badge = '<span class="automatorwp-admin-menu-badge">' . __( 'New', 'automatorwp' ) . '</span>';
+
+    // Try AutomatorWP
+    $wp_admin_bar->add_node( array(
+        'id'     => 'automatorwp-try-gamipress',
+        'title'  => __( 'Try GamiPress!', 'automatorwp' ) . $badge,
+        'parent' => 'automatorwp',
+        'href'   => 'https://wordpress.org/plugins/gamipress/'
+    ) );
+
+}
+add_action( 'admin_bar_menu', 'automatorwp_try_gamipress_admin_bar_submenu', 999 );
+
+/**
+ * Add Try ShortLinks Pro admin bar submenu
+ *
+ * @since 2.0.0
+ *
+ * @param object $wp_admin_bar The WordPress toolbar object
+ */
+function automatorwp_try_shortlinkspro_admin_bar_submenu( $wp_admin_bar ) {
+
+    // Bail if admin bar menu disabled
+    if( (bool) automatorwp_get_option( 'disable_admin_bar_menu', false ) ) {
+        return;
+    }
+
+    if( class_exists( 'ShortLinksPro' ) ) {
+        return;
+    }
+
+    $badge = '<span class="automatorwp-admin-menu-badge">' . __( 'New', 'automatorwp' ) . '</span>';
+
+    // Try AutomatorWP
+    $wp_admin_bar->add_node( array(
+        'id'     => 'automatorwp-try-shortlinkspro',
+        'title'  => __( 'Try ShortLinks Pro!', 'automatorwp' ) . $badge,
+        'parent' => 'automatorwp',
+        'href'   => 'https://wordpress.org/plugins/shortlinkspro/'
+    ) );
+
+}
+add_action( 'admin_bar_menu', 'automatorwp_try_shortlinkspro_admin_bar_submenu', 999 );
 
 
 /**

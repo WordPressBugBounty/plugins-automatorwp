@@ -10,6 +10,26 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Custom Table Labels
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function automatorwp_automations_labels() {
+
+    return array(
+        'singular' => __( 'Automation', 'automatorwp' ),
+        'plural' => __( 'Automations', 'automatorwp' ),
+        'labels' => array(
+            'list_menu_title' => __( 'Automations', 'automatorwp' ),
+        ),
+    );
+
+}
+add_filter( 'ct_automatorwp_automations_labels', 'automatorwp_automations_labels' );
+
+/**
  * Parse query args for automations
  *
  * @since   1.0.0

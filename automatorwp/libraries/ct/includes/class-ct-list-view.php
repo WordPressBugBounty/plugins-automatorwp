@@ -281,20 +281,20 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_items_not_allowed' ) ) );
             }
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_items_not_allowed' ) ) );
             }
 
             if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'bulk-' . sanitize_key( $ct_table->labels->plural_name ) ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_items_not_allowed' ) ) );
             }
 
             $object_ids = array();
@@ -310,11 +310,11 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
                 // If not current user can delete, die
                 if ( ! current_user_can( $ct_table->cap->delete_item, $object_id ) ) {
-                    wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
+                    wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_item_not_allowed' ) ) );
                 }
 
                 if ( ! ct_delete_object( $object_id, true ) )
-                    wp_die( esc_html__( 'Error in deleting.', 'ct' ) );
+                    wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
 
                 $deleted++;
             }
@@ -331,39 +331,39 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table ) {
-                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
             }
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_items_not_allowed' ) ) );
             }
 
             $primary_key = $ct_table->db->primary_key;
 
             // Object ID is required
             if( ! isset( $_GET[$primary_key] ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_items_not_allowed' ) ) );
             }
 
             $object_id = (int) $_GET[$primary_key];
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_item_not_allowed' ) ) );
             }
 
             if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'ct_delete_' . $object_id ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_item_not_allowed' ) ) );
             }
 
             // If user can not delete it, bail
             if ( ! current_user_can( $ct_table->cap->delete_item, $object_id ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to delete this item.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'delete_item_not_allowed' ) ) );
             }
 
             if ( ! ct_delete_object( $object_id ) )
-                wp_die( esc_html__( 'Error in deleting.', 'ct' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
 
             $location = add_query_arg( array( 'deleted' => 1 ), $this->get_link() );
 
@@ -378,23 +378,23 @@ if ( ! class_exists( 'CT_List_View' ) ) :
 
             // If not CT object, die
             if ( ! $ct_table )
-                wp_die( esc_html__( 'Invalid item type.', 'ct' ) );
+                wp_die( esc_html__( 'Sorry, you are not allowed to perform this action.' ) );
 
             // If not CT object allow ui, die
             if ( ! $ct_table->show_ui ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to add items of this type.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'add_item_not_allowed' ) ) );
             }
 
             // Nonce check
             if ( ! isset( $_REQUEST['_wpnonce'] ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to add new items.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'add_item_not_allowed' ) ) );
             }
 
             if ( ! wp_verify_nonce( sanitize_text_field( wp_unslash ( $_REQUEST['_wpnonce'] ) ), 'ct_add_new' ) ) {
-                wp_die( esc_html__( 'Sorry, you are not allowed to add new items.', 'ct' ) );
+                wp_die( esc_html( ct_get_table_label( $ct_table->name, 'add_item_not_allowed' ) ) );
             }
 
-            $object_data =  map_deep( $_POST, 'sanitize_text_field' );
+            $object_data =  map_deep( $_POST, 'wp_kses_post' );
 
             unset( $object_data['ct-add'] );
 

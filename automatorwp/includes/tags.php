@@ -610,7 +610,7 @@ function automatorwp_parse_automation_tags( $automation_id = 0, $user_id = 0, $c
      * @return string
      */
     $parsed_content = apply_filters( 'automatorwp_post_parse_automation_tags', $parsed_content, $replacements, $automation_id, $user_id, $content );
-
+    
     return $parsed_content;
 
 }

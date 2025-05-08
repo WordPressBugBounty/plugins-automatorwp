@@ -10,6 +10,26 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Custom Table Labels
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function automatorwp_logs_labels() {
+
+    return array(
+        'singular' => __( 'Log', 'automatorwp' ),
+        'plural' => __( 'Logs', 'automatorwp' ),
+        'labels' => array(
+            'list_menu_title' => __( 'Logs', 'automatorwp' ),
+        ),
+    );
+
+}
+add_filter( 'ct_automatorwp_logs_labels', 'automatorwp_logs_labels' );
+
+/**
  * Parse query args for logs
  *
  * @since 1.0.0

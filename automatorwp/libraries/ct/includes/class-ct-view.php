@@ -261,18 +261,22 @@ if ( ! class_exists( 'CT_View' ) ) :
                 $this->args['capability'] = $ct_table->capability;
             }
 
+            $page_title = $this->get_page_title();
+            $menu_title = $this->get_menu_title();
+
             if( ! $this->args['show_in_menu'] ) {
 
-                add_submenu_page( '', $this->args['page_title'], $this->args['menu_title'], $this->args['capability'], $this->args['menu_slug'], array( $this, 'render' ) );
+                // Add in a hidden menu
+                add_submenu_page( '', $page_title, $menu_title, $this->args['capability'], $this->args['menu_slug'], array( $this, 'render' ) );
 
             } else {
 
                 if( empty( $this->args['parent_slug'] ) ) {
                     // View menu
-                    add_menu_page( $this->args['page_title'], $this->args['menu_title'], $this->args['capability'], $this->args['menu_slug'], array( $this, 'render' ), $this->args['menu_icon'], $this->args['menu_position'] );
+                    add_menu_page( $page_title, $menu_title, $this->args['capability'], $this->args['menu_slug'], array( $this, 'render' ), $this->args['menu_icon'], $this->args['menu_position'] );
                 } else {
                     // View sub menu
-                    add_submenu_page( $this->args['parent_slug'], $this->args['page_title'], $this->args['menu_title'], $this->args['capability'], $this->args['menu_slug'], array( $this, 'render' ) );
+                    add_submenu_page( $this->args['parent_slug'], $page_title, $menu_title, $this->args['capability'], $this->args['menu_slug'], array( $this, 'render' ) );
                 }
 
             }
@@ -380,7 +384,7 @@ if ( ! class_exists( 'CT_View' ) ) :
 
             $wp_admin_bar->add_node( array(
                 'id'     => $this->args['menu_slug'],
-                'title'  => $this->args['page_title'],
+                'title'  => $this->get_page_title(),
                 'parent' => $this->args['admin_bar_parent'],
                 'href'   => admin_url( 'admin.php?page=' . $this->args['menu_slug'] )
             ) );
@@ -408,6 +412,52 @@ if ( ! class_exists( 'CT_View' ) ) :
             }
 
             return true;
+        }
+
+        public function get_page_title() {
+
+            $prefix = substr( $this->args['menu_slug'], 0, 4 );
+
+            switch( $prefix ) {
+                case 'add_':
+                    $title = ct_get_table_label( $this->name, 'add_page_title' );
+                    break;
+                case 'edit':
+                    $title = ct_get_table_label( $this->name, 'edit_page_title' );
+                    break;
+                default:
+                    $title = ct_get_table_label( $this->name, 'list_page_title' );
+                    break;
+            }
+
+            if( ! empty( $title ) ) {
+                return $title;
+            }
+
+            return $this->args['page_title'];
+        }
+
+        public function get_menu_title() {
+
+            $prefix = substr( $this->args['menu_slug'], 0, 4 );
+
+            switch( $prefix ) {
+                case 'add_':
+                    $title = ct_get_table_label( $this->name, 'add_menu_title' );
+                    break;
+                case 'edit':
+                    $title = ct_get_table_label( $this->name, 'edit_menu_title' );
+                    break;
+                default:
+                    $title = ct_get_table_label( $this->name, 'list_menu_title' );
+                    break;
+            }
+
+            if( ! empty( $title ) ) {
+                return $title;
+            }
+
+            return $this->args['menu_title'];
         }
 
         public function get_slug() {

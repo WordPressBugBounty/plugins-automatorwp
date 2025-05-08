@@ -136,21 +136,65 @@ function ct_get_table_labels( $ct_table ) {
         'archives' => __( '%1$s Archives', 'ct' ),
         'attributes' => __( '%1$s Attributes', 'ct' ),
         'insert_into_item' => __( 'Insert into %1$s', 'ct' ),
-        'uploaded_to_this_item' => __( 'Uploaded to this post', 'ct' ),
+        'uploaded_to_this_item' => __( 'Uploaded to this %1$s', 'ct' ),
         'featured_image' => __( 'Featured Image', 'ct' ),
         'set_featured_image' => __( 'Set featured image', 'ct' ),
         'remove_featured_image' => __( 'Remove featured image', 'ct' ),
         'use_featured_image' => __( 'Use as featured image', 'ct' ),
-        'filter_items_list' => __( 'Filter posts list', 'ct' ),
+        'filter_items_list' => __( 'Filter %2$s list', 'ct' ),
         'items_list_navigation' => __( '%2$s list navigation', 'ct' ),
         'items_list' => __( '%2$s list', 'ct' ),
+        // Views
+        'list_page_title' => '%2$s',
+        'list_menu_title' => __( 'All %2$s', 'ct' ),
+        'add_page_title' => __('Add New', 'ct'),
+        'add_menu_title' => __('Add New', 'ct'),
+        'edit_page_title' => __('Edit %1$s', 'ct'),
+        'edit_menu_title' => __('Edit %1$s', 'ct'),
+        // Messages
+        'add_item_not_allowed' => __( 'Sorry, you are not allowed to add new %2$s.', 'ct' ),
+        'edit_item_not_allowed' => __( 'Sorry, you are not allowed to edit this %1$s.', 'ct' ),
+        'edit_items_not_allowed' => __( 'Sorry, you are not allowed to edit %2$s.', 'ct' ),
+        'edit_item_deleted' => __( 'You attempted to edit a %1$s that doesn&#8217;t exist. Perhaps it was deleted?', 'ct' ),
+        'delete_item_not_allowed' => __( 'Sorry, you are not allowed to delete this %1$s.', 'ct' ),
+        'delete_items_not_allowed' => __( 'Sorry, you are not allowed to delete %2$s.', 'ct' ),
+        'delete_item_confirm' => __( "Are you sure you want to delete this %s?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'ct' ),
     );
+
+    // Use this hook to override default labels in your plugin with the plugin text domain
+    $default_labels = apply_filters( 'ct_default_table_labels', $default_labels );
 
     foreach( $default_labels as $label => $pattern ) {
         $default_labels[$label] = sprintf( $pattern, $ct_table->singular, $ct_table->plural );
     }
 
     return (object) $default_labels;
+
+}
+
+/**
+ * Get a table label if exists
+ *
+ * @since 1.0.0
+ *
+ * @param string $name
+ * @param string $label
+ *
+ * @return string
+ */
+function ct_get_table_label( $name, $label ) {
+
+    global $ct_registered_tables;
+
+    if( isset( $ct_registered_tables[$name] ) ) {
+
+        if( property_exists( $ct_registered_tables[$name]->labels, $label ) ) {
+            return $ct_registered_tables[$name]->labels->$label;
+        }
+
+    }
+
+    return '';
 
 }
 

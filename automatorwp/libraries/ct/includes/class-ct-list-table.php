@@ -346,7 +346,7 @@ if ( ! class_exists( 'CT_List_Table' ) ) :
                     '<a href="%s" class="submitdelete" onclick="%s" aria-label="%s">%s</a>',
                     ct_get_delete_link( $ct_table->name, $item->$primary_key ),
                     "return confirm('" .
-                        esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'ct' ) ) .
+                        esc_attr( ct_get_table_label( $ct_table->name, 'delete_item_confirm' ) ) .
                     "');",
                     esc_attr( __( 'Delete permanently' ) ),
                     esc_html__( 'Delete Permanently' )

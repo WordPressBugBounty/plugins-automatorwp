@@ -10,6 +10,23 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Custom Table Labels
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function automatorwp_actions_labels() {
+
+    return array(
+        'singular' => __( 'Action', 'automatorwp' ),
+        'plural' => __( 'Actions', 'automatorwp' ),
+    );
+
+}
+add_filter( 'ct_automatorwp_actions_labels', 'automatorwp_actions_labels' );
+
+/**
  * Parse query args for actions
  *
  * @since   1.0.0

@@ -26,8 +26,6 @@ function automatorwp_register_custom_tables() {
 
     // Automations
     ct_register_table( 'automatorwp_automations', array(
-        'singular' => __( 'Automation', 'automatorwp' ),
-        'plural' => __( 'Automations', 'automatorwp' ),
         'show_ui' => true,
         'show_in_rest' => true,
         'rest_base' => 'automatorwp-automations',
@@ -36,7 +34,6 @@ function automatorwp_register_custom_tables() {
         'supports' => array( 'meta' ),
         'views' => array(
             'list' => array(
-                'menu_title' => __( 'Automations', 'automatorwp' ),
                 'parent_slug' => 'automatorwp',
                 'priority' => 10,
             ),
@@ -87,8 +84,6 @@ function automatorwp_register_custom_tables() {
 
     // Triggers
     ct_register_table( 'automatorwp_triggers', array(
-        'singular' => __( 'Trigger', 'automatorwp' ),
-        'plural' => __( 'Triggers', 'automatorwp' ),
         'show_ui' => false,
         'show_in_rest' => true,
         'rest_base' => 'automatorwp-triggers',
@@ -131,8 +126,6 @@ function automatorwp_register_custom_tables() {
 
     // Actions
     ct_register_table( 'automatorwp_actions', array(
-        'singular' => __( 'Action', 'automatorwp' ),
-        'plural' => __( 'Actions', 'automatorwp' ),
         'show_ui' => false,
         'show_in_rest' => true,
         'rest_base' => 'automatorwp-actions',
@@ -175,8 +168,6 @@ function automatorwp_register_custom_tables() {
 
     // Logs
     ct_register_table( 'automatorwp_logs', array(
-        'singular' => __( 'Log', 'automatorwp' ),
-        'plural' => __( 'Logs', 'automatorwp' ),
         'show_ui' => true,
         'show_in_rest' => true,
         'rest_base' => 'automatorwp-logs',
@@ -185,7 +176,6 @@ function automatorwp_register_custom_tables() {
         'supports' => array( 'meta' ),
         'views' => array(
             'list' => array(
-                'menu_title' => __( 'Logs', 'automatorwp' ),
                 'parent_slug' => 'automatorwp',
                 'priority' => 10,
             ),

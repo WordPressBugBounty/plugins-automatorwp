@@ -10,6 +10,23 @@
 if( !defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Custom Table Labels
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function automatorwp_triggers_labels() {
+
+    return array(
+        'singular' => __( 'Trigger', 'automatorwp' ),
+        'plural' => __( 'Triggers', 'automatorwp' ),
+    );
+
+}
+add_filter( 'ct_automatorwp_triggers_labels', 'automatorwp_triggers_labels' );
+
+/**
  * Parse query args for triggers
  *
  * @since   1.0.0

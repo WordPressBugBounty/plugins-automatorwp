@@ -673,11 +673,12 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 #automatorwp-automations-execution-options .cmb2-id-delay-seconds {
     display: inline-block;
     width: 126px;
+    padding-bottom: 12px !important;
 }
 
 #automatorwp-automations-execution-options .cmb2-id-schedule-run,
 #automatorwp-automations-execution-options .cmb2-id-recurring-run {
-    padding-top: 0 !important;
+    padding-top: 6px !important;
 }
 
 #automatorwp-automations-execution-options .cmb2-id-schedule-run .cmb-th,
@@ -1007,6 +1008,15 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 
 .automatorwp-automation-item .cmb2-switch .cmb-td {
     margin-top: 5px;
+}
+
+.automatorwp-option-form .cmb2-switch.cmb-type-checkbox input {
+    top: -2px !important;
+}
+
+.automatorwp-option-form .cmb2-switch.cmb-type-checkbox input + label:before,
+.automatorwp-option-form .cmb2-switch.cmb-type-checkbox input + label:after {
+    top: 0 !important;
 }
 
 /* Repeatable */
@@ -2809,4 +2819,22 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     80%,
     100% { box-shadow: 0 2.5em 0 -1.3em; }
     40% { box-shadow: 0 2.5em 0 0; }
+}
+
+/* -------------------------------------------
+    Admin Menu
+   ------------------------------------------- */
+
+.automatorwp-admin-menu-badge {
+    display: inline-block;
+    float: right;
+    vertical-align: top;
+    margin: 1px -11px -1px 2px;
+    padding: 0 5px;
+    height: 18px;
+    border-radius: 9px;
+    background-color: #d63638;
+    color: #fff;
+    font-size: 11px;
+    line-height: 1.6;
 }

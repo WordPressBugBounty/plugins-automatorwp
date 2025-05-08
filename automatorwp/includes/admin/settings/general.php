@@ -27,11 +27,7 @@ function automatorwp_settings_general_meta_boxes( $meta_boxes ) {
                 'name'      => __( 'Minimum role to administer AutomatorWP', 'automatorwp' ),
                 'desc'      => __( 'Minimum role a user needs to access to AutomatorWP management areas.', 'automatorwp' ),
                 'type'      => 'select',
-                'options'   => array(
-                    'manage_options'        => __( 'Administrator', 'automatorwp' ),
-                    'delete_others_posts'   => __( 'Editor', 'automatorwp' ),
-                    'publish_posts'         => __( 'Author', 'automatorwp' ),
-                ),
+                'options' => automatorwp_get_allowed_manager_capabilities(),
             ),
             'auto_logs_cleanup_days' => array(
                 'name'      => __( 'Automatic logs cleanup:', 'automatorwp' ),
@@ -52,3 +48,60 @@ function automatorwp_settings_general_meta_boxes( $meta_boxes ) {
 
 }
 add_filter( 'automatorwp_settings_general_meta_boxes', 'automatorwp_settings_general_meta_boxes' );
+
+/**
+ * Get capability required for AutomatorWP administration.
+ *
+ * @since  1.0.0
+ *
+ * @return string User capability.
+ */
+function automatorwp_get_manager_capability() {
+
+    $minimum_role = automatorwp_get_option( 'minimum_role', 'manage_options' );    
+    $allowed_capabilities = array_keys( automatorwp_get_allowed_manager_capabilities() );
+    
+    // Do not allow to bypass subscribers capability in any way
+    $excluded_capabilities = array( 'read' );
+
+    // Check if capability is allowed
+    if ( ! in_array( $minimum_role, $allowed_capabilities ) || in_array( $minimum_role, $excluded_capabilities ) ) {
+        // If not allowed, manually update the settings
+        $update_capability = get_option( 'automatorwp_settings' );
+        $update_capability['minimum_role'] = 'manage_options';
+        update_option( 'automatorwp_settings',  $update_capability );
+
+        // Set minimum role to manage_options
+        $minimum_role = 'manage_options';
+        
+    }
+    
+    return $minimum_role;
+
+}
+
+/**
+ * Allowed capabilities
+ *
+ * @since 6.0.0
+ *
+ * @return array
+ */
+function automatorwp_get_allowed_manager_capabilities() {
+
+    if ( did_action( 'init' ) ) {
+        $allowed_capabilities = array(
+            'manage_options' => __( 'Administrator', 'automatorwp' ),
+            'delete_others_posts' => __( 'Editor', 'automatorwp' ),
+            'publish_posts' => __( 'Author', 'automatorwp' ), 
+        );
+    } else {
+        $allowed_capabilities = array(
+            'manage_options' => 'Administrator',
+            'delete_others_posts' => 'Editor',
+            'publish_posts' => 'Author', 
+        );
+    }
+    
+    return apply_filters( 'automatorwp_allowed_manager_capabilities', $allowed_capabilities );
+}

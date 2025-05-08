@@ -45,3 +45,36 @@ function ct_rest_api_init() {
     do_action( 'ct_rest_api_init' );
 }
 add_action( 'rest_api_init', 'ct_rest_api_init', 9 );
+
+function ct_load_table_labels() {
+
+    global $ct_registered_tables;
+
+    foreach( $ct_registered_tables as $ct_table ) {
+
+        $args = array(
+            'singular' => ( property_exists( $ct_table, 'singular' ) ? $ct_table->singular : '' ),
+            'plural' => ( property_exists( $ct_table, 'plural' ) ? $ct_table->plural : '' ),
+            'labels' => ( property_exists( $ct_table, 'labels' ) ? (array) $ct_table->labels : '' ),
+        );
+
+        $args = apply_filters( "ct_{$ct_table->name}_labels", $args, $ct_table );
+
+        $ct_table->singular  = $args['singular'];
+        $ct_table->plural  = $args['plural'];
+
+        $labels = (array) ct_get_table_labels( $ct_table );
+
+        // Custom defined labels overrides default
+        if( isset( $args['labels'] ) && is_array( $args['labels'] ) ) {
+            $labels = wp_parse_args( $args['labels'], $labels );
+        }
+
+        $ct_table->labels = (object) $labels;
+
+        $ct_table->label  = $ct_table->labels->name;
+
+    }
+
+}
+add_action( 'init', 'ct_load_table_labels', 10 );

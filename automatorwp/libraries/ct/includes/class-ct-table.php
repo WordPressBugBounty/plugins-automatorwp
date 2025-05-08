@@ -84,7 +84,7 @@ if ( ! class_exists( 'CT_Table' ) ) :
          * If not set, post labels are inherited for non-hierarchical types
          * and page labels for hierarchical ones.
          *
-         * @see get_post_type_labels()
+         * @see ct_get_table_labels()
          *
          * @since 1.0.0
          * @access public
@@ -638,19 +638,55 @@ if ( ! class_exists( 'CT_Table' ) ) :
                 $this->$property_name = $property_value;
             }
 
-            $this->singular  = $args['singular'];
-            $this->plural  = $args['plural'];
+            // Backward compatibility
+            // Do not pass singular and plural, use "ct_{table}_labels" hook instead
+            // See: ct_load_table_labels()
+            if( $args['singular'] !== $this->name ) {
+                $this->singular  = $args['singular'];
+                $this->plural  = $args['plural'];
 
-            $labels = (array) ct_get_table_labels( $this );
+                $labels = array();
 
-            // Custom defined labels overrides default
-            if( isset( $args['labels'] ) && is_array( $args['labels'] ) ) {
-                $labels = wp_parse_args( $args['labels'], $labels );
+                // Custom defined labels overrides default
+                if( isset( $args['labels'] ) && is_array( $args['labels'] ) ) {
+                    $labels = $args['labels'];
+                }
+
+                // Backward compatibility for views titles
+                if( isset( $args['views'] ) && is_array( $args['views'] ) ) {
+                    // List
+                    if( isset( $args['views']['list'] ) && is_array( $args['views']['list'] ) ) {
+                        if( isset( $args['views']['list']['page_title'] ) ) {
+                            $labels['list_page_title'] = $args['views']['list']['page_title'];
+                        }
+
+                        if( isset( $args['views']['list']['menu_title'] ) ) {
+                            $labels['list_menu_title'] = $args['views']['list']['menu_title'];
+                        }
+                    }
+
+                    // Add
+                    if( isset( $args['views']['add'] ) && is_array( $args['views']['add'] ) ) {
+                        if( isset( $args['views']['add']['page_title'] ) ) {
+                            $labels['add_page_title'] = $args['views']['add']['page_title'];
+                        }
+
+                        if( isset( $args['views']['add']['menu_title'] ) ) {
+                            $labels['add_menu_title'] = $args['views']['add']['menu_title'];
+                        }
+                    }
+
+                    // Edit should not have any menu entry
+                }
+
+                $this->labels = (object) $labels;
+
+                if( property_exists( $this->labels, 'name' ) ) {
+                    $this->label  = $this->labels->name;
+                } else {
+                    $this->label  = $this->singular;
+                }
             }
-
-            $this->labels = (object) $labels;
-
-            $this->label  = $this->labels->name;
 
             if( isset( $args['relationship'] ) ) {
                 $this->relationship = (object) $args['relationship'];
@@ -677,8 +713,6 @@ if ( ! class_exists( 'CT_Table' ) ) :
 
             $views_defaults = array(
                 'list' => array(
-                    'page_title'    => $this->labels->plural_name,
-                    'menu_title'    => $this->labels->all_items,
                     'menu_slug'     => $this->name,
                     'parent_slug'   => $this->name,
                     'show_in_menu'  => $this->show_ui,
@@ -689,8 +723,6 @@ if ( ! class_exists( 'CT_Table' ) ) :
                     'add_form'      => false,
                 ),
                 'add' => array(
-                    'page_title'    => $this->labels->add_new,
-                    'menu_title'    => $this->labels->add_new,
                     'menu_slug'     => 'add_' . $this->name,
                     'parent_slug'   => $this->name,
                     'show_in_menu'  => $this->show_ui,
@@ -699,8 +731,6 @@ if ( ! class_exists( 'CT_Table' ) ) :
                     'columns'       => 2,
                 ),
                 'edit' => array(
-                    'page_title'    => $this->labels->edit_item,
-                    'menu_title'    => $this->labels->edit_item,
                     'menu_slug'     => 'edit_' . $this->name,
                     'parent_slug'   => '',
                     'show_in_menu'  => false,

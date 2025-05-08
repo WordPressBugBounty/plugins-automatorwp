@@ -275,6 +275,11 @@ if ( ! class_exists( 'CT_Query' ) ) :
                 $q['order'] = $rand ? '' : $this->parse_order( $q['order'] );
             }
 
+            // Excluded words in the order by clause
+            $orderby_exclusions = apply_filters( 'ct_query_orderby_exclusions', array(
+                'select', 'from', 'join', 'where', 'sleep', '/', '*',
+            ) );
+
             // Order by.
             if ( empty( $q['orderby'] ) ) {
                 /*
@@ -295,15 +300,26 @@ if ( ! class_exists( 'CT_Query' ) ) :
                     foreach ( $q['orderby'] as $_orderby => $order ) {
                         $orderby = addslashes_gpc( urldecode( $_orderby ) );
 
+                        $orderby = str_ireplace( $orderby_exclusions, '', $orderby );
+                        $order = str_ireplace( $orderby_exclusions, '', $order );
+
+                        if( empty( $orderby ) ) continue;
+                        if( $orderby === '()' ) continue;
+
                         $orderby_array[] = $orderby . ' ' . $this->parse_order( $order );
                     }
                     $orderby = implode( ', ', $orderby_array );
 
                 } else {
-                    $q['orderby'] = urldecode( $q['orderby'] );
-                    $q['orderby'] = addslashes_gpc( $q['orderby'] );
+                    $q['orderby'] = addslashes_gpc( urldecode( $q['orderby'] ) );
 
                     foreach ( explode( ' ', $q['orderby'] ) as $i => $orderby ) {
+
+                        $orderby = str_ireplace( $orderby_exclusions, '', $orderby );
+
+                        if( empty( $orderby ) ) continue;
+                        if( $orderby === '()' ) continue;
+
                         $orderby_array[] = $orderby;
                     }
 
