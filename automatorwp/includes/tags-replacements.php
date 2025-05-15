@@ -451,6 +451,7 @@ function automatorwp_get_user_tag_replacement( $tag_name, $object, $object_type,
                 }
 
                 $replacement = $meta_value;
+
             }
 
         }

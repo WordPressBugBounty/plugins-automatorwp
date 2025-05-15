@@ -458,6 +458,16 @@ function automatorwp_get_tags_selector_html( $automation, $object, $item_type ) 
         if( $automation->type === 'anonymous' && $item_type === 'trigger' ) {
             unset( $tags['user'] );
         }
+
+        // Remove from all users automation
+        if( $automation->type === 'all-users' && $item_type === 'trigger' ) {
+            unset( $tags['user'] );
+        }
+
+        // Remove from all posts automation
+        if( $automation->type === 'all-posts' && $item_type === 'trigger' ) {
+            unset( $tags['user'] );
+        }
     }
 
     /**

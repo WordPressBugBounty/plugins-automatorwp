@@ -213,7 +213,7 @@ class AutomatorWP_AutomatorWP_All_Users extends AutomatorWP_Integration_Trigger 
      * @param int       $loop               The current loop
      */
     public function get_sql( $sql, $automation, $trigger, $count, $trigger_options, $items_per_loop, $loop ) {
-
+    
         global $wpdb;
 
         // Setup vars
@@ -244,6 +244,9 @@ class AutomatorWP_AutomatorWP_All_Users extends AutomatorWP_Integration_Trigger 
                     $condition['operator'] = "AND";
                 }
 
+                // Replace all tags by their replacements
+                $condition = automatorwp_parse_automation_tags( $automation->id, 0, $condition );
+                
                 // Sanitize
                 $field = sanitize_text_field( $condition['field'] );
                 $value = sanitize_text_field( $condition['value'] );
@@ -272,6 +275,9 @@ class AutomatorWP_AutomatorWP_All_Users extends AutomatorWP_Integration_Trigger 
                 if( ! in_array( $condition['operator'], array( "AND", "OR" ) ) ) {
                     $condition['operator'] = "AND";
                 }
+
+                // Replace all tags by their replacements
+                $condition = automatorwp_parse_automation_tags( $automation->id, 0, $condition );
 
                 // Sanitize
                 $meta_key = sanitize_text_field( $condition['meta_key'] );

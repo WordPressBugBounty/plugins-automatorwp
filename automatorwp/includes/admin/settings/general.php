@@ -97,9 +97,9 @@ function automatorwp_get_allowed_manager_capabilities() {
         );
     } else {
         $allowed_capabilities = array(
-            'manage_options' => 'Administrator',
-            'delete_others_posts' => 'Editor',
-            'publish_posts' => 'Author', 
+            'manage_options' => 'manage_options',
+            'delete_others_posts' => 'delete_others_posts',
+            'publish_posts' => 'publish_posts', 
         );
     }
     
