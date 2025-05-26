@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 5.2.3
+Stable tag: 5.2.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -159,6 +159,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [Quiz and Survey Master](https://automatorwp.com/add-ons/qsm/)
 * [Restrict Content Pro](https://automatorwp.com/add-ons/restrict-content-pro/)
 * [Sensei LMS](https://automatorwp.com/add-ons/sensei-lms/)
+* [ShortLinks Pro](https://automatorwp.com/add-ons/shortlinkspro/)
 * [SliceWP](https://automatorwp.com/add-ons/slicewp/)
 * [Studiocart](https://automatorwp.com/add-ons/studiocart/)
 * [SureCart](https://automatorwp.com/add-ons/surecart/)
@@ -244,9 +245,10 @@ AutomatorWP includes +600 triggers, actions and filters from +200 plugins & plat
 
 = More plugins from the AutomatorWP team =
 
-If you like AutomatorWP, you will love [GamiPress](https://wordpress.org/plugins/gamipress/)! The most flexible gamification plugin to reward points, achievements, badges & ranks in WordPress based on your users activity from +200 plugins.
+If you like AutomatorWP, you will love our other plugins!
 
-[More about GamiPress](https://wordpress.org/plugins/gamipress/)
+* [GamiPress](https://wordpress.org/plugins/gamipress/) - Flexible gamification plugin to reward your users with points, achievements, badges & ranks based on their activity in your WordPress.
+* [ShortLinks Pro](https://wordpress.org/plugins/shortlinkspro/) - The most complete link management plugin that not only powers WordPress websites with shortened URLs, also empowers site owners to create clean, branded and unique affiliate links easily.
 
 == Installation ==
 
@@ -330,6 +332,15 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.2.4 =
+
+* **New Features**
+* New integration: ShortLinks Pro.
+* ShortLinks Pro: New trigger: User clicks a link.
+* ShortLinks Pro: New trigger: User clicks a link from a category.
+* ShortLinks Pro: New trigger: User clicks a link from a tag.
+* ShortLinks Pro: New action: Create a link.
 
 = 5.2.3 =
 
