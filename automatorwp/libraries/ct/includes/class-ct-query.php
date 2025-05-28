@@ -275,11 +275,6 @@ if ( ! class_exists( 'CT_Query' ) ) :
                 $q['order'] = $rand ? '' : $this->parse_order( $q['order'] );
             }
 
-            // Excluded words in the order by clause
-            $orderby_exclusions = apply_filters( 'ct_query_orderby_exclusions', array(
-                'select', 'from', 'join', 'where', 'sleep', '/', '*',
-            ) );
-
             // Order by.
             if ( empty( $q['orderby'] ) ) {
                 /*
@@ -299,14 +294,14 @@ if ( ! class_exists( 'CT_Query' ) ) :
                 if ( is_array( $q['orderby'] ) ) {
                     foreach ( $q['orderby'] as $_orderby => $order ) {
                         $orderby = addslashes_gpc( urldecode( $_orderby ) );
+                        $parsed  = $this->parse_orderby( $orderby );
 
-                        $orderby = str_ireplace( $orderby_exclusions, '', $orderby );
-                        $order = str_ireplace( $orderby_exclusions, '', $order );
+                        // Only allow certain values for safety.
+                        if ( ! $parsed ) {
+						    continue;
+					    }
 
-                        if( empty( $orderby ) ) continue;
-                        if( $orderby === '()' ) continue;
-
-                        $orderby_array[] = $orderby . ' ' . $this->parse_order( $order );
+                        $orderby_array[] = $parsed . ' ' . $this->parse_order( $order );
                     }
                     $orderby = implode( ', ', $orderby_array );
 
@@ -315,12 +310,14 @@ if ( ! class_exists( 'CT_Query' ) ) :
 
                     foreach ( explode( ' ', $q['orderby'] ) as $i => $orderby ) {
 
-                        $orderby = str_ireplace( $orderby_exclusions, '', $orderby );
+                        $parsed = $this->parse_orderby( $orderby );
 
-                        if( empty( $orderby ) ) continue;
-                        if( $orderby === '()' ) continue;
+                        // Only allow certain values for safety.
+                        if ( ! $parsed ) {
+                            continue;
+                        }
 
-                        $orderby_array[] = $orderby;
+                        $orderby_array[] = $parsed;
                     }
 
                     $orderby = implode( ' ' . $q['order'] . ', ', $orderby_array );
@@ -980,6 +977,46 @@ if ( ! class_exists( 'CT_Query' ) ) :
             $this->stopwords = apply_filters( 'ct_search_stopwords', $stopwords );
             return $this->stopwords;
         }
+
+        /**
+	 * Converts the given orderby alias (if allowed) to a properly-prefixed value.
+	 *
+	 * @since 4.0.0
+	 *
+	 * @global wpdb $wpdb WordPress database abstraction object.
+	 *
+	 * @param string $orderby Alias for the field to order by.
+	 * @return string|false Table-prefixed value to used in the ORDER clause. False otherwise.
+	 */
+	protected function parse_orderby( $orderby ) {
+		global $wpdb, $ct_table;
+
+        $allowed_keys = array(
+            'rand' => 'RAND()',
+        );
+       
+		
+        foreach ($ct_table->db->schema->fields as $key => $value) {
+            $allowed_keys[$key] = "{$ct_table->db->table_name}.{$key}";
+        }
+
+        $allowed_keys = apply_filters( "ct_query_{$ct_table->name}_orderby_allowed_keys", $allowed_keys, $orderby );
+ 
+        
+		// If RAND() contains a seed value, sanitize and add to allowed keys.
+		if ( preg_match( '/RAND\(([0-9]+)\)/i', $orderby, $matches ) ) {
+			$orderby = 'rand_with_seed';
+			$allowed_keys['rand_with_seed'] = sprintf( 'RAND(%s)', (int) $matches[1] );
+		}
+
+		if ( ! isset( $allowed_keys[$orderby] ) )
+			return '';
+
+        $orderby_clause = $allowed_keys[$orderby];  
+
+		return apply_filters( "ct_query_{$ct_table->name}_parse_orderby", $orderby_clause, $orderby );
+		
+	}
 
         /**
          * Parse an 'order' query variable and cast it to ASC or DESC as necessary.
