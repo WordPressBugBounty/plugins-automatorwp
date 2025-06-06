@@ -219,6 +219,7 @@ class AutomatorWP_AutomatorWP_All_Users extends AutomatorWP_Integration_Trigger 
         // Setup vars
         $field_conditions = isset( $trigger_options['field_conditions'] ) ? $trigger_options['field_conditions'] : array();
         $meta_conditions = isset( $trigger_options['meta_conditions'] ) ? $trigger_options['meta_conditions'] : array();
+        $allowed_fields = automatorwp_utilities_get_user_fields();
 
         $joins = array();
         $where = array();
@@ -231,6 +232,11 @@ class AutomatorWP_AutomatorWP_All_Users extends AutomatorWP_Integration_Trigger 
             foreach( $field_conditions as $condition ) {
 
                 if( ! isset( $condition['field'] ) ) {
+                    continue;
+                }
+
+                // Skip not allowed fields
+                if( ! isset( $allowed_fields[$condition['field']] ) ) {
                     continue;
                 }
 
@@ -280,7 +286,8 @@ class AutomatorWP_AutomatorWP_All_Users extends AutomatorWP_Integration_Trigger 
                 $condition = automatorwp_parse_automation_tags( $automation->id, 0, $condition );
 
                 // Sanitize
-                $meta_key = sanitize_text_field( $condition['meta_key'] );
+                $meta_key = sanitize_key( $condition['meta_key'] );
+                $meta_key = esc_sql( $meta_key );
                 $meta_value = sanitize_text_field( $condition['meta_value'] );
 
                 if( ! empty( $meta_key ) ) {

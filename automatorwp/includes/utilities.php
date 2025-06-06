@@ -1732,12 +1732,16 @@ function automatorwp_parse_function_arg_value( $value ) {
  */
 function automatorwp_utilities_parse_condition_to_sql( $field, $condition, $value, $strict = true ) {
 
+    global $wpdb;
+
     $operator = '=';
 
     switch( $condition ) {
-        case 'equal': $operator = '=';
+        case 'equal':
+            $operator = '=';
             break;
-        case 'not_equal': $operator = '!=';
+        case 'not_equal':
+            $operator = '!=';
             break;
         case 'contains':
         case 'start_with':
@@ -1749,13 +1753,20 @@ function automatorwp_utilities_parse_condition_to_sql( $field, $condition, $valu
         case 'not_ends_with':
             $operator = 'NOT LIKE';
             break;
-        case 'less_than': $operator = '<';
+        case 'less_than':
+            $operator = '<';
             break;
-        case 'greater_than': $operator = '>';
+        case 'greater_than':
+            $operator = '>';
             break;
-        case 'less_or_equal': $operator = '<=';
+        case 'less_or_equal':
+            $operator = '<=';
             break;
-        case 'greater_or_equal': $operator = '>=';
+        case 'greater_or_equal':
+            $operator = '>=';
+            break;
+        default:
+            $operator = '=';
             break;
     }
 
@@ -1768,13 +1779,18 @@ function automatorwp_utilities_parse_condition_to_sql( $field, $condition, $valu
         'not_ends_with',
     );
 
+    $pattern = '%s';
+
     if( $strict && is_numeric( $value ) && ! in_array( $condition, $string_required_conditions ) ) {
         if ( strpos( $value , '.') !== false ) {
             $value = (float) $value ;
+            $pattern = '%f';
         } else {
             $value = (int) $value;
+            $pattern = '%d';
         }
     } else {
+        $value = $wpdb->esc_like( $value );
         $value = esc_sql( $value );
 
         switch( $condition ) {
@@ -1792,10 +1808,9 @@ function automatorwp_utilities_parse_condition_to_sql( $field, $condition, $valu
                 break;
         }
 
-        $value = "'{$value}'";
     }
 
-    return "{$field} {$operator} {$value}";
+    return $wpdb->prepare( "{$field} {$operator} {$pattern}", array( $value ) );
 
 }
 
@@ -1821,7 +1836,6 @@ function automatorwp_implode_array( $glue = '', $glue_for_last_item = '', $array
 
 }
 
-
 /**
  * Utility function to get the operator field
  *
@@ -1840,5 +1854,63 @@ function automatorwp_utilities_operator_field() {
         ),
         'default' => 'AND'
     );
+
+}
+
+/**
+ * Utility function to get the post fields
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function automatorwp_utilities_get_post_fields() {
+
+    $post_fields = array(
+        'ID'                        => __( 'ID', 'automatorwp' ),
+        'post_title'                => __( 'Title', 'automatorwp' ),
+        'post_name'                 => __( 'Slug', 'automatorwp' ),
+        'post_type'                 => __( 'Type', 'automatorwp' ),
+        'post_status'               => __( 'Status', 'automatorwp' ),
+        'post_date'                 => __( 'Date', 'automatorwp' ),
+        'post_date_gmt'             => __( 'Date (GMT)', 'automatorwp' ),
+        'post_date_modified'        => __( 'Date Modified', 'automatorwp' ),
+        'post_date_modified_gmt'    => __( 'Date Modified (GMT)', 'automatorwp' ),
+        'post_author'               => __( 'Author', 'automatorwp' ),
+        'post_content'              => __( 'Content', 'automatorwp' ),
+        'post_excerpt'              => __( 'Excerpt', 'automatorwp' ),
+        'post_parent'               => __( 'Parent', 'automatorwp' ),
+        'menu_order'                => __( 'Order', 'automatorwp' ),
+        'post_password'             => __( 'Password', 'automatorwp' ),
+    );
+
+    $post_fields = apply_filters( 'automatorwp_utilities_get_post_fields', $post_fields );
+
+    return $post_fields;
+
+}
+
+/**
+ * Utility function to get the user fields
+ *
+ * @since 1.0.0
+ *
+ * @return array
+ */
+function automatorwp_utilities_get_user_fields() {
+
+    $user_fields = array(
+        'ID'                        => __( 'ID', 'automatorwp' ),
+        'user_login'                => __( 'Username', 'automatorwp' ),
+        'user_email'                => __( 'Email', 'automatorwp' ),
+        'display_name'              => __( 'Display name', 'automatorwp' ),
+        'user_nicename'             => __( 'Nicename', 'automatorwp' ),
+        'user_url'                  => __( 'Website', 'automatorwp' ),
+        'user_registered'           => __( 'Registration Date', 'automatorwp' ),
+    );
+
+    $user_fields = apply_filters( 'automatorwp_utilities_get_user_fields', $user_fields );
+
+    return $user_fields;
 
 }
