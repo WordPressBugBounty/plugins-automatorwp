@@ -83,8 +83,6 @@ final class AutomatorWP_Integration_Presto_Player {
         if( $this->meets_requirements() ) {
 
             // Includes
-            require_once AUTOMATORWP_PRESTO_PLAYER_DIR . 'includes/ajax-functions.php';
-            require_once AUTOMATORWP_PRESTO_PLAYER_DIR . 'includes/functions.php';
             require_once AUTOMATORWP_PRESTO_PLAYER_DIR . 'includes/tags.php';
 
             // Triggers

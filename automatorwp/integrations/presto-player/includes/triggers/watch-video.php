@@ -26,22 +26,18 @@ class AutomatorWP_Presto_Player_Watch_Video extends AutomatorWP_Integration_Trig
             'label'             => __( 'User fully watches a video', 'automatorwp' ),
             'select_option'     => __( 'User fully watches a <strong>video</strong>', 'automatorwp' ),
             /* translators: %1$s: Post Title. %2$s: Number of times. */
-            'edit_label'        => sprintf( __( 'User fully watches %1$s %2$s time(s)', 'automatorwp' ), '{video}', '{times}' ),
+            'edit_label'        => sprintf( __( 'User fully watches %1$s %2$s time(s)', 'automatorwp' ), '{post}', '{times}' ),
             /* translators: %1$s: Post Title. */
-            'log_label'         => sprintf( __( 'User fully watches %1$s', 'automatorwp' ), '{video}' ),
+            'log_label'         => sprintf( __( 'User fully watches %1$s', 'automatorwp' ), '{post}' ),
             'action'            => 'presto_player_progress',
             'function'          => array( $this, 'listener' ),
             'priority'          => 10,
             'accepted_args'     => 2,
             'options'           => array(
-                'video' => automatorwp_utilities_ajax_selector_option( array(
-                    'field'             => 'video',
-                    'name'              => __( 'Video:', 'automatorwp' ),
-                    'option_none_value' => 'any',
+                'post' => automatorwp_utilities_post_option( array(
+                    'name' => __( 'Video:', 'automatorwp' ),
                     'option_none_label' => __( 'any video', 'automatorwp' ),
-                    'action_cb'         => 'automatorwp_presto_player_get_videos',
-                    'options_cb'        => 'automatorwp_presto_player_options_cb_video',
-                    'default'           => 'any'
+                    'post_type' => 'pp_video_block'
                 ) ),
                 'times' => automatorwp_utilities_times_option(),
             ),
@@ -111,10 +107,18 @@ class AutomatorWP_Presto_Player_Watch_Video extends AutomatorWP_Integration_Trig
             return false;
         }
 
-        $required_video_id = absint( $trigger_options['video'] );
+        $model = new \PrestoPlayer\Models\Video();
+
+        if( ! $model ) {
+            return '';
+        }
+
+        $video = $model->get( $video_id );
+        
+        $video_post_id = $video->__get( 'post_id' );
 
         // Don't deserve if video doesn't match with the trigger option
-        if( $trigger_options['video'] !== 'any' && $video_id !== $required_video_id ) {
+        if( $trigger_options['post'] !== 'any' && absint( $video_post_id ) !== absint( $trigger_options['post'] ) ) {
             return false;
         }
 
