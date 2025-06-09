@@ -52,7 +52,9 @@ class AutomatorWP_Advanced_Ads_Ad_Published extends AutomatorWP_Integration_Trig
      */
     public function listener( $ad ) {
 
-        $post = get_post( $ad->id );
+        $ad_id = $ad->get_id( $ad );
+
+        $post = get_post( $ad_id );
 
         // Bail if post does not exists
         if( ! $post ) {
@@ -69,7 +71,7 @@ class AutomatorWP_Advanced_Ads_Ad_Published extends AutomatorWP_Integration_Trig
         automatorwp_trigger_event( array(
             'trigger'   => $this->trigger,
             'user_id'   => $user_id,
-            'post_id'   => $ad->id,
+            'post_id'   => $ad_id,
         ) );
 
     }

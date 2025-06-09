@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 5.2.7
+Stable tag: 5.2.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -333,10 +333,15 @@ No, We're unable to provide custom development services, as our focus is develop
 
 == Changelog ==
 
+= 5.2.8 =
+
+* **Improvements**
+* Advanced Ads: Added support to Advanced Ads latest version.
+
 = 5.2.7 =
 
 * **Improvements**
-* Presto Player: Added suport to Presto Player latest version.
+* Presto Player: Added support to Presto Player latest version.
 
 = 5.2.6 =
 

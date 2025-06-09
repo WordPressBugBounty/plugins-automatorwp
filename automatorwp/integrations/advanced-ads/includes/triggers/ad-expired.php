@@ -31,7 +31,7 @@ class AutomatorWP_Advanced_Ads_Ad_Expired extends AutomatorWP_Integration_Trigge
             'action'            => 'advanced-ads-ad-expired',
             'function'          => array( $this, 'listener' ),
             'priority'          => 10,
-            'accepted_args'     => 1,
+            'accepted_args'     => 2,
             'options'           => array(
                 'times' => automatorwp_utilities_times_option(),
             ),
@@ -48,11 +48,12 @@ class AutomatorWP_Advanced_Ads_Ad_Expired extends AutomatorWP_Integration_Trigge
      *
      * @since 1.0.0
      *
+     * @param int $ad_id
      * @param Advanced_Ads_Ad $ad
      */
-    public function listener( $ad ) {
+    public function listener( $ad_id, $ad ) {
 
-        $post = get_post( $ad->id );
+        $post = get_post( $ad_id );
 
         // Bail if post does not exists
         if( ! $post ) {
@@ -69,7 +70,7 @@ class AutomatorWP_Advanced_Ads_Ad_Expired extends AutomatorWP_Integration_Trigge
         automatorwp_trigger_event( array(
             'trigger'   => $this->trigger,
             'user_id'   => $user_id,
-            'post_id'   => $ad->id,
+            'post_id'   => $ad_id,
         ) );
 
     }
