@@ -38,7 +38,7 @@ add_action( 'init', 'automatorwp_register_scripts' );
 function automatorwp_enqueue_scripts( $hook = null ) {
 
     // Redirect script
-    if( automatorwp_is_action_in_use( 'automatorwp_redirect_user' ) ) {
+    if( automatorwp_is_action_in_use( 'automatorwp_redirect_user' ) || automatorwp_is_action_in_use( 'redirect_redirect_user' ) ) {
 
         $excluded_urls = array();
 
