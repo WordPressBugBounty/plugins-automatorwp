@@ -470,7 +470,7 @@ class CMB2_Field extends CMB2_Base {
 	 * @return mixed             Possibly sanitized meta value
 	 */
 	public function sanitization_cb( $meta_value ) {
-
+	
 		if ( $this->args( 'repeatable' ) && is_array( $meta_value ) ) {
 			// Remove empties.
 			$meta_value = array_filter( $meta_value );

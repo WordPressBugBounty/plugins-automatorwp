@@ -224,8 +224,8 @@ function automatorwp_get_filter_stored_options( $filter_id, $item_type, $single_
         foreach( $option_args['fields'] as $field_id => $field ) {
 
             $value = ct_get_object_meta( $object->id, $field_id, true );
-
-            if( empty( $value ) && isset( $field['default'] ) ) {
+            
+            if( ( $value === '' || $value === null ) && isset( $field['default'] ) ) {
                 $value = $field['default'];
             }
 

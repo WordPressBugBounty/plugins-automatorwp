@@ -264,7 +264,7 @@ function automatorwp_get_action_stored_options( $action_id, $single_level = true
     ct_setup_table( 'automatorwp_actions' );
 
     $options = array();
-
+ 
     foreach( $action['options'] as $option => $option_args ) {
 
         if( ! isset( $option_args['fields'] ) ) {
@@ -280,10 +280,9 @@ function automatorwp_get_action_stored_options( $action_id, $single_level = true
             $value = ct_get_object_meta( $object->id, $field_id, true );
 
             // Fallback to default attribute if value is empty
-            if( empty( $value ) && isset( $field['default'] ) ) {
+            if( ( $value === '' || $value === null ) && isset( $field['default'] ) ) {
                 $value = $field['default'];
             }
-
 
             if( isset( $field['option_custom'] ) && $field['option_custom']     // If option_custom is enabled
                 && $value === $field['option_custom_value']                     // Value is setup to use the custom value

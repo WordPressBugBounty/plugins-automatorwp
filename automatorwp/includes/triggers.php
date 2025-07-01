@@ -286,7 +286,7 @@ function automatorwp_get_trigger_stored_options( $trigger_id, $single_level = tr
 
             $value = ct_get_object_meta( $object->id, $field_id, true );
 
-            if( empty( $value ) && isset( $field['default'] ) ) {
+            if( ( $value === '' || $value === null ) && isset( $field['default'] ) ) {
                 $value = $field['default'];
             }
 
