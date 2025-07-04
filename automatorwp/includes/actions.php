@@ -51,7 +51,9 @@ function automatorwp_register_action( $action, $args ) {
 
     }
 
-    if( isset( AutomatorWP()->actions[$action] ) ) {
+    $log_duplications = apply_filters( 'automatorwp_log_duplications', false );
+
+    if( $log_duplications && isset( AutomatorWP()->actions[$action] ) ) {
         error_log( sprintf( __( 'Possible action duplication with the key "%s"', 'automatorwp' ), $action ) );
     }
 

@@ -44,54 +44,75 @@ function automatorwp_register_automatorwp_integration() {
 
     // Groups
     automatorwp_register_integration( 'code', array(
-        'label' => __( 'Code', 'automatorwp' ),
+        'label' => 'Code',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/code.svg',
     ) );
 
     automatorwp_register_integration( 'comments', array(
-        'label' => __( 'Comments', 'automatorwp' ),
+        'label' => 'Comments',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/comments.svg',
     ) );
 
     automatorwp_register_integration( 'emails', array(
-        'label' => __( 'Emails', 'automatorwp' ),
+        'label' => 'Emails',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/emails.svg',
     ) );
 
     automatorwp_register_integration( 'posts', array(
-        'label' => __( 'Posts', 'automatorwp' ),
+        'label' => 'Posts',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/posts.svg',
     ) );
 
     automatorwp_register_integration( 'redirect', array(
-        'label' => __( 'Redirect', 'automatorwp' ),
+        'label' => 'Redirect',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/redirect.svg',
     ) );
 
     automatorwp_register_integration( 'users', array(
-        'label' => __( 'Users', 'automatorwp' ),
+        'label' => 'Users',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/users.svg',
     ) );
 
     automatorwp_register_integration( 'button', array(
-        'label' => __( 'Button', 'automatorwp' ),
+        'label' => 'Button',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/button.svg',
     ) );
 
     automatorwp_register_integration( 'link', array(
-        'label' => __( 'Link', 'automatorwp' ),
+        'label' => 'Link',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/link.svg',
     ) );
 
     automatorwp_register_integration( 'multimedia_content', array(
-        'label' => __( 'Multimedia Content', 'automatorwp' ),
+        'label' => 'Multimedia Content',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/multimedia-content.svg',
     ) );
 
     automatorwp_register_integration( 'run_now', array(
-        'label' => __( 'Run Now', 'automatorwp' ),
+        'label' => 'Run Now',
         'icon'  => plugin_dir_url( __FILE__ ) . 'assets/run-now.svg',
     ) );
 
 }
 add_action( 'automatorwp_init', 'automatorwp_register_automatorwp_integration', 1 );
+
+/**
+ * Registers integration labels (due to text domain that requires to be in init)
+ *
+ * @since 1.0.0
+ */
+function automatorwp_register_automatorwp_integration_labels() {
+
+    AutomatorWP()->integrations['code']['label']                = __( 'Code', 'automatorwp' );
+    AutomatorWP()->integrations['comments']['label']            = __( 'Comments', 'automatorwp' );
+    AutomatorWP()->integrations['emails']['label']              = __( 'Emails', 'automatorwp' );
+    AutomatorWP()->integrations['posts']['label']               = __( 'Posts', 'automatorwp' );
+    AutomatorWP()->integrations['redirect']['label']            = __( 'Redirect', 'automatorwp' );
+    AutomatorWP()->integrations['users']['label']               = __( 'Users', 'automatorwp' );
+    AutomatorWP()->integrations['button']['label']              = __( 'Button', 'automatorwp' );
+    AutomatorWP()->integrations['link']['label']                = __( 'Link', 'automatorwp' );
+    AutomatorWP()->integrations['multimedia_content']['label']  = __( 'Multimedia Content', 'automatorwp' );
+    AutomatorWP()->integrations['run_now']['label']             = __( 'Run Now', 'automatorwp' );
+
+}
+add_action( 'init', 'automatorwp_register_automatorwp_integration_labels' );

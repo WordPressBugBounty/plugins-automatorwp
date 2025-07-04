@@ -54,6 +54,7 @@ class AutomatorWP_Integration_Trigger {
         if ( ! did_action( 'automatorwp_init' ) ) {
             // Default hook to register
             add_action('automatorwp_init', array( $this, 'register' ) );
+            add_action('init', array( $this, 'register_labels' ) );
         } else {
             // Hook for triggers registered from the theme's functions
             add_action( 'after_setup_theme', array( $this, 'register' ) );
@@ -81,6 +82,10 @@ class AutomatorWP_Integration_Trigger {
      */
     public function register() {
         // Override
+    }
+
+    public function register_labels() {
+        $this->register();
     }
 
     /**

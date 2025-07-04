@@ -54,6 +54,7 @@ class AutomatorWP_Integration_Action {
         if ( ! did_action( 'automatorwp_init' ) ) {
             // Default hook to register
             add_action('automatorwp_init', array( $this, 'register' ) );
+            add_action('init', array( $this, 'register_labels' ) );
         } else {
             // Hook for triggers registered from the theme's functions
             add_action( 'after_setup_theme', array( $this, 'register' ) );
@@ -71,6 +72,15 @@ class AutomatorWP_Integration_Action {
      */
     public function register() {
         // Override
+    }
+
+    /**
+     * Register again to update labels (due to textdomain init requirement)
+     *
+     * @since 1.0.0
+     */
+    public function register_labels() {
+        $this->register();
     }
 
     /**

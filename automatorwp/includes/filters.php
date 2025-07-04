@@ -51,7 +51,9 @@ function automatorwp_register_filter( $filter, $args ) {
 
     }
 
-    if( isset( AutomatorWP()->filters[$filter] ) ) {
+    $log_duplications = apply_filters( 'automatorwp_log_duplications', false );
+
+    if( $log_duplications && isset( AutomatorWP()->filters[$filter] ) ) {
         error_log( sprintf( __( 'Possible filter duplication with the key "%s"', 'automatorwp' ), $filter ) );
     }
 

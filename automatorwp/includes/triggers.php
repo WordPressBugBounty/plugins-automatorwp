@@ -58,7 +58,9 @@ function automatorwp_register_trigger( $trigger, $args ) {
 
     }
 
-    if( isset( AutomatorWP()->triggers[$trigger] ) ) {
+    $log_duplications = apply_filters( 'automatorwp_log_duplications', false );
+
+    if( $log_duplications && isset( AutomatorWP()->triggers[$trigger] ) ) {
         error_log( sprintf( __( 'Possible trigger duplication with the key "%s"', 'automatorwp' ), $trigger ) );
     }
 

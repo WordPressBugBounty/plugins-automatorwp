@@ -36,37 +36,37 @@ class AutomatorWP_ShortLinksPro_Create_Link extends AutomatorWP_Integration_Acti
                     'default' => __('link', 'automatorwp'),
                     'fields' => array(
                         'name_link' => array(
-                            'name' => __( 'Name: ', 'automatorwp' ),
+                            'name' => __( 'Name:', 'automatorwp' ),
                             'type' => 'text',
                             'default' => '',
                             'required'  => true
                         ),
                         'redirection' => array(
-                            'name' => __( 'Redirect type: ', 'automatorwp' ),
+                            'name' => __( 'Redirect type:', 'automatorwp' ),
                             'type' => 'select',
                             'options' => shortlinkspro_redirect_types(),
                             'required'  => true
                         ),
                         'target_url' => array(
-                            'name' => __( 'Target URL: ', 'automatorwp' ),
+                            'name' => __( 'Target URL:', 'automatorwp' ),
                             'type' => 'text',
                             'default' => '',
                             'required'  => true
                         ),
                         'shortlink_slug' => array(
-                            'name' => __( 'ShortLink slug: ', 'automatorwp' ),
+                            'name' => __( 'ShortLink slug:', 'automatorwp' ),
                             'type' => 'text',
                             'default' => '',
                             'desc' => __('A random slug will be generated if this field is empty.', 'automatorwp')
                         ),
                         'notes' => array(
-                            'name' => __( 'Notes: ', 'automatorwp' ),
+                            'name' => __( 'Notes:', 'automatorwp' ),
                             'type' => 'textarea',
                             'default' => '',
                             'desc' => __('Internal notes to your link for your own needs.', 'automatorwp')
                         ),
                         'link_options' => array(
-                            'name'      => __( 'Link options', 'shortlinkspro' ),
+                            'name'      => __( 'Link options:', 'automatorwp' ),
                             'type'      => 'multicheck_inline',
                             'classes'      => 'cmb2-switch',
                             'options' => array(
