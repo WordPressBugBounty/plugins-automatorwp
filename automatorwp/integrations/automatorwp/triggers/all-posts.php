@@ -260,8 +260,6 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
 
                 // Sanitize
                 $field = sanitize_text_field( $condition['field'] );
-                error_log('$field:');
-                error_log(print_r($field, true));
                 $value = sanitize_text_field( $condition['value'] );
 
                 if( ! empty( $field ) ) {
@@ -310,8 +308,6 @@ class AutomatorWP_AutomatorWP_All_Posts extends AutomatorWP_Integration_Trigger 
         // Turn arrays into strings
         $joins = implode( ' ', $joins );
         $where = ( ! empty( $where ) ? 'WHERE ' . implode( ' ', $where ) : '' );
-        error_log('$where:');
-        error_log(print_r($where, true));
 
         if( $count ) {
             // The count SQL query
