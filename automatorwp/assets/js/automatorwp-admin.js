@@ -1896,11 +1896,15 @@ function automatorwp_initialize_form_fields( form ) {
         })
         .on( 'click', '.cmbhandle, .cmbhandle + .cmbhandle-title', function(e) {
             window.CMB2.toggleHandle.apply(this, [e] );
-        });
-
+        })
+        .on( 'click', '.cmb2-upload-button', function(e) {
+            window.CMB2.handleMedia.apply(this, [e] );
+        })
+        
     // Init time/date/color pickers
     window.CMB2.initPickers( form.find('input[type="text"].cmb2-timepicker'), form.find('input[type="text"].cmb2-datepicker'), form.find('input[type="text"].cmb2-colorpicker') );
 
+ 
     // Init wysiwyg editors
     form.find( '.cmb-type-wysiwyg' ).each( function() {
 
@@ -1922,6 +1926,7 @@ function automatorwp_initialize_form_fields( form ) {
     }
 
 }
+
 
 /**
  * Initialize a wysiwyg editor

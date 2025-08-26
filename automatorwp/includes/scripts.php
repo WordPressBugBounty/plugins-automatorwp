@@ -313,6 +313,11 @@ function automatorwp_cmb2_script_dependencies( $dependencies ) {
         $dependencies['jquery-ui-datetimepicker'] = 'jquery-ui-datetimepicker';
     }
 
+    // Force to enqueue media-editor actions forms are loaded through ajax
+    if ( ! isset( $dependencies['media-editor'] ) ) {
+        $dependencies['media-editor'] = 'media-editor';
+    }
+
     return $dependencies;
 
 }
