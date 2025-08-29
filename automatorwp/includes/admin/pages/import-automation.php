@@ -54,6 +54,11 @@ function automatorwp_ajax_get_automation_export_url() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     $automation_id = ( isset( $_REQUEST['automation_id'] ) ? absint( $_REQUEST['automation_id'] ) : 0 );
 
     // Bail if automation ID not provided
@@ -79,6 +84,11 @@ function automatorwp_ajax_import_automation_from_url() {
 
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     $request = array();
 
