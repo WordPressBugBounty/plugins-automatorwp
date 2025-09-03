@@ -17,6 +17,11 @@ function automatorwp_clickup_ajax_authorize() {
     // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     $prefix = 'automatorwp_clickup_';
 
     $url = automatorwp_clickup_get_url();

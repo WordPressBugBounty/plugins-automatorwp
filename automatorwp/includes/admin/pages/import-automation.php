@@ -312,7 +312,7 @@ function automatorwp_ajax_import_automation_from_url() {
 
                 // VALUE
                 $meta_value = urldecode( $meta_value );
-
+                $meta_value = json_decode( $meta_value );
 
                 // Sanitize value based on its type
                 if( in_array( $field_type, array( 'textarea', 'textarea_small', 'textarea_code', 'wysiwyg' ) ) ) {
