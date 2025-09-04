@@ -26,16 +26,16 @@ class AutomatorWP_Thrive_Apprentice_User_Product extends AutomatorWP_Integration
             'label'             => __( 'Enroll user to a product', 'automatorwp' ),
             'select_option'     => __( 'Enroll user to <strong>a product</strong>', 'automatorwp' ),
             /* translators: %1$s: Product title. */
-            'edit_label'        => sprintf( __( 'Enroll user to %1$s', 'automatorwp' ), '{post}' ),
+            'edit_label'        => sprintf( __( 'Enroll user to %1$s', 'automatorwp' ), '{term}' ),
             /* translators: %1$s: Product title. */
-            'log_label'         => sprintf( __( 'Enroll user to %1$s', 'automatorwp' ), '{post}' ),
+            'log_label'         => sprintf( __( 'Enroll user to %1$s', 'automatorwp' ), '{term}' ),
             'options'           => array(
-                'post' => automatorwp_utilities_post_option( array(
-                    'name'              => __( 'Product:', 'automatorwp' ),
-                    'option_none_label' => __( 'all products', 'automatorwp' ),
+                'term' => automatorwp_utilities_term_option( array(
+                    'name'                  => __( 'Product:', 'automatorwp-thrive-apprentice' ),
+                    'option_none_label'     => __( 'all products', 'automatorwp-thrive-apprentice' ),
                     'option_custom'         => true,
-                    'option_custom_desc'    => __( 'Product ID', 'automatorwp' ),
-                    'post_type'         => 'tvd_content_set',
+                    'option_custom_desc'    => __( 'Product ID', 'automatorwp-thrive-apprentice' ),
+                    'taxonomy'              => 'tva_product',
                 ) ),
             ),
         ) );
@@ -57,12 +57,12 @@ class AutomatorWP_Thrive_Apprentice_User_Product extends AutomatorWP_Integration
         global $wpdb;
 
         // Shorthand
-        $product_id = $action_options['post'];
+        $product_id = $action_options['term'];
 
         // Check specific product
         if( $product_id !== 'any' ) {
 
-            $product = get_post( $product_id );
+            $product = get_term( $product_id, 'tva_product' );
 
             // Bail if course doesn't exists
             if( ! $product ) {
@@ -73,20 +73,19 @@ class AutomatorWP_Thrive_Apprentice_User_Product extends AutomatorWP_Integration
 
         } else {
 
-            $query = new WP_Query( array(
-                'post_type'		=> 'tvd_content_set',
-                'post_status'	=> 'publish',
-                'fields'        => 'ids',
-                'nopaging'      => true,
+            $terms = get_terms( array( 
+                'taxonomy' => 'tva_product',
+                'hide_empty' => false,
             ) );
 
-            $products = $query->get_posts();
+            foreach ( $terms as $term ) {
+                $products[] = $term->term_id;
+            }
 
         }
 
         // Enroll user in products
         foreach( $products as $product_id ) {
-            $product_id = $wpdb->get_var( $wpdb->prepare( "SELECT term_taxonomy_id FROM {$wpdb->prefix}term_relationships WHERE object_id = %d", $product_id ) );
             TVA_Customer::enrol_user_to_product( $user_id, $product_id );
         }
 
