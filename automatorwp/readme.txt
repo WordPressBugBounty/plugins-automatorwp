@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 5.3.9
+Stable tag: 5.4.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -106,6 +106,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [ARMember](https://automatorwp.com/add-ons/armember/)
 * [Autonami](https://automatorwp.com/add-ons/autonami/)
 * [Awesome Support](https://automatorwp.com/add-ons/awesome-support/)
+* [BBForms](https://automatorwp.com/add-ons/bbforms/)
 * [bbPress](https://automatorwp.com/add-ons/bbpress/)
 * [Better Messages](https://automatorwp.com/add-ons/better-messages/)
 * [Blockli](https://automatorwp.com/add-ons/blockli/)
@@ -251,6 +252,7 @@ If you like AutomatorWP, you will love our other plugins!
 
 * [GamiPress](https://wordpress.org/plugins/gamipress/) - Flexible gamification plugin to reward your users with points, achievements, badges & ranks based on their activity in your WordPress.
 * [ShortLinks Pro](https://wordpress.org/plugins/shortlinkspro/) - The most complete link management plugin that not only powers WordPress websites with shortened URLs, also empowers site owners to create clean, branded and unique affiliate links easily.
+* [BBForms](https://wordpress.org/plugins/bbforms/) - BBForms is a code form plugin designed to help you build multipurpose forms in seconds!
 
 == Installation ==
 
@@ -334,6 +336,13 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.4.0 =
+
+* **New Features**
+* New integration: BBForms.
+* BBForms: New trigger: User submits a form.
+* BBForms: New trigger: Guest submits a form.
 
 = 5.3.9 =
 
