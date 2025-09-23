@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 5.4.0
+Stable tag: 5.4.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -104,6 +104,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [AnsPress](https://automatorwp.com/add-ons/anspress/)
 * [ARForms](https://automatorwp.com/add-ons/arforms/)
 * [ARMember](https://automatorwp.com/add-ons/armember/)
+* [Asgaros Forum](https://automatorwp.com/add-ons/asgaros-forum/)
 * [Autonami](https://automatorwp.com/add-ons/autonami/)
 * [Awesome Support](https://automatorwp.com/add-ons/awesome-support/)
 * [BBForms](https://automatorwp.com/add-ons/bbforms/)
@@ -124,6 +125,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [Elementor](https://automatorwp.com/add-ons/elementor-forms/)
 * [Everest Forms](https://automatorwp.com/add-ons/everest-forms/)
 * [Favorites](https://automatorwp.com/add-ons/favorites/)
+* [FluentBooking](https://automatorwp.com/add-ons/fluentbooking/)
 * [FluentCRM](https://automatorwp.com/add-ons/fluentcrm/)
 * [Fluent Support](https://automatorwp.com/add-ons/fluent-support/)
 * [Formidable Forms](https://automatorwp.com/add-ons/formidable-forms/)
@@ -336,6 +338,16 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.4.1 =
+
+* **New Features**
+* New integration: Asgaros Forum.
+* Asgaros Forum: New trigger: User creates a topic on a forum.
+* Asgaros Forum: New trigger: User replies to a topic on a forum.
+* New integration: FluentBooking.
+* FluentBooking: New trigger: User schedules one-to-one meeting.
+* FluentBooking: New trigger: User schedules team meeting.
 
 = 5.4.0 =
 
