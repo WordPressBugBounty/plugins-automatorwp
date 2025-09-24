@@ -41,7 +41,7 @@ function automatorwp_activecampaign_get_api() {
 function automatorwp_activecampaign_get_webhook_url() {
 
     $prefix = 'automatorwp_activecampaign_';
-    $settings = get_option( 'automatorwp_settings' );
+    $settings = get_option( 'automatorwp_settings', array() );
 
     $webhook_url = ( isset( $settings[$prefix . 'webhook'] ) ) ? $settings[$prefix . 'webhook'] : '';
 
