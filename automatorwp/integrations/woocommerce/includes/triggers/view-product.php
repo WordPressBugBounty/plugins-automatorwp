@@ -42,7 +42,7 @@ class AutomatorWP_WooCommerce_View_Product extends AutomatorWP_Integration_Trigg
                 'times' => automatorwp_utilities_times_option(),
             ),
             'tags' => array_merge(
-                automatorwp_utilities_post_tags(),
+                automatorwp_utilities_post_tags( __( 'Product', 'automatorwp' ) ),
                 automatorwp_utilities_times_tag()
             )
         ) );

@@ -629,7 +629,7 @@ function automatorwp_clone_automation_items( $automation_id, $new_automation_id 
         ct_setup_table( "automatorwp_{$item_type}s" );
 
         foreach( $items as $item ) {
-
+        
             $new_item = ( array ) $item;
 
             unset( $new_item['id'] );
@@ -641,7 +641,16 @@ function automatorwp_clone_automation_items( $automation_id, $new_automation_id 
             // Update old ids and replacements to be used on metas
             if( $new_item_id ) {
                 $ids[$item->id] = $new_item_id;
-                $replacements['{' . $item->id . ':'] = '{' . $new_item_id . ':';
+
+                if ( $item_type === 'trigger' ) {
+                    $replacements['{' . $item->id . ':'] = '{' . $new_item_id . ':';
+                    $replacements['{t:' . $item->id . ':'] = '{t:' . $new_item_id . ':';
+                }
+
+                if ( $item_type === 'action' ) {
+                    $replacements['{a:' . $item->id . ':'] = '{a:' . $new_item_id . ':';
+                }
+                
             }
 
         }
