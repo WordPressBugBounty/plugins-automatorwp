@@ -32,6 +32,14 @@ function automatorwp_add_ons_page() {
         <h1 class="wp-heading-inline"><?php _e( 'AutomatorWP Add-ons', 'automatorwp' ); ?></h1>
         <hr class="wp-header-end">
 
+        <div class="wp-filter">
+            <ul class="filter-links">
+                <li class="plugins-premium"><a href="#" data-target="automatorwp-premium-add-on" class="current"><?php echo automatorwp_dashicon( 'automatorwp', 'span' ); ?> <?php _e( 'Add-ons', 'automatorwp' ); ?></a></li>
+                <li class="plugins-integrations"><a href="#" data-target="automatorwp-integration-add-on"><?php echo automatorwp_dashicon( 'admin-plugins', 'span' ); ?> <?php _e( 'Integrations', 'automatorwp' ); ?></a></li>
+                <li class="plugins-app"><a href="#" data-target="automatorwp-app-add-on"><?php echo automatorwp_dashicon( 'star-filled', 'span' ); ?> <?php _e( 'Apps Integrations', 'automatorwp' ); ?></a></li>
+            </ul>
+        </div>
+
         <p><?php _e( 'Add-ons to extend and expand the functionality of AutomatorWP.', 'automatorwp' ); ?></p>
 
         <form id="plugin-filter" method="post">
@@ -168,7 +176,16 @@ function automatorwp_render_plugin_card( $plugin ) {
     } else {
         // Premium add-ons
 
-        $class = 'automatorwp-premium-add-on';
+        $premium_plugins = automatorwp_get_premium_plugins();
+        $app_plugins = automatorwp_get_app_plugins();
+
+        if( in_array( $plugin->info->slug, $premium_plugins ) ) {
+            $class = 'automatorwp-premium-add-on';
+        } else if( in_array( $plugin->info->slug, $app_plugins ) ) {
+            $class = 'automatorwp-app-add-on';
+        } else {
+            $class = 'automatorwp-integration-add-on';
+        }
 
         $plugin_file = $slug . '/' . $slug . '.php';
 
@@ -591,4 +608,79 @@ function automatorwp_is_plugin_pass( $plugin ) {
     }
 
     return false;
+}
+
+/**
+ * Helper function to get all plugins categorized as premium
+ *
+ * @since   1.0.0
+ *
+ * @return array
+ */
+function automatorwp_get_premium_plugins() {
+    return array(
+        'automatorwp-pro',
+        'block-users',
+        'button',
+        'calculator',
+        'code',
+        'comments',
+        'csv',
+        'custom-user-fields',
+        'emails',
+        'formatter',
+        'generator',
+        'link',
+        'multimedia-content',
+        'posts',
+        'qr-code',
+        'redirect',
+        'restrict-content',
+        'run-now',
+        'schedule-actions',
+        'user-lists',
+        'users',
+        'webhooks',
+    );
+}
+
+/**
+ * Helper function to get all plugins categorized as add
+ *
+ * @since   1.0.0
+ *
+ * @return array
+ */
+function automatorwp_get_app_plugins() {
+    return array(        
+        'activecampaign',
+        'airtable',
+        'bluesky',
+        'campaign-monitor',
+        'clickup',
+        'convertkit',
+        'facebook',
+        'google-calendar',
+        'google-sheets',
+        'hubspot',
+        'ifttt',
+        'integrately',
+        'integromat',
+        'konnectzit',
+        'mailchimp',
+        'mailerlite',
+        'make',
+        'mautic',
+        'notion',
+        'openai',
+        'trello',
+        'twilio',
+        'typeform',
+        'vimeo',
+        'whatsapp',
+        'youtube',
+        'twitter',
+        'zapier',
+        'zoom',
+    );
 }

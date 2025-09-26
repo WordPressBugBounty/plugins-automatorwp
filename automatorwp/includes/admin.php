@@ -398,3 +398,46 @@ function automatorwp_add_meta_box( $id, $title, $object_types, $fields, $args = 
     new_cmb2_box( $box );
 
 }
+
+/**
+ * Add custom footer text to the admin dashboard
+ *
+ * @since	    2.0.0
+ *
+ * @param       string $footer_text The existing footer text
+ *
+ * @return      string
+ */
+function automatorwp_admin_footer_text( $footer_text ) {
+
+    global $typenow;
+
+    if (( isset( $_GET['page'] ) && (
+                $_GET['page'] === 'automatorwp_settings'
+                || $_GET['page'] === 'automatorwp_automations'
+                || $_GET['page'] === 'edit_automatorwp_automations'
+                || $_GET['page'] === 'automatorwp_logs'
+                || $_GET['page'] === 'edit_automatorwp_logs'
+                || $_GET['page'] === 'automatorwp_add_ons'
+                || $_GET['page'] === 'automatorwp_tools'
+                || $_GET['page'] === 'automatorwp'
+            )
+        )
+    ) {
+
+        $automatorwp_footer_text = sprintf( __( 'Thank you for using <a href="%1$s" target="_blank">AutomatorWP</a>! Please leave us a <a href="%2$s" target="_blank">%3$s</a> rating on WordPress.org', 'automatorwp' ),
+            'https://automatorwp.com',
+            'https://wordpress.org/support/plugin/automatorwp/reviews/?rate=5#new-post',
+            '&#9733;&#9733;&#9733;&#9733;&#9733;'
+        );
+
+        return str_replace( '</span>', '', $footer_text ) . ' | ' . $automatorwp_footer_text . '</span>';
+
+    } else {
+
+        return $footer_text;
+
+    }
+
+}
+add_filter( 'admin_footer_text', 'automatorwp_admin_footer_text' );

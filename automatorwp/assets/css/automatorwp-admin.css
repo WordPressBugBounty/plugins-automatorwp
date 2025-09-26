@@ -2289,6 +2289,17 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     text-decoration: none;
 }
 
+/* Plugins */
+.automatorwp-dashboard .our-plugins-list img {
+    height: 20px;
+    vertical-align: middle;
+}
+
+.automatorwp-dashboard .our-plugins-list span {
+    vertical-align: middle;
+}
+
+/* Team */
 .automatorwp-dashboard .contributors-list {
     text-align: center;
 }
@@ -2301,6 +2312,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     display: block;
 }
 
+/* Social */
 .automatorwp-dashboard .automatorwp-dashboard-social-list li {
     margin-bottom: 16px;
 }
@@ -2322,10 +2334,6 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 }
 
 @media screen and (min-width: 1200px) {
-
-    .automatorwp-dashboard .postbox .inside {
-        min-height: 240px;
-    }
 
     .automatorwp-dashboard .automatorwp-dashboard-columns {
         display: grid;
@@ -2456,19 +2464,36 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     display: none;
 }
 
+.automatorwp-app-add-on .name,
+.automatorwp-app-add-on .desc,
+.automatorwp-integration-add-on .name,
+.automatorwp-integration-add-on .desc {
+    display: none;
+}
+
+.automatorwp-app-add-on .plugin-card-top,
+.automatorwp-integration-add-on .plugin-card-top {
+    padding-bottom: 0;
+}
+
+.automatorwp-app-add-on .thumbnail,
+.automatorwp-integration-add-on .thumbnail {
+    margin-bottom: 0;
+}
+
 @media screen and (min-width: 1600px) {
     .automatorwp-plugin-card {
-        width: 25%;
-        width: -webkit-calc( 25% - 16px );
-        width: calc( 25% - 16px );
+        width: 20%;
+        width: -webkit-calc( 20% - 16px );
+        width: calc( 20% - 16px );
     }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1600px) {
     .automatorwp-plugin-card {
-        width: 25%;
-        width: -webkit-calc( 25% - 16px );
-        width: calc( 25% - 16px );
+        width: 20%;
+        width: -webkit-calc( 20% - 16px );
+        width: calc( 20% - 16px );
     }
 }
 

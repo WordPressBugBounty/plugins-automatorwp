@@ -71,6 +71,13 @@ function automatorwp_dashboard_page() {
                 <div id="postbox-container-3" class="postbox-container">
                     <div id="normal-sortables" class="meta-box-sortables ui-sortable">
 
+                        <?php // Plugins ?>
+                        <?php automatorwp_dashboard_box( array(
+                            'id' => 'plugins',
+                            'title' => __( 'Our Plugins', 'automatorwp' ),
+                            'content_cb' => 'automatorwp_dashboard_plugins_box',
+                        ) ); ?>
+
                         <?php // Team ?>
                         <?php automatorwp_dashboard_box( array(
                             'id' => 'team',
@@ -270,6 +277,43 @@ function automatorwp_dashboard_advanced_box() {
                 <li><a href="https://automatorwp.com/docs/special-tags/date-tag/" target="_blank"><?php _e( 'Date tag', 'automatorwp' ); ?></a></li>
                 <li><a href="https://automatorwp.com/docs/special-tags/function-tags/" target="_blank"><?php _e( 'Function tags', 'automatorwp' ); ?></a></li>
             </ul>
+        </li>
+    </ul>
+    <?php
+}
+
+/**
+ * Dashboard plugins box
+ *
+ * @since  2.0.0
+ */
+function automatorwp_dashboard_plugins_box() {
+    $url = AUTOMATORWP_URL . 'assets/img/logos/';
+    ?>
+    <ul id="our-plugins-list" class="our-plugins-list">
+        <li>
+            <a href="https://wordpress.org/plugins/gamipress/" target="_blank">
+                <img src="<?php echo esc_attr( $url . 'gamipress.svg' ); ?>" class="our-plugins-img our-plugins-gamipress" loading="lazy">
+                <span>GamiPress</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://wordpress.org/plugins/automatorwp/" target="_blank">
+                <img src="<?php echo esc_attr( $url . 'automatorwp.svg' ); ?>" class="our-plugins-img our-plugins-automatorwp" loading="lazy">
+                <span>AutomatorWP</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://wordpress.org/plugins/shortlinkspro/" target="_blank">
+                <img src="<?php echo esc_attr( $url . 'shortlinkspro.svg' ); ?>" class="our-plugins-img our-plugins-shortlinkspro" loading="lazy">
+                <span>ShortLinks Pro</span>
+            </a>
+        </li>
+        <li>
+            <a href="https://wordpress.org/plugins/bbforms/" target="_blank">
+                <img src="<?php echo esc_attr( $url . 'bbforms.svg' ); ?>" class="our-plugins-img our-plugins-bbforms" loading="lazy">
+                <span>BBForms</span>
+            </a>
         </li>
     </ul>
     <?php
