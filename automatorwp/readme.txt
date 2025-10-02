@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 5.4.4
+Stable tag: 5.4.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -123,6 +123,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [Easy Affiliate](https://automatorwp.com/add-ons/easy-affiliate/)
 * [Easy Digital Downloads](https://automatorwp.com/add-ons/easy-digital-downloads/)
 * [Elementor](https://automatorwp.com/add-ons/elementor-forms/)
+* [Eventin](https://automatorwp.com/add-ons/eventin/)
 * [Everest Forms](https://automatorwp.com/add-ons/everest-forms/)
 * [Favorites](https://automatorwp.com/add-ons/favorites/)
 * [FluentBooking](https://automatorwp.com/add-ons/fluentbooking/)
@@ -211,6 +212,7 @@ AutomatorWP can also work with external platforms, furthermore WordPress plugins
 * [Google Calendar](https://automatorwp.com/add-ons/google-calendar/)
 * [Google Sheets](https://automatorwp.com/add-ons/google-sheets/)
 * [IFTTT](https://automatorwp.com/add-ons/ifttt/)
+* [Instagram](https://automatorwp.com/add-ons/instagram/)
 * [Integrately](https://automatorwp.com/add-ons/integrately/)
 * [Integromat](https://automatorwp.com/add-ons/integromat/)
 * [KonnectzIT](https://automatorwp.com/add-ons/konnectzit/)
@@ -338,6 +340,12 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.4.5 =
+
+* **New Features**
+* New integration: Eventin.
+* Eventin: New trigger: User purchases a ticket for an event.
 
 = 5.4.4 =
 

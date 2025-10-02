@@ -664,6 +664,7 @@ function automatorwp_get_app_plugins() {
         'google-sheets',
         'hubspot',
         'ifttt',
+        'instagram',
         'integrately',
         'integromat',
         'konnectzit',
