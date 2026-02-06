@@ -83,7 +83,35 @@ class AutomatorWP_Paid_Memberships_Pro_Add_User_Membership extends AutomatorWP_I
             return;
         }
 
-        $new_level = pmpro_changeMembershipLevel( $membership_id, $user_id );
+        $level_info = pmpro_getLevel( $membership_id );
+
+        $expiration_number = $level_info->expiration_number;
+        $expiration_period = $level_info->expiration_period;
+
+        $startdate = apply_filters( "pmpro_checkout_start_date", "'" . current_time( 'mysql' ) . "'", $user_id, $level_info );
+
+        if ( ! empty( $expiration_number ) ) {
+		    if( $expiration_period == 'Hour' ){
+			    $enddate =  date( "Y-m-d H:i:s", strtotime( "+ " . $expiration_number . " " . $expiration_period, current_time( "timestamp" ) ) );
+		    } else {
+			    $enddate =  date( "Y-m-d 23:59:59", strtotime( "+ " . $expiration_number . " " . $expiration_period, current_time( "timestamp" ) ) );
+		    }
+	    } else {
+		    $enddate = "NULL";
+	    }
+
+        $enddate = apply_filters( "pmpro_checkout_end_date", $enddate, $user_id, $level_info, $startdate );
+
+        //custom level to change user to
+	    $custom_level = array(
+            'user_id'         => $user_id,
+            'membership_id'   => $membership_id,
+            'startdate'       => $startdate,
+            'enddate'         => $enddate
+	    );
+
+        $new_level = pmpro_changeMembershipLevel( $custom_level, $user_id );
+
 
         if( ! $new_level ) {
             $this->result = __( 'Could not add user to membership level.', 'automatorwp' );

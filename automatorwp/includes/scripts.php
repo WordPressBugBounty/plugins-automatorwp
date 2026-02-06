@@ -181,6 +181,7 @@ function automatorwp_admin_enqueue_scripts( $hook ) {
 
     $allow_enqueue = true;
 
+
     $allowed_hooks = array(
         'automatorwp_page_automatorwp_automations', // Automations list
         'admin_page_edit_automatorwp_automations',  // Automation edit

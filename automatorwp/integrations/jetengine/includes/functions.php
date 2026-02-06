@@ -24,7 +24,7 @@ function automatorwp_jetengine_options_cb_post_type( $field ) {
     $none_label = __( 'any type', 'automatorwp' );
     $options = automatorwp_options_cb_none_option( $field, $none_value, $none_label );
     
-    $post_types_obj = new Jet_Engine_CPT;
+    $post_types_obj = jet_engine()->cpt;
     $post_types = $post_types_obj->get_items();
 
     foreach ( $post_types as $post_type ) {
@@ -54,7 +54,7 @@ function automatorwp_jetengine_check_type( $post ) {
     $array_types = array();
 
     // Get JetEngine post types
-    $post_types_obj = new Jet_Engine_CPT;
+    $post_types_obj = jet_engine()->cpt;
     $post_types = $post_types_obj->get_items();
 
     foreach( $post_types as $post_type ) {

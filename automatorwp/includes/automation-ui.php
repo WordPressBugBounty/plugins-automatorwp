@@ -35,7 +35,7 @@ function automatorwp_render_automation_type_dialog() {
     <div class="automatorwp-automation-type-dialog-wrapper" style="display: none;">
 
         <div class="automatorwp-automation-type-dialog">
-            <h2 class="automatorwp-automation-type-dialog-title"><?php _e( 'Automation type', 'automatorwp' ); ?></h2>
+            <h2 class="automatorwp-automation-type-dialog-title"><?php esc_html_e( 'Automation type', 'automatorwp' ); ?></h2>
             <div class="automatorwp-automation-types">
                 <?php foreach( $types as $type => $args ) :
                     if( in_array( $type, automatorwp_get_automation_loop_types() ) ) continue; ?>
@@ -48,8 +48,13 @@ function automatorwp_render_automation_type_dialog() {
                     </div>
                 <?php endforeach; ?>
             </div>
-            <h3 class="automatorwp-automation-type-dialog-automation-loop-title"><?php _e( 'Loop Automations', 'automatorwp' ); ?></h3>
-            <p class="automatorwp-automation-type-dialogautomation-loop-desc"><?php _e( 'Designed to run actions on a <b>group of elements</b>. Can be run <b>manually</b>, on a <b>specific date</b> or on a <b>recurring</b> basis.', 'automatorwp' ); ?></p>
+            <h3 class="automatorwp-automation-type-dialog-automation-loop-title">
+                <?php esc_html_e( 'Loop Automations', 'automatorwp' ); ?>
+                <span class="cmb-tooltip">
+                    <i class="dashicons dashicons-cmb-tooltip"></i>
+                    <span class="cmb-tooltip-desc cmb-tooltip-top"><?php _e( 'Designed to run actions on a <b>group of elements</b>. Can be run <b>manually</b>, on a <b>specific date</b> or on a <b>recurring</b> basis.', 'automatorwp' ); ?></span>
+                </span>
+            </h3>
             <div class="automatorwp-automation-types automatorwp-automation-loop-types">
                 <?php foreach( $types as $type => $args ) :
                     if( ! in_array( $type, automatorwp_get_automation_loop_types() ) ) continue; ?>

@@ -119,7 +119,7 @@ class AutomatorWP_WordPress_Anonymous_User extends AutomatorWP_Integration_Actio
                                 'abort' => __( 'Do not run the actions', 'automatorwp' ),
                                 'new_user' => __( 'Create a new user', 'automatorwp' ),
                             ),
-                            'default' => array( $this, 'return_abort_default_cb' ),
+                            'default_cb' => array( $this, 'return_abort_default_cb' ),
                         ),
 
                         // New user fields
@@ -205,7 +205,7 @@ class AutomatorWP_WordPress_Anonymous_User extends AutomatorWP_Integration_Actio
                                 'abort' => __( 'Do not run the actions', 'automatorwp' ),
                                 'existing_user' => __( 'Select existing user', 'automatorwp' ),
                             ),
-                            'default' => array( $this, 'return_abort_default_cb' ),
+                            'default_cb' => array( $this, 'return_abort_default_cb' ),
                         ),
                         'new_user_search_field' => array(
                             'name' => __( 'Field to search the user:', 'automatorwp' ),

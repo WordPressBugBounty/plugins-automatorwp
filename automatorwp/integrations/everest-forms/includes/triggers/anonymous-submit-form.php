@@ -154,11 +154,7 @@ class AutomatorWP_Everest_Forms_Anonymous_Submit_Form extends AutomatorWP_Integr
             return $log_meta;
         }
 
-        $form_name = automatorwp_everest_forms_get_form_title( $event['form_id'] );
-
         $log_meta['form_fields'] = (isset($event['form_fields']) ? $event['form_fields'] : array());
-        $log_meta['form_id'] = ( isset( $event['form_id'] ) ? $event['form_id'] : '' );
-        $log_meta['form_name'] = ( isset( $form_name ) ? $form_name : '' );
 
         return $log_meta;
 

@@ -67,7 +67,7 @@ class AutomatorWP_PMS_Purchase_Subscription extends AutomatorWP_Integration_Trig
      */
     public function listener($id, $data) {
 
-        $user_id = get_current_user_id();
+        $user_id = $data['user_id'];
 
         // Login is required
         if ($user_id === 0) {

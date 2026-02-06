@@ -2,8 +2,8 @@
 Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flabernardez
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
-Tested up to: 6.8
-Stable tag: 5.4.5
+Tested up to: 6.9
+Stable tag: 5.5.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -340,6 +340,70 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.5.7 =
+
+* **Improvements**
+* Tooltip library updated.
+
+= 5.5.6 =
+
+* **Bug Fixes**
+* Paid Membership Subscriptions: Fixed trigger to handle new user registrations.
+
+= 5.5.5 =
+
+* **Bug Fixes**
+* ActiveCampaign: Fixed bug related to first name and last name in add user action.
+
+= 5.5.4 =
+
+* **Developer Notes**
+* Tested with WordPress 6.9.
+
+= 5.5.3 =
+
+* **Bug Fixes**
+* JetEngine: Fixed error to get the post types.
+
+= 5.5.2 =
+
+* **Bug Fixes**
+* Links fixed in Add-ons section.
+
+= 5.5.1 =
+
+* **Bug Fixes**
+* Fixed bug related to dashboard integrations list.
+
+= 5.5.0 =
+
+* **Improvements**
+* Improved dashboard information.
+* Added tooltip library to improve descriptions.
+
+= 5.4.9 =
+
+* **New Features**
+* New integration: AWeber.
+* AWeber: New action: Add user to list.
+* AWeber: New action: Add tag to user.
+
+= 5.4.8 =
+
+* **Bug Fixes**
+* Fixed action "Add user to membership level" to include the expiration date to the Membership.
+
+= 5.4.7 =
+
+* **New Features**
+* LearnDash: Added support to assign multiples courses to Create Group action.
+
+= 5.4.6 =
+
+* **Bug Fixes**
+* Fixed bug related to anonymous automations when options were not configured.
+* Everest Forms: Fixed bug related to tag in anonymous trigger.
 
 = 5.4.5 =
 

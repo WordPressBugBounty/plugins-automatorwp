@@ -41,13 +41,14 @@ class AutomatorWP_LearnDash_Create_Group extends AutomatorWP_Integration_Action 
                             'name'              => __( 'Group course:', 'automatorwp' ),
                             'option_none'       => false,
                             'option_custom'         => true,
-                            'option_custom_desc'    => __( 'Course ID', 'automatorwp' ),
+                            'option_custom_desc'    => __( 'Course ID or comma-separated list of courses IDs', 'automatorwp' ),
                             'post_type'         => 'sfwd-courses',
                             'placeholder'       => __( 'Select a course', 'automatorwp' ),
-                            'default'           => ''
+                            'default'           => '',
+                            'multiple'          => true
                         ) ),
                         'post_custom' => automatorwp_utilities_custom_field( array(
-                            'option_custom_desc'    => __( 'Course ID', 'automatorwp' ),
+                            'option_custom_desc'    => __( 'Course ID or comma-separated list of courses IDs', 'automatorwp' ),
                         ) ),
                         'leader_role_assignment' => array(
                             'name' => __( 'If user doesn\'t have the "Group Leader" role:', 'automatorwp' ),
@@ -80,7 +81,7 @@ class AutomatorWP_LearnDash_Create_Group extends AutomatorWP_Integration_Action 
 
         // Shorthand
         $post_title = $action_options['post_title'];
-        $course_id = $action_options['post'];
+        $course_ids = $action_options['post'];
         $leader_role_assignment = $action_options['leader_role_assignment'];
 
         $user = get_user_by( 'ID', $user_id );
@@ -124,18 +125,29 @@ class AutomatorWP_LearnDash_Create_Group extends AutomatorWP_Integration_Action 
         // Set the user as leader
         ld_update_leader_group_access( $user_id, $group_id );
 
-        $course = get_post( $course_id );
-
-        // Bail if course not found
-        if( ! $course ) {
-            return;
+        if( ! is_array( $course_ids ) ) {
+            $course_ids = explode( ',', $course_ids );
         }
 
-        // Add the course to the group
-        ld_update_course_group_access( (int) $course_id, (int) $group_id, false );
+        foreach ($course_ids as $course_id) {
+            
+            //Sanitize $id
+            $course_id = absint( trim( $course_id ) );
 
-        // Delete the course groups transient
-        delete_transient( 'learndash_course_groups_' . $course_id );
+            $course = get_post( $course_id );
+            
+            // Skip this ID if course not found
+            if( ! $course ) {
+                continue;
+            }
+            
+            // Add the course to the group
+            ld_update_course_group_access( (int) $course_id, (int) $group_id, false );
+    
+            // Delete the course groups transient
+            delete_transient( 'learndash_course_groups_' . $course_id );
+
+        }
 
     }
 

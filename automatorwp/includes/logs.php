@@ -194,15 +194,17 @@ function automatorwp_get_log_integration_icon( $log ) {
 
                 ?>
 
-                <div class="automatorwp-integration-icon">
-                    <img src="<?php echo esc_attr( $integration['icon'] ); ?>" title="<?php echo esc_attr( $integration['label'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">
+                <div class="automatorwp-integration-icon cmb-tooltip">
+                    <img src="<?php echo esc_attr( $integration['icon'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">
+                    <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $integration['label'] ); ?></span>
                 </div>
 
             <?php endif;
         } else { ?>
 
-            <div class="automatorwp-integration-icon">
-                <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" title="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+            <div class="automatorwp-integration-icon cmb-tooltip">
+                <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" alt="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+                <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $log->type ); ?></span>
             </div>
 
         <?php }
@@ -245,8 +247,9 @@ function automatorwp_get_log_integration_icon( $log ) {
          */
         $title = apply_filters( 'automatorwp_get_log_default_icon_title', 'AutomatorWP', $log ); ?>
 
-        <div class="automatorwp-integration-icon">
-            <img src="<?php echo esc_attr( $icon ); ?>" title="<?php echo esc_attr( $title ); ?>">
+        <div class="automatorwp-integration-icon cmb-tooltip">
+            <img src="<?php echo esc_attr( $icon ); ?>" alt="<?php echo esc_attr( $title ); ?>">
+            <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_attr( $title ); ?></span>
         </div>
 
     <?php }
@@ -273,23 +276,31 @@ function automatorwp_get_log_filter_icon( $log, $item_type, $class ) {
 
         $filter_args = automatorwp_get_filter( $filter );
 
+        $message = __( 'Filter not passed', 'automatorwp' );
+
+        if( $class === 'passed' ) {
+            $message = __( 'Filter passed', 'automatorwp' );
+        }
+
         if( $filter_args ) {
             $integration = automatorwp_get_integration( $filter_args['integration'] );
 
             if( $integration ) : ?>
 
-                <div class="automatorwp-integration-icon">
+                <div class="automatorwp-integration-icon cmb-tooltip">
                     <img src="<?php echo esc_attr( $integration['icon'] ); ?>" title="<?php echo esc_attr( $integration['label'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">
+                    <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_attr( $message ); ?></span>
                     <div class="automatorwp-filter-icon automatorwp-filter-icon-<?php echo $class; ?>">
-                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'integrations/filter/assets/filter-icon.svg' ); ?>" title="<?php echo esc_attr( __( 'Filter not passed', 'automatorwp' ) ); ?>">
+                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'integrations/filter/assets/filter-icon.svg' ); ?>" title="<?php echo esc_attr( $message ); ?>">
                     </div>
                 </div>
 
             <?php endif;
         } else { ?>
 
-            <div class="automatorwp-integration-icon">
+            <div class="automatorwp-integration-icon cmb-tooltip">
                 <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" title="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+                <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_attr( __( 'Filter not passed', 'automatorwp' ) ); ?></span>
                 <div class="automatorwp-filter-icon automatorwp-filter-icon-<?php echo $class; ?>">
                     <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'integrations/filter/assets/filter-icon.svg' ); ?>" title="<?php echo esc_attr( __( 'Filter not passed', 'automatorwp' ) ); ?>">
                 </div>

@@ -1030,7 +1030,9 @@
 
         var first_change = row.hasClass('is-option-change');
 
-        if( $(this).val() === 'custom' ) {
+        var value = $(this).val();
+
+        if( value === 'custom' || ( Array.isArray( value ) && value.includes( 'custom' ) ) ) {
             // Show the custom input
             if( first_change ) {
                 custom_input_row.show();

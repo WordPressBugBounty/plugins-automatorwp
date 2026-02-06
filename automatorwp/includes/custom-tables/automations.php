@@ -66,6 +66,77 @@ function automatorwp_automations_query_where( $where, $ct_query ) {
 add_filter( 'ct_query_where', 'automatorwp_automations_query_where', 10, 2 );
 
 /**
+ * Parse query args to be applied on JOIN clause
+ *
+ * @since   2.0.0
+ *
+ * @param string    $join
+ * @param CT_Query  $ct_query
+ *
+ * @return string
+ */
+function automatorwp_automations_query_join( $join, $ct_query ) {
+
+    global $ct_table;
+
+    if( $ct_table->name !== 'automatorwp_automations' ) {
+        return $join;
+    }
+
+    $table_name = $ct_table->db->table_name;
+    $meta_table_name = $ct_table->meta->db->table_name;
+
+    // Shorthand
+    $qv = $ct_query->query_vars;
+
+    // Parent post type
+    if( isset( $qv['orderby'] ) && $qv['orderby'] === 'completions' ) {
+        $join .= " LEFT JOIN {$meta_table_name} am ON ( am.id = {$table_name}.id AND am.meta_key = 'completions' )";
+    }
+
+    return $join;
+
+}
+add_filter( 'ct_query_join', 'automatorwp_automations_query_join', 10, 2 );
+
+/**
+ * Parse query args to be applied on ORDER BY clause
+ *
+ * @since   2.0.0
+ *
+ * @param string    $orderby
+ * @param CT_Query  $ct_query
+ *
+ * @return string
+ */
+function automatorwp_automations_query_orderby( $orderby, $ct_query ) {
+
+    global $ct_table;
+
+    if( $ct_table->name !== 'automatorwp_automations' ) {
+        return $orderby;
+    }
+
+    // Shorthand
+    $qv = $ct_query->query_vars;
+
+    // Parent post type
+    if( isset( $qv['orderby'] ) && $qv['orderby'] === 'completions' ) {
+        $order = 'DESC';
+
+        if( isset( $qv['order'] ) && $qv['order'] === 'ASC' ) {
+            $order = 'ASC';
+        }
+
+        $orderby = "CAST( am.meta_value AS UNSIGNED ) " . $order;
+    }
+
+    return $orderby;
+
+}
+add_filter( 'ct_query_orderby', 'automatorwp_automations_query_orderby', 10, 2 );
+
+/**
  * Define the search fields for automations
  *
  * @since 1.0.0
@@ -194,11 +265,12 @@ add_filter( 'manage_automatorwp_automations_columns', 'automatorwp_manage_automa
  */
 function automatorwp_manage_automations_sortable_columns( $sortable_columns ) {
 
-    $sortable_columns['title']      = array( 'title', false );
-    $sortable_columns['type']       = array( 'type', false );
-    $sortable_columns['user_id']    = array( 'user_id', false );
-    $sortable_columns['status']     = array( 'status', false );
-    $sortable_columns['date']       = array( 'date', true );
+    $sortable_columns['title']          = array( 'title', false );
+    $sortable_columns['type']           = array( 'type', false );
+    $sortable_columns['user_id']        = array( 'user_id', false );
+    $sortable_columns['completions']    = array( 'completions', true );
+    $sortable_columns['status']         = array( 'status', false );
+    $sortable_columns['date']           = array( 'date', true );
 
     return $sortable_columns;
 
@@ -230,7 +302,20 @@ function automatorwp_manage_automations_custom_column(  $column_name, $object_id
             $type = isset( $types[$automation->type] ) ? $types[$automation->type]['label'] : $automation->type;
             ?>
 
-            <span class="automatorwp-automation-type automatorwp-automation-type-<?php echo esc_attr( $automation->type ); ?>"><?php echo esc_html( $type ); ?></span>
+            <span class="automatorwp-automation-type automatorwp-automation-type-<?php echo esc_attr( $automation->type ); ?>">
+                <?php if ( isset( $types[$automation->type] ) ) : ?>
+                        <div class="automatorwp-integration-icon cmb-tooltip">
+                            <img src="<?php echo esc_attr( $types[$automation->type]['image'] ); ?>" alt="<?php echo esc_attr( $types[$automation->type]['label'] ); ?>">
+                            <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $types[$automation->type]['label'] ); ?></span>
+                        </div>
+                <?php else : ?>
+                    <div class="automatorwp-integration-icon cmb-tooltip">
+                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" alt="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+                        <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $automation->type ); ?></span>
+                    </div>
+                <?php endif; ?>
+                <?php echo esc_html( $type ); ?>
+            </span>
 
             <?php
 
@@ -249,15 +334,17 @@ function automatorwp_manage_automations_custom_column(  $column_name, $object_id
 
                     if( $integration ) : ?>
 
-                        <div class="automatorwp-integration-icon">
-                            <img src="<?php echo esc_attr( $integration['icon'] ); ?>" title="<?php echo esc_attr( $integration['label'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">
+                        <div class="automatorwp-integration-icon cmb-tooltip">
+                            <img src="<?php echo esc_attr( $integration['icon'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">
+                            <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $integration['label'] ); ?></span>
                         </div>
 
                     <?php endif;
                 } else { ?>
 
-                    <div class="automatorwp-integration-icon">
-                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" title="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+                    <div class="automatorwp-integration-icon cmb-tooltip">
+                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" alt="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+                        <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $trigger->type ); ?></span>
                     </div>
 
                 <?php }
@@ -282,16 +369,18 @@ function automatorwp_manage_automations_custom_column(  $column_name, $object_id
 
                     if( $integration ) : ?>
 
-                        <div class="automatorwp-integration-icon">
+                        <div class="automatorwp-integration-icon cmb-tooltip">
                             <img src="<?php echo esc_attr( $integration['icon'] ); ?>" alt="<?php echo esc_attr( $integration['label'] ); ?>">
+                            <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $integration['label'] ); ?></span>
                         </div>
 
                     <?php endif;
 
                 } else { ?>
 
-                    <div class="automatorwp-integration-icon">
-                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" title="<?php echo esc_attr( __( 'Missing integration', 'automatorwp' ) ); ?>">
+                    <div class="automatorwp-integration-icon cmb-tooltip">
+                        <img src="<?php echo esc_attr( AUTOMATORWP_URL . 'assets/img/integration-missing.svg' ); ?>" alt="<?php echo esc_attr( __( 'Missing plugin', 'automatorwp' ) ); ?>">
+                        <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $action->type ); ?></span>
                     </div>
 
                 <?php }

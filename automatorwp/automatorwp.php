@@ -3,14 +3,14 @@
  * Plugin Name:     	AutomatorWP
  * Plugin URI:      	https://automatorwp.com
  * Description:     	Connect your WordPress plugins together and create automated workflows with no code!
- * Version:         	5.4.5
+ * Version:         	5.5.7
  * Author:          	AutomatorWP
  * Author URI:      	https://automatorwp.com/
  * Text Domain:     	automatorwp
  * Domain Path: 		/languages/
  * Requires PHP:        7.0
  * Requires at least: 	4.4
- * Tested up to: 		6.8
+ * Tested up to: 		6.9
  * License:         	GPLv3 (http://www.gnu.org/licenses/gpl-3.0.html)
  *
  * @package         	AutomatorWP
@@ -119,7 +119,7 @@ final class AutomatorWP {
     private function constants() {
 
         // Plugin version
-        define( 'AUTOMATORWP_VER', '5.4.5' );
+        define( 'AUTOMATORWP_VER', '5.5.7' );
 
         // Plugin file
         define( 'AUTOMATORWP_FILE', __FILE__ );
@@ -152,6 +152,7 @@ final class AutomatorWP {
         require_once AUTOMATORWP_DIR . 'libraries/cmb2-field-edd-license/cmb2-field-edd-license.php';
         require_once AUTOMATORWP_DIR . 'libraries/cmb2-field-switch/cmb2-field-switch.php';
         require_once AUTOMATORWP_DIR . 'libraries/cmb2-field-js-controls/cmb2-field-js-controls.php';
+        require_once AUTOMATORWP_DIR . 'libraries/cmb2-field-tooltip/cmb2-field-tooltip.php';
 
         // Custom CMB2 fields
         require_once AUTOMATORWP_DIR . 'libraries/automatorwp-select.php';

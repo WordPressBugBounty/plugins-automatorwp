@@ -26,6 +26,13 @@ function automatorwp_add_ons_page() {
     add_thickbox();
     wp_enqueue_script( 'updates' );
 
+    $current = 'premium';
+
+    if( isset( $_GET['tab'] ) ) {
+        if( $_GET['tab'] === 'integrations' ) $current = 'integrations';
+        if( $_GET['tab'] === 'app' ) $current = 'app';
+    }
+
     ?>
     <div class="wrap">
         <div id="icon-options-general" class="icon32"></div>
@@ -34,9 +41,9 @@ function automatorwp_add_ons_page() {
 
         <div class="wp-filter">
             <ul class="filter-links">
-                <li class="plugins-premium"><a href="#" data-target="automatorwp-premium-add-on" class="current"><?php echo automatorwp_dashicon( 'automatorwp', 'span' ); ?> <?php _e( 'Add-ons', 'automatorwp' ); ?></a></li>
-                <li class="plugins-integrations"><a href="#" data-target="automatorwp-integration-add-on"><?php echo automatorwp_dashicon( 'admin-plugins', 'span' ); ?> <?php _e( 'Integrations', 'automatorwp' ); ?></a></li>
-                <li class="plugins-app"><a href="#" data-target="automatorwp-app-add-on"><?php echo automatorwp_dashicon( 'star-filled', 'span' ); ?> <?php _e( 'Apps Integrations', 'automatorwp' ); ?></a></li>
+                <li class="plugins-premium"><a href="#" data-target="automatorwp-premium-add-on" class="<?php echo ( $current === 'premium' ? 'current' : '' ); ?>"><?php echo automatorwp_dashicon( 'automatorwp', 'span' ); ?> <?php _e( 'Add-ons', 'automatorwp' ); ?></a></li>
+                <li class="plugins-integrations"><a href="#" data-target="automatorwp-integration-add-on" class="<?php echo ( $current === 'integrations' ? 'current' : '' ); ?>"><?php echo automatorwp_dashicon( 'admin-plugins', 'span' ); ?> <?php _e( 'Integrations', 'automatorwp' ); ?></a></li>
+                <li class="plugins-app"><a href="#" data-target="automatorwp-app-add-on" class="<?php echo ( $current === 'app' ? 'current' : '' ); ?>"><?php echo automatorwp_dashicon( 'star-filled', 'span' ); ?> <?php _e( 'Apps Integrations', 'automatorwp' ); ?></a></li>
             </ul>
         </div>
 
@@ -259,30 +266,42 @@ function automatorwp_render_plugin_card( $plugin ) {
         }
     }
 
+    $thumbnail = 'https://automatorwp.com/wp-content/themes/automatorwp-theme/assets/img/integrations/' . $plugin->info->slug . '.svg';
+
     if( ! empty( $details_link ) ) {
         // "More Details" action
-        $action_links[] = '<a href="' . esc_url( $details_link ) . '" class="more-details" aria-label="' . esc_attr( sprintf( __( 'More information about %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '" target="_blank">' . __( 'More Details' ) . '</a>';
+        //$action_links[] = '<a href="' . esc_url( $details_link ) . '" class="more-details" aria-label="' . esc_attr( sprintf( __( 'More information about %s' ), $name ) ) . '" data-title="' . esc_attr( $name ) . '" target="_blank">' . __( 'More Details' ) . '</a>';
     } ?>
 
     <div class="automatorwp-plugin-card plugin-card plugin-card-<?php echo sanitize_html_class( $slug ); ?> <?php echo $class; ?>">
 
-        <div class="plugin-card-top">
+        <div class="plugin-card-top cmb-tooltip">
+
+            <?php if( is_plugin_active( $slug . '/' . $slug . '.php' ) ) : ?>
+                <div class="active column-active">
+                    <span><?php esc_html_e( 'Active', 'automatorwp' ) ?></span>
+                </div>
+            <?php elseif( is_dir( WP_PLUGIN_DIR . '/' . $slug ) ) : ?>
+                <div class="installed column-installed">
+                    <span><?php esc_html_e( 'Installed', 'automatorwp' ) ?></span>
+                </div>
+            <?php endif; ?>
 
             <div class="thumbnail column-thumbnail">
-                <a href="<?php echo esc_url( $details_link ); ?>" class="thickbox open-plugin-details-modal">
-                    <img src="<?php echo esc_attr( $plugin->info->thumbnail ) ?>" class="plugin-thumbnail" alt="">
+                <a href="<?php echo esc_url( $details_link ); ?>" class="open-plugin-details-modal" target="_blank">
+                    <img src="<?php echo esc_attr( $thumbnail ) ?>" class="plugin-thumbnail" alt="">
                 </a>
             </div>
 
             <div class="name column-name">
                 <h3>
-                    <a href="<?php echo esc_url( $details_link ); ?>" class="thickbox open-plugin-details-modal">
+                    <a href="<?php echo esc_url( $details_link ); ?>" target="_blank">
                         <?php echo $name; ?>
                     </a>
                 </h3>
             </div>
 
-            <div class="desc column-description">
+            <div class="desc column-description cmb-tooltip-desc cmb-tooltip-top">
                 <p><?php echo automatorwp_esc_plugin_excerpt( $plugin->info->excerpt ); ?></p>
             </div>
 
@@ -309,6 +328,13 @@ function automatorwp_render_plugin_card( $plugin ) {
  * @return object|WP_Error Object with AutomatorWP plugins
  */
 function automatorwp_plugins_api() {
+
+    $cache = automatorwp_get_cache( 'automatorwp_plugins_api', false, false );
+
+    // If result already cached, return it
+    if( $cache !== false ) {
+        return $cache;
+    }
 
     // If a plugins api request has been cached already, then use cached plugins
     if ( false !== ( $res = get_transient( 'automatorwp_plugins_api' ) ) ) {
@@ -354,6 +380,8 @@ function automatorwp_plugins_api() {
 
         // Set a transient for 1 week with api plugins
         set_transient( 'automatorwp_plugins_api', $res, ( 24 * 7 ) * HOUR_IN_SECONDS );
+
+        automatorwp_set_cache( 'automatorwp_plugins_api', $res );
     }
 
     return $res;
@@ -655,6 +683,7 @@ function automatorwp_get_app_plugins() {
     return array(        
         'activecampaign',
         'airtable',
+        'aweber',
         'bluesky',
         'campaign-monitor',
         'clickup',

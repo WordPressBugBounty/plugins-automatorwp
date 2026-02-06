@@ -66,8 +66,8 @@ class AutomatorWP_ActiveCampaign_Add_User extends AutomatorWP_Integration_Action
 
         $contact_data = array(
             'email'         => $user->user_email,
-            'first_name'    => $user->first_name,
-            'last_name'     => $user->last_name, 
+            'firstName'    => $user->first_name,
+            'lastName'     => $user->last_name, 
         );
 
         automatorwp_activecampaign_add_contact( $contact_data );
