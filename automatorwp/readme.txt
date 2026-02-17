@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 5.5.7
+Stable tag: 5.5.8
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -167,6 +167,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [SliceWP](https://automatorwp.com/add-ons/slicewp/)
 * [Studiocart](https://automatorwp.com/add-ons/studiocart/)
 * [SureCart](https://automatorwp.com/add-ons/surecart/)
+* [SureMembers](https://automatorwp.com/add-ons/suremembers/)
 * [The Events Calendar](https://automatorwp.com/add-ons/the-events-calendar/)
 * [Thrive Apprentice](https://automatorwp.com/add-ons/thrive-apprentice/)
 * [Thrive Cart](https://automatorwp.com/add-ons/thrive-cart/)
@@ -340,6 +341,14 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.5.8 =
+* **New Features**
+* New integration: SureMembers.
+* SureMembers: New Trigger: Add user to a group.
+* SureMembers: New Action: User added to a group.
+* **Improvements**
+* WP Fusion: Fixed how to manage sequential numeric tags.
 
 = 5.5.7 =
 
