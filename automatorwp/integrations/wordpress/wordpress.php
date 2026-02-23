@@ -74,6 +74,12 @@ require_once plugin_dir_path( __FILE__ ) . 'filters/user-role.php';
 require_once plugin_dir_path( __FILE__ ) . 'filters/user-exists.php';
 require_once plugin_dir_path( __FILE__ ) . 'filters/user-field.php';
 require_once plugin_dir_path( __FILE__ ) . 'filters/user-meta.php';
+// Includes
+require_once plugin_dir_path( __FILE__ ) . 'includes/ajax-functions.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/functions.php';
+require_once plugin_dir_path( __FILE__ ) . 'includes/scripts.php';
+// Plugin URL
+define( 'AUTOMATORWP_WORDPRESS_URL', plugin_dir_url( __FILE__ ) );
 
 /**
  * Registers this integration

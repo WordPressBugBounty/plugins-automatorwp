@@ -123,12 +123,6 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
                             'type' => 'text',
                             'default' => ''
                         ),
-                        'post_category' => array(
-                            'name' => __( 'Category:', 'automatorwp' ),
-                            'desc' => __( 'The post category slug.', 'automatorwp' ),
-                            'type' => 'text',
-                            'default' => ''
-                        ),
                         'post_date' => array(
                             'name' => __( 'Date:', 'automatorwp' ),
                             'desc' => __( 'The date of the post. Supports "YYYY-MM-DD HH:MM:SS" and "YYYY-MM-DD" formats. By default, the date at the moment the automation gets completed.', 'automatorwp' ),
@@ -141,6 +135,26 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
                             'type' => 'text',
                             'default' => ''
                         ),
+                        'taxonomy' => automatorwp_utilities_ajax_selector_field( array(
+                            'field'             => 'taxonomy',
+                            'option_default'    => __( 'taxonomy', 'automatorwp' ),
+                            'placeholder'       => __( 'Select a taxonomy', 'automatorwp' ),
+                            'name' => __( 'Taxonomy:', 'automatorwp' ),
+                            'desc' => __( 'The post taxonomy.', 'automatorwp' ),
+                            'action_cb' => 'automatorwp_wordpress_get_taxonomies',
+                            'options_cb' => 'automatorwp_wordpress_options_cb_taxonomy',
+                            'default' => ''
+                        ) ),
+                        'post_terms' => automatorwp_utilities_ajax_selector_field( array(
+                            'field'             => 'post_terms',
+                            'option_default'    => __( 'terms', 'automatorwp' ),
+                            'placeholder'       => __( 'Select a term', 'automatorwp' ),
+                            'name' => __( 'Term:', 'automatorwp' ),
+                            'desc' => __( 'The post term from taxonomy.', 'automatorwp' ),
+                            'action_cb' => 'automatorwp_wordpress_get_terms',
+                            'options_cb' => 'automatorwp_wordpress_options_cb_term',
+                            'default' => ''
+                        ) ),
                         'post_content' => array(
                             'name' => __( 'Content:', 'automatorwp' ),
                             'desc' => __( 'The post content. By default, empty.', 'automatorwp' ),
@@ -219,7 +233,6 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
             'post_name'     => '',
             'post_type'     => 'post',
             'post_status'   => 'draft',
-            'post_category' => array(),
             'post_date'     => '',
             'post_author'   => '',
             'post_content'  => '',
@@ -228,6 +241,9 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
             'menu_order'    => '0',
             'post_password' => '',
         ) );
+
+        $post_taxonomy = $action_options['taxonomy'];
+        $post_term = $action_options['post_terms'];
         
         // Format post date
         if( ! empty( $post_data['post_date'] ) ) {
@@ -239,13 +255,14 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
             $post_data['post_author'] = $user_id;
         }
 
-        if( ! empty( $post_data['post_category'] ) ) {
-            $category_ID = get_cat_ID( $post_data['post_category'] );
-            $post_data['post_category'] = array( $category_ID );
-        }
-
         // Insert the post
         $this->post_id = wp_insert_post( $post_data );
+
+        // Add to term if is selected
+        if ( $post_taxonomy !== 'any' || $post_term !== 'any' ){
+            $term_data = get_term( $post_term );
+            wp_set_object_terms( $this->post_id, $term_data->term_id, $term_data->taxonomy, false );
+        }
 
         if( $this->post_id ) {
 

@@ -133,6 +133,26 @@ class AutomatorWP_WordPress_Update_Post extends AutomatorWP_Integration_Action {
                             'type' => 'text',
                             'default' => ''
                         ),
+                        'taxonomy' => automatorwp_utilities_ajax_selector_field( array(
+                            'field'             => 'taxonomy',
+                            'option_default'    => __( 'taxonomy', 'automatorwp' ),
+                            'placeholder'       => __( 'Select a taxonomy', 'automatorwp' ),
+                            'name' => __( 'Taxonomy:', 'automatorwp' ),
+                            'desc' => __( 'The post taxonomy.', 'automatorwp' ),
+                            'action_cb' => 'automatorwp_wordpress_get_taxonomies',
+                            'options_cb' => 'automatorwp_wordpress_options_cb_taxonomy',
+                            'default' => ''
+                        ) ),
+                        'post_terms' => automatorwp_utilities_ajax_selector_field( array(
+                            'field'             => 'post_terms',
+                            'option_default'    => __( 'terms', 'automatorwp' ),
+                            'placeholder'       => __( 'Select a term', 'automatorwp' ),
+                            'name' => __( 'Term:', 'automatorwp' ),
+                            'desc' => __( 'The post term from taxonomy.', 'automatorwp' ),
+                            'action_cb' => 'automatorwp_wordpress_get_terms',
+                            'options_cb' => 'automatorwp_wordpress_options_cb_term',
+                            'default' => ''
+                        ) ),
                         'post_content' => array(
                             'name' => __( 'Content:', 'automatorwp' ),
                             'desc' => __( 'The post content.', 'automatorwp' )
@@ -237,6 +257,9 @@ class AutomatorWP_WordPress_Update_Post extends AutomatorWP_Integration_Action {
             'post_password',
         );
 
+        $post_taxonomy = $action_options['taxonomy'];
+        $post_term = $action_options['post_terms'];
+
         foreach( $post_fields as $post_field ) {
             if( ! empty( $action_options[$post_field] ) ) {
                 $post_data[$post_field] = $action_options[$post_field];
@@ -247,6 +270,12 @@ class AutomatorWP_WordPress_Update_Post extends AutomatorWP_Integration_Action {
 
         // Update the post
         wp_update_post( $post_data );
+
+        // Add to term if is selected
+        if ( $post_taxonomy !== 'any' || $post_term !== 'any' ){
+            $term_data = get_term( $post_term );
+            wp_set_object_terms( $this->post_id, absint( $term_data->term_id ), $term_data->taxonomy, false );
+        }
 
         if( is_array( $action_options['post_meta'] ) ) {
 
