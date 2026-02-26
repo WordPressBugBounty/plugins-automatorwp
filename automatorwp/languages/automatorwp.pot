@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutomatorWP\n"
 "Report-Msgid-Bugs-To: https://automatorwp.com/\n"
-"POT-Creation-Date: 2025-08-11 12:50+0200\n"
+"POT-Creation-Date: 2026-02-24 13:40+0100\n"
 "PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: AutomatorWP (https://automatorwp.com/)\n"
 "Language-Team: AutomatorWP <contact@automatorwp.com>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.6\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -137,9 +137,9 @@ msgstr ""
 msgid "Done!"
 msgstr ""
 
-#: classes/automation-loop.php:430 includes/automation-ui.php:71
-#: includes/automation-ui.php:132 includes/automation-ui.php:485
-#: includes/automation-ui.php:764
+#: classes/automation-loop.php:430 includes/automation-ui.php:76
+#: includes/automation-ui.php:137 includes/automation-ui.php:490
+#: includes/automation-ui.php:769
 msgid "Cancel"
 msgstr ""
 
@@ -177,6 +177,8 @@ msgstr ""
 #: integrations/automatorwp/actions/run-all-users-automation.php:191
 #: integrations/autonami/includes/actions/add-contact-tag.php:175
 #: integrations/autonami/includes/actions/add-user-tag.php:164
+#: integrations/aweber/includes/actions/add-user-list.php:178
+#: integrations/aweber/includes/actions/add-user-tag.php:192
 #: integrations/bluesky/includes/actions/create-post.php:187
 #: integrations/buddypress/includes/actions/add-user-group.php:160
 #: integrations/campaign-monitor/includes/actions/add-user-list.php:243
@@ -201,14 +203,14 @@ msgstr ""
 #: integrations/mailerlite/includes/actions/add-user-group.php:200
 #: integrations/mailerlite/includes/actions/add-user.php:184
 #: integrations/meta-box/includes/actions/update-post-field.php:222
-#: integrations/paid-memberships-pro/includes/actions/add-user-membership.php:164
+#: integrations/paid-memberships-pro/includes/actions/add-user-membership.php:192
 #: integrations/shortlinkspro/includes/actions/create-link.php:203
-#: integrations/wordpress/actions/create-post.php:481
+#: integrations/wordpress/actions/create-post.php:498
 #: integrations/wordpress/actions/create-user.php:393
 #: integrations/wordpress/actions/delete-multiple-posts.php:361
-#: integrations/wordpress/actions/update-multiple-posts.php:545
-#: integrations/wordpress/actions/update-post.php:484
-#: integrations/wordpress/actions/update-posts.php:557
+#: integrations/wordpress/actions/update-multiple-posts.php:574
+#: integrations/wordpress/actions/update-post.php:513
+#: integrations/wordpress/actions/update-posts.php:586
 #: integrations/wordpress/actions/update-user.php:444
 #: integrations/wpcode/includes/actions/activate-snippet.php:147
 #: integrations/wpcode/includes/actions/deactivate-snippet.php:147
@@ -226,12 +228,13 @@ msgstr ""
 msgid "Possible action duplication with the key \"%s\""
 msgstr ""
 
-#: includes/admin.php:55 includes/admin.php:168
-#: includes/admin/pages/dashboard.php:22
+#: includes/admin.php:55 includes/admin.php:175
+#: includes/admin/pages/dashboard.php:22 includes/admin/pages/dashboard.php:35
 msgid "Dashboard"
 msgstr ""
 
-#: includes/admin.php:70 includes/admin.php:228
+#: includes/admin.php:70 includes/admin.php:235
+#: includes/admin/pages/add-ons.php:44 includes/admin/pages/dashboard.php:712
 msgid "Add-ons"
 msgstr ""
 
@@ -247,29 +250,38 @@ msgstr ""
 msgid "Try ShortLinks Pro!"
 msgstr ""
 
-#: includes/admin.php:133 includes/admin.php:259
+#: includes/admin.php:105
+msgid "Try BBForms!"
+msgstr ""
+
+#: includes/admin.php:140 includes/admin.php:266
 msgid "New"
 msgstr ""
 
-#: includes/admin.php:176 includes/admin/pages/dashboard.php:226
+#: includes/admin.php:183 includes/admin/pages/dashboard.php:1012
 #: includes/custom-tables/automations.php:23
 #: includes/custom-tables/automations.php:25
 msgid "Automations"
 msgstr ""
 
-#: includes/admin.php:184 includes/admin/pages/dashboard.php:236
+#: includes/admin.php:191 includes/admin/pages/dashboard.php:1022
 #: includes/custom-tables/logs.php:23 includes/custom-tables/logs.php:25
 msgid "Logs"
 msgstr ""
 
-#: includes/admin.php:212 includes/admin/pages/licenses.php:255
+#: includes/admin.php:219 includes/admin/pages/licenses.php:255
 #: includes/admin/pages/licenses.php:262
 msgid "Licenses"
 msgstr ""
 
-#: includes/admin.php:220 includes/admin/pages/settings.php:136
+#: includes/admin.php:227 includes/admin/pages/settings.php:136
 #: includes/admin/pages/settings.php:142 includes/admin/pages/settings.php:167
 msgid "Settings"
+msgstr ""
+
+#: includes/admin.php:428
+#, php-format
+msgid "Thank you for using <a href=\"%1$s\" target=\"_blank\">AutomatorWP</a>! Please leave us a <a href=\"%2$s\" target=\"_blank\">%3$s</a> rating on WordPress.org"
 msgstr ""
 
 #: includes/admin/notices.php:45
@@ -300,298 +312,496 @@ msgstr ""
 msgid "No, I don't want to rate it"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:32
+#: includes/admin/pages/add-ons.php:39
 msgid "AutomatorWP Add-ons"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:35
+#: includes/admin/pages/add-ons.php:45 includes/admin/pages/dashboard.php:790
+msgid "Integrations"
+msgstr ""
+
+#: includes/admin/pages/add-ons.php:46 includes/admin/pages/dashboard.php:866
+msgid "Apps Integrations"
+msgstr ""
+
+#: includes/admin/pages/add-ons.php:50
 msgid "Add-ons to extend and expand the functionality of AutomatorWP."
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:127
+#: includes/admin/pages/add-ons.php:142
 #, php-format
 msgid "Install %s now"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:127
+#: includes/admin/pages/add-ons.php:142
 msgid "Install Now"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:133
+#: includes/admin/pages/add-ons.php:148
 #, php-format
 msgid "Update %s now"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:133
+#: includes/admin/pages/add-ons.php:148
 msgid "Update Now"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:140
+#: includes/admin/pages/add-ons.php:155
 msgctxt "plugin"
 msgid "Active"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:142 includes/admin/pages/add-ons.php:210
+#: includes/admin/pages/add-ons.php:157 includes/admin/pages/add-ons.php:234
 msgid "Activate"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:143 includes/admin/pages/add-ons.php:211
+#: includes/admin/pages/add-ons.php:158 includes/admin/pages/add-ons.php:235
 #, php-format
 msgctxt "plugin"
 msgid "Activate %s"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:151 includes/admin/pages/add-ons.php:219
+#: includes/admin/pages/add-ons.php:166 includes/admin/pages/add-ons.php:243
 msgid "Network Activate"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:152 includes/admin/pages/add-ons.php:220
+#: includes/admin/pages/add-ons.php:167 includes/admin/pages/add-ons.php:244
 #, php-format
 msgctxt "plugin"
 msgid "Network Activate %s"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:163
+#: includes/admin/pages/add-ons.php:178
 msgctxt "plugin"
 msgid "Installed"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:195
+#: includes/admin/pages/add-ons.php:219
 msgid "Activate License"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:198
+#: includes/admin/pages/add-ons.php:222
 msgid "Active and License Registered"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:204 includes/automations.php:22
+#: includes/admin/pages/add-ons.php:228 includes/admin/pages/add-ons.php:282
+#: includes/automations.php:22
 #: integrations/restrict-content-pro/includes/actions/add-membership.php:67
 msgid "Active"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:235
+#: includes/admin/pages/add-ons.php:259
 msgid "Get this pass"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:240
+#: includes/admin/pages/add-ons.php:264 includes/admin/pages/dashboard.php:275
 msgid "Get this add-on"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:247
-#, php-format
-msgid "More information about %s"
+#: includes/admin/pages/add-ons.php:286
+msgid "Installed"
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:247
-msgid "More Details"
-msgstr ""
-
-#: includes/admin/pages/add-ons.php:316 includes/admin/pages/add-ons.php:328
+#: includes/admin/pages/add-ons.php:359 includes/admin/pages/add-ons.php:371
 #, php-format
 msgid "An unexpected error occurred. Something may be wrong with automatorwp.com or this server&#8217;s configuration. If you continue to have problems, please try to <a href=\"%s\">contact us</a>."
 msgstr ""
 
-#: includes/admin/pages/add-ons.php:318
+#: includes/admin/pages/add-ons.php:361
 msgid "(WordPress could not establish a secure connection to automatorwp.com. Please contact your server administrator.)"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:39
-msgid "Welcome to AutomatorWP"
+#: includes/admin/pages/dashboard.php:43
+msgid "Latest Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:51
-msgid "Getting started"
+#: includes/admin/pages/dashboard.php:43 includes/admin/pages/dashboard.php:56
+#: includes/admin/pages/dashboard.php:69
+msgid "View All"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:64
-msgid "Advanced features"
+#: includes/admin/pages/dashboard.php:56
+msgid "Most Completed Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:77
-msgid "Meet the team"
+#: includes/admin/pages/dashboard.php:69
+msgid "Latest Logs"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:82
+msgid "New Automation"
 msgstr ""
 
 #: includes/admin/pages/dashboard.php:90
-msgid "Follow us"
+msgid "Videos"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:154
-msgid "More videos"
+#: includes/admin/pages/dashboard.php:113
+msgid "Documentation"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:197
-msgid "View all videos"
+#: includes/admin/pages/dashboard.php:121
+msgid "Getting started"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:134
+msgid "Features"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:147
+msgid "Advanced features"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:160
+msgid "Support"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:168
+msgid "About"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:176
+msgid "Our Plugins"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:189
+msgid "Meet the team"
 msgstr ""
 
 #: includes/admin/pages/dashboard.php:202
-msgid "AutomatorWP is a free and open-source plugin accessible to everyone just like WordPress. There are many ways you can help support AutomatorWP"
+msgid "Get involved"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:204
-msgid "Get involved with AutomatorWP development."
+#: includes/admin/pages/dashboard.php:215
+msgid "Follow us"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:205
-msgid "Translate AutomatorWP into your language."
+#: includes/admin/pages/dashboard.php:311
+#: includes/admin/pages/dashboard.php:509 includes/ajax-functions.php:1025
+#: includes/cmb2.php:529 includes/custom-tables/automations.php:295
+#: includes/custom-tables/logs.php:228 includes/custom-tables/logs.php:286
+#: includes/custom-tables/logs.php:365 includes/custom-tables/logs.php:792
+#: includes/custom-tables/logs.php:889
+msgid "(No title)"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:206
-msgid "Review AutomatorWP on WordPress.org."
+#: includes/admin/pages/dashboard.php:345
+#: includes/custom-tables/automations.php:249
+msgid "Completions"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:208
-msgid "Pro add-ons help to maintain the project and offer the most advanced features."
+#: includes/admin/pages/dashboard.php:357
+#: includes/admin/pages/dashboard.php:518
+msgid "Today"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:210
-msgid "View plans and pricing"
+#: includes/admin/pages/dashboard.php:359
+#: includes/admin/pages/dashboard.php:520
+msgid "Yesterday"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:225
+#: includes/admin/pages/dashboard.php:362
+#: includes/admin/pages/dashboard.php:523
+msgid "M jS Y"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:365
+#: includes/admin/pages/dashboard.php:526
+msgid "M jS"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:368
+#: includes/admin/pages/dashboard.php:529
+#, php-format
+msgctxt "dashboard"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:418
+#: includes/admin/pages/dashboard.php:458
+#: includes/admin/pages/dashboard.php:551
+msgid "Nothing to show :)"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:582 includes/automation-ui.php:52
+msgid "Loop Automations"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:585 includes/automation-ui.php:55
+msgid "Designed to run actions on a <b>group of elements</b>. Can be run <b>manually</b>, on a <b>specific date</b> or on a <b>recurring</b> basis."
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:605
+msgid "Add New Automation"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:713
+msgid "Pro add-ons help to maintain AutomatorWP and offer the most advanced features."
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:723 includes/automation-ui.php:1406
+msgid "View all add-ons"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:791
+msgid "AutomatorWP integrates seamlessly with your favourites WordPress plugins."
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:801
+msgid "View all integrations"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:867
+msgid "Connect your WordPress with external platforms and apps to take your site even further!"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:877
+msgid "View all apps integrations"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:946
+msgid "View all videos"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1011
 msgid "What is AutomatorWP?"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:227
+#: includes/admin/pages/dashboard.php:1013
 msgid "Anonymous Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:228
+#: includes/admin/pages/dashboard.php:1014
 msgid "All Users Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:229
+#: includes/admin/pages/dashboard.php:1015
 msgid "All Posts Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:230
+#: includes/admin/pages/dashboard.php:1016
 msgid "Import File Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:231
+#: includes/admin/pages/dashboard.php:1017
 msgid "Restrict Content Automations"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:232 includes/automation-ui.php:195
-#: includes/automation-ui.php:219 includes/custom-tables/automations.php:175
+#: includes/admin/pages/dashboard.php:1018 includes/automation-ui.php:200
+#: includes/automation-ui.php:224 includes/custom-tables/automations.php:246
 #: includes/custom-tables/triggers.php:23 includes/tags.php:498
 msgid "Triggers"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:233 includes/automation-ui.php:196
-#: includes/automation-ui.php:274 includes/custom-tables/actions.php:23
-#: includes/custom-tables/automations.php:176 includes/tags.php:504
+#: includes/admin/pages/dashboard.php:1019 includes/automation-ui.php:201
+#: includes/automation-ui.php:279 includes/custom-tables/actions.php:23
+#: includes/custom-tables/automations.php:247 includes/tags.php:504
 msgid "Actions"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:234
+#: includes/admin/pages/dashboard.php:1020
 msgid "Filters"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:235
+#: includes/admin/pages/dashboard.php:1021
 msgid "Tags"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:250
-msgid "Features"
-msgstr ""
-
-#: includes/admin/pages/dashboard.php:252
+#: includes/admin/pages/dashboard.php:1037
 msgid "Sequential triggers"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:253
+#: includes/admin/pages/dashboard.php:1038
 msgid "Redirect users"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:254
+#: includes/admin/pages/dashboard.php:1039
 msgid "Import & Export automations through URL"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:258
+#: includes/admin/pages/dashboard.php:1043
 msgid "Special actions"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:260
+#: includes/admin/pages/dashboard.php:1045
 #: integrations/automatorwp/actions/call-function.php:37
 msgid "Call a function"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:261
+#: includes/admin/pages/dashboard.php:1046
 #: integrations/automatorwp/actions/do-action.php:37
 msgid "Run a WordPress hook"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:262
+#: includes/admin/pages/dashboard.php:1047
 msgid "Multiple posts actions"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:266
+#: includes/admin/pages/dashboard.php:1051
 msgid "Special tags"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:268
+#: includes/admin/pages/dashboard.php:1053
 msgid "User meta tag"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:269
+#: includes/admin/pages/dashboard.php:1054
 msgid "Post meta tag"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:270
+#: includes/admin/pages/dashboard.php:1055
 msgid "Date tag"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:271
+#: includes/admin/pages/dashboard.php:1056
 msgid "Function tags"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:333
-msgid "Follow us in your favorite social network!"
+#: includes/admin/pages/dashboard.php:1071
+msgid "Create an account in Site B when a user interacts on Site A"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:335
-msgid "Subscribe to our YouTube channel."
+#: includes/admin/pages/dashboard.php:1072
+msgid "Enroll in a course of Site B when a purchase is made in Site A"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:336
-msgid "Follow us on Facebook."
+#: includes/admin/pages/dashboard.php:1073
+msgid "Import data from CSV"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:337
-msgid "Join our Facebook community."
+#: includes/admin/pages/dashboard.php:1074
+msgid "Create User Lists"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:338
-msgid "Follow @AutomatorWP on Twitter."
+#: includes/admin/pages/dashboard.php:1075
+msgid "Restrict Content"
 msgstr ""
 
-#: includes/admin/pages/dashboard.php:339
-msgid "Follow us on LinkedIn."
+#: includes/admin/pages/dashboard.php:1076
+msgid "Add Custom User Fields"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1077
+msgid "Calculate formula"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1078
+msgid "Format Content"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1079
+msgid "Generate Content"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1080
+msgid "Generate a QR Code"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1081
+msgid "Schedule actions of an automation"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1082
+msgid "Run automations through button clicks"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1082
+msgid "or"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1082
+msgid "link clicks"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1095
+#: includes/admin/pages/dashboard.php:1217
+msgid "Contact us"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1096
+#: includes/admin/pages/dashboard.php:1221
+msgid "Support Forums"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1097
+msgid "FAQ"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1197
+msgid "Subscribe to our YouTube channel"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1201
+msgid "Follow us on Facebook"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1205
+msgid "Join our Facebook community"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1209
+msgid "Follow @AutomatorWP on Twitter"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1213
+msgid "Follow us on LinkedIn"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1225
+msgid "Open a support ticket"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1238
+msgid "AutomatorWP is a free and open-source plugin accessible to everyone just like WordPress. There are many ways you can help support AutomatorWP"
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1240
+msgid "Translate AutomatorWP into your language."
+msgstr ""
+
+#: includes/admin/pages/dashboard.php:1241
+msgid "Review AutomatorWP on WordPress.org."
 msgstr ""
 
 #: includes/admin/pages/import-automation.php:32
 msgid "Importing automation..."
 msgstr ""
 
-#: includes/admin/pages/import-automation.php:61 includes/events.php:1649
+#: includes/admin/pages/import-automation.php:59
+#: includes/admin/pages/import-automation.php:90 includes/ajax-functions.php:23
+#: includes/ajax-functions.php:166 includes/ajax-functions.php:205
+#: includes/ajax-functions.php:265 includes/ajax-functions.php:454
+#: includes/ajax-functions.php:503 includes/ajax-functions.php:541
+#: includes/ajax-functions.php:792 includes/ajax-functions.php:872
+#: includes/ajax-functions.php:933
+#: integrations/activecampaign/includes/ajax-functions.php:22
+#: integrations/clickup/includes/ajax-functions.php:22
+#: integrations/convertkit/includes/ajax-functions.php:22
+#: integrations/mailchimp/includes/ajax-functions.php:24
+#: integrations/mailchimp/includes/ajax-functions.php:83
+#: integrations/zoom/includes/ajax-functions.php:22
+msgid "You're not allowed to perform this action."
+msgstr ""
+
+#: includes/admin/pages/import-automation.php:66 includes/events.php:1649
 #: includes/events.php:1759 includes/events.php:1978
 msgid "Invalid automation ID."
 msgstr ""
 
-#: includes/admin/pages/import-automation.php:101
-#: includes/admin/pages/import-automation.php:129
+#: includes/admin/pages/import-automation.php:111
+#: includes/admin/pages/import-automation.php:139
 msgid "No triggers and actions found from this URL."
 msgstr ""
 
-#: includes/admin/pages/import-automation.php:138
+#: includes/admin/pages/import-automation.php:148
 msgid "(Imported)"
 msgstr ""
 
-#: includes/admin/pages/import-automation.php:153
+#: includes/admin/pages/import-automation.php:163
 msgid "Could not create the automation from this URL."
 msgstr ""
 
-#: includes/admin/pages/import-automation.php:381
+#: includes/admin/pages/import-automation.php:391
 msgid "Automation imported successfully! Redirecting..."
 msgstr ""
 
@@ -600,9 +810,9 @@ msgid "License"
 msgstr ""
 
 #: includes/admin/pages/licenses.php:265
-#: includes/custom-tables/automations.php:610
-#: includes/custom-tables/automations.php:799
-#: includes/custom-tables/automations.php:807
+#: includes/custom-tables/automations.php:699
+#: includes/custom-tables/automations.php:888
+#: includes/custom-tables/automations.php:896
 msgid "Save Changes"
 msgstr ""
 
@@ -664,18 +874,10 @@ msgid "Editor"
 msgstr ""
 
 #: includes/admin/settings/general.php:96 includes/cmb2.php:360
-#: includes/custom-tables/automations.php:177
-#: includes/custom-tables/automations.php:665 includes/utilities.php:1879
+#: includes/custom-tables/automations.php:248
+#: includes/custom-tables/automations.php:754 includes/utilities.php:1879
 #: integrations/wordpress/actions/update-posts.php:119
 msgid "Author"
-msgstr ""
-
-#: includes/ajax-functions.php:23 includes/ajax-functions.php:166
-#: includes/ajax-functions.php:205 includes/ajax-functions.php:265
-#: includes/ajax-functions.php:454 includes/ajax-functions.php:503
-#: includes/ajax-functions.php:541 includes/ajax-functions.php:792
-#: includes/ajax-functions.php:872 includes/ajax-functions.php:933
-msgid "You're not allowed to perform this action."
 msgstr ""
 
 #: includes/ajax-functions.php:44 includes/ajax-functions.php:179
@@ -730,190 +932,172 @@ msgstr ""
 msgid "Table not found."
 msgstr ""
 
-#: includes/ajax-functions.php:1025 includes/cmb2.php:529
-#: includes/custom-tables/automations.php:223
-#: includes/custom-tables/logs.php:228 includes/custom-tables/logs.php:286
-#: includes/custom-tables/logs.php:365 includes/custom-tables/logs.php:792
-#: includes/custom-tables/logs.php:889
-msgid "(No title)"
-msgstr ""
-
 #: includes/automation-ui.php:38
 msgid "Automation type"
 msgstr ""
 
-#: includes/automation-ui.php:51
-msgid "Loop Automations"
-msgstr ""
-
-#: includes/automation-ui.php:52
-msgid "Designed to run actions on a <b>group of elements</b>. Can be run <b>manually</b>, on a <b>specific date</b> or on a <b>recurring</b> basis."
-msgstr ""
-
-#: includes/automation-ui.php:66
+#: includes/automation-ui.php:71
 msgid "<strong>Note:</strong> Automation type cannot be changed later. "
 msgstr ""
 
-#: includes/automation-ui.php:70
+#: includes/automation-ui.php:75
 msgid "Confirm"
 msgstr ""
 
-#: includes/automation-ui.php:107
+#: includes/automation-ui.php:112
 msgid "Export automation"
 msgstr ""
 
-#: includes/automation-ui.php:109
+#: includes/automation-ui.php:114
 msgid "Enter you website URL:"
 msgstr ""
 
-#: includes/automation-ui.php:111
+#: includes/automation-ui.php:116
 msgid "Please, enter a valid URL."
 msgstr ""
 
-#: includes/automation-ui.php:114
+#: includes/automation-ui.php:119
 msgid "Exportable URL:"
 msgstr ""
 
-#: includes/automation-ui.php:119
+#: includes/automation-ui.php:124
 msgid "Copy URL"
 msgstr ""
 
-#: includes/automation-ui.php:120
+#: includes/automation-ui.php:125
 msgid "Copied!"
 msgstr ""
 
-#: includes/automation-ui.php:123
+#: includes/automation-ui.php:128
 msgid "Copy this URL and place it on your browser to automatically import this automation on your website."
 msgstr ""
 
-#: includes/automation-ui.php:128
+#: includes/automation-ui.php:133
 msgid "Generate URL to export"
 msgstr ""
 
-#: includes/automation-ui.php:129
+#: includes/automation-ui.php:134
 msgid "Generating URL"
 msgstr ""
 
-#: includes/automation-ui.php:130
+#: includes/automation-ui.php:135
 msgid "Done"
 msgstr ""
 
-#: includes/automation-ui.php:220
+#: includes/automation-ui.php:225
 msgid "When this happens..."
 msgstr ""
 
-#: includes/automation-ui.php:224
+#: includes/automation-ui.php:229
 msgid "Sequential"
 msgstr ""
 
-#: includes/automation-ui.php:227
+#: includes/automation-ui.php:232
 msgid "Check this option to force users to complete triggers in order."
 msgstr ""
 
-#: includes/automation-ui.php:247
+#: includes/automation-ui.php:252
 msgid "Anonymous automations only support one trigger per automation."
 msgstr ""
 
-#: includes/automation-ui.php:249
+#: includes/automation-ui.php:254
 msgid "Add Trigger"
 msgstr ""
 
-#: includes/automation-ui.php:251 includes/automation-ui.php:295
+#: includes/automation-ui.php:256 includes/automation-ui.php:300
 msgid "Add Filter"
 msgstr ""
 
-#: includes/automation-ui.php:255 includes/automation-ui.php:299
-#: includes/automation-ui.php:489 includes/automation-ui.php:768
+#: includes/automation-ui.php:260 includes/automation-ui.php:304
+#: includes/automation-ui.php:494 includes/automation-ui.php:773
 msgid "Saving..."
 msgstr ""
 
-#: includes/automation-ui.php:275
+#: includes/automation-ui.php:280
 msgid "Do this..."
 msgstr ""
 
-#: includes/automation-ui.php:293
+#: includes/automation-ui.php:298
 msgid "Add Action"
 msgstr ""
 
-#: includes/automation-ui.php:349
+#: includes/automation-ui.php:354
 msgid "Select an integration"
 msgstr ""
 
-#: includes/automation-ui.php:408
+#: includes/automation-ui.php:413
 msgid "Select a trigger"
 msgstr ""
 
-#: includes/automation-ui.php:417
+#: includes/automation-ui.php:422
 msgid "Search for triggers"
 msgstr ""
 
-#: includes/automation-ui.php:448
+#: includes/automation-ui.php:453
 msgid "Select an action"
 msgstr ""
 
-#: includes/automation-ui.php:454
+#: includes/automation-ui.php:459
 msgid "Search for actions"
 msgstr ""
 
-#: includes/automation-ui.php:600
+#: includes/automation-ui.php:605
 msgid "Move up"
 msgstr ""
 
-#: includes/automation-ui.php:604
+#: includes/automation-ui.php:609
 msgid "Move down"
 msgstr ""
 
-#: includes/automation-ui.php:608 includes/automation-ui.php:892
-#: includes/custom-tables/automations.php:404
-#: includes/custom-tables/automations.php:405
-#: includes/custom-tables/automations.php:820
-#: includes/custom-tables/automations.php:821
+#: includes/automation-ui.php:613 includes/automation-ui.php:897
+#: includes/custom-tables/automations.php:493
+#: includes/custom-tables/automations.php:494
+#: includes/custom-tables/automations.php:909
+#: includes/custom-tables/automations.php:910
 msgid "Delete"
 msgstr ""
 
-#: includes/automation-ui.php:763 includes/custom-tables/automations.php:638
-#: includes/custom-tables/automations.php:657
-#: includes/custom-tables/automations.php:672
-#: includes/custom-tables/automations.php:685
-#: includes/custom-tables/automations.php:705 includes/scripts.php:217
+#: includes/automation-ui.php:768 includes/custom-tables/automations.php:727
+#: includes/custom-tables/automations.php:746
+#: includes/custom-tables/automations.php:761
+#: includes/custom-tables/automations.php:774
+#: includes/custom-tables/automations.php:794 includes/scripts.php:224
 msgid "Save"
 msgstr ""
 
-#: includes/automation-ui.php:834
+#: includes/automation-ui.php:839
 #: integrations/automatorwp/actions/anonymous-user.php:74
 #: integrations/automatorwp/actions/anonymous-user.php:76
 #, php-format
 msgid "Actions will be run on %1$s"
 msgstr ""
 
-#: includes/automation-ui.php:874
+#: includes/automation-ui.php:879
 msgid "Trigger disabled because plugin associated couldn't be found. Please, re-install the plugin associated or remove this trigger."
 msgstr ""
 
-#: includes/automation-ui.php:876
+#: includes/automation-ui.php:881
 msgid "Action disabled because plugin associated couldn't be found. Please, re-install the plugin associated or remove this action."
 msgstr ""
 
-#: includes/automation-ui.php:885 includes/automation-ui.php:895
-#: includes/custom-tables/automations.php:260 includes/logs.php:205
-#: includes/logs.php:292
+#: includes/automation-ui.php:890 includes/automation-ui.php:900
+#: includes/custom-tables/automations.php:313
+#: includes/custom-tables/automations.php:346
+#: includes/custom-tables/automations.php:382 includes/logs.php:206
+#: includes/logs.php:302
 msgid "Missing plugin"
 msgstr ""
 
-#: includes/automation-ui.php:1160
+#: includes/automation-ui.php:1165
 msgid "&"
 msgstr ""
 
-#: includes/automation-ui.php:1400
+#: includes/automation-ui.php:1405
 msgid "Looking for more triggers?"
 msgstr ""
 
-#: includes/automation-ui.php:1400
+#: includes/automation-ui.php:1405
 msgid "Looking for more actions?"
-msgstr ""
-
-#: includes/automation-ui.php:1401
-msgid "View all add-ons"
 msgstr ""
 
 #: includes/automations.php:23
@@ -965,7 +1149,7 @@ msgid "any category"
 msgstr ""
 
 #: includes/cmb2.php:115 includes/filters.php:328 includes/utilities.php:234
-#: includes/utilities.php:237
+#: includes/utilities.php:237 integrations/wordpress/includes/functions.php:50
 msgid "any taxonomy"
 msgstr ""
 
@@ -987,7 +1171,6 @@ msgstr ""
 
 #: includes/cmb2.php:347 includes/cmb2.php:406
 #: integrations/advanced-custom-fields/includes/functions.php:21
-#: integrations/advanced-custom-fields/includes/functions.php:64
 #: integrations/meta-box/includes/functions.php:23
 #: integrations/meta-box/includes/triggers/post-field-updated.php:44
 msgid "any field"
@@ -1003,9 +1186,9 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: includes/cmb2.php:352 includes/custom-tables/automations.php:173
-#: includes/custom-tables/automations.php:590
-#: includes/custom-tables/automations.php:594
+#: includes/cmb2.php:352 includes/custom-tables/automations.php:244
+#: includes/custom-tables/automations.php:679
+#: includes/custom-tables/automations.php:683
 #: includes/custom-tables/logs.php:176 includes/utilities.php:1871
 #: integrations/wordpress/actions/update-posts.php:113
 msgid "Title"
@@ -1016,20 +1199,20 @@ msgstr ""
 msgid "Slug"
 msgstr ""
 
-#: includes/cmb2.php:354 includes/custom-tables/automations.php:174
-#: includes/custom-tables/automations.php:614
+#: includes/cmb2.php:354 includes/custom-tables/automations.php:245
+#: includes/custom-tables/automations.php:703
 #: includes/custom-tables/logs.php:177 includes/utilities.php:1873
 #: integrations/wordpress/actions/update-posts.php:115
 msgid "Type"
 msgstr ""
 
-#: includes/cmb2.php:355 includes/custom-tables/automations.php:179
-#: includes/custom-tables/automations.php:680 includes/utilities.php:1874
+#: includes/cmb2.php:355 includes/custom-tables/automations.php:250
+#: includes/custom-tables/automations.php:769 includes/utilities.php:1874
 #: integrations/wordpress/actions/update-posts.php:116
 msgid "Status"
 msgstr ""
 
-#: includes/cmb2.php:356 includes/custom-tables/automations.php:180
+#: includes/cmb2.php:356 includes/custom-tables/automations.php:251
 #: includes/custom-tables/logs.php:181 includes/utilities.php:1875
 #: integrations/wordpress/actions/update-posts.php:117
 msgid "Date"
@@ -1154,79 +1337,71 @@ msgstr ""
 msgid "Automation"
 msgstr ""
 
-#: includes/custom-tables/automations.php:178
-msgid "Completions"
-msgstr ""
-
-#: includes/custom-tables/automations.php:294
-msgid "Missing integration"
-msgstr ""
-
-#: includes/custom-tables/automations.php:381
-#: includes/custom-tables/automations.php:382
-#: includes/custom-tables/automations.php:761
-#: includes/custom-tables/automations.php:762
+#: includes/custom-tables/automations.php:470
+#: includes/custom-tables/automations.php:471
+#: includes/custom-tables/automations.php:850
+#: includes/custom-tables/automations.php:851
 msgid "Clone"
 msgstr ""
 
-#: includes/custom-tables/automations.php:388
-#: includes/custom-tables/automations.php:389
-#: includes/custom-tables/automations.php:768
-#: includes/custom-tables/automations.php:769
+#: includes/custom-tables/automations.php:477
+#: includes/custom-tables/automations.php:478
+#: includes/custom-tables/automations.php:857
+#: includes/custom-tables/automations.php:858
 msgid "Export"
 msgstr ""
 
-#: includes/custom-tables/automations.php:402
-#: includes/custom-tables/automations.php:818
+#: includes/custom-tables/automations.php:491
+#: includes/custom-tables/automations.php:907
 msgid "Are you sure you want to delete this automation?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete."
 msgstr ""
 
-#: includes/custom-tables/automations.php:487
+#: includes/custom-tables/automations.php:576
 msgid "Automation cloned successfully."
 msgstr ""
 
-#: includes/custom-tables/automations.php:488
+#: includes/custom-tables/automations.php:577
 msgid "Automation could not be cloned."
 msgstr ""
 
-#: includes/custom-tables/automations.php:494
+#: includes/custom-tables/automations.php:583
 #, php-format
 msgid "Automation cloned successfully! <a href=\"%s\">Edit the new automation</a>."
 msgstr ""
 
-#: includes/custom-tables/automations.php:598
+#: includes/custom-tables/automations.php:687
 msgid "Enter title here"
 msgstr ""
 
-#: includes/custom-tables/automations.php:627
+#: includes/custom-tables/automations.php:716
 msgid "Times per user"
 msgstr ""
 
-#: includes/custom-tables/automations.php:628
+#: includes/custom-tables/automations.php:717
 msgid "Maximum number of times a user can complete this automation. Set it to 0 for unlimited."
 msgstr ""
 
-#: includes/custom-tables/automations.php:646
+#: includes/custom-tables/automations.php:735
 msgid "Total times"
 msgstr ""
 
-#: includes/custom-tables/automations.php:647
+#: includes/custom-tables/automations.php:736
 msgid "Maximum number of times this automation can be completed. Set it to 0 for unlimited."
 msgstr ""
 
-#: includes/custom-tables/automations.php:693
+#: includes/custom-tables/automations.php:782
 msgid "Created on"
 msgstr ""
 
-#: includes/custom-tables/automations.php:694
+#: includes/custom-tables/automations.php:783
 msgid "Automation will take effect based on this date. You can schedule <strong>future</strong> automations by setting this field with a future date."
 msgstr ""
 
-#: includes/custom-tables/automations.php:695
+#: includes/custom-tables/automations.php:784
 msgid "<strong>Note:</strong> For future automations, status need to be <strong>active</strong> because setting a future date won't update the status automatically."
 msgstr ""
 
-#: includes/custom-tables/automations.php:795
+#: includes/custom-tables/automations.php:884
 msgid "Save &amp; Activate"
 msgstr ""
 
@@ -1255,13 +1430,13 @@ msgstr ""
 
 #: includes/custom-tables/logs.php:406
 #: integrations/wordpress/actions/create-post.php:113
-#: integrations/wordpress/actions/create-post.php:421
+#: integrations/wordpress/actions/create-post.php:438
 #: integrations/wordpress/actions/update-multiple-posts.php:168
-#: integrations/wordpress/actions/update-multiple-posts.php:568
+#: integrations/wordpress/actions/update-multiple-posts.php:597
 #: integrations/wordpress/actions/update-post.php:107
-#: integrations/wordpress/actions/update-post.php:424
+#: integrations/wordpress/actions/update-post.php:453
 #: integrations/wordpress/actions/update-posts.php:180
-#: integrations/wordpress/actions/update-posts.php:580
+#: integrations/wordpress/actions/update-posts.php:609
 #: integrations/wp-job-manager/includes/triggers/publish-job.php:38
 msgid "Type:"
 msgstr ""
@@ -1273,14 +1448,14 @@ msgstr ""
 #: includes/custom-tables/logs.php:428
 #: integrations/activecampaign/includes/triggers/user-added.php:188
 #: integrations/activecampaign/includes/triggers/user-tag-added.php:251
-#: integrations/wordpress/actions/create-post.php:133
-#: integrations/wordpress/actions/create-post.php:433
+#: integrations/wordpress/actions/create-post.php:127
+#: integrations/wordpress/actions/create-post.php:450
 #: integrations/wordpress/actions/update-multiple-posts.php:184
-#: integrations/wordpress/actions/update-multiple-posts.php:580
+#: integrations/wordpress/actions/update-multiple-posts.php:609
 #: integrations/wordpress/actions/update-post.php:123
-#: integrations/wordpress/actions/update-post.php:436
+#: integrations/wordpress/actions/update-post.php:465
 #: integrations/wordpress/actions/update-posts.php:196
-#: integrations/wordpress/actions/update-posts.php:592
+#: integrations/wordpress/actions/update-posts.php:621
 msgid "Date:"
 msgstr ""
 
@@ -1425,19 +1600,23 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: includes/logs.php:284 includes/logs.php:294
+#: includes/logs.php:279 includes/logs.php:303 includes/logs.php:305
 msgid "Filter not passed"
 msgstr ""
 
-#: includes/scripts.php:218
+#: includes/logs.php:282
+msgid "Filter passed"
+msgstr ""
+
+#: includes/scripts.php:225
 msgid "Saving"
 msgstr ""
 
-#: includes/scripts.php:264
+#: includes/scripts.php:271
 msgid "Select an option"
 msgstr ""
 
-#: includes/scripts.php:265 includes/utilities.php:75
+#: includes/scripts.php:272 includes/utilities.php:75
 #: includes/utilities.php:112
 #: integrations/advanced-custom-fields/includes/actions/update-post-field.php:49
 #: integrations/meta-box/includes/actions/update-post-field.php:49
@@ -1446,20 +1625,23 @@ msgstr ""
 msgid "Select a post"
 msgstr ""
 
-#: includes/scripts.php:266
+#: includes/scripts.php:273 integrations/wordpress/actions/create-post.php:151
+#: integrations/wordpress/actions/update-multiple-posts.php:210
+#: integrations/wordpress/actions/update-post.php:149
+#: integrations/wordpress/actions/update-posts.php:222
 msgid "Select a term"
 msgstr ""
 
-#: includes/scripts.php:268
+#: includes/scripts.php:275
 #, php-format
 msgid "Select a %s"
 msgstr ""
 
-#: includes/scripts.php:269
+#: includes/scripts.php:276
 msgid "Select a user"
 msgstr ""
 
-#: includes/scripts.php:270
+#: includes/scripts.php:277
 msgid "Select an item"
 msgstr ""
 
@@ -1602,7 +1784,6 @@ msgstr ""
 
 #: includes/utilities.php:156 includes/utilities.php:192
 #: integrations/shortlinkspro/includes/triggers/click-link-from-category.php:38
-#: integrations/wordpress/actions/create-post.php:127
 msgid "Category:"
 msgstr ""
 
@@ -1615,10 +1796,18 @@ msgid "Category ID"
 msgstr ""
 
 #: includes/utilities.php:233
+#: integrations/wordpress/actions/create-post.php:142
+#: integrations/wordpress/actions/update-multiple-posts.php:201
+#: integrations/wordpress/actions/update-post.php:140
+#: integrations/wordpress/actions/update-posts.php:213
 msgid "Taxonomy:"
 msgstr ""
 
 #: includes/utilities.php:236
+#: integrations/wordpress/actions/create-post.php:141
+#: integrations/wordpress/actions/update-multiple-posts.php:200
+#: integrations/wordpress/actions/update-post.php:139
+#: integrations/wordpress/actions/update-posts.php:212
 msgid "Select a taxonomy"
 msgstr ""
 
@@ -1627,10 +1816,14 @@ msgid "Taxonomy"
 msgstr ""
 
 #: includes/utilities.php:245
+#: integrations/wordpress/actions/create-post.php:152
+#: integrations/wordpress/actions/update-multiple-posts.php:211
+#: integrations/wordpress/actions/update-post.php:150
+#: integrations/wordpress/actions/update-posts.php:223
 msgid "Term:"
 msgstr ""
 
-#: includes/utilities.php:246 integrations/wordpress/includes/functions.php:25
+#: includes/utilities.php:246 integrations/wordpress/includes/functions.php:110
 msgid "any term"
 msgstr ""
 
@@ -1922,8 +2115,8 @@ msgid "contains"
 msgstr ""
 
 #: includes/utilities.php:1030 includes/utilities.php:1114
-#: includes/utilities.php:1139 integrations/wordpress/filters/user-role.php:43
-msgid "does not contains"
+#: includes/utilities.php:1139
+msgid "does not contain"
 msgstr ""
 
 #: includes/utilities.php:1031 includes/utilities.php:1115
@@ -1933,7 +2126,7 @@ msgstr ""
 
 #: includes/utilities.php:1032 includes/utilities.php:1116
 #: includes/utilities.php:1141
-msgid "does not starts with"
+msgid "does not start with"
 msgstr ""
 
 #: includes/utilities.php:1033 includes/utilities.php:1117
@@ -1943,7 +2136,7 @@ msgstr ""
 
 #: includes/utilities.php:1034 includes/utilities.php:1118
 #: includes/utilities.php:1143
-msgid "does not ends with"
+msgid "does not end with"
 msgstr ""
 
 #: includes/utilities.php:1035 includes/utilities.php:1145
@@ -1955,11 +2148,11 @@ msgid "is greater than"
 msgstr ""
 
 #: includes/utilities.php:1037 includes/utilities.php:1147
-msgid "is less or equal to"
+msgid "is less than or equal to"
 msgstr ""
 
 #: includes/utilities.php:1038 includes/utilities.php:1148
-msgid "is greater or equal to"
+msgid "is greater than or equal to"
 msgstr ""
 
 #: includes/utilities.php:1072
@@ -2011,6 +2204,7 @@ msgstr ""
 
 #: integrations/activecampaign/includes/actions/add-user-tag.php:26
 #: integrations/activemember360/includes/actions/user-tag.php:26
+#: integrations/aweber/includes/actions/add-user-tag.php:36
 #: integrations/convertkit/includes/actions/add-user-tag.php:26
 #: integrations/fluentcrm/includes/actions/user-tag.php:27
 #: integrations/groundhogg/includes/actions/user-tag.php:26
@@ -2059,6 +2253,7 @@ msgstr ""
 #: integrations/autonami/includes/actions/add-user-tag.php:37
 #: integrations/autonami/includes/triggers/anonymous-contact-tag-added.php:40
 #: integrations/autonami/includes/triggers/user-tag-added.php:39
+#: integrations/aweber/includes/actions/add-user-tag.php:48
 #: integrations/clickup/includes/actions/add-tag-task.php:77
 #: integrations/convertkit/includes/actions/add-user-tag.php:36
 #: integrations/convertkit/includes/actions/remove-user-tag.php:36
@@ -2200,21 +2395,21 @@ msgstr ""
 msgid "Site connected with ActiveCampaign successfully."
 msgstr ""
 
-#: integrations/activecampaign/includes/ajax-functions.php:27
+#: integrations/activecampaign/includes/ajax-functions.php:32
 msgid "All fields are required to connect with ActiveCampaign"
 msgstr ""
 
-#: integrations/activecampaign/includes/ajax-functions.php:43
-#: integrations/clickup/includes/ajax-functions.php:42
+#: integrations/activecampaign/includes/ajax-functions.php:48
+#: integrations/clickup/includes/ajax-functions.php:47
 #: integrations/mailerlite/includes/ajax-functions.php:45
 msgid "Please, check your credentials"
 msgstr ""
 
-#: integrations/activecampaign/includes/ajax-functions.php:58
+#: integrations/activecampaign/includes/ajax-functions.php:63
 msgid "Correct data to connect with ActiveCampaign"
 msgstr ""
 
-#: integrations/activecampaign/includes/ajax-functions.php:91
+#: integrations/activecampaign/includes/ajax-functions.php:96
 msgid "Webhook URL refreshed"
 msgstr ""
 
@@ -2372,6 +2567,7 @@ msgid "Tag added:"
 msgstr ""
 
 #: integrations/activemember360/includes/actions/user-tag.php:27
+#: integrations/aweber/includes/actions/add-user-tag.php:37
 #: integrations/fluentcrm/includes/actions/user-tag.php:28
 #: integrations/groundhogg/includes/actions/user-tag.php:27
 msgid "Add <strong>tag</strong> to user"
@@ -2525,8 +2721,8 @@ msgstr ""
 
 #: integrations/advanced-custom-fields/includes/actions/update-post-field.php:198
 #: integrations/meta-box/includes/actions/update-post-field.php:198
-#: integrations/wordpress/actions/create-post.php:403
-#: integrations/wordpress/actions/update-post.php:406
+#: integrations/wordpress/actions/create-post.php:420
+#: integrations/wordpress/actions/update-post.php:435
 msgid "Post Information"
 msgstr ""
 
@@ -2686,15 +2882,18 @@ msgid "Customer ID"
 msgstr ""
 
 #: integrations/ameliabooking/includes/tags.php:191
+#: integrations/eventin/includes/tags.php:27
 msgid "Customer first name"
 msgstr ""
 
 #: integrations/ameliabooking/includes/tags.php:196
+#: integrations/eventin/includes/tags.php:32
 #: integrations/wp-booking-calendar/includes/tags.php:33
 msgid "Customer last name"
 msgstr ""
 
 #: integrations/ameliabooking/includes/tags.php:201
+#: integrations/eventin/includes/tags.php:37
 #: integrations/wp-booking-calendar/includes/tags.php:38
 msgid "Customer email"
 msgstr ""
@@ -2770,6 +2969,9 @@ msgstr ""
 #: integrations/arforms/includes/functions.php:51
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:45
 #: integrations/arforms/includes/triggers/submit-form.php:44
+#: integrations/bbforms/includes/functions.php:25
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:42
+#: integrations/bbforms/includes/triggers/submit-form.php:41
 #: integrations/caldera-forms/includes/functions.php:25
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:42
 #: integrations/caldera-forms/includes/triggers/submit-form.php:41
@@ -2828,6 +3030,7 @@ msgid "any form"
 msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:27
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:27
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:27
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:27
 #: integrations/divi/includes/triggers/anonymous-submit-form.php:27
@@ -2850,6 +3053,7 @@ msgid "Guest submits a form"
 msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:28
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:28
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:28
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:28
 #: integrations/divi/includes/triggers/anonymous-submit-form.php:28
@@ -2873,6 +3077,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:30
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:32
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:32
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:30
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:32
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:30
@@ -2915,6 +3120,8 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:43
 #: integrations/arforms/includes/triggers/submit-form.php:42
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:40
+#: integrations/bbforms/includes/triggers/submit-form.php:39
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:40
 #: integrations/caldera-forms/includes/triggers/submit-form.php:39
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:39
@@ -2958,6 +3165,8 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:55
 #: integrations/arforms/includes/triggers/submit-form.php:54
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:52
+#: integrations/bbforms/includes/triggers/submit-form.php:51
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:52
 #: integrations/caldera-forms/includes/triggers/submit-form.php:51
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:48
@@ -2997,6 +3206,8 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:57
 #: integrations/arforms/includes/triggers/submit-form.php:56
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:54
+#: integrations/bbforms/includes/triggers/submit-form.php:53
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:54
 #: integrations/caldera-forms/includes/triggers/submit-form.php:53
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:50
@@ -3024,6 +3235,8 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:192
 #: integrations/arforms/includes/triggers/submit-form.php:194
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:189
+#: integrations/bbforms/includes/triggers/submit-form.php:190
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:188
 #: integrations/caldera-forms/includes/triggers/submit-form.php:190
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:204
@@ -3032,7 +3245,7 @@ msgstr ""
 #: integrations/divi/includes/triggers/submit-form.php:204
 #: integrations/elementor/includes/triggers/anonymous-submit-form.php:190
 #: integrations/elementor/includes/triggers/submit-form.php:191
-#: integrations/everest-forms/includes/triggers/anonymous-submit-form.php:191
+#: integrations/everest-forms/includes/triggers/anonymous-submit-form.php:187
 #: integrations/everest-forms/includes/triggers/submit-form.php:189
 #: integrations/fluentform/includes/triggers/anonymous-submit-form.php:188
 #: integrations/fluentform/includes/triggers/submit-form.php:190
@@ -3063,6 +3276,8 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:193
 #: integrations/arforms/includes/triggers/submit-form.php:195
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:190
+#: integrations/bbforms/includes/triggers/submit-form.php:191
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:189
 #: integrations/caldera-forms/includes/triggers/submit-form.php:191
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:205
@@ -3071,7 +3286,7 @@ msgstr ""
 #: integrations/divi/includes/triggers/submit-form.php:205
 #: integrations/elementor/includes/triggers/anonymous-submit-form.php:191
 #: integrations/elementor/includes/triggers/submit-form.php:192
-#: integrations/everest-forms/includes/triggers/anonymous-submit-form.php:192
+#: integrations/everest-forms/includes/triggers/anonymous-submit-form.php:188
 #: integrations/everest-forms/includes/triggers/submit-form.php:190
 #: integrations/fluentform/includes/triggers/anonymous-submit-form.php:189
 #: integrations/fluentform/includes/triggers/submit-form.php:191
@@ -3101,6 +3316,7 @@ msgid "Information about the fields values sent on this form submission."
 msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:26
+#: integrations/bbforms/includes/triggers/submit-form.php:26
 #: integrations/caldera-forms/includes/triggers/submit-form.php:26
 #: integrations/contact-form-7/includes/triggers/submit-form.php:26
 #: integrations/divi/includes/triggers/submit-form.php:26
@@ -3123,6 +3339,7 @@ msgid "User submits a form"
 msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:27
+#: integrations/bbforms/includes/triggers/submit-form.php:27
 #: integrations/caldera-forms/includes/triggers/submit-form.php:27
 #: integrations/contact-form-7/includes/triggers/submit-form.php:27
 #: integrations/divi/includes/triggers/submit-form.php:27
@@ -3144,6 +3361,7 @@ msgid "User submits <strong>a form</strong>"
 msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:29
+#: integrations/bbforms/includes/triggers/submit-form.php:29
 #: integrations/caldera-forms/includes/triggers/submit-form.php:29
 #: integrations/contact-form-7/includes/triggers/submit-form.php:29
 #: integrations/divi/includes/triggers/submit-form.php:29
@@ -3168,6 +3386,7 @@ msgid "User submits %1$s %2$s time(s)"
 msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:31
+#: integrations/bbforms/includes/triggers/submit-form.php:31
 #: integrations/caldera-forms/includes/triggers/submit-form.php:31
 #: integrations/contact-form-7/includes/triggers/submit-form.php:31
 #: integrations/divi/includes/triggers/submit-form.php:31
@@ -3201,6 +3420,8 @@ msgstr ""
 
 #: integrations/armember/includes/actions/add-membership.php:29
 #: integrations/armember/includes/actions/add-membership.php:31
+#: integrations/aweber/includes/actions/add-user-list.php:39
+#: integrations/aweber/includes/actions/add-user-list.php:41
 #: integrations/buddyboss/includes/actions/add-user-group.php:29
 #: integrations/buddyboss/includes/actions/add-user-group.php:31
 #: integrations/buddypress/includes/actions/add-user-group.php:38
@@ -3256,18 +3477,136 @@ msgstr ""
 
 #: integrations/armember/includes/triggers/user-add-membership.php:29
 #: integrations/autonami/includes/triggers/user-added-list.php:29
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:29
 #, php-format
 msgid "User added to %1$s %2$s time(s)"
 msgstr ""
 
 #: integrations/armember/includes/triggers/user-add-membership.php:31
 #: integrations/autonami/includes/triggers/user-added-list.php:31
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:31
 #, php-format
 msgid "User added to %1$s"
 msgstr ""
 
 #: integrations/armember/includes/triggers/user-add-membership.php:41
 msgid "any plan"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/functions.php:25
+#: integrations/asgaros-forum/includes/triggers/create-topic.php:41
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:50
+#: integrations/bbpress/includes/triggers/create-topic.php:42
+#: integrations/buddyboss/includes/triggers/create-topic.php:42
+#: integrations/wpforo/includes/functions.php:25
+#: integrations/wpforo/includes/triggers/create-reply.php:50
+#: integrations/wpforo/includes/triggers/create-topic.php:41
+msgid "any forum"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/functions.php:115
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:41
+#: integrations/learndash/includes/triggers/complete-topic.php:39
+#: integrations/learndash/includes/triggers/view-topic.php:39
+#: integrations/wpforo/includes/functions.php:96
+#: integrations/wpforo/includes/triggers/create-reply.php:41
+msgid "any topic"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:17
+#: integrations/wpforo/includes/tags.php:22
+msgid "Forum ID"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:22
+msgid "Forum name"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:27
+#: integrations/wpforo/includes/tags.php:67
+msgid "Topic ID"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:32
+msgid "Topic title"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:87
+msgid "Topic content"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:92
+msgid "Post Link"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:139
+msgid "Reply content"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:144
+msgid "Reply Link"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/tags.php:191
+msgid "Reaction"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/create-topic.php:26
+#: integrations/wpforo/includes/triggers/create-topic.php:26
+msgid "User creates a topic on a forum"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/create-topic.php:27
+#: integrations/wpforo/includes/triggers/create-topic.php:27
+msgid "User <strong>creates a topic</strong> on a forum"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/create-topic.php:29
+#, php-format
+msgid "User creates a topic on %1$s %2$s time(s)"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/create-topic.php:31
+#: integrations/wpforo/includes/triggers/create-topic.php:31
+#, php-format
+msgid "User creates a topic on %1$s"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/create-topic.php:39
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:48
+#: integrations/bbpress/includes/triggers/create-topic.php:41
+#: integrations/buddyboss/includes/triggers/create-topic.php:41
+#: integrations/wpforo/includes/triggers/create-reply.php:48
+#: integrations/wpforo/includes/triggers/create-topic.php:39
+msgid "Forum:"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:26
+msgid "User replies to a topic on a forum"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:27
+#: integrations/wpforo/includes/triggers/create-reply.php:27
+msgid "User <strong>replies</strong> to a topic of a forum"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:29
+#: integrations/wpforo/includes/triggers/create-reply.php:29
+#, php-format
+msgid "User replies to %1$s of %2$s %3$s time(s)"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:31
+#: integrations/wpforo/includes/triggers/create-reply.php:31
+#, php-format
+msgid "User replies to %1$s of %2$s"
+msgstr ""
+
+#: integrations/asgaros-forum/includes/triggers/reply-topic.php:39
+#: integrations/learndash/includes/actions/mark-topic.php:34
+#: integrations/learndash/includes/triggers/complete-topic.php:38
+#: integrations/wpforo/includes/triggers/create-reply.php:39
+msgid "Topic:"
 msgstr ""
 
 #: integrations/automatorwp/actions/add-log.php:47
@@ -3459,16 +3798,16 @@ msgstr ""
 #: integrations/automatorwp/actions/anonymous-user.php:160
 #: integrations/automatorwp/actions/anonymous-user.php:852
 #: integrations/bluesky/includes/admin.php:68
-#: integrations/wordpress/actions/create-post.php:169
-#: integrations/wordpress/actions/create-post.php:469
+#: integrations/wordpress/actions/create-post.php:183
+#: integrations/wordpress/actions/create-post.php:486
 #: integrations/wordpress/actions/create-user.php:98
 #: integrations/wordpress/actions/create-user.php:374
-#: integrations/wordpress/actions/update-multiple-posts.php:226
-#: integrations/wordpress/actions/update-multiple-posts.php:616
-#: integrations/wordpress/actions/update-post.php:165
-#: integrations/wordpress/actions/update-post.php:472
-#: integrations/wordpress/actions/update-posts.php:238
-#: integrations/wordpress/actions/update-posts.php:628
+#: integrations/wordpress/actions/update-multiple-posts.php:246
+#: integrations/wordpress/actions/update-multiple-posts.php:645
+#: integrations/wordpress/actions/update-post.php:185
+#: integrations/wordpress/actions/update-post.php:501
+#: integrations/wordpress/actions/update-posts.php:258
+#: integrations/wordpress/actions/update-posts.php:657
 #: integrations/wordpress/actions/update-user.php:124
 #: integrations/wordpress/actions/update-user.php:425
 msgid "Password:"
@@ -3514,11 +3853,11 @@ msgid "The user meta values keyed by their user meta key."
 msgstr ""
 
 #: integrations/automatorwp/actions/anonymous-user.php:184
-#: integrations/wordpress/actions/create-post.php:180
+#: integrations/wordpress/actions/create-post.php:194
 #: integrations/wordpress/actions/create-user.php:122
-#: integrations/wordpress/actions/update-multiple-posts.php:238
-#: integrations/wordpress/actions/update-post.php:177
-#: integrations/wordpress/actions/update-posts.php:250
+#: integrations/wordpress/actions/update-multiple-posts.php:258
+#: integrations/wordpress/actions/update-post.php:197
+#: integrations/wordpress/actions/update-posts.php:270
 #: integrations/wordpress/actions/update-user.php:144
 msgid "Add meta"
 msgstr ""
@@ -3526,14 +3865,14 @@ msgstr ""
 #: integrations/automatorwp/actions/anonymous-user.php:189
 #: integrations/automatorwp/triggers/all-posts.php:95
 #: integrations/automatorwp/triggers/all-users.php:95
-#: integrations/wordpress/actions/create-post.php:185
+#: integrations/wordpress/actions/create-post.php:199
 #: integrations/wordpress/actions/create-user.php:127
 #: integrations/wordpress/actions/delete-multiple-posts.php:135
 #: integrations/wordpress/actions/update-multiple-posts.php:135
-#: integrations/wordpress/actions/update-multiple-posts.php:243
-#: integrations/wordpress/actions/update-post.php:182
+#: integrations/wordpress/actions/update-multiple-posts.php:263
+#: integrations/wordpress/actions/update-post.php:202
 #: integrations/wordpress/actions/update-posts.php:147
-#: integrations/wordpress/actions/update-posts.php:255
+#: integrations/wordpress/actions/update-posts.php:275
 #: integrations/wordpress/actions/update-user.php:149
 msgid "Meta Key:"
 msgstr ""
@@ -3541,14 +3880,14 @@ msgstr ""
 #: integrations/automatorwp/actions/anonymous-user.php:194
 #: integrations/automatorwp/triggers/all-posts.php:101
 #: integrations/automatorwp/triggers/all-users.php:101
-#: integrations/wordpress/actions/create-post.php:190
+#: integrations/wordpress/actions/create-post.php:204
 #: integrations/wordpress/actions/create-user.php:132
 #: integrations/wordpress/actions/delete-multiple-posts.php:141
 #: integrations/wordpress/actions/update-multiple-posts.php:141
-#: integrations/wordpress/actions/update-multiple-posts.php:248
-#: integrations/wordpress/actions/update-post.php:187
+#: integrations/wordpress/actions/update-multiple-posts.php:268
+#: integrations/wordpress/actions/update-post.php:207
 #: integrations/wordpress/actions/update-posts.php:153
-#: integrations/wordpress/actions/update-posts.php:260
+#: integrations/wordpress/actions/update-posts.php:280
 #: integrations/wordpress/actions/update-user.php:154
 msgid "Meta Value:"
 msgstr ""
@@ -4285,6 +4624,8 @@ msgstr ""
 
 #: integrations/autonami/includes/triggers/anonymous-contact-added-list.php:40
 #: integrations/autonami/includes/triggers/user-added-list.php:39
+#: integrations/aweber/includes/actions/add-user-list.php:56
+#: integrations/aweber/includes/actions/add-user-tag.php:69
 #: integrations/campaign-monitor/includes/actions/add-user-list.php:29
 #: integrations/clickup/includes/actions/add-comment-task.php:61
 #: integrations/clickup/includes/actions/add-tag-task.php:61
@@ -4342,6 +4683,168 @@ msgstr ""
 msgid "%1$s is added to user"
 msgstr ""
 
+#: integrations/aweber/includes/actions/add-user-list.php:36
+#: integrations/campaign-monitor/includes/actions/add-user-list.php:19
+#: integrations/fluentcrm/includes/actions/user-list.php:27
+msgid "Add user to list"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-list.php:37
+msgid "Add <strong>user</strong> to list"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-list.php:45
+#: integrations/campaign-monitor/includes/actions/add-user-list.php:28
+#: integrations/clickup/includes/actions/create-list.php:35
+#: integrations/clickup/includes/actions/create-task.php:35
+msgid "list"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-list.php:48
+#: integrations/aweber/includes/actions/add-user-tag.php:60
+msgid "Account:"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-list.php:86
+#: integrations/aweber/includes/actions/add-user-tag.php:101
+msgid "AWeber integration not configured in AutomatorWP settings."
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-list.php:104
+#, php-format
+msgid "%s could not be added to the list in AWeber. Error: %s, %s"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-list.php:106
+#, php-format
+msgid "%s added to list in AWeber"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:39
+#: integrations/aweber/includes/actions/add-user-tag.php:41
+#: integrations/campaign-monitor/includes/actions/add-user-list.php:22
+#: integrations/campaign-monitor/includes/actions/add-user-list.php:24
+#: integrations/mailpoet/includes/actions/add-subscriber-to-list.php:29
+#: integrations/mailpoet/includes/actions/add-subscriber-to-list.php:31
+#: integrations/suremembers/includes/actions/add-user-to-group.php:29
+#: integrations/suremembers/includes/actions/add-user-to-group.php:31
+#, php-format
+msgid "Add %1$s to %2$s"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:45
+#: integrations/mailchimp/includes/actions/user-add-tag.php:35
+msgid "tag"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:49
+msgid "The tags to add. Accepts single or comma-separated list of tags."
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:57
+#: integrations/campaign-monitor/includes/actions/add-user-list.php:38
+#: integrations/gamipress/includes/actions/user-achievement.php:43
+#: integrations/gamipress/includes/actions/user-points.php:63
+#: integrations/gamipress/includes/actions/user-rank.php:43
+#: integrations/suremembers/includes/actions/add-user-to-group.php:35
+#: integrations/wordpress/actions/create-user.php:63
+#: integrations/wordpress/actions/delete-user.php:45
+#: integrations/wordpress/actions/send-email.php:71
+#: integrations/wordpress/actions/update-user.php:72
+#: integrations/wordpress/actions/user-role.php:72
+msgid "user"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:70
+msgid "Select the list where the user is"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:118
+#, php-format
+msgid "Tags could not be added to %s. Error: %s, %s"
+msgstr ""
+
+#: integrations/aweber/includes/actions/add-user-tag.php:120
+#, php-format
+msgid "Tags added to %s"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:39
+#: integrations/aweber/includes/admin.php:60
+msgid "AWeber"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:63
+#: integrations/campaign-monitor/includes/admin.php:62
+#: integrations/zoom/includes/admin.php:63
+msgid "Client ID:"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:64
+msgid "Your AWeber API client ID."
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:68
+#: integrations/zoom/includes/admin.php:68
+msgid "Client Secret:"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:69
+msgid "Your AWeber API client secret."
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:102
+msgid "Redirect URL:"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:106
+msgid "Copy this URL and place it in the authorized redirect URIs field."
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:131
+msgid "Connect with AWeber:"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:134
+#: integrations/zoom/includes/admin.php:134
+msgid "Authorize"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:135
+msgid "Add your AWeber API client ID and secret fields and click on \"Authorize\" button to generate access keys for this site."
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:137
+msgid "Site connected with AWeber successfully."
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:138
+#: integrations/zoom/includes/admin.php:138
+msgid "Access token:"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:139
+#: integrations/zoom/includes/admin.php:139
+msgid "Refresh token:"
+msgstr ""
+
+#: integrations/aweber/includes/admin.php:141
+msgid "Site not connected with AWeber."
+msgstr ""
+
+#: integrations/aweber/includes/ajax-functions.php:28
+msgid "All fields are required to connect with AWeber"
+msgstr ""
+
+#: integrations/aweber/includes/ajax-functions.php:49
+msgid "Settings saved successfully, redirecting to AWeber..."
+msgstr ""
+
+#: integrations/aweber/includes/functions.php:26
+#: integrations/aweber/includes/functions.php:129
+msgid "any account"
+msgstr ""
+
 #: integrations/awesome-support/includes/triggers/agent-open-ticket.php:26
 #: integrations/awesome-support/includes/triggers/agent-open-ticket.php:30
 #: integrations/fluent-support/includes/triggers/agent-open-ticket.php:26
@@ -4384,6 +4887,13 @@ msgstr ""
 msgid "Client opens a ticket %1$s time(s)"
 msgstr ""
 
+#: integrations/bbforms/includes/triggers/anonymous-submit-form.php:30
+#: integrations/qsm/includes/triggers/anonymous-submit-quiz.php:30
+#: integrations/thrive-leads/includes/triggers/anonymous-submit-form.php:30
+#, php-format
+msgid "Guest submits %1$s %2$s time(s)"
+msgstr ""
+
 #: integrations/bbpress/includes/triggers/create-forum.php:26
 #: integrations/bbpress/includes/triggers/create-forum.php:30
 #: integrations/buddyboss/includes/triggers/create-forum.php:26
@@ -4422,21 +4932,6 @@ msgstr ""
 #: integrations/buddyboss/includes/triggers/create-topic.php:31
 #, php-format
 msgid "User creates a topic in %1$s"
-msgstr ""
-
-#: integrations/bbpress/includes/triggers/create-topic.php:41
-#: integrations/buddyboss/includes/triggers/create-topic.php:41
-#: integrations/wpforo/includes/triggers/create-reply.php:48
-#: integrations/wpforo/includes/triggers/create-topic.php:39
-msgid "Forum:"
-msgstr ""
-
-#: integrations/bbpress/includes/triggers/create-topic.php:42
-#: integrations/buddyboss/includes/triggers/create-topic.php:42
-#: integrations/wpforo/includes/functions.php:25
-#: integrations/wpforo/includes/triggers/create-reply.php:50
-#: integrations/wpforo/includes/triggers/create-topic.php:41
-msgid "any forum"
 msgstr ""
 
 #: integrations/bluesky/includes/actions/create-post.php:27
@@ -4555,16 +5050,16 @@ msgstr ""
 #: integrations/buddyboss/includes/actions/add-user-activity.php:44
 #: integrations/buddypress/includes/actions/add-user-activity.php:44
 #: integrations/h5p/includes/triggers/complete-content.php:39
-#: integrations/wordpress/actions/create-post.php:145
-#: integrations/wordpress/actions/create-post.php:445
+#: integrations/wordpress/actions/create-post.php:159
+#: integrations/wordpress/actions/create-post.php:462
 #: integrations/wordpress/actions/send-email.php:129
 #: integrations/wordpress/actions/send-email.php:273
-#: integrations/wordpress/actions/update-multiple-posts.php:198
-#: integrations/wordpress/actions/update-multiple-posts.php:592
-#: integrations/wordpress/actions/update-post.php:137
-#: integrations/wordpress/actions/update-post.php:448
-#: integrations/wordpress/actions/update-posts.php:210
-#: integrations/wordpress/actions/update-posts.php:604
+#: integrations/wordpress/actions/update-multiple-posts.php:218
+#: integrations/wordpress/actions/update-multiple-posts.php:621
+#: integrations/wordpress/actions/update-post.php:157
+#: integrations/wordpress/actions/update-post.php:477
+#: integrations/wordpress/actions/update-posts.php:230
+#: integrations/wordpress/actions/update-posts.php:633
 msgid "Content:"
 msgstr ""
 
@@ -4621,6 +5116,7 @@ msgstr ""
 #: integrations/learndash/includes/actions/create-group.php:34
 #: integrations/learndash/includes/actions/user-group-leader.php:34
 #: integrations/mailerlite/includes/actions/add-user-group.php:35
+#: integrations/suremembers/includes/actions/add-user-to-group.php:47
 msgid "group"
 msgstr ""
 
@@ -4631,6 +5127,8 @@ msgstr ""
 #: integrations/learndash/includes/actions/user-group-leader.php:38
 #: integrations/learndash/includes/actions/user-group.php:34
 #: integrations/mailerlite/includes/actions/add-user-group.php:36
+#: integrations/suremembers/includes/actions/add-user-to-group.php:50
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:38
 #: integrations/wp-user-manager/includes/actions/add-user-group.php:34
 #: integrations/wp-user-manager/includes/triggers/join-group.php:38
 msgid "Group:"
@@ -4651,6 +5149,7 @@ msgstr ""
 #: integrations/buddyboss/includes/actions/add-user-group.php:42
 #: integrations/buddypress/includes/actions/add-user-group.php:51
 #: integrations/learndash/includes/actions/user-group-leader.php:43
+#: integrations/suremembers/includes/actions/add-user-to-group.php:52
 #: integrations/wp-user-manager/includes/actions/add-user-group.php:35
 msgid "Select a group"
 msgstr ""
@@ -4690,6 +5189,8 @@ msgstr ""
 #: integrations/buddypress/includes/functions.php:25
 #: integrations/buddypress/includes/triggers/join-group.php:41
 #: integrations/mailerlite/includes/functions.php:133
+#: integrations/suremembers/includes/actions/add-user-to-group.php:53
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:39
 #: integrations/wp-user-manager/includes/triggers/join-group.php:39
 msgid "any group"
 msgstr ""
@@ -4920,39 +5421,8 @@ msgstr ""
 msgid "User added to group successfully."
 msgstr ""
 
-#: integrations/campaign-monitor/includes/actions/add-user-list.php:19
-#: integrations/fluentcrm/includes/actions/user-list.php:27
-msgid "Add user to list"
-msgstr ""
-
 #: integrations/campaign-monitor/includes/actions/add-user-list.php:20
 msgid "Add <strong>user</strong> to <strong>list</strong>"
-msgstr ""
-
-#: integrations/campaign-monitor/includes/actions/add-user-list.php:22
-#: integrations/campaign-monitor/includes/actions/add-user-list.php:24
-#: integrations/mailpoet/includes/actions/add-subscriber-to-list.php:29
-#: integrations/mailpoet/includes/actions/add-subscriber-to-list.php:31
-#, php-format
-msgid "Add %1$s to %2$s"
-msgstr ""
-
-#: integrations/campaign-monitor/includes/actions/add-user-list.php:28
-#: integrations/clickup/includes/actions/create-list.php:35
-#: integrations/clickup/includes/actions/create-task.php:35
-msgid "list"
-msgstr ""
-
-#: integrations/campaign-monitor/includes/actions/add-user-list.php:38
-#: integrations/gamipress/includes/actions/user-achievement.php:43
-#: integrations/gamipress/includes/actions/user-points.php:63
-#: integrations/gamipress/includes/actions/user-rank.php:43
-#: integrations/wordpress/actions/create-user.php:63
-#: integrations/wordpress/actions/delete-user.php:45
-#: integrations/wordpress/actions/send-email.php:71
-#: integrations/wordpress/actions/update-user.php:72
-#: integrations/wordpress/actions/user-role.php:72
-msgid "user"
 msgstr ""
 
 #: integrations/campaign-monitor/includes/actions/add-user-list.php:41
@@ -5006,11 +5476,6 @@ msgstr ""
 #: integrations/campaign-monitor/includes/admin.php:39
 #: integrations/campaign-monitor/includes/admin.php:59
 msgid "Campaign Monitor"
-msgstr ""
-
-#: integrations/campaign-monitor/includes/admin.php:62
-#: integrations/zoom/includes/admin.php:63
-msgid "Client ID:"
 msgstr ""
 
 #: integrations/campaign-monitor/includes/admin.php:63
@@ -5357,11 +5822,11 @@ msgstr ""
 msgid "Site connected with ClickUp successfully."
 msgstr ""
 
-#: integrations/clickup/includes/ajax-functions.php:27
+#: integrations/clickup/includes/ajax-functions.php:32
 msgid "API Token is required to connect with ClickUp"
 msgstr ""
 
-#: integrations/clickup/includes/ajax-functions.php:56
+#: integrations/clickup/includes/ajax-functions.php:61
 msgid "Correct data to connect with ClickUp"
 msgstr ""
 
@@ -5598,11 +6063,11 @@ msgstr ""
 msgid "Site connected with ConvertKit successfully."
 msgstr ""
 
-#: integrations/convertkit/includes/ajax-functions.php:27
+#: integrations/convertkit/includes/ajax-functions.php:32
 msgid "All fields are required to connect with ConvertKit"
 msgstr ""
 
-#: integrations/convertkit/includes/ajax-functions.php:49
+#: integrations/convertkit/includes/ajax-functions.php:54
 msgid "Correct data to connect with ConvertKit"
 msgstr ""
 
@@ -5762,6 +6227,51 @@ msgstr ""
 msgid "Form name:"
 msgstr ""
 
+#: integrations/eventin/includes/tags.php:22
+#: integrations/fluentbooking/includes/tags.php:22
+msgid "Event ID"
+msgstr ""
+
+#: integrations/eventin/includes/tags.php:42
+#: integrations/studiocart/includes/tags.php:32
+msgid "Order status"
+msgstr ""
+
+#: integrations/eventin/includes/tags.php:47
+msgid "Total price"
+msgstr ""
+
+#: integrations/eventin/includes/triggers/purchase-ticket.php:26
+msgid "User purchases a ticket for an event"
+msgstr ""
+
+#: integrations/eventin/includes/triggers/purchase-ticket.php:27
+msgid "User purchases a <strong>ticket</strong> for an event"
+msgstr ""
+
+#: integrations/eventin/includes/triggers/purchase-ticket.php:29
+#, php-format
+msgid "User purchases a ticket for %1$s %2$s time(s)"
+msgstr ""
+
+#: integrations/eventin/includes/triggers/purchase-ticket.php:30
+#, php-format
+msgid "User purchases a ticket for %1$s"
+msgstr ""
+
+#: integrations/eventin/includes/triggers/purchase-ticket.php:37
+#: integrations/modern-events-calendar/includes/triggers/booking-completed.php:38
+#: integrations/the-events-calendar/includes/triggers/confirm-rsvp.php:42
+msgid "Event:"
+msgstr ""
+
+#: integrations/eventin/includes/triggers/purchase-ticket.php:38
+#: integrations/fluentbooking/includes/functions.php:25
+#: integrations/modern-events-calendar/includes/triggers/booking-completed.php:39
+#: integrations/the-events-calendar/includes/triggers/confirm-rsvp.php:43
+msgid "any event"
+msgstr ""
+
 #: integrations/favorites/includes/triggers/favorite-post.php:26
 msgid "User favorites a post"
 msgstr ""
@@ -5796,6 +6306,123 @@ msgstr ""
 #: integrations/favorites/includes/triggers/get-favorite-post.php:31
 #, php-format
 msgid "User gets a favorite on %1$s"
+msgstr ""
+
+#: integrations/fluentbooking/includes/functions.php:116
+#: integrations/fluentbooking/includes/triggers/user-single-schedule-meeting.php:41
+#: integrations/fluentbooking/includes/triggers/user-team-schedule-meeting.php:41
+#: integrations/zoom/includes/functions.php:268
+msgid "any meeting"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:27
+msgid "Event title"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:32
+msgid "Calendar ID"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:37
+msgid "Booking title"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:42
+msgid "Attendee timezone"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:47
+msgid "Meeting start time"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:52
+msgid "Meeting end time"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:57
+msgid "Meeting duration"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:62
+msgid "Attendee email"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:67
+msgid "Attendee first name"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:72
+msgid "Attendee last name"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:77
+msgid "Message"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:82
+msgid "Attendee phone"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:87
+msgid "Meeting location"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:92
+msgid "Meeting status"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:97
+msgid "Host name"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:102
+msgid "Host email"
+msgstr ""
+
+#: integrations/fluentbooking/includes/tags.php:107
+msgid "Cancel reason"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-single-schedule-meeting.php:26
+msgid "User schedules one-to-one meeting"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-single-schedule-meeting.php:27
+msgid "User schedules one-to-one <strong>a meeting</strong>"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-single-schedule-meeting.php:29
+#, php-format
+msgid "User schedules one-to-one %1$s %2$s time(s)"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-single-schedule-meeting.php:31
+#, php-format
+msgid "User schedules one-to-one %1$s"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-single-schedule-meeting.php:39
+#: integrations/fluentbooking/includes/triggers/user-team-schedule-meeting.php:39
+#: integrations/zoom/includes/actions/add-user-meeting.php:113
+msgid "Meeting:"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-team-schedule-meeting.php:26
+msgid "User schedules a team meeting"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-team-schedule-meeting.php:27
+msgid "User schedules a team <strong>meeting</strong>"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-team-schedule-meeting.php:29
+#, php-format
+msgid "User schedules team %1$s %2$s time(s)"
+msgstr ""
+
+#: integrations/fluentbooking/includes/triggers/user-team-schedule-meeting.php:31
+#, php-format
+msgid "User schedules team %1$s"
 msgstr ""
 
 #: integrations/fluentcommunity/includes/actions/add-user-space.php:26
@@ -6020,13 +6647,13 @@ msgstr ""
 #: integrations/mailpoet/includes/actions/add-subscriber-to-list.php:50
 #: integrations/restrict-content-pro/includes/actions/add-membership.php:64
 #: integrations/wordpress/actions/create-post.php:120
-#: integrations/wordpress/actions/create-post.php:427
+#: integrations/wordpress/actions/create-post.php:444
 #: integrations/wordpress/actions/update-multiple-posts.php:176
-#: integrations/wordpress/actions/update-multiple-posts.php:574
+#: integrations/wordpress/actions/update-multiple-posts.php:603
 #: integrations/wordpress/actions/update-post.php:115
-#: integrations/wordpress/actions/update-post.php:430
+#: integrations/wordpress/actions/update-post.php:459
 #: integrations/wordpress/actions/update-posts.php:188
-#: integrations/wordpress/actions/update-posts.php:586
+#: integrations/wordpress/actions/update-posts.php:615
 #: integrations/wordpress/triggers/post-type-status.php:66
 #: integrations/zoom/includes/actions/add-user-meeting.php:119
 msgid "Status:"
@@ -6324,6 +6951,7 @@ msgstr ""
 #: integrations/gamipress/includes/actions/user-achievement.php:46
 #: integrations/gamipress/includes/actions/user-points.php:66
 #: integrations/gamipress/includes/actions/user-rank.php:46
+#: integrations/suremembers/includes/actions/add-user-to-group.php:38
 #: integrations/wordpress/actions/delete-user.php:48
 #: integrations/wordpress/actions/update-user.php:75
 #: integrations/wordpress/actions/update-user.php:385
@@ -6853,37 +7481,30 @@ msgid "Group course:"
 msgstr ""
 
 #: integrations/learndash/includes/actions/create-group.php:44
-#: integrations/learndash/includes/actions/create-group.php:50
-#: integrations/learndash/includes/actions/mark-course.php:37
-#: integrations/learndash/includes/actions/user-course.php:37
-#: integrations/learnpress/includes/actions/user-course.php:37
-#: integrations/lifterlms/includes/actions/user-course.php:37
-#: integrations/masterstudy-lms/includes/actions/user-course.php:37
-#: integrations/thrive-apprentice/includes/tags.php:23
-#: integrations/tutor/includes/actions/user-course.php:37
-msgid "Course ID"
+#: integrations/learndash/includes/actions/create-group.php:51
+msgid "Course ID or comma-separated list of courses IDs"
 msgstr ""
 
 #: integrations/learndash/includes/actions/create-group.php:46
 msgid "Select a course"
 msgstr ""
 
-#: integrations/learndash/includes/actions/create-group.php:53
+#: integrations/learndash/includes/actions/create-group.php:54
 #: integrations/learndash/includes/actions/user-group-leader.php:50
 msgid "If user doesn't have the \"Group Leader\" role:"
 msgstr ""
 
-#: integrations/learndash/includes/actions/create-group.php:56
+#: integrations/learndash/includes/actions/create-group.php:57
 #: integrations/learndash/includes/actions/user-group-leader.php:53
 msgid "Do nothing"
 msgstr ""
 
-#: integrations/learndash/includes/actions/create-group.php:57
+#: integrations/learndash/includes/actions/create-group.php:58
 #: integrations/learndash/includes/actions/user-group-leader.php:54
 msgid "Add the role to their existing roles"
 msgstr ""
 
-#: integrations/learndash/includes/actions/create-group.php:58
+#: integrations/learndash/includes/actions/create-group.php:59
 #: integrations/learndash/includes/actions/user-group-leader.php:55
 msgid "Replace their existing roles with the \"Group Leader\" role"
 msgstr ""
@@ -6913,6 +7534,16 @@ msgstr ""
 #: integrations/masterstudy-lms/includes/actions/user-course.php:35
 #: integrations/tutor/includes/actions/user-course.php:35
 msgid "all courses"
+msgstr ""
+
+#: integrations/learndash/includes/actions/mark-course.php:37
+#: integrations/learndash/includes/actions/user-course.php:37
+#: integrations/learnpress/includes/actions/user-course.php:37
+#: integrations/lifterlms/includes/actions/user-course.php:37
+#: integrations/masterstudy-lms/includes/actions/user-course.php:37
+#: integrations/thrive-apprentice/includes/tags.php:23
+#: integrations/tutor/includes/actions/user-course.php:37
+msgid "Course ID"
 msgstr ""
 
 #: integrations/learndash/includes/actions/mark-lesson.php:26
@@ -6947,12 +7578,6 @@ msgstr ""
 
 #: integrations/learndash/includes/actions/mark-topic.php:27
 msgid "Mark topic as <strong>completed</strong>"
-msgstr ""
-
-#: integrations/learndash/includes/actions/mark-topic.php:34
-#: integrations/learndash/includes/triggers/complete-topic.php:38
-#: integrations/wpforo/includes/triggers/create-reply.php:39
-msgid "Topic:"
 msgstr ""
 
 #: integrations/learndash/includes/actions/mark-topic.php:35
@@ -7004,6 +7629,7 @@ msgid "Make user the leader of a %1$s"
 msgstr ""
 
 #: integrations/learndash/includes/actions/user-group.php:26
+#: integrations/suremembers/includes/actions/add-user-to-group.php:26
 msgid "Add user to a group"
 msgstr ""
 
@@ -7151,13 +7777,6 @@ msgstr ""
 
 #: integrations/learndash/includes/triggers/complete-topic.php:27
 msgid "User completes <strong>a topic</strong>"
-msgstr ""
-
-#: integrations/learndash/includes/triggers/complete-topic.php:39
-#: integrations/learndash/includes/triggers/view-topic.php:39
-#: integrations/wpforo/includes/functions.php:96
-#: integrations/wpforo/includes/triggers/create-reply.php:41
-msgid "any topic"
 msgstr ""
 
 #: integrations/learndash/includes/triggers/view-course.php:26
@@ -7342,10 +7961,6 @@ msgstr ""
 #: integrations/mailchimp/includes/actions/user-subscribe.php:140
 #, php-format
 msgid "You need to configure the <a href=\"%s\" target=\"_blank\">Mailchimp settings</a> to get this action to work."
-msgstr ""
-
-#: integrations/mailchimp/includes/actions/user-add-tag.php:35
-msgid "tag"
 msgstr ""
 
 #: integrations/mailchimp/includes/actions/user-add-tag.php:50
@@ -7607,16 +8222,6 @@ msgstr ""
 msgid "User booking for %1$s is completed"
 msgstr ""
 
-#: integrations/modern-events-calendar/includes/triggers/booking-completed.php:38
-#: integrations/the-events-calendar/includes/triggers/confirm-rsvp.php:42
-msgid "Event:"
-msgstr ""
-
-#: integrations/modern-events-calendar/includes/triggers/booking-completed.php:39
-#: integrations/the-events-calendar/includes/triggers/confirm-rsvp.php:43
-msgid "any event"
-msgstr ""
-
 #: integrations/modern-events-calendar/includes/triggers/booking-completed.php:45
 msgid "Event"
 msgstr ""
@@ -7740,11 +8345,11 @@ msgstr ""
 msgid "User is already on this membership level."
 msgstr ""
 
-#: integrations/paid-memberships-pro/includes/actions/add-user-membership.php:89
+#: integrations/paid-memberships-pro/includes/actions/add-user-membership.php:117
 msgid "Could not add user to membership level."
 msgstr ""
 
-#: integrations/paid-memberships-pro/includes/actions/add-user-membership.php:93
+#: integrations/paid-memberships-pro/includes/actions/add-user-membership.php:121
 msgid "User added to membership level successfully."
 msgstr ""
 
@@ -7984,12 +8589,6 @@ msgstr ""
 msgid "Guest submits <strong>a quiz</strong>"
 msgstr ""
 
-#: integrations/qsm/includes/triggers/anonymous-submit-quiz.php:30
-#: integrations/thrive-leads/includes/triggers/anonymous-submit-form.php:30
-#, php-format
-msgid "Guest submits %1$s %2$s time(s)"
-msgstr ""
-
 #: integrations/qsm/includes/triggers/submit-quiz.php:26
 msgid "User submits a quiz"
 msgstr ""
@@ -8194,10 +8793,6 @@ msgstr ""
 msgid "Order amount"
 msgstr ""
 
-#: integrations/studiocart/includes/tags.php:32
-msgid "Order status"
-msgstr ""
-
 #: integrations/studiocart/includes/tags.php:92
 #: integrations/thrive-apprentice/includes/actions/user-product.php:37
 msgid "Product ID"
@@ -8216,6 +8811,7 @@ msgstr ""
 #: integrations/woocommerce/includes/triggers/purchase-product-tag.php:45
 #: integrations/woocommerce/includes/triggers/purchase-product.php:45
 #: integrations/woocommerce/includes/triggers/purchase-subscription.php:45
+#: integrations/woocommerce/includes/triggers/view-product.php:45
 msgid "Product"
 msgstr ""
 
@@ -8231,6 +8827,34 @@ msgstr ""
 #: integrations/surecart/includes/triggers/make-purchase.php:29
 #, php-format
 msgid "User makes a purchase %1$s time(s)"
+msgstr ""
+
+#: integrations/suremembers/includes/actions/add-user-to-group.php:27
+msgid "Add a user to <strong>a group</strong>"
+msgstr ""
+
+#: integrations/suremembers/includes/actions/add-user-to-group.php:39
+msgid "User ID that will get added to the membership. Leave blank to add the membership to the user that completes the automation."
+msgstr ""
+
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:26
+msgid "User added to an access group"
+msgstr ""
+
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:27
+msgid "User added to <strong>an acccess group</strong>"
+msgstr ""
+
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:45
+msgid "Group"
+msgstr ""
+
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:195
+msgid "Group Title"
+msgstr ""
+
+#: integrations/suremembers/includes/triggers/user-added-to-access-group.php:196
+msgid "Information about the group Title"
 msgstr ""
 
 #: integrations/the-events-calendar/includes/triggers/confirm-rsvp.php:26
@@ -8812,35 +9436,35 @@ msgid "Create <strong>a post</strong>"
 msgstr ""
 
 #: integrations/wordpress/actions/create-post.php:99
-#: integrations/wordpress/actions/create-post.php:409
+#: integrations/wordpress/actions/create-post.php:426
 #: integrations/wordpress/actions/update-multiple-posts.php:153
-#: integrations/wordpress/actions/update-multiple-posts.php:556
+#: integrations/wordpress/actions/update-multiple-posts.php:585
 #: integrations/wordpress/actions/update-post.php:92
-#: integrations/wordpress/actions/update-post.php:412
+#: integrations/wordpress/actions/update-post.php:441
 #: integrations/wordpress/actions/update-posts.php:165
-#: integrations/wordpress/actions/update-posts.php:568
+#: integrations/wordpress/actions/update-posts.php:597
 msgid "Title:"
 msgstr ""
 
 #: integrations/wordpress/actions/create-post.php:100
-#: integrations/wordpress/actions/create-post.php:410
+#: integrations/wordpress/actions/create-post.php:427
 #: integrations/wordpress/actions/update-multiple-posts.php:154
-#: integrations/wordpress/actions/update-multiple-posts.php:557
+#: integrations/wordpress/actions/update-multiple-posts.php:586
 #: integrations/wordpress/actions/update-post.php:93
-#: integrations/wordpress/actions/update-post.php:413
+#: integrations/wordpress/actions/update-post.php:442
 #: integrations/wordpress/actions/update-posts.php:166
-#: integrations/wordpress/actions/update-posts.php:569
+#: integrations/wordpress/actions/update-posts.php:598
 msgid "The post title."
 msgstr ""
 
 #: integrations/wordpress/actions/create-post.php:106
-#: integrations/wordpress/actions/create-post.php:415
+#: integrations/wordpress/actions/create-post.php:432
 #: integrations/wordpress/actions/update-multiple-posts.php:160
-#: integrations/wordpress/actions/update-multiple-posts.php:562
+#: integrations/wordpress/actions/update-multiple-posts.php:591
 #: integrations/wordpress/actions/update-post.php:99
-#: integrations/wordpress/actions/update-post.php:418
+#: integrations/wordpress/actions/update-post.php:447
 #: integrations/wordpress/actions/update-posts.php:172
-#: integrations/wordpress/actions/update-posts.php:574
+#: integrations/wordpress/actions/update-posts.php:603
 msgid "URL slug:"
 msgstr ""
 
@@ -8864,207 +9488,231 @@ msgid "The post status. By default, \"draft\"."
 msgstr ""
 
 #: integrations/wordpress/actions/create-post.php:128
-msgid "The post category slug."
-msgstr ""
-
-#: integrations/wordpress/actions/create-post.php:134
 msgid "The date of the post. Supports \"YYYY-MM-DD HH:MM:SS\" and \"YYYY-MM-DD\" formats. By default, the date at the moment the automation gets completed."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:139
-#: integrations/wordpress/actions/create-post.php:439
+#: integrations/wordpress/actions/create-post.php:133
+#: integrations/wordpress/actions/create-post.php:456
 #: integrations/wordpress/actions/update-multiple-posts.php:191
-#: integrations/wordpress/actions/update-multiple-posts.php:586
+#: integrations/wordpress/actions/update-multiple-posts.php:615
 #: integrations/wordpress/actions/update-post.php:130
-#: integrations/wordpress/actions/update-post.php:442
+#: integrations/wordpress/actions/update-post.php:471
 #: integrations/wordpress/actions/update-posts.php:203
-#: integrations/wordpress/actions/update-posts.php:598
+#: integrations/wordpress/actions/update-posts.php:627
 msgid "Author:"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:140
+#: integrations/wordpress/actions/create-post.php:134
 msgid "The ID of the user who added this post. By default, ID of user who completes this automation."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:146
+#: integrations/wordpress/actions/create-post.php:140
+#: integrations/wordpress/actions/update-multiple-posts.php:199
+#: integrations/wordpress/actions/update-post.php:138
+#: integrations/wordpress/actions/update-posts.php:211
+msgid "taxonomy"
+msgstr ""
+
+#: integrations/wordpress/actions/create-post.php:143
+#: integrations/wordpress/actions/update-multiple-posts.php:202
+#: integrations/wordpress/actions/update-post.php:141
+#: integrations/wordpress/actions/update-posts.php:214
+msgid "The post taxonomy."
+msgstr ""
+
+#: integrations/wordpress/actions/create-post.php:150
+#: integrations/wordpress/actions/update-multiple-posts.php:209
+#: integrations/wordpress/actions/update-post.php:148
+#: integrations/wordpress/actions/update-posts.php:221
+msgid "terms"
+msgstr ""
+
+#: integrations/wordpress/actions/create-post.php:153
+#: integrations/wordpress/actions/update-multiple-posts.php:212
+#: integrations/wordpress/actions/update-post.php:151
+#: integrations/wordpress/actions/update-posts.php:224
+msgid "The post term from taxonomy."
+msgstr ""
+
+#: integrations/wordpress/actions/create-post.php:160
 msgid "The post content. By default, empty."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:151
-#: integrations/wordpress/actions/create-post.php:451
-#: integrations/wordpress/actions/update-multiple-posts.php:205
-#: integrations/wordpress/actions/update-multiple-posts.php:598
-#: integrations/wordpress/actions/update-post.php:144
-#: integrations/wordpress/actions/update-post.php:454
-#: integrations/wordpress/actions/update-posts.php:217
-#: integrations/wordpress/actions/update-posts.php:610
+#: integrations/wordpress/actions/create-post.php:165
+#: integrations/wordpress/actions/create-post.php:468
+#: integrations/wordpress/actions/update-multiple-posts.php:225
+#: integrations/wordpress/actions/update-multiple-posts.php:627
+#: integrations/wordpress/actions/update-post.php:164
+#: integrations/wordpress/actions/update-post.php:483
+#: integrations/wordpress/actions/update-posts.php:237
+#: integrations/wordpress/actions/update-posts.php:639
 msgid "Excerpt:"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:152
+#: integrations/wordpress/actions/create-post.php:166
 msgid "The post excerpt. By default, empty."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:157
-#: integrations/wordpress/actions/create-post.php:457
-#: integrations/wordpress/actions/update-multiple-posts.php:212
-#: integrations/wordpress/actions/update-multiple-posts.php:604
-#: integrations/wordpress/actions/update-post.php:151
-#: integrations/wordpress/actions/update-post.php:460
-#: integrations/wordpress/actions/update-posts.php:224
-#: integrations/wordpress/actions/update-posts.php:616
+#: integrations/wordpress/actions/create-post.php:171
+#: integrations/wordpress/actions/create-post.php:474
+#: integrations/wordpress/actions/update-multiple-posts.php:232
+#: integrations/wordpress/actions/update-multiple-posts.php:633
+#: integrations/wordpress/actions/update-post.php:171
+#: integrations/wordpress/actions/update-post.php:489
+#: integrations/wordpress/actions/update-posts.php:244
+#: integrations/wordpress/actions/update-posts.php:645
 msgid "Parent:"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:158
+#: integrations/wordpress/actions/create-post.php:172
 msgid "The post parent. By default, none."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:163
-#: integrations/wordpress/actions/create-post.php:463
-#: integrations/wordpress/actions/update-multiple-posts.php:219
-#: integrations/wordpress/actions/update-multiple-posts.php:610
-#: integrations/wordpress/actions/update-post.php:158
-#: integrations/wordpress/actions/update-post.php:466
-#: integrations/wordpress/actions/update-posts.php:231
-#: integrations/wordpress/actions/update-posts.php:622
+#: integrations/wordpress/actions/create-post.php:177
+#: integrations/wordpress/actions/create-post.php:480
+#: integrations/wordpress/actions/update-multiple-posts.php:239
+#: integrations/wordpress/actions/update-multiple-posts.php:639
+#: integrations/wordpress/actions/update-post.php:178
+#: integrations/wordpress/actions/update-post.php:495
+#: integrations/wordpress/actions/update-posts.php:251
+#: integrations/wordpress/actions/update-posts.php:651
 msgid "Menu order:"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:164
+#: integrations/wordpress/actions/create-post.php:178
 msgid "The post menu order. By default, 0."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:170
+#: integrations/wordpress/actions/create-post.php:184
 msgid "The password to access this post. By default, empty."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:175
-#: integrations/wordpress/actions/create-post.php:475
-#: integrations/wordpress/actions/update-multiple-posts.php:233
-#: integrations/wordpress/actions/update-multiple-posts.php:622
-#: integrations/wordpress/actions/update-post.php:172
-#: integrations/wordpress/actions/update-post.php:478
-#: integrations/wordpress/actions/update-posts.php:245
-#: integrations/wordpress/actions/update-posts.php:634
+#: integrations/wordpress/actions/create-post.php:189
+#: integrations/wordpress/actions/create-post.php:492
+#: integrations/wordpress/actions/update-multiple-posts.php:253
+#: integrations/wordpress/actions/update-multiple-posts.php:651
+#: integrations/wordpress/actions/update-post.php:192
+#: integrations/wordpress/actions/update-post.php:507
+#: integrations/wordpress/actions/update-posts.php:265
+#: integrations/wordpress/actions/update-posts.php:663
 msgid "Post Meta:"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:176
-#: integrations/wordpress/actions/create-post.php:476
-#: integrations/wordpress/actions/update-multiple-posts.php:234
-#: integrations/wordpress/actions/update-multiple-posts.php:623
-#: integrations/wordpress/actions/update-post.php:173
-#: integrations/wordpress/actions/update-post.php:479
-#: integrations/wordpress/actions/update-posts.php:246
-#: integrations/wordpress/actions/update-posts.php:635
+#: integrations/wordpress/actions/create-post.php:190
+#: integrations/wordpress/actions/create-post.php:493
+#: integrations/wordpress/actions/update-multiple-posts.php:254
+#: integrations/wordpress/actions/update-multiple-posts.php:652
+#: integrations/wordpress/actions/update-post.php:193
+#: integrations/wordpress/actions/update-post.php:508
+#: integrations/wordpress/actions/update-posts.php:266
+#: integrations/wordpress/actions/update-posts.php:664
 msgid "The post meta values keyed by their post meta key."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:369
+#: integrations/wordpress/actions/create-post.php:386
 msgid "Post created correctly"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:373
+#: integrations/wordpress/actions/create-post.php:390
 msgid "Could not create post"
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:404
-#: integrations/wordpress/actions/update-post.php:407
+#: integrations/wordpress/actions/create-post.php:421
+#: integrations/wordpress/actions/update-post.php:436
 msgid "Information about the post created."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:416
-#: integrations/wordpress/actions/update-multiple-posts.php:563
-#: integrations/wordpress/actions/update-post.php:419
-#: integrations/wordpress/actions/update-posts.php:575
+#: integrations/wordpress/actions/create-post.php:433
+#: integrations/wordpress/actions/update-multiple-posts.php:592
+#: integrations/wordpress/actions/update-post.php:448
+#: integrations/wordpress/actions/update-posts.php:604
 msgid "The post URL slug."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:422
+#: integrations/wordpress/actions/create-post.php:439
 #: integrations/wordpress/actions/update-multiple-posts.php:169
-#: integrations/wordpress/actions/update-multiple-posts.php:569
+#: integrations/wordpress/actions/update-multiple-posts.php:598
 #: integrations/wordpress/actions/update-post.php:108
-#: integrations/wordpress/actions/update-post.php:425
+#: integrations/wordpress/actions/update-post.php:454
 #: integrations/wordpress/actions/update-posts.php:181
-#: integrations/wordpress/actions/update-posts.php:581
+#: integrations/wordpress/actions/update-posts.php:610
 msgid "The post type."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:428
+#: integrations/wordpress/actions/create-post.php:445
 #: integrations/wordpress/actions/update-multiple-posts.php:177
-#: integrations/wordpress/actions/update-multiple-posts.php:575
+#: integrations/wordpress/actions/update-multiple-posts.php:604
 #: integrations/wordpress/actions/update-post.php:116
-#: integrations/wordpress/actions/update-post.php:431
+#: integrations/wordpress/actions/update-post.php:460
 #: integrations/wordpress/actions/update-posts.php:189
-#: integrations/wordpress/actions/update-posts.php:587
+#: integrations/wordpress/actions/update-posts.php:616
 msgid "The post status."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:434
-#: integrations/wordpress/actions/update-multiple-posts.php:581
-#: integrations/wordpress/actions/update-post.php:437
-#: integrations/wordpress/actions/update-posts.php:593
+#: integrations/wordpress/actions/create-post.php:451
+#: integrations/wordpress/actions/update-multiple-posts.php:610
+#: integrations/wordpress/actions/update-post.php:466
+#: integrations/wordpress/actions/update-posts.php:622
 msgid "The date of the post."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:440
+#: integrations/wordpress/actions/create-post.php:457
 #: integrations/wordpress/actions/update-multiple-posts.php:192
-#: integrations/wordpress/actions/update-multiple-posts.php:587
+#: integrations/wordpress/actions/update-multiple-posts.php:616
 #: integrations/wordpress/actions/update-post.php:131
-#: integrations/wordpress/actions/update-post.php:443
+#: integrations/wordpress/actions/update-post.php:472
 #: integrations/wordpress/actions/update-posts.php:204
-#: integrations/wordpress/actions/update-posts.php:599
+#: integrations/wordpress/actions/update-posts.php:628
 msgid "The ID of the user who added this post."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:446
-#: integrations/wordpress/actions/update-multiple-posts.php:199
-#: integrations/wordpress/actions/update-multiple-posts.php:593
-#: integrations/wordpress/actions/update-post.php:138
-#: integrations/wordpress/actions/update-post.php:449
-#: integrations/wordpress/actions/update-posts.php:211
-#: integrations/wordpress/actions/update-posts.php:605
+#: integrations/wordpress/actions/create-post.php:463
+#: integrations/wordpress/actions/update-multiple-posts.php:219
+#: integrations/wordpress/actions/update-multiple-posts.php:622
+#: integrations/wordpress/actions/update-post.php:158
+#: integrations/wordpress/actions/update-post.php:478
+#: integrations/wordpress/actions/update-posts.php:231
+#: integrations/wordpress/actions/update-posts.php:634
 msgid "The post content."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:452
-#: integrations/wordpress/actions/update-multiple-posts.php:206
-#: integrations/wordpress/actions/update-multiple-posts.php:599
-#: integrations/wordpress/actions/update-post.php:145
-#: integrations/wordpress/actions/update-post.php:455
-#: integrations/wordpress/actions/update-posts.php:218
-#: integrations/wordpress/actions/update-posts.php:611
+#: integrations/wordpress/actions/create-post.php:469
+#: integrations/wordpress/actions/update-multiple-posts.php:226
+#: integrations/wordpress/actions/update-multiple-posts.php:628
+#: integrations/wordpress/actions/update-post.php:165
+#: integrations/wordpress/actions/update-post.php:484
+#: integrations/wordpress/actions/update-posts.php:238
+#: integrations/wordpress/actions/update-posts.php:640
 msgid "The post excerpt."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:458
-#: integrations/wordpress/actions/update-multiple-posts.php:213
-#: integrations/wordpress/actions/update-multiple-posts.php:605
-#: integrations/wordpress/actions/update-post.php:152
-#: integrations/wordpress/actions/update-post.php:461
-#: integrations/wordpress/actions/update-posts.php:225
-#: integrations/wordpress/actions/update-posts.php:617
+#: integrations/wordpress/actions/create-post.php:475
+#: integrations/wordpress/actions/update-multiple-posts.php:233
+#: integrations/wordpress/actions/update-multiple-posts.php:634
+#: integrations/wordpress/actions/update-post.php:172
+#: integrations/wordpress/actions/update-post.php:490
+#: integrations/wordpress/actions/update-posts.php:245
+#: integrations/wordpress/actions/update-posts.php:646
 msgid "The post parent."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:464
-#: integrations/wordpress/actions/update-multiple-posts.php:220
-#: integrations/wordpress/actions/update-multiple-posts.php:611
-#: integrations/wordpress/actions/update-post.php:159
-#: integrations/wordpress/actions/update-post.php:467
-#: integrations/wordpress/actions/update-posts.php:232
-#: integrations/wordpress/actions/update-posts.php:623
+#: integrations/wordpress/actions/create-post.php:481
+#: integrations/wordpress/actions/update-multiple-posts.php:240
+#: integrations/wordpress/actions/update-multiple-posts.php:640
+#: integrations/wordpress/actions/update-post.php:179
+#: integrations/wordpress/actions/update-post.php:496
+#: integrations/wordpress/actions/update-posts.php:252
+#: integrations/wordpress/actions/update-posts.php:652
 msgid "The post menu order."
 msgstr ""
 
-#: integrations/wordpress/actions/create-post.php:470
-#: integrations/wordpress/actions/update-multiple-posts.php:227
-#: integrations/wordpress/actions/update-multiple-posts.php:617
-#: integrations/wordpress/actions/update-post.php:166
-#: integrations/wordpress/actions/update-post.php:473
-#: integrations/wordpress/actions/update-posts.php:239
-#: integrations/wordpress/actions/update-posts.php:629
+#: integrations/wordpress/actions/create-post.php:487
+#: integrations/wordpress/actions/update-multiple-posts.php:247
+#: integrations/wordpress/actions/update-multiple-posts.php:646
+#: integrations/wordpress/actions/update-post.php:186
+#: integrations/wordpress/actions/update-post.php:502
+#: integrations/wordpress/actions/update-posts.php:259
+#: integrations/wordpress/actions/update-posts.php:658
 msgid "The password to access this post."
 msgstr ""
 
@@ -9128,26 +9776,26 @@ msgid "%d posts deleted."
 msgstr ""
 
 #: integrations/wordpress/actions/delete-multiple-posts.php:345
-#: integrations/wordpress/actions/update-multiple-posts.php:529
-#: integrations/wordpress/actions/update-posts.php:541
+#: integrations/wordpress/actions/update-multiple-posts.php:558
+#: integrations/wordpress/actions/update-posts.php:570
 msgid "Posts Filtered"
 msgstr ""
 
 #: integrations/wordpress/actions/delete-multiple-posts.php:346
-#: integrations/wordpress/actions/update-multiple-posts.php:530
-#: integrations/wordpress/actions/update-posts.php:542
+#: integrations/wordpress/actions/update-multiple-posts.php:559
+#: integrations/wordpress/actions/update-posts.php:571
 msgid "Information about the filters applied and the posts found."
 msgstr ""
 
 #: integrations/wordpress/actions/delete-multiple-posts.php:351
-#: integrations/wordpress/actions/update-multiple-posts.php:535
-#: integrations/wordpress/actions/update-posts.php:547
+#: integrations/wordpress/actions/update-multiple-posts.php:564
+#: integrations/wordpress/actions/update-posts.php:576
 msgid "Field conditions:"
 msgstr ""
 
 #: integrations/wordpress/actions/delete-multiple-posts.php:356
-#: integrations/wordpress/actions/update-multiple-posts.php:540
-#: integrations/wordpress/actions/update-posts.php:552
+#: integrations/wordpress/actions/update-multiple-posts.php:569
+#: integrations/wordpress/actions/update-posts.php:581
 msgid "Meta conditions:"
 msgstr ""
 
@@ -9454,33 +10102,33 @@ msgstr ""
 #: integrations/wordpress/actions/update-multiple-posts.php:178
 #: integrations/wordpress/actions/update-multiple-posts.php:186
 #: integrations/wordpress/actions/update-multiple-posts.php:193
-#: integrations/wordpress/actions/update-multiple-posts.php:200
-#: integrations/wordpress/actions/update-multiple-posts.php:207
-#: integrations/wordpress/actions/update-multiple-posts.php:214
-#: integrations/wordpress/actions/update-multiple-posts.php:221
-#: integrations/wordpress/actions/update-multiple-posts.php:228
+#: integrations/wordpress/actions/update-multiple-posts.php:220
+#: integrations/wordpress/actions/update-multiple-posts.php:227
+#: integrations/wordpress/actions/update-multiple-posts.php:234
+#: integrations/wordpress/actions/update-multiple-posts.php:241
+#: integrations/wordpress/actions/update-multiple-posts.php:248
 #: integrations/wordpress/actions/update-post.php:94
 #: integrations/wordpress/actions/update-post.php:101
 #: integrations/wordpress/actions/update-post.php:109
 #: integrations/wordpress/actions/update-post.php:117
 #: integrations/wordpress/actions/update-post.php:125
 #: integrations/wordpress/actions/update-post.php:132
-#: integrations/wordpress/actions/update-post.php:139
-#: integrations/wordpress/actions/update-post.php:146
-#: integrations/wordpress/actions/update-post.php:153
-#: integrations/wordpress/actions/update-post.php:160
-#: integrations/wordpress/actions/update-post.php:167
+#: integrations/wordpress/actions/update-post.php:159
+#: integrations/wordpress/actions/update-post.php:166
+#: integrations/wordpress/actions/update-post.php:173
+#: integrations/wordpress/actions/update-post.php:180
+#: integrations/wordpress/actions/update-post.php:187
 #: integrations/wordpress/actions/update-posts.php:167
 #: integrations/wordpress/actions/update-posts.php:174
 #: integrations/wordpress/actions/update-posts.php:182
 #: integrations/wordpress/actions/update-posts.php:190
 #: integrations/wordpress/actions/update-posts.php:198
 #: integrations/wordpress/actions/update-posts.php:205
-#: integrations/wordpress/actions/update-posts.php:212
-#: integrations/wordpress/actions/update-posts.php:219
-#: integrations/wordpress/actions/update-posts.php:226
-#: integrations/wordpress/actions/update-posts.php:233
-#: integrations/wordpress/actions/update-posts.php:240
+#: integrations/wordpress/actions/update-posts.php:232
+#: integrations/wordpress/actions/update-posts.php:239
+#: integrations/wordpress/actions/update-posts.php:246
+#: integrations/wordpress/actions/update-posts.php:253
+#: integrations/wordpress/actions/update-posts.php:260
 #: integrations/wordpress/actions/update-user.php:84
 #: integrations/wordpress/actions/update-user.php:91
 #: integrations/wordpress/actions/update-user.php:98
@@ -9504,24 +10152,24 @@ msgstr ""
 msgid "The date of the post. Supports \"YYYY-MM-DD HH:MM:SS\" and \"YYYY-MM-DD\" formats."
 msgstr ""
 
-#: integrations/wordpress/actions/update-multiple-posts.php:348
-#: integrations/wordpress/actions/update-posts.php:360
+#: integrations/wordpress/actions/update-multiple-posts.php:368
+#: integrations/wordpress/actions/update-posts.php:380
 msgid "No posts found to be updated."
 msgstr ""
 
-#: integrations/wordpress/actions/update-multiple-posts.php:414
-#: integrations/wordpress/actions/update-posts.php:426
+#: integrations/wordpress/actions/update-multiple-posts.php:443
+#: integrations/wordpress/actions/update-posts.php:455
 #, php-format
 msgid "%d posts updated."
 msgstr ""
 
-#: integrations/wordpress/actions/update-multiple-posts.php:550
-#: integrations/wordpress/actions/update-posts.php:562
+#: integrations/wordpress/actions/update-multiple-posts.php:579
+#: integrations/wordpress/actions/update-posts.php:591
 msgid "Data Updated"
 msgstr ""
 
-#: integrations/wordpress/actions/update-multiple-posts.php:551
-#: integrations/wordpress/actions/update-posts.php:563
+#: integrations/wordpress/actions/update-multiple-posts.php:580
+#: integrations/wordpress/actions/update-posts.php:592
 msgid "Information about the data updated to all posts found."
 msgstr ""
 
@@ -9548,11 +10196,11 @@ msgstr ""
 msgid "Post to update:"
 msgstr ""
 
-#: integrations/wordpress/actions/update-post.php:372
+#: integrations/wordpress/actions/update-post.php:401
 msgid "Post updated successfully"
 msgstr ""
 
-#: integrations/wordpress/actions/update-post.php:376
+#: integrations/wordpress/actions/update-post.php:405
 msgid "Could not update the post"
 msgstr ""
 
@@ -9804,6 +10452,10 @@ msgstr ""
 #: integrations/wordpress/filters/user-role.php:31
 #, php-format
 msgid "%1$s %2$s"
+msgstr ""
+
+#: integrations/wordpress/filters/user-role.php:43
+msgid "does not contains"
 msgstr ""
 
 #: integrations/wordpress/filters/user-role.php:51
@@ -10989,10 +11641,6 @@ msgstr ""
 msgid "votes down"
 msgstr ""
 
-#: integrations/wpforo/includes/tags.php:22
-msgid "Forum ID"
-msgstr ""
-
 #: integrations/wpforo/includes/tags.php:27
 #: integrations/wpforo/includes/tags.php:39
 msgid "Forum Title"
@@ -11004,10 +11652,6 @@ msgstr ""
 
 #: integrations/wpforo/includes/tags.php:37
 msgid "Forum Link"
-msgstr ""
-
-#: integrations/wpforo/includes/tags.php:67
-msgid "Topic ID"
 msgstr ""
 
 #: integrations/wpforo/includes/tags.php:72
@@ -11027,36 +11671,9 @@ msgstr ""
 msgid "User replies to a topic of a forum"
 msgstr ""
 
-#: integrations/wpforo/includes/triggers/create-reply.php:27
-msgid "User <strong>replies</strong> to a topic of a forum"
-msgstr ""
-
-#: integrations/wpforo/includes/triggers/create-reply.php:29
-#, php-format
-msgid "User replies to %1$s of %2$s %3$s time(s)"
-msgstr ""
-
-#: integrations/wpforo/includes/triggers/create-reply.php:31
-#, php-format
-msgid "User replies to %1$s of %2$s"
-msgstr ""
-
-#: integrations/wpforo/includes/triggers/create-topic.php:26
-msgid "User creates a topic on a forum"
-msgstr ""
-
-#: integrations/wpforo/includes/triggers/create-topic.php:27
-msgid "User <strong>creates a topic</strong> on a forum"
-msgstr ""
-
 #: integrations/wpforo/includes/triggers/create-topic.php:29
 #, php-format
 msgid "User creates a topic on %1$s of %2$s time(s)"
-msgstr ""
-
-#: integrations/wpforo/includes/triggers/create-topic.php:31
-#, php-format
-msgid "User creates a topic on %1$s"
 msgstr ""
 
 #: integrations/wplms/includes/triggers/complete-assignment.php:26
@@ -11110,10 +11727,6 @@ msgstr ""
 
 #: integrations/zoom/includes/actions/add-user-meeting.php:112
 msgid "Select a meeting"
-msgstr ""
-
-#: integrations/zoom/includes/actions/add-user-meeting.php:113
-msgid "Meeting:"
 msgstr ""
 
 #: integrations/zoom/includes/actions/add-user-meeting.php:120
@@ -11203,10 +11816,6 @@ msgstr ""
 msgid "Your Zoom app client ID."
 msgstr ""
 
-#: integrations/zoom/includes/admin.php:68
-msgid "Client Secret:"
-msgstr ""
-
 #: integrations/zoom/includes/admin.php:69
 msgid "Your Zoom app client secret."
 msgstr ""
@@ -11223,10 +11832,6 @@ msgstr ""
 msgid "Connect with Zoom:"
 msgstr ""
 
-#: integrations/zoom/includes/admin.php:134
-msgid "Authorize"
-msgstr ""
-
 #: integrations/zoom/includes/admin.php:135
 msgid "Add you Zoom app client ID and secret fields and click on \"Authorize\" button to generate access keys for this site."
 msgstr ""
@@ -11235,26 +11840,14 @@ msgstr ""
 msgid "Site connected with Zoom successfully."
 msgstr ""
 
-#: integrations/zoom/includes/admin.php:138
-msgid "Access token:"
-msgstr ""
-
-#: integrations/zoom/includes/admin.php:139
-msgid "Refresh token:"
-msgstr ""
-
 #: integrations/zoom/includes/admin.php:141
 msgid "Site not connected with Zoom."
 msgstr ""
 
-#: integrations/zoom/includes/ajax-functions.php:28
+#: integrations/zoom/includes/ajax-functions.php:33
 msgid "All fields are required to connect with Zoom"
 msgstr ""
 
-#: integrations/zoom/includes/ajax-functions.php:46
+#: integrations/zoom/includes/ajax-functions.php:51
 msgid "Zoom settings saved successfully, redirecting to Zoom..."
-msgstr ""
-
-#: integrations/zoom/includes/functions.php:268
-msgid "any meeting"
 msgstr ""

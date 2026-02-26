@@ -1027,15 +1027,15 @@ function automatorwp_utilities_condition_field() {
             'equal'             => __( 'is equal to', 'automatorwp' ),
             'not_equal'         => __( 'is not equal to', 'automatorwp' ),
             'contains'          => __( 'contains', 'automatorwp' ),
-            'not_contains'      => __( 'does not contains', 'automatorwp' ),
+            'not_contains'      => __( 'does not contain', 'automatorwp' ),
             'start_with'        => __( 'starts with', 'automatorwp' ),
-            'not_start_with'    => __( 'does not starts with', 'automatorwp' ),
+            'not_start_with'    => __( 'does not start with', 'automatorwp' ),
             'ends_with'         => __( 'ends with', 'automatorwp' ),
-            'not_ends_with'     => __( 'does not ends with', 'automatorwp' ),
+            'not_ends_with'     => __( 'does not end with', 'automatorwp' ),
             'less_than'         => __( 'is less than', 'automatorwp' ),
             'greater_than'      => __( 'is greater than', 'automatorwp' ),
-            'less_or_equal'     => __( 'is less or equal to', 'automatorwp' ),
-            'greater_or_equal'  => __( 'is greater or equal to', 'automatorwp' ),
+            'less_or_equal'     => __( 'is less than or equal to', 'automatorwp' ),
+            'greater_or_equal'  => __( 'is greater than or equal to', 'automatorwp' ),
         ),
         'default' => 'equal'
     );
@@ -1111,11 +1111,11 @@ function automatorwp_utilities_string_condition_field() {
             'equal'             => __( 'is equal to', 'automatorwp' ),
             'not_equal'         => __( 'is not equal to', 'automatorwp' ),
             'contains'          => __( 'contains', 'automatorwp' ),
-            'not_contains'      => __( 'does not contains', 'automatorwp' ),
+            'not_contains'      => __( 'does not contain', 'automatorwp' ),
             'start_with'        => __( 'starts with', 'automatorwp' ),
-            'not_start_with'    => __( 'does not starts with', 'automatorwp' ),
+            'not_start_with'    => __( 'does not start with', 'automatorwp' ),
             'ends_with'         => __( 'ends with', 'automatorwp' ),
-            'not_ends_with'     => __( 'does not ends with', 'automatorwp' ),
+            'not_ends_with'     => __( 'does not end with', 'automatorwp' ),
         ),
         'default' => 'equal'
     );
@@ -1136,16 +1136,16 @@ function automatorwp_utilities_get_condition_label( $condition ) {
         'equal'             => __( 'is equal to', 'automatorwp' ),
         'not_equal'         => __( 'is not equal to', 'automatorwp' ),
         'contains'          => __( 'contains', 'automatorwp' ),
-        'not_contains'      => __( 'does not contains', 'automatorwp' ),
+        'not_contains'      => __( 'does not contain', 'automatorwp' ),
         'start_with'        => __( 'starts with', 'automatorwp' ),
-        'not_start_with'    => __( 'does not starts with', 'automatorwp' ),
+        'not_start_with'    => __( 'does not start with', 'automatorwp' ),
         'ends_with'         => __( 'ends with', 'automatorwp' ),
-        'not_ends_with'     => __( 'does not ends with', 'automatorwp' ),
+        'not_ends_with'     => __( 'does not end with', 'automatorwp' ),
         // Number
         'less_than'         => __( 'is less than', 'automatorwp' ),
         'greater_than'      => __( 'is greater than', 'automatorwp' ),
-        'less_or_equal'     => __( 'is less or equal to', 'automatorwp' ),
-        'greater_or_equal'  => __( 'is greater or equal to', 'automatorwp' ),
+        'less_or_equal'     => __( 'is less than or equal to', 'automatorwp' ),
+        'greater_or_equal'  => __( 'is greater than or equal to', 'automatorwp' ),
     );
 
     return ( isset( $conditions[$condition] ) ? $conditions[$condition] : $condition );
@@ -1673,6 +1673,8 @@ function automatorwp_parse_function_args_option( $args, $item, $user_id, $option
  */
 function automatorwp_parse_function_arg_value( $value ) {
 
+    $original_value = $value;
+
     // Check PHP objects
     switch ( $value ) {
         case 'null':
@@ -1714,7 +1716,7 @@ function automatorwp_parse_function_arg_value( $value ) {
      *
      * @return mixed
      */
-    return apply_filters( 'automatorwp_parse_function_arg_value', $value );
+    return apply_filters( 'automatorwp_parse_function_arg_value', $value, $original_value );
 
 }
 
