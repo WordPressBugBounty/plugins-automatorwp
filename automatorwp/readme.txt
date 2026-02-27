@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 5.6.0
+Stable tag: 5.6.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -149,6 +149,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [LearnPress](https://automatorwp.com/add-ons/learnpress/)
 * [LifterLMS](https://automatorwp.com/add-ons/lifterlms/)
 * [MailPoet](https://automatorwp.com/add-ons/mailpoet/)
+* [Masteriyo LMS](https://automatorwp.com/add-ons/masteriyo-lms/)
 * [MasterStudy LMS](https://automatorwp.com/add-ons/masterstudy-lms/)
 * [MemberPress](https://automatorwp.com/add-ons/memberpress/)
 * [Meta Box](https://automatorwp.com/add-ons/meta-box/)
@@ -164,6 +165,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [Restrict Content Pro](https://automatorwp.com/add-ons/restrict-content-pro/)
 * [Sensei LMS](https://automatorwp.com/add-ons/sensei-lms/)
 * [ShortLinks Pro](https://automatorwp.com/add-ons/shortlinkspro/)
+* [Simple Feature Requests](https://automatorwp.com/add-ons/simple-feature-requests/)
 * [SliceWP](https://automatorwp.com/add-ons/slicewp/)
 * [Studiocart](https://automatorwp.com/add-ons/studiocart/)
 * [SureCart](https://automatorwp.com/add-ons/surecart/)
@@ -342,11 +344,19 @@ No, We're unable to provide custom development services, as our focus is develop
 
 == Changelog ==
 
+= 5.6.1 =
+
+* **New Features**
+* New integration: Simple Feature Requests.
+* Simple Feature Requests: New trigger: User opens a feature request.
+* New integration: Masteriyo LMS.
+* Masteriyo LMS: New trigger: User completes a course.
+* Masteriyo LMS: New trigger: User completes a lesson.
+
 = 5.6.0 =
 
 * **Improvements**
 * Fixed typo.
-* Improvement in the parse filter.
 
 = 5.5.9 =
 
