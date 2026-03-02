@@ -1637,8 +1637,11 @@ function automatorwp_parse_function_args_option( $args, $item, $user_id, $option
     foreach( $args as $key => $param ) {
 
         $value = automatorwp_parse_automation_tags( $automation->id, $user_id, $param['value'] );
-
-        $value = automatorwp_parse_function_arg_value( $value );
+        
+        // Check if isn't numeric and starting with 0
+        if( ( is_numeric( $value ) && automatorwp_starts_with( $value, 0 ) ) === false ) {
+            $value = automatorwp_parse_function_arg_value( $value );
+        }
 
         $args[$key] = $value;
 
