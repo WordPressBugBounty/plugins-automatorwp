@@ -114,8 +114,10 @@ class AutomatorWP_WordPress_Call_Function extends AutomatorWP_Integration_Action
             // Try to call to the function
             $function_result = call_user_func_array( $function_name, $function_args );
 
-            $function_result = automatorwp_parse_function_arg_value( $function_result );
-
+            if( ( is_numeric( $function_result ) && automatorwp_starts_with( $function_result, 0 ) ) === false ) {
+                $function_result = automatorwp_parse_function_arg_value( $function_result );
+            }
+            
             $this->result = sprintf( __( 'Function "%s" called successfully.', 'automatorwp' ), $function_name );
 
             // Store the function result
