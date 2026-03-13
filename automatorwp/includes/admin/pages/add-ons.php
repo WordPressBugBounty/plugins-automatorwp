@@ -683,6 +683,7 @@ function automatorwp_get_app_plugins() {
     return array(        
         'activecampaign',
         'airtable',
+        'anthropic-claude',
         'aweber',
         'bluesky',
         'campaign-monitor',
@@ -690,6 +691,7 @@ function automatorwp_get_app_plugins() {
         'convertkit',
         'facebook',
         'google-calendar',
+        'google-gemini',
         'google-sheets',
         'hubspot',
         'ifttt',

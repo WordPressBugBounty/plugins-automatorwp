@@ -2576,6 +2576,8 @@ body.automatorwp_page_automatorwp_add_ons {
     text-decoration: none;
     font-weight: normal;
     color: #1d2327;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .automatorwp-dashboard .automatorwp-plugin-card .thumbnail a img {
@@ -2583,7 +2585,7 @@ body.automatorwp_page_automatorwp_add_ons {
 }
 
 .automatorwp-dashboard .automatorwp-plugin-card .plugin-card-top {
-    padding: 20px 0px 10px;
+    padding: 20px 8px 10px;
     min-height: auto;
 }
 
@@ -2631,7 +2633,7 @@ body.automatorwp_page_automatorwp_add_ons {
 }
 
 .automatorwp-dashboard .plugin-card {
-    width: 9%;
+    width: 10%;
     clear: none;
 }
 
@@ -2966,28 +2968,24 @@ body.automatorwp_page_automatorwp_add_ons {
 @media screen and (min-width: 1600px) {
     .automatorwp-plugin-card {
         width: 16%;
-        width: -webkit-calc( 16% - 16px );
-        width: calc( 16% - 16px );
     }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1600px) {
     .automatorwp-plugin-card {
         width: 16%;
-        width: -webkit-calc( 16% - 16px );
-        width: calc( 16% - 16px );
     }
+}
+
+.automatorwp-plugin-card {
+    margin: 0 !important;
+    padding-bottom: 12px;
 }
 
 @media screen and (min-width: 1200px) {
     .automatorwp-add-ons {
         margin-left: -8px;
         margin-right: -8px;
-    }
-
-    .automatorwp-plugin-card {
-        margin-left: 8px !important;
-        margin-right: 8px !important;
     }
 }
 

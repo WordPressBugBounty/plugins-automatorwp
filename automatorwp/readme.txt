@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 5.6.3
+Stable tag: 5.6.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -206,6 +206,8 @@ AutomatorWP can also work with external platforms, furthermore WordPress plugins
 
 * [ActiveCampaign](https://automatorwp.com/add-ons/activecampaign/)
 * [Airtable](https://automatorwp.com/add-ons/airtable/)
+* [Anthropic (Claude)](https://automatorwp.com/add-ons/anthropic-claude/)
+* [AWeber](https://automatorwp.com/add-ons/aweber/)
 * [Bluesky](https://automatorwp.com/add-ons/bluesky/)
 * [Campaign Monitor](https://automatorwp.com/add-ons/campaign-monitor/)
 * [ClickUp](https://automatorwp.com/add-ons/clickup/)
@@ -213,6 +215,7 @@ AutomatorWP can also work with external platforms, furthermore WordPress plugins
 * [Facebook](https://automatorwp.com/add-ons/facebook/)
 * [HubSpot](https://automatorwp.com/add-ons/hubspot/)
 * [Google Calendar](https://automatorwp.com/add-ons/google-calendar/)
+* [Google Gemini](https://automatorwp.com/add-ons/google-gemini/)
 * [Google Sheets](https://automatorwp.com/add-ons/google-sheets/)
 * [IFTTT](https://automatorwp.com/add-ons/ifttt/)
 * [Instagram](https://automatorwp.com/add-ons/instagram/)
@@ -343,6 +346,11 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.6.4 =
+
+* **Improvements**
+* CSS improvement in dashboard.
 
 = 5.6.3 =
 
