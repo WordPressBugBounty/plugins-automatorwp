@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AutomatorWP\n"
 "Report-Msgid-Bugs-To: https://automatorwp.com/\n"
-"POT-Creation-Date: 2026-02-24 13:40+0100\n"
+"POT-Creation-Date: 2026-03-20 10:31+0100\n"
 "PO-Revision-Date: 2017-MO-DA HO:MI+ZONE\n"
 "Last-Translator: AutomatorWP (https://automatorwp.com/)\n"
 "Language-Team: AutomatorWP <contact@automatorwp.com>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Basepath: ..\n"
@@ -170,7 +170,7 @@ msgstr ""
 #: integrations/automatorwp/actions/add-log.php:224
 #: integrations/automatorwp/actions/anonymous-user.php:873
 #: integrations/automatorwp/actions/anonymous-user.php:899
-#: integrations/automatorwp/actions/call-function.php:197
+#: integrations/automatorwp/actions/call-function.php:199
 #: integrations/automatorwp/actions/do-action.php:187
 #: integrations/automatorwp/actions/redirect-user.php:244
 #: integrations/automatorwp/actions/run-all-posts-automation.php:191
@@ -875,7 +875,7 @@ msgstr ""
 
 #: includes/admin/settings/general.php:96 includes/cmb2.php:360
 #: includes/custom-tables/automations.php:248
-#: includes/custom-tables/automations.php:754 includes/utilities.php:1879
+#: includes/custom-tables/automations.php:754 includes/utilities.php:1884
 #: integrations/wordpress/actions/update-posts.php:119
 msgid "Author"
 msgstr ""
@@ -1177,7 +1177,7 @@ msgid "any field"
 msgstr ""
 
 #: includes/cmb2.php:351 includes/cmb2.php:410 includes/tags.php:64
-#: includes/utilities.php:1870 includes/utilities.php:1903
+#: includes/utilities.php:1875 includes/utilities.php:1908
 #: integrations/automatorwp/actions/anonymous-user.php:101
 #: integrations/automatorwp/actions/anonymous-user.php:275
 #: integrations/wordpress/actions/update-posts.php:112
@@ -1189,76 +1189,76 @@ msgstr ""
 #: includes/cmb2.php:352 includes/custom-tables/automations.php:244
 #: includes/custom-tables/automations.php:679
 #: includes/custom-tables/automations.php:683
-#: includes/custom-tables/logs.php:176 includes/utilities.php:1871
+#: includes/custom-tables/logs.php:176 includes/utilities.php:1876
 #: integrations/wordpress/actions/update-posts.php:113
 msgid "Title"
 msgstr ""
 
-#: includes/cmb2.php:353 includes/utilities.php:1872
+#: includes/cmb2.php:353 includes/utilities.php:1877
 #: integrations/wordpress/actions/update-posts.php:114
 msgid "Slug"
 msgstr ""
 
 #: includes/cmb2.php:354 includes/custom-tables/automations.php:245
 #: includes/custom-tables/automations.php:703
-#: includes/custom-tables/logs.php:177 includes/utilities.php:1873
+#: includes/custom-tables/logs.php:177 includes/utilities.php:1878
 #: integrations/wordpress/actions/update-posts.php:115
 msgid "Type"
 msgstr ""
 
 #: includes/cmb2.php:355 includes/custom-tables/automations.php:250
-#: includes/custom-tables/automations.php:769 includes/utilities.php:1874
+#: includes/custom-tables/automations.php:769 includes/utilities.php:1879
 #: integrations/wordpress/actions/update-posts.php:116
 msgid "Status"
 msgstr ""
 
 #: includes/cmb2.php:356 includes/custom-tables/automations.php:251
-#: includes/custom-tables/logs.php:181 includes/utilities.php:1875
+#: includes/custom-tables/logs.php:181 includes/utilities.php:1880
 #: integrations/wordpress/actions/update-posts.php:117
 msgid "Date"
 msgstr ""
 
-#: includes/cmb2.php:357 includes/utilities.php:1876
+#: includes/cmb2.php:357 includes/utilities.php:1881
 msgid "Date (GMT)"
 msgstr ""
 
-#: includes/cmb2.php:358 includes/utilities.php:1877
+#: includes/cmb2.php:358 includes/utilities.php:1882
 #: integrations/wordpress/actions/update-posts.php:118
 msgid "Date Modified"
 msgstr ""
 
-#: includes/cmb2.php:359 includes/utilities.php:1878
+#: includes/cmb2.php:359 includes/utilities.php:1883
 msgid "Date Modified (GMT)"
 msgstr ""
 
-#: includes/cmb2.php:361 includes/utilities.php:1880
+#: includes/cmb2.php:361 includes/utilities.php:1885
 #: integrations/wordpress/actions/update-posts.php:120
 msgid "Content"
 msgstr ""
 
-#: includes/cmb2.php:362 includes/utilities.php:1881
+#: includes/cmb2.php:362 includes/utilities.php:1886
 #: integrations/wordpress/actions/update-posts.php:121
 msgid "Excerpt"
 msgstr ""
 
-#: includes/cmb2.php:363 includes/utilities.php:1882
+#: includes/cmb2.php:363 includes/utilities.php:1887
 #: integrations/wordpress/actions/update-posts.php:122
 msgid "Parent"
 msgstr ""
 
-#: includes/cmb2.php:364 includes/utilities.php:1883
+#: includes/cmb2.php:364 includes/utilities.php:1888
 #: integrations/wordpress/actions/update-posts.php:123
 msgid "Order"
 msgstr ""
 
-#: includes/cmb2.php:365 includes/utilities.php:1884
+#: includes/cmb2.php:365 includes/utilities.php:1889
 #: integrations/wordpress/actions/update-posts.php:124
 #: integrations/wordpress/triggers/user-field-update.php:61
 #: integrations/wordpress/triggers/user-field-update.php:274
 msgid "Password"
 msgstr ""
 
-#: includes/cmb2.php:411 includes/tags.php:70 includes/utilities.php:1904
+#: includes/cmb2.php:411 includes/tags.php:70 includes/utilities.php:1909
 #: integrations/automatorwp/actions/anonymous-user.php:103
 #: integrations/automatorwp/actions/anonymous-user.php:217
 #: integrations/wordpress/filters/user-exists.php:42
@@ -1269,7 +1269,7 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: includes/cmb2.php:412 includes/tags.php:76 includes/utilities.php:1905
+#: includes/cmb2.php:412 includes/tags.php:76 includes/utilities.php:1910
 #: integrations/activecampaign/includes/tags.php:37
 #: integrations/automatorwp/actions/anonymous-user.php:102
 #: integrations/automatorwp/actions/anonymous-user.php:216
@@ -1283,26 +1283,26 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: includes/cmb2.php:413 includes/tags.php:82 includes/utilities.php:1906
+#: includes/cmb2.php:413 includes/tags.php:82 includes/utilities.php:1911
 #: integrations/wordpress/filters/user-field.php:46
 #: integrations/wordpress/triggers/user-field-update.php:59
 #: integrations/wordpress/triggers/user-field-update.php:272
 msgid "Display name"
 msgstr ""
 
-#: includes/cmb2.php:414 includes/utilities.php:1907
+#: includes/cmb2.php:414 includes/utilities.php:1912
 #: integrations/wordpress/triggers/user-field-update.php:60
 #: integrations/wordpress/triggers/user-field-update.php:273
 msgid "Nicename"
 msgstr ""
 
-#: includes/cmb2.php:415 includes/utilities.php:1908
+#: includes/cmb2.php:415 includes/utilities.php:1913
 #: integrations/wordpress/triggers/user-field-update.php:62
 #: integrations/wordpress/triggers/user-field-update.php:275
 msgid "Website"
 msgstr ""
 
-#: includes/cmb2.php:416 includes/utilities.php:1909
+#: includes/cmb2.php:416 includes/utilities.php:1914
 msgid "Registration Date"
 msgstr ""
 
@@ -2187,17 +2187,17 @@ msgstr ""
 msgid "Hide options"
 msgstr ""
 
-#: includes/utilities.php:1849 integrations/filter/actions/action-filter.php:35
+#: includes/utilities.php:1854 integrations/filter/actions/action-filter.php:35
 #: integrations/filter/triggers/trigger-filter.php:35
 msgid "Operator:"
 msgstr ""
 
-#: includes/utilities.php:1852 integrations/filter/actions/action-filter.php:38
+#: includes/utilities.php:1857 integrations/filter/actions/action-filter.php:38
 #: integrations/filter/triggers/trigger-filter.php:38
 msgid "AND"
 msgstr ""
 
-#: includes/utilities.php:1853 integrations/filter/actions/action-filter.php:39
+#: includes/utilities.php:1858 integrations/filter/actions/action-filter.php:39
 #: integrations/filter/triggers/trigger-filter.php:39
 msgid "OR"
 msgstr ""
@@ -2972,6 +2972,9 @@ msgstr ""
 #: integrations/bbforms/includes/functions.php:25
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:42
 #: integrations/bbforms/includes/triggers/submit-form.php:41
+#: integrations/brizy/includes/functions.php:25
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:42
+#: integrations/brizy/includes/triggers/submit-form.php:41
 #: integrations/caldera-forms/includes/functions.php:25
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:42
 #: integrations/caldera-forms/includes/triggers/submit-form.php:41
@@ -3031,6 +3034,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:27
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:27
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:27
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:27
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:27
 #: integrations/divi/includes/triggers/anonymous-submit-form.php:27
@@ -3054,6 +3058,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:28
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:28
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:28
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:28
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:28
 #: integrations/divi/includes/triggers/anonymous-submit-form.php:28
@@ -3078,6 +3083,7 @@ msgstr ""
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:30
 #: integrations/arforms/includes/triggers/anonymous-submit-form.php:32
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:32
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:32
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:30
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:32
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:30
@@ -3122,6 +3128,8 @@ msgstr ""
 #: integrations/arforms/includes/triggers/submit-form.php:42
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:40
 #: integrations/bbforms/includes/triggers/submit-form.php:39
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:40
+#: integrations/brizy/includes/triggers/submit-form.php:39
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:40
 #: integrations/caldera-forms/includes/triggers/submit-form.php:39
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:39
@@ -3167,6 +3175,8 @@ msgstr ""
 #: integrations/arforms/includes/triggers/submit-form.php:54
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:52
 #: integrations/bbforms/includes/triggers/submit-form.php:51
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:52
+#: integrations/brizy/includes/triggers/submit-form.php:51
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:52
 #: integrations/caldera-forms/includes/triggers/submit-form.php:51
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:48
@@ -3237,6 +3247,8 @@ msgstr ""
 #: integrations/arforms/includes/triggers/submit-form.php:194
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:189
 #: integrations/bbforms/includes/triggers/submit-form.php:190
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:189
+#: integrations/brizy/includes/triggers/submit-form.php:191
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:188
 #: integrations/caldera-forms/includes/triggers/submit-form.php:190
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:204
@@ -3278,6 +3290,8 @@ msgstr ""
 #: integrations/arforms/includes/triggers/submit-form.php:195
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:190
 #: integrations/bbforms/includes/triggers/submit-form.php:191
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:190
+#: integrations/brizy/includes/triggers/submit-form.php:192
 #: integrations/caldera-forms/includes/triggers/anonymous-submit-form.php:189
 #: integrations/caldera-forms/includes/triggers/submit-form.php:191
 #: integrations/contact-form-7/includes/triggers/anonymous-submit-form.php:205
@@ -3317,6 +3331,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:26
 #: integrations/bbforms/includes/triggers/submit-form.php:26
+#: integrations/brizy/includes/triggers/submit-form.php:26
 #: integrations/caldera-forms/includes/triggers/submit-form.php:26
 #: integrations/contact-form-7/includes/triggers/submit-form.php:26
 #: integrations/divi/includes/triggers/submit-form.php:26
@@ -3340,6 +3355,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:27
 #: integrations/bbforms/includes/triggers/submit-form.php:27
+#: integrations/brizy/includes/triggers/submit-form.php:27
 #: integrations/caldera-forms/includes/triggers/submit-form.php:27
 #: integrations/contact-form-7/includes/triggers/submit-form.php:27
 #: integrations/divi/includes/triggers/submit-form.php:27
@@ -3362,6 +3378,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:29
 #: integrations/bbforms/includes/triggers/submit-form.php:29
+#: integrations/brizy/includes/triggers/submit-form.php:29
 #: integrations/caldera-forms/includes/triggers/submit-form.php:29
 #: integrations/contact-form-7/includes/triggers/submit-form.php:29
 #: integrations/divi/includes/triggers/submit-form.php:29
@@ -3387,6 +3404,7 @@ msgstr ""
 
 #: integrations/arforms/includes/triggers/submit-form.php:31
 #: integrations/bbforms/includes/triggers/submit-form.php:31
+#: integrations/brizy/includes/triggers/submit-form.php:31
 #: integrations/caldera-forms/includes/triggers/submit-form.php:31
 #: integrations/contact-form-7/includes/triggers/submit-form.php:31
 #: integrations/divi/includes/triggers/submit-form.php:31
@@ -4091,17 +4109,17 @@ msgstr ""
 msgid "Function \"%s\" not found."
 msgstr ""
 
-#: integrations/automatorwp/actions/call-function.php:119
+#: integrations/automatorwp/actions/call-function.php:121
 #, php-format
 msgid "Function \"%s\" called successfully."
 msgstr ""
 
-#: integrations/automatorwp/actions/call-function.php:123
+#: integrations/automatorwp/actions/call-function.php:125
 #, php-format
 msgid "The function returned: %s"
 msgstr ""
 
-#: integrations/automatorwp/actions/call-function.php:127
+#: integrations/automatorwp/actions/call-function.php:129
 #, php-format
 msgid "Function \"%s\" throw the error: %s"
 msgstr ""
@@ -4440,6 +4458,8 @@ msgstr ""
 #: integrations/lifterlms/includes/triggers/complete-course.php:29
 #: integrations/lifterlms/includes/triggers/complete-lesson.php:29
 #: integrations/lifterlms/includes/triggers/complete-section.php:29
+#: integrations/masteriyo-lms/includes/triggers/complete-course.php:28
+#: integrations/masteriyo-lms/includes/triggers/complete-lesson.php:29
 #: integrations/masterstudy-lms/includes/triggers/complete-course.php:29
 #: integrations/masterstudy-lms/includes/triggers/complete-lesson.php:29
 #: integrations/sensei-lms/includes/triggers/complete-course.php:29
@@ -4467,6 +4487,8 @@ msgstr ""
 #: integrations/lifterlms/includes/triggers/complete-course.php:31
 #: integrations/lifterlms/includes/triggers/complete-lesson.php:31
 #: integrations/lifterlms/includes/triggers/complete-section.php:31
+#: integrations/masteriyo-lms/includes/triggers/complete-course.php:30
+#: integrations/masteriyo-lms/includes/triggers/complete-lesson.php:31
 #: integrations/masterstudy-lms/includes/triggers/complete-course.php:31
 #: integrations/masterstudy-lms/includes/triggers/complete-lesson.php:31
 #: integrations/sensei-lms/includes/triggers/complete-course.php:31
@@ -4888,6 +4910,7 @@ msgid "Client opens a ticket %1$s time(s)"
 msgstr ""
 
 #: integrations/bbforms/includes/triggers/anonymous-submit-form.php:30
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:30
 #: integrations/qsm/includes/triggers/anonymous-submit-quiz.php:30
 #: integrations/thrive-leads/includes/triggers/anonymous-submit-form.php:30
 #, php-format
@@ -5017,6 +5040,15 @@ msgstr ""
 
 #: integrations/bluesky/includes/functions.php:76
 msgid "Refresh token not found in the response."
+msgstr ""
+
+#: integrations/brizy/includes/triggers/anonymous-submit-form.php:54
+#: integrations/brizy/includes/triggers/submit-form.php:53
+#: integrations/divi/includes/triggers/anonymous-submit-form.php:56
+#: integrations/divi/includes/triggers/submit-form.php:55
+#: integrations/elementor/includes/triggers/anonymous-submit-form.php:56
+#: integrations/elementor/includes/triggers/submit-form.php:55
+msgid "Form field value, replace \"FIELD_ID\" by the field id"
 msgstr ""
 
 #: integrations/buddyboss/includes/actions/add-user-activity.php:26
@@ -6144,13 +6176,6 @@ msgstr ""
 msgid "Form ID:"
 msgstr ""
 
-#: integrations/divi/includes/triggers/anonymous-submit-form.php:56
-#: integrations/divi/includes/triggers/submit-form.php:55
-#: integrations/elementor/includes/triggers/anonymous-submit-form.php:56
-#: integrations/elementor/includes/triggers/submit-form.php:55
-msgid "Form field value, replace \"FIELD_ID\" by the field id"
-msgstr ""
-
 #: integrations/easy-affiliate/includes/triggers/earn-referral.php:26
 #: integrations/easy-affiliate/includes/triggers/earn-referral.php:30
 msgid "User earns a referral"
@@ -6447,6 +6472,7 @@ msgstr ""
 #: integrations/learndash/includes/triggers/view-course.php:39
 #: integrations/learnpress/includes/triggers/complete-course.php:39
 #: integrations/lifterlms/includes/triggers/complete-course.php:39
+#: integrations/masteriyo-lms/includes/triggers/complete-course.php:38
 #: integrations/masterstudy-lms/includes/triggers/complete-course.php:39
 #: integrations/sensei-lms/includes/triggers/complete-course.php:39
 #: integrations/thrive-apprentice/includes/triggers/complete-course.php:39
@@ -6477,6 +6503,7 @@ msgstr ""
 #: integrations/learndash/includes/triggers/complete-course.php:26
 #: integrations/learnpress/includes/triggers/complete-course.php:26
 #: integrations/lifterlms/includes/triggers/complete-course.php:26
+#: integrations/masteriyo-lms/includes/triggers/complete-course.php:25
 #: integrations/masterstudy-lms/includes/triggers/complete-course.php:26
 #: integrations/sensei-lms/includes/triggers/complete-course.php:26
 #: integrations/thrive-apprentice/includes/triggers/complete-course.php:26
@@ -6486,6 +6513,7 @@ msgid "User completes a course"
 msgstr ""
 
 #: integrations/fluentcommunity/includes/triggers/complete-course.php:27
+#: integrations/masteriyo-lms/includes/triggers/complete-course.php:26
 msgid "User completes a <strong>course</strong>"
 msgstr ""
 
@@ -6497,6 +6525,7 @@ msgstr ""
 #: integrations/learnpress/includes/triggers/complete-course.php:38
 #: integrations/lifterlms/includes/actions/user-course.php:34
 #: integrations/lifterlms/includes/triggers/complete-course.php:38
+#: integrations/masteriyo-lms/includes/triggers/complete-course.php:37
 #: integrations/masterstudy-lms/includes/actions/user-course.php:34
 #: integrations/masterstudy-lms/includes/triggers/complete-course.php:38
 #: integrations/sensei-lms/includes/triggers/complete-course.php:38
@@ -7558,6 +7587,7 @@ msgstr ""
 #: integrations/learndash/includes/triggers/complete-lesson.php:38
 #: integrations/learnpress/includes/triggers/complete-lesson.php:38
 #: integrations/lifterlms/includes/triggers/complete-lesson.php:38
+#: integrations/masteriyo-lms/includes/triggers/complete-lesson.php:38
 #: integrations/masterstudy-lms/includes/triggers/complete-lesson.php:38
 #: integrations/sensei-lms/includes/triggers/complete-lesson.php:38
 #: integrations/tutor/includes/triggers/complete-lesson.php:38
@@ -7654,6 +7684,7 @@ msgstr ""
 #: integrations/learndash/includes/triggers/complete-lesson.php:26
 #: integrations/learnpress/includes/triggers/complete-lesson.php:26
 #: integrations/lifterlms/includes/triggers/complete-lesson.php:26
+#: integrations/masteriyo-lms/includes/triggers/complete-lesson.php:26
 #: integrations/masterstudy-lms/includes/triggers/complete-lesson.php:26
 #: integrations/sensei-lms/includes/triggers/complete-lesson.php:26
 #: integrations/tutor/includes/triggers/complete-lesson.php:26
@@ -7663,6 +7694,7 @@ msgstr ""
 #: integrations/learndash/includes/triggers/complete-lesson.php:27
 #: integrations/learnpress/includes/triggers/complete-lesson.php:27
 #: integrations/lifterlms/includes/triggers/complete-lesson.php:27
+#: integrations/masteriyo-lms/includes/triggers/complete-lesson.php:27
 #: integrations/masterstudy-lms/includes/triggers/complete-lesson.php:27
 #: integrations/sensei-lms/includes/triggers/complete-lesson.php:27
 #: integrations/tutor/includes/triggers/complete-lesson.php:27
@@ -7673,6 +7705,7 @@ msgstr ""
 #: integrations/learndash/includes/triggers/view-lesson.php:39
 #: integrations/learnpress/includes/triggers/complete-lesson.php:39
 #: integrations/lifterlms/includes/triggers/complete-lesson.php:39
+#: integrations/masteriyo-lms/includes/triggers/complete-lesson.php:39
 #: integrations/masterstudy-lms/includes/triggers/complete-lesson.php:39
 #: integrations/sensei-lms/includes/triggers/complete-lesson.php:39
 #: integrations/tutor/includes/triggers/complete-lesson.php:39
@@ -8781,6 +8814,24 @@ msgstr ""
 
 #: integrations/shortlinkspro/includes/triggers/click-link.php:27
 msgid "User clicks <strong>a link</strong>"
+msgstr ""
+
+#: integrations/simple-feature-requests/includes/triggers/open-feature-request.php:26
+#: integrations/simple-feature-requests/includes/triggers/open-feature-request.php:30
+msgid "User opens a feature request"
+msgstr ""
+
+#: integrations/simple-feature-requests/includes/triggers/open-feature-request.php:27
+msgid "User opens <strong>a feature request</strong>"
+msgstr ""
+
+#: integrations/simple-feature-requests/includes/triggers/open-feature-request.php:29
+#, php-format
+msgid "User opens a feature request %1$s time(s)"
+msgstr ""
+
+#: integrations/simple-feature-requests/includes/triggers/open-feature-request.php:39
+msgid "Feature request"
 msgstr ""
 
 #: integrations/studiocart/includes/tags.php:22
