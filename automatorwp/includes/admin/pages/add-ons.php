@@ -703,6 +703,7 @@ function automatorwp_get_app_plugins() {
         'mailerlite',
         'make',
         'mautic',
+        'mistral-ai',
         'notion',
         'openai',
         'trello',

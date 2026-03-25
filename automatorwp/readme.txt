@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 5.6.5
+Stable tag: 5.6.6
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -226,6 +226,7 @@ AutomatorWP can also work with external platforms, furthermore WordPress plugins
 * [Mailchimp](https://automatorwp.com/add-ons/mailchimp/)
 * [MailerLite](https://automatorwp.com/add-ons/mailerlite/)
 * [Make](https://automatorwp.com/add-ons/make/)
+* [Mistral AI](https://automatorwp.com/add-ons/mistral-ai/)
 * [Notion](https://automatorwp.com/add-ons/notion/)
 * [Twilio](https://automatorwp.com/add-ons/twilio/)
 * [Twitter](https://automatorwp.com/add-ons/twitter/)
@@ -347,6 +348,11 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.6.6 =
+
+* **Improvements**
+* Fixed PHP Deprecated: strip_tags() notice for newer versions of PHP.
 
 = 5.6.5 =
 

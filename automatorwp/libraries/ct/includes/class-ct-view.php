@@ -62,6 +62,7 @@ if ( ! class_exists( 'CT_View' ) ) :
         public function add_hooks() {
 
             add_action( 'admin_init', array( $this, 'admin_init' ) );
+            add_action( 'admin_init', array( $this, 'override_page_title' ) );
 
             if( $this->args['priority'] === null ) {
                 $this->args['priority'] = empty( $this->args['parent_slug'] ) ? 20 : 21;
@@ -415,7 +416,7 @@ if ( ! class_exists( 'CT_View' ) ) :
         }
 
         public function get_page_title() {
-
+            
             $prefix = substr( $this->args['menu_slug'], 0, 4 );
 
             switch( $prefix ) {
@@ -435,6 +436,7 @@ if ( ! class_exists( 'CT_View' ) ) :
             }
 
             return $this->args['page_title'];
+            
         }
 
         public function get_menu_title() {
@@ -514,6 +516,27 @@ if ( ! class_exists( 'CT_View' ) ) :
 
             do_action( "ct_render_{$this->name}_view", $this );
 
+        }
+
+        /**
+         * Set the $title global to avoid warnings
+         *
+         * @since	    1.0.0
+         *
+         * @return      string
+         */
+        public function override_page_title() {
+            
+            global $title;
+
+            if ( $this->is_current_view() ) {
+
+                if ( is_null( $title ) || empty( $title ) ) {
+                    $title = $this->get_page_title();
+                    
+                }
+                
+            }
         }
 
     }
