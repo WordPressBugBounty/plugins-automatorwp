@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 6.9
-Stable tag: 5.6.6
+Stable tag: 5.6.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -155,6 +155,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [MemberPress](https://automatorwp.com/add-ons/memberpress/)
 * [Meta Box](https://automatorwp.com/add-ons/meta-box/)
 * [Modern Events Calendar](https://automatorwp.com/add-ons/modern-events-calendar/)
+* [MyCred](https://automatorwp.com/add-ons/mycred/)
 * [Newsletter](https://automatorwp.com/add-ons/newsletter/)
 * [Ninja Forms](https://automatorwp.com/add-ons/ninja-forms/)
 * [Paid Memberships Pro](https://automatorwp.com/add-ons/paid-memberships-pro/)
@@ -348,6 +349,13 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.6.7 =
+
+* **New Features**
+* New integration: MyCred.
+* MyCred: New trigger: User earns points.
+* MyCred: New action: Award points to user.
 
 = 5.6.6 =
 
