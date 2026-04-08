@@ -18,6 +18,11 @@ function automatorwp_aweber_ajax_authorize() {
     // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     $prefix = 'automatorwp_aweber_';
 
     $client_id = sanitize_text_field( $_POST['client_id'] );
@@ -25,7 +30,7 @@ function automatorwp_aweber_ajax_authorize() {
    
     // Check parameters given
     if( empty( $client_id ) || empty( $client_secret ) ) {
-        wp_send_json_error( array( 'message' => __( 'All fields are required to connect with AWeber', 'automatorwp-aweber' ) ) );
+        wp_send_json_error( array( 'message' => __( 'All fields are required to connect with AWeber', 'automatorwp' ) ) );
     }
 
     $settings = get_option( 'automatorwp_settings' );
@@ -46,7 +51,7 @@ function automatorwp_aweber_ajax_authorize() {
 
     // Return the redirect URL
     wp_send_json_success( array(
-        'message' => __( 'Settings saved successfully, redirecting to AWeber...', 'automatorwp-aweber' ),
+        'message' => __( 'Settings saved successfully, redirecting to AWeber...', 'automatorwp' ),
         'redirect_url' => $redirect_url
     ) );
 

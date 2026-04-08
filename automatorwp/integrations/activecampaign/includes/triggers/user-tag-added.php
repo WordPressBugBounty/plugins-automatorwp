@@ -29,7 +29,7 @@ class AutomatorWP_ActiveCampaign_User_Tag_Added extends AutomatorWP_Integration_
             'edit_label'        => sprintf( __( '%1$s added to user %2$s time(s)', 'automatorwp' ), '{tag}', '{times}' ),
             /* translators: %1$s: Tag. */
             'log_label'         => sprintf( __( '%1$s added to user', 'automatorwp' ), '{tag}' ),
-            'action'            => 'automatorwp_activecampaign_user_tag_added',
+            'action'            => 'automatorwp_activecampaign_contact_tag_added',
             'function'          => array( $this, 'listener' ),
             'priority'          => 10,
             'accepted_args'     => 2,
@@ -72,8 +72,8 @@ class AutomatorWP_ActiveCampaign_User_Tag_Added extends AutomatorWP_Integration_
      * @param array     $params     Data received
      * @param int       $user_id    User ID
      */
-    public function listener( $params, $user_id) {
-
+    public function listener( $params, $user_id ) {
+    
         $this->result = '';
 
         // Bail if no user
@@ -82,8 +82,7 @@ class AutomatorWP_ActiveCampaign_User_Tag_Added extends AutomatorWP_Integration_
         }
 
         // Shorthands
-        $user = get_user_by( 'id', $user_id);
-        $email = $user->user_email;    
+        $email = sanitize_email ( $params['contact']['email'] );  
         $tag = sanitize_text_field ( $params['tag'] );
 
 		/* translators: %1$s: Email. %2$s: Tag .*/
@@ -93,7 +92,6 @@ class AutomatorWP_ActiveCampaign_User_Tag_Added extends AutomatorWP_Integration_
         automatorwp_trigger_event( array(
             'trigger'       => $this->trigger,
             'user_id'       => $user_id,
-            'webhook_url'   => get_site_url() . $params['q'],
             'action_type'   => $params['type'],
             'date_time'     => $params['date_time'],
             'email'         => $params['contact']['email'],
@@ -199,7 +197,6 @@ class AutomatorWP_ActiveCampaign_User_Tag_Added extends AutomatorWP_Integration_
 
         // Store the action's result
         $log_meta['result'] = $this->result;
-        $log_meta['webhook_url'] = ( isset( $event['webhook_url'] ) ? $event['webhook_url'] : '' );
         $log_meta['action_type'] = ( isset( $event['action_type'] ) ? $event['action_type'] : '' );
         $log_meta['date_time'] = ( isset( $event['date_time'] ) ? $event['date_time'] : '' );
         $log_meta['email'] = ( isset( $event['email'] ) ? $event['email'] : '' );
@@ -238,10 +235,6 @@ class AutomatorWP_ActiveCampaign_User_Tag_Added extends AutomatorWP_Integration_
             'type' => 'text',
         );
 
-        $log_fields['webhook_url'] = array(
-            'name' => __( 'Webhook URL:', 'automatorwp' ),
-            'type' => 'text',
-        );
         $log_fields['action_type'] = array(
             'name' => __( 'Action type:', 'automatorwp' ),
             'type' => 'text',

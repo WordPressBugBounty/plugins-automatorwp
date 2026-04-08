@@ -19,6 +19,11 @@ function automatorwp_campaign_monitor_ajax_authorize() {
     // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     $prefix = 'automatorwp_campaign_monitor_';
 
     $url = automatorwp_campaign_monitor_get_url();

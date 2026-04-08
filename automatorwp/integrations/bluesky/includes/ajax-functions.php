@@ -19,6 +19,11 @@ function automatorwp_bluesky_ajax_authorize() {
     // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     $prefix = 'automatorwp_bluesky_';
 
     $user_handle = automatorwp_bluesky_validate_name_account( sanitize_text_field( $_POST["user_handle"] ) );

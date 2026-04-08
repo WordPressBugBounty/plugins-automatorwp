@@ -57,7 +57,7 @@ function automatorwp_activecampaign_ajax_authorize() {
 
     // Update settings
     update_option( 'automatorwp_settings', $settings );
-    $admin_url = str_replace( 'http://', 'http://', get_admin_url() )  . 'admin.php?page=automatorwp_settings&tab=opt-tab-activecampaign';
+    $admin_url = admin_url( 'admin.php?page=automatorwp_settings&tab=opt-tab-activecampaign' );
    
     wp_send_json_success( array(
         'message' => __( 'Correct data to connect with ActiveCampaign', 'automatorwp' ),
@@ -78,6 +78,11 @@ add_action( 'wp_ajax_automatorwp_activecampaign_authorize',  'automatorwp_active
 function automatorwp_activecampaign_ajax_refresh( ) {
     // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     $prefix = 'automatorwp_activecampaign_';
 

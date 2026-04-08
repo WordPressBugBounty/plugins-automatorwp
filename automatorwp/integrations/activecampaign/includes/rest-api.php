@@ -43,26 +43,32 @@ function automatorwp_activecampaign_rest_api_cb( $data ) {
         return new WP_REST_Response( array( 'success' => false, 'message' => __( 'No parameters received', 'automatorwp' ) ), 400 );
     }
 
-    $type = sanitize_text_field( $params['type'] );
-    $email = sanitize_text_field( $params['contact']['email'] );
+    // Sanitize params array
+    $params = map_deep( $params, 'sanitize_text_field' );
+
+    // Sanitize specific fields
+    if ( isset( $params['contact'] ) && is_array( $params['contact'] ) ) {
+    
+        $params['contact']['id'] = absint( $params['contact']['id'] );
+        $params['contact']['email'] = sanitize_email( $params['contact']['email'] );
+        
+        if ( isset( $params['contact']['fields'] ) && is_array( $params['contact']['fields'] ) ) {
+            $params['contact']['fields'] = map_deep( $params['contact']['fields'], 'sanitize_text_field' );
+        }
+    }
+
+    $type = $params['type'];
+    $email = $params['contact']['email'];
     $user = get_user_by( 'email', $email );
     
     // Actions when a user/contact is subscribed
     if ( $type === 'subscribe' ) {
-
-        if ( $user ) {
-            do_action( 'automatorwp_activecampaign_user_subscribed', $params, $user->ID );
-        }
-
+        do_action( 'automatorwp_activecampaign_contact_subscribed', $params, ( $user ? $user->ID : 0 ) );
     }
 
     // Actions when a tag is added to user/contact
     if ( $type === 'contact_tag_added') {
-
-        if ( $user ) {
-            do_action( 'automatorwp_activecampaign_user_tag_added', $params, $user->ID );
-        }
-
+        do_action( 'automatorwp_activecampaign_contact_tag_added', $params, ( $user ? $user->ID : 0 ) );
     }
 
     return new WP_REST_Response( array( 'success' => true ), 200 );
