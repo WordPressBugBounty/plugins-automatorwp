@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.0
-Stable tag: 5.7.3
+Stable tag: 5.7.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -99,6 +99,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [ActiveMember360](https://automatorwp.com/add-ons/activemember360/)
 * [Advanced Ads](https://automatorwp.com/add-ons/advanced-ads/)
 * [Advanced Custom Fields (ACF)](https://automatorwp.com/add-ons/advanced-custom-fields/)
+* [AffiliatePress](https://automatorwp.com/add-ons/affiliatepress/)
 * [AffiliateWP](https://automatorwp.com/add-ons/affiliatewp/)
 * [Amelia](https://automatorwp.com/add-ons/ameliabooking/)
 * [AnsPress](https://automatorwp.com/add-ons/anspress/)
@@ -111,6 +112,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [bbPress](https://automatorwp.com/add-ons/bbpress/)
 * [Better Messages](https://automatorwp.com/add-ons/better-messages/)
 * [Blockli](https://automatorwp.com/add-ons/blockli/)
+* [BookingPress](https://automatorwp.com/add-ons/bookingpress/)
 * [Brizy](https://automatorwp.com/add-ons/brizy/)
 * [BuddyBoss](https://automatorwp.com/add-ons/buddyboss/)
 * [BuddyPress](https://automatorwp.com/add-ons/buddypress/)
@@ -150,6 +152,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [LearnDash](https://automatorwp.com/add-ons/learndash/)
 * [LearnPress](https://automatorwp.com/add-ons/learnpress/)
 * [LifterLMS](https://automatorwp.com/add-ons/lifterlms/)
+* [Mail Mint](https://automatorwp.com/add-ons/mail-mint/)
 * [MailPoet](https://automatorwp.com/add-ons/mailpoet/)
 * [Masteriyo LMS](https://automatorwp.com/add-ons/masteriyo-lms/)
 * [MasterStudy LMS](https://automatorwp.com/add-ons/masterstudy-lms/)
@@ -350,6 +353,20 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.7.4 =
+
+* **New Features**
+* New integration: AffiliatePress.
+* AffiliatePress: New trigger: A user registers as an affiliate.
+* New integration: BookingPress.
+* BookingPress: New trigger: User is registered as a customer.
+* BookingPress: New trigger: Guest is registered as a customer.
+* New integration: Mail Mint.
+* Mail Mint: New trigger: User added to contacts.
+* Mail Mint: New trigger: A tag is added to user.
+* Mail Mint: New action: Add user to Mail Mint.
+* Mail Mint: New action: Add tag to user.
 
 = 5.7.3 =
 
