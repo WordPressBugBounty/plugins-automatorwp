@@ -132,6 +132,7 @@
 #automatorwp-automations-save-changes #major-publishing-actions,
 #automatorwp-automations-execution-options #major-publishing-actions {
     margin: 20px -12px -12px -12px;
+    display: block;
 }
 
 #automatorwp-automations-save-changes #major-publishing-actions .automatorwp-save-and-activate {
@@ -346,10 +347,6 @@
     cursor: grab; /* To notice that items are draggable */
 }
 
-.automatorwp-automation-item .button {
-    font-size: 14px;
-}
-
 .automatorwp-automation-item .button + .button {
     margin-left: 2px;
 }
@@ -389,6 +386,14 @@
 .automatorwp-automation-item-label {
     font-size: 16px;
     line-height: 32px;
+}
+
+.automatorwp-automation-item-label > .button {
+    min-height: 32px;
+    line-height: 2;
+    padding: 0 12px;
+    margin: 0 !important;
+    font-size: 14px;
 }
 
 .automatorwp-no-grab {
@@ -1115,7 +1120,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 }
 
 .automatorwp-select2 .select2-selection--single .select2-selection__arrow {
-    height: 36px !important;
+    height: 38.5px !important;
     width: 30px !important;
 }
 
@@ -1282,7 +1287,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 .automatorwp-automation-tag-selector + .automatorwp-select2 .select2-selection__arrow:before {
     content: "\f206";
     display: inline-block;
-    margin-top: 8px;
+    margin-top: 9px;
 }
 
 .automatorwp-automation-tag-selector + .automatorwp-select2 .select2-selection__arrow b {
@@ -1702,29 +1707,25 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     color: #fff;
 }
 
-.button.automatorwp-cancel-option-form {
-    line-height: 32px;
-}
-
 .automatorwp-add-trigger,
-.automatorwp-add-action {
-    font-size: 14px;
-    line-height: 32px;
+.automatorwp-add-action,
+.automatorwp-add-filter {
+    min-height: 32px !important;
+    line-height: 2 !important;
+    padding: 0 12px !important;
 }
 
-.automatorwp-add-trigger .dashicons,
-.automatorwp-add-action .dashicons {
-    line-height: 32px;
+.automatorwp-add-trigger.button .dashicons,
+.automatorwp-add-action.button .dashicons,
+.automatorwp-add-filter.button .dashicons {
+    line-height: 1.5;
     opacity: 0.8;
     margin-right: 4px;
     margin-left: -4px;
 }
 
-.automatorwp-add-filter .dashicons {
-    line-height: 29px;
-    opacity: 0.8;
-    margin-right: 4px;
-    margin-left: -4px;
+.automatorwp-add-filter.button .dashicons {
+    line-height: 1.7;
     font-size: 16px;
 }
 
@@ -1792,10 +1793,11 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
         z-index: 9999;
         padding: 10px !important;
         font-style: normal !important;
+        font-size: 13px;
         border-radius: 4px;
         box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-        background: #000;
-        color: #fff !important;
+        background: #2c3338;
+        color: #ccc !important;
     }
 
     .cmb2-metabox-description.automatorwp-tooltip-dialog:before {
@@ -1806,7 +1808,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
         position: absolute;
         border-bottom: 8px solid transparent;
         border-top: 8px solid transparent;
-        border-left: 8px solid #000;
+        border-left: 8px solid #2c3338;
         right: -7px;
         top: 14px;
     }
@@ -2274,6 +2276,9 @@ body.automatorwp_page_automatorwp_add_ons {
     text-decoration: none !important;
     float: right;
     margin-bottom: -7px;
+    min-height: 30px;
+    line-height: 2.30769231;
+    padding: 0 12px;
 }
 
 .automatorwp-dashboard .postbox .hndle .dashicons {
@@ -2790,6 +2795,18 @@ body.automatorwp_page_automatorwp_add_ons {
     }
 }
 
+/* Fix WP 7.0 */
+@media only screen and (min-width: 1500px) and (max-width: 1800px) {
+    .automatorwp-dashboard #dashboard-widgets .postbox-container {
+        width: 25% !important;
+    }
+
+    .automatorwp-dashboard #dashboard-widgets #postbox-container-3,
+    .automatorwp-dashboard #dashboard-widgets #postbox-container-4 {
+        float: left !important;
+    }
+}
+
 /* -------------------------------------------
     Add-ons
    ------------------------------------------- */
@@ -2980,6 +2997,7 @@ body.automatorwp_page_automatorwp_add_ons {
 .automatorwp-plugin-card {
     margin: 0 !important;
     padding-bottom: 12px;
+    overflow: initial;
 }
 
 @media screen and (min-width: 1200px) {

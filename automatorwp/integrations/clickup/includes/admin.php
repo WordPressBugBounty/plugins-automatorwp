@@ -57,7 +57,7 @@ function automatorwp_clickup_settings_meta_boxes( $meta_boxes )  {
     $prefix = 'automatorwp_clickup_';
 
     $meta_boxes['automatorwp-clickup-settings'] = array(
-        'title' => automatorwp_dashicon( 'clickup' ) . __( 'ClickUp', 'automatorwp' ),
+        'title' => automatorwp_dashicon( 'admin-comments' ) . __( 'ClickUp', 'automatorwp' ),
         'fields' => apply_filters( 'automatorwp_clickup_settings_fields', array(
             $prefix . 'token' => array(
                 'name' => __( 'API token:', 'automatorwp' ),

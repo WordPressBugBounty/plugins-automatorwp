@@ -24,20 +24,23 @@ function automatorwp_settings_general_meta_boxes( $meta_boxes ) {
         'title' => automatorwp_dashicon( 'admin-generic' ) . __( 'General Settings', 'automatorwp' ),
         'fields' => apply_filters( 'automatorwp_general_settings_fields', array(
             'minimum_role' => array(
-                'name'      => __( 'Minimum role to administer AutomatorWP', 'automatorwp' ),
-                'desc'      => __( 'Minimum role a user needs to access to AutomatorWP management areas.', 'automatorwp' ),
+                'name'      => __( 'Minimum Access Role', 'automatorwp' ),
+                'tooltip'      => __( 'Minimum role a user needs to access to AutomatorWP management areas.', 'automatorwp' ),
+                'label_cb' => 'cmb_tooltip_label_cb',
                 'type'      => 'select',
                 'options' => automatorwp_get_allowed_manager_capabilities(),
             ),
             'auto_logs_cleanup_days' => array(
-                'name'      => __( 'Automatic logs cleanup:', 'automatorwp' ),
-                'desc'      => __( 'Enter the number of days you want to keep the logs. Leave empty to disable the automatic logs cleanup.', 'automatorwp' )
-                . '<br>' . __( 'Automatic logs cleanup will remove unused logs older than the number of days entered keeping only the important logs entries.', 'automatorwp' ),
+                'name'      => __( 'Logs Auto-Cleanup', 'automatorwp' ),
+                'tooltip'      => __( 'Enter the number of days you want to keep logs stored. Leave empty to disable this.', 'automatorwp' )
+                . '<br>' . __( 'Logs auto-cleanup will remove unused logs older than the number of days entered keeping only the important logs entries.', 'automatorwp' ),
+                'label_cb' => 'cmb_tooltip_label_cb',
                 'type'      => 'text',
             ),
             'disable_admin_bar_menu' => array(
-                'name'      => __( 'Disable top bar menu:', 'automatorwp' ),
-                'desc'      => __( 'Check this option to disable the AutomatorWP top bar menu.', 'automatorwp' ),
+                'name'      => __( 'Disable Top Bar Menu', 'automatorwp' ),
+                'tooltip'      => __( 'Check this option to disable the AutomatorWP top bar menu.', 'automatorwp' ),
+                'label_cb' => 'cmb_tooltip_label_cb',
                 'type'      => 'checkbox',
                 'classes'   => 'cmb2-switch',
             ),

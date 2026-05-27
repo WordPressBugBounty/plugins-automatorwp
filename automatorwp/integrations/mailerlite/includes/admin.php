@@ -57,7 +57,7 @@ function automatorwp_mailerlite_settings_meta_boxes( $meta_boxes )  {
     $prefix = 'automatorwp_mailerlite_';
 
     $meta_boxes['automatorwp-mailerlite-settings'] = array(
-        'title' => automatorwp_dashicon( 'mailerlite' ) . __( 'MailerLite', 'automatorwp-pro' ),
+        'title' => automatorwp_dashicon( 'admin-comments' ) . __( 'MailerLite', 'automatorwp-pro' ),
         'fields' => apply_filters( 'automatorwp_mailerlite_settings_fields', array(
             $prefix . 'token' => array(
                 'name' => __( 'API token:', 'automatorwp-pro' ),
