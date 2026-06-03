@@ -214,6 +214,22 @@
 
     });
 
+    // Close
+    $('body').on('click', '.automatorwp-automation-item-action-close', function(e) {
+
+        var item = $(this).closest('.automatorwp-automation-item');
+        var items_list = $(this).closest('.automatorwp-automation-items');
+        var item_type = item.hasClass('automatorwp-trigger') ? 'trigger' : 'action';
+        var id = item.find('input.id').val();
+
+        // Hide this item
+        item.slideUp('fast', function() {
+            // Removes this item
+            item.remove();
+        });
+
+    });
+
     // Update controls depending of automation type
     if( $('body.edit-anonymous-automation').length ) {
 
@@ -417,10 +433,15 @@
         e.preventDefault();
 
         var type = $(this).hasClass('automatorwp-add-trigger') ? 'trigger' : 'action';
-
-        $('<div class="automatorwp-automation-item automatorwp-' + type + '" style="display: none;">'
+        var new_item = $('<div class="automatorwp-automation-item automatorwp-' + type + '" style="display: none;">'
             + $(this).closest('.inside').find('.automatorwp-add-item-form').html()
-        + '</div>').appendTo('.automatorwp-' + type + 's').slideDown('fast');
+            + '</div>');
+
+        new_item.appendTo('.automatorwp-' + type + 's');
+
+        automatorwp_filter_selector( new_item.find('.automatorwp-all-integrations-choices') );
+
+        new_item.slideDown('fast');
     });
 
     // Select an integration
@@ -428,6 +449,13 @@
         e.preventDefault();
 
         var item = $(this).closest('.automatorwp-automation-item');
+        var all_items_select = item.find('select.automatorwp-all-integrations-choices');
+
+        // Bail if all items select is already adding an item
+        if( all_items_select.prop('disabled') ) {
+            return;
+        }
+
         var select = item.find('.automatorwp-integration-choices[data-integration="' + $(this).data('integration') + '"]');
 
         // Hide the integration select
@@ -490,86 +518,16 @@
         select.automatorwp_select2( 'open' );
     });
 
+    // Select a trigger/action from all integrations input
+    $('body').on('change', '.automatorwp-automation-item .automatorwp-all-integrations-choices', function(e) {
+        e.preventDefault();
+        automatorwp_add_new_item_from_select( $(this) );
+    });
+
     // Select a trigger/action
     $('body').on('change', '.automatorwp-automation-item .automatorwp-integration-choices', function(e) {
         e.preventDefault();
-
-        if( $(this).prop('disabled') ) {
-            return;
-        }
-
-        var item = $(this).closest('.automatorwp-automation-item');
-        var items_list = item.closest('.automatorwp-automation-items');
-        var automation_id = $('input#object_id').val();
-        var type = $(this).val();
-        var item_type = item.hasClass('automatorwp-trigger') ? 'trigger' : 'action';
-
-        if( ! type.length ) {
-            return;
-        }
-
-        var last_position = items_list.find('.automatorwp-automation-item input.position').last();
-        var position = 0;
-
-        if( last_position.length ) {
-            position = parseInt( last_position.val() ) + 1;
-        } else {
-            position = parseInt( items_list.find('.automatorwp-automation-item').length - 1 );
-        }
-
-        // Disable the dropdown
-        $(this).prop('disabled', true);
-
-        // Show spinner
-        item.find('.automatorwp-spinner').show();
-
-        $.ajax({
-            url: ajaxurl,
-            method: 'POST',
-            data: {
-                action: 'automatorwp_add_automation_item',
-                nonce: automatorwp_admin.nonce,
-                automation_id: automation_id,
-                item_type: item_type,
-                type: type,
-                position: position
-            },
-            success: function( response ) {
-
-                if( response.success ) {
-
-                    // Removes the new item form
-                    item.remove();
-
-                    var new_item = $( response.data.edit_html );
-
-                    // Append the new item
-                    new_item.appendTo( items_list );
-
-                    // If sequential enabled, show the item position
-                    if( item_type === 'trigger' && $('#sequential').prop('checked') ) {
-                        // Update items position
-                        automatorwp_update_items_position( items_list );
-
-                        items_list.find('.automatorwp-automation-item:not(.automatorwp-automation-item-filter) .automatorwp-automation-item-position').show();
-                    }
-
-                    // Add tags to all tags selectors
-                    if( (item_type === 'trigger' || item_type === 'action') && response.data.tags_html.length ) {
-                        $( response.data.tags_html ).appendTo('.automatorwp-automation-tag-selector');
-                    }
-
-                    // Make javascript features work on the new item
-                    automatorwp_initialize_form_fields( new_item );
-
-                } else {
-
-                }
-            },
-            error: function( response ) {
-
-            }
-        });
+        automatorwp_add_new_item_from_select( $(this) );
     });
 
     // Cancel select a trigger/action
@@ -1499,6 +1457,99 @@
     });
 
 })( jQuery );
+
+/**
+ * Add new item from select
+ *
+ * @since 1.0.0
+ *
+ * @param {Object} select
+ */
+function automatorwp_add_new_item_from_select( select ) {
+
+    var $ = $ || jQuery;
+
+    if( select.prop('disabled') ) {
+        return;
+    }
+
+    var item = select.closest('.automatorwp-automation-item');
+    var items_list = item.closest('.automatorwp-automation-items');
+    var automation_id = $('input#object_id').val();
+    var type = select.val();
+    var item_type = item.hasClass('automatorwp-trigger') ? 'trigger' : 'action';
+
+    if( ! type.length ) {
+        return;
+    }
+
+    var last_position = items_list.find('.automatorwp-automation-item input.position').last();
+    var position = 0;
+
+    if( last_position.length ) {
+        position = parseInt( last_position.val() ) + 1;
+    } else {
+        position = parseInt( items_list.find('.automatorwp-automation-item').length - 1 );
+    }
+
+    // Disable the dropdown
+    select.prop('disabled', true);
+
+    // Show spinner
+    items_list.siblings('.automatorwp-spinner').show();
+
+    $.ajax({
+        url: ajaxurl,
+        method: 'POST',
+        data: {
+            action: 'automatorwp_add_automation_item',
+            nonce: automatorwp_admin.nonce,
+            automation_id: automation_id,
+            item_type: item_type,
+            type: type,
+            position: position
+        },
+        success: function( response ) {
+
+            // Hide spinner
+            items_list.siblings('.automatorwp-spinner').hide();
+
+            // Remove the new item form
+            item.remove();
+
+            if( response.success ) {
+
+                var new_item = $( response.data.edit_html );
+
+                // Append the new item
+                new_item.appendTo( items_list );
+
+                // If sequential enabled, show the item position
+                if( item_type === 'trigger' && $('#sequential').prop('checked') ) {
+                    // Update items position
+                    automatorwp_update_items_position( items_list );
+
+                    items_list.find('.automatorwp-automation-item:not(.automatorwp-automation-item-filter) .automatorwp-automation-item-position').show();
+                }
+
+                // Add tags to all tags selectors
+                if( (item_type === 'trigger' || item_type === 'action') && response.data.tags_html.length ) {
+                    $( response.data.tags_html ).appendTo('.automatorwp-automation-tag-selector');
+                }
+
+                // Make javascript features work on the new item
+                automatorwp_initialize_form_fields( new_item );
+
+            } else {
+
+            }
+        },
+        error: function( response ) {
+
+        }
+    });
+
+}
 
 /**
  * Update elements positions

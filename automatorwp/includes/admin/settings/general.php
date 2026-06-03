@@ -53,6 +53,34 @@ function automatorwp_settings_general_meta_boxes( $meta_boxes ) {
 add_filter( 'automatorwp_settings_general_meta_boxes', 'automatorwp_settings_general_meta_boxes' );
 
 /**
+ * General Settings fields (extended)
+ *
+ * @since  1.0.0
+ *
+ * @param array $fields
+ *
+ * @return array
+ */
+function automatorwp_general_settings_fields( $fields ) {
+
+    if( class_exists( 'AutomatorWP_Pro' ) ) {
+        return $fields;
+    }
+
+    $fields['disable_pro_recommendations'] = array(
+        'name'      => __( 'Disable Recommendations', 'automatorwp' ),
+        'tooltip'      => __( 'Check this option to disable PRO recommendations.', 'automatorwp' ),
+        'label_cb' => 'cmb_tooltip_label_cb',
+        'type'      => 'checkbox',
+        'classes'   => 'cmb2-switch',
+    );
+
+    return $fields;
+
+}
+add_filter( 'automatorwp_general_settings_fields', 'automatorwp_general_settings_fields' );
+
+/**
  * Get capability required for AutomatorWP administration.
  *
  * @since  1.0.0

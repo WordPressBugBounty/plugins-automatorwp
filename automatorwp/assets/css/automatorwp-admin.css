@@ -254,6 +254,10 @@
     background: rgba(0, 124, 186, 0.1);
 }
 
+.automatorwp-all-integrations-choices + .automatorwp-select2 {
+    margin-bottom: 1em;
+}
+
 .automatorwp-integration-choices-container {
     position: relative;
 }
@@ -513,7 +517,7 @@
 
 /* More integrations */
 .automatorwp-more-integrations {
-    font-size: 16px;
+    font-size: 13px;
     margin-top: 8px;
 }
 
@@ -893,7 +897,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 .automatorwp-filter-select2 .select2-dropdown li[role="group"] > strong {
     background: #fff;
     border-bottom: 1px solid #ccd0d4;
-    padding: 10px 12px;
+    padding: 6px 8px;
     line-height: 24px;
 }
 
@@ -1346,7 +1350,8 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     background: transparent;
 }
 
-.automatorwp-tags-select2 .select2-dropdown .select2-results > .select2-results__options {
+.automatorwp-tags-select2 .select2-dropdown .select2-results > .select2-results__options,
+.automatorwp-select2 .select2-dropdown .select2-results > .select2-results__options {
     max-height: 250px;
 }
 
@@ -1632,13 +1637,14 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 
 .automatorwp-spinner .spinner {
     float: none;
+    margin-top: 0;
 }
 
 .automatorwp-spinner .spinner-label {
     display: inline-block;
     float: right;
     font-size: 14px;
-    margin-top: 3px;
+    margin-top: 0;
     color: #72777c;
 }
 
@@ -1718,10 +1724,17 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 .automatorwp-add-trigger.button .dashicons,
 .automatorwp-add-action.button .dashicons,
 .automatorwp-add-filter.button .dashicons {
-    line-height: 1.5;
     opacity: 0.8;
     margin-right: 4px;
     margin-left: -4px;
+    line-height: 1 !important;
+    vertical-align: middle !important;
+    color: #fff !important;  /* Fix for Elementor */
+}
+
+.automatorwp-add-filter.button:disabled .dashicons,
+.automatorwp-add-filter.button.disabled .dashicons {
+    color: #949494 !important;
 }
 
 .automatorwp-add-filter.button .dashicons {
