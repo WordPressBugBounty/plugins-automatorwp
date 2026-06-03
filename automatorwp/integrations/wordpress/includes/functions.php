@@ -182,3 +182,69 @@ function automatorwp_wordpress_get_term_name( $taxonomy_id, $term_id ) {
     return $term_name;
 
 }
+
+/**
+ * Validates an option name to prevent modifications to protected/critical options
+ *
+ * @since 1.0.0
+ *
+ * @param string $option_name The option name to validate
+ *
+ * @return bool True if the option name is protected, false otherwise
+ */
+function automatorwp_is_protected_option( $option_name ) {
+
+    $protected_options = automatorwp_get_protected_options();
+
+    return in_array( $option_name, $protected_options, true );
+
+}
+
+/**
+ * Validates an option name to prevent modifications to protected/critical options
+ *
+ * @since 1.0.0
+ *
+ * @param string $option_name The option name to validate
+ *
+ * @return array List of protected options
+ */
+function automatorwp_get_protected_options() {
+
+    // List of protected core options that should not be modified
+    $protected_options = array(
+        'siteurl',
+        'home',
+        'admin_email',
+        'users_can_register',
+        'default_role',
+        'db_version',
+        'initial_db_version',
+        'wp_user_roles',
+        'auth_key',
+        'secure_auth_key',
+        'logged_in_key',
+        'nonce_key',
+        'auth_salt',
+        'secure_auth_salt',
+        'logged_in_salt',
+        'nonce_salt',
+        'active_plugins',
+        'template',
+        'stylesheet',
+        'current_theme',
+        'upload_path',
+    );
+
+    /**
+     * Filter to modify the list of protected options
+     *
+     * @since 1.0.0
+     *
+     * @param array $protected_options List of protected option names
+     */
+    $protected_options = apply_filters( 'automatorwp_protected_options', $protected_options );
+
+    return $protected_options;
+
+}

@@ -69,6 +69,8 @@ require_once plugin_dir_path( __FILE__ ) . 'actions/update-multiple-posts.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/post-meta.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/delete-post.php';
 require_once plugin_dir_path( __FILE__ ) . 'actions/delete-multiple-posts.php';
+require_once plugin_dir_path( __FILE__ ) . 'actions/update-option.php';
+require_once plugin_dir_path( __FILE__ ) . 'actions/delete-option.php';
 // Filters
 require_once plugin_dir_path( __FILE__ ) . 'filters/user-role.php';
 require_once plugin_dir_path( __FILE__ ) . 'filters/user-exists.php';

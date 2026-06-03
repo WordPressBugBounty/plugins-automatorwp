@@ -50,6 +50,12 @@ function automatorwp_get_tags() {
         'preview'   => get_bloginfo( 'admin_email' ),
     );
 
+    $tags['site']['tags']['option:NAME'] = array(
+        'label'     => __( 'Option', 'automatorwp' ),
+        'type'      => 'text',
+        'preview'   => __( 'Option value, replace "NAME" by the option name.', 'automatorwp' ),
+    );
+
     // ---------------------------------
     // User tags
     // ---------------------------------
@@ -581,12 +587,7 @@ function automatorwp_parse_automation_tags( $automation_id = 0, $user_id = 0, $c
     $parsed_content = $content;
 
     // First, parse dynamic tags like post meta, user meta and other plugin tags
-
-    // Parse user meta tags (required here since user meta tags are based on the content)
-    $parsed_content = automatorwp_parse_user_meta_tags( $user_id, $parsed_content );
-
-    // Parse date tags
-    $parsed_content = automatorwp_parse_date_tags( $parsed_content );
+    $parsed_content = automatorwp_parse_dynamic_tags( $automation_id, $user_id, $parsed_content );
 
     /**
      * Available filter to setup custom replacements
@@ -621,6 +622,46 @@ function automatorwp_parse_automation_tags( $automation_id = 0, $user_id = 0, $c
      */
     $parsed_content = apply_filters( 'automatorwp_post_parse_automation_tags', $parsed_content, $replacements, $automation_id, $user_id, $content );
     
+    return $parsed_content;
+
+}
+
+/**
+ * Parse dynamic tags to received content
+ *
+ * @since 1.1.0
+ *
+ * @param int       $automation_id  The automation ID
+ * @param int       $user_id        The user ID
+ * @param mixed     $content        The content to parse (arrays supported)
+ *
+ * @return string|array
+ */
+function automatorwp_parse_dynamic_tags( $automation_id = 0, $user_id = 0, $content = '' ) {
+
+    // Check if content given is an array to parse each array element
+    if( is_array( $content ) ) {
+
+        foreach( $content as $k => $v ) {
+            // Replace all tags on this array element
+            $content[$k] = automatorwp_parse_dynamic_tags( $automation_id, $user_id, $v );
+        }
+
+        return $content;
+
+    }
+
+    $parsed_content = $content;
+
+    // Parse user meta tags (required here since user meta tags are based on the content)
+    $parsed_content = automatorwp_parse_user_meta_tags( $user_id, $parsed_content );
+
+    // Parse date tags
+    $parsed_content = automatorwp_parse_date_tags( $parsed_content );
+
+    // Parse option tags
+    $parsed_content = automatorwp_parse_option_tags( $parsed_content );
+
     return $parsed_content;
 
 }

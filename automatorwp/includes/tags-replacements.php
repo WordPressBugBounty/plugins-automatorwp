@@ -720,3 +720,96 @@ function automatorwp_parse_date_tags( $content = '' ) {
     return apply_filters( 'automatorwp_parse_date_tags', $parsed_content, $replacements, $content );
 
 }
+
+/**
+ * Get option tags replacements
+ *
+ * @since 2.0.0
+ *
+ * @param string    $content The content to parse
+ *
+ * @return array
+ */
+function automatorwp_get_option_tags_replacements( $content = '' ) {
+
+    $replacements = array();
+
+    // Look for option tags
+    preg_match_all( "/\{option:\s*(.*?)\s*\}/", $content, $matches );
+
+    if( is_array( $matches ) && isset( $matches[1] ) ) {
+
+        foreach( $matches[1] as $name ) {
+
+            $option_name = sanitize_text_field( $name );
+            $value = '';
+
+            if( ! empty( $option_name ) ) {
+                $value = get_option( $option_name, '' );
+
+                // If the value is an array or object, JSON encode it for display
+                if( is_array( $value ) || is_object( $value ) ) {
+                    $value = wp_json_encode( $value );
+                }
+
+            }
+
+            $replacements['{option:' . $name . '}'] = $value;
+
+        }
+
+    }
+
+    /**
+     * Filter to set custom option tags replacements
+     *
+     * @since 2.0.0
+     *
+     * @param array     $replacements   Replacements
+     * @param string    $content        The content to parse
+     *
+     * @return array
+     */
+    return apply_filters( 'automatorwp_get_option_tags_replacements', $replacements, $content );
+
+}
+
+/**
+ * Parse option tags replacements
+ *
+ * @since 2.0.0
+ *
+ * @param string    $content The content to replace
+ *
+ * @return string
+ */
+function automatorwp_parse_option_tags( $content = '' ) {
+
+    $parsed_content = $content;
+
+    // Get date tags replacements
+    $replacements = automatorwp_get_option_tags_replacements( $content );
+
+    if( $replacements ) {
+
+        $tags = array_keys( $replacements );
+
+        // Replace all tags by their replacements
+        $parsed_content = str_replace( $tags, $replacements, $content );
+
+    }
+
+    /**
+     * Filter to modify a content parsed with date tags
+     *
+     * @since 2.0.0
+     *
+     * @param string    $parsed_content Content parsed
+     * @param array     $replacements   Replacements
+     * @param string    $content        The content to parse
+     *
+     * @return string
+     */
+    return apply_filters( 'automatorwp_parse_option_tags', $parsed_content, $replacements, $content );
+
+}

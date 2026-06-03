@@ -56,9 +56,16 @@ class AutomatorWP_BuddyBoss_Publish_Activity extends AutomatorWP_Integration_Tri
 
         $activity = new BP_Activity_Activity( $activity_id );
 
-        $media_types = array( 'document', 'video', 'media' );
-        
-        if ( in_array( $activity->privacy, $media_types )) {
+        // Images
+        $media = bp_activity_get_meta( $activity_id, 'bp_media_ids', true );
+
+        // Videos
+        $videos = bp_activity_get_meta( $activity_id, 'bp_video_ids', true );
+
+        // Documents
+        $documents = bp_activity_get_meta( $activity_id, 'bp_document_ids', true );
+            
+        if ( !empty( $media ) || !empty( $videos ) || !empty( $documents ) ) {
             return;
         }
 
