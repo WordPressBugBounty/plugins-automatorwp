@@ -1,9 +1,12 @@
 (function ( $ ) {
-
+    
     // Hide review notice
-    $('body').on('click', '.automatorwp-hide-review-notice', function(e) {
+    $(document).on('click', '.automatorwp-hide-review-notice', function(e) {
 
         e.preventDefault();
+
+        // Hide the notice on success
+        $('.automatorwp-review-notice').slideUp('fast');
 
         $.ajax({
             url: ajaxurl,
@@ -12,8 +15,7 @@
                 nonce: automatorwp_admin_notices.nonce,
             },
             success: function(response) {
-                // Hide the notice on success
-                $('.automatorwp-review-notice').slideUp('fast');
+
             }
         });
 
