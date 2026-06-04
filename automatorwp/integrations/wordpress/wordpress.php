@@ -49,6 +49,8 @@ require_once plugin_dir_path( __FILE__ ) . 'triggers/set-role.php';
 require_once plugin_dir_path( __FILE__ ) . 'triggers/set-role-from-to.php';
 require_once plugin_dir_path( __FILE__ ) . 'triggers/remove-role.php';
 require_once plugin_dir_path( __FILE__ ) . 'triggers/user-deleted.php';
+require_once plugin_dir_path( __FILE__ ) . 'triggers/option-updated.php';
+require_once plugin_dir_path( __FILE__ ) . 'triggers/option-updated-anonymous.php';
 // Anonymous Triggers
 require_once plugin_dir_path( __FILE__ ) . 'triggers/anonymous-view-post.php';
 require_once plugin_dir_path( __FILE__ ) . 'triggers/anonymous-view-page.php';

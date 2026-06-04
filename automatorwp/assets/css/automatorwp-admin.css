@@ -787,6 +787,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 
 #automatorwp-automations-execution-options .automatorwp-run-automation button .dashicons.dashicons-controls-play {
     margin-top: -4px;
+    line-height: 1.1;
 }
 
 #automatorwp-automations-execution-options .automatorwp-run-automation button .dashicons.dashicons-update {
@@ -3160,6 +3161,18 @@ body.automatorwp_page_automatorwp_add_ons {
     background: #222;
     color: #fff;
     border: none;
+}
+
+.automatorwp-review-notice a:not(.button) {
+    color: #fff !important;
+}
+
+.automatorwp-review-notice a.button:not(.button-primary) {
+    background-color: #fff !important;
+}
+
+.automatorwp-review-notice > p {
+    color: #fff !important;
 }
 
 .automatorwp-review-notice p span {
