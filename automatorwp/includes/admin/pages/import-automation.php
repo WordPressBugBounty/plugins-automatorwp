@@ -272,7 +272,7 @@ function automatorwp_ajax_import_automation_from_url() {
             if( isset( $object['options'] ) ) {
                 foreach( $object['options'] as $option => $option_args ) {
                     if( isset( $option_args['fields'] ) ) {
-                        $fields = $option_args['fields'];
+                        $fields = array_merge( $option_args['fields'], $fields );
                     }
                 }
                 
@@ -312,7 +312,12 @@ function automatorwp_ajax_import_automation_from_url() {
 
                 // VALUE
                 $meta_value = urldecode( $meta_value );
-                $meta_value = json_decode( $meta_value );
+
+                // Only apply json decode if can be parsed correctly
+                $json = json_decode( $meta_value );
+                if( is_object( $json ) ) {
+                    $meta_value = $json;
+                }
 
                 // Sanitize value based on its type
                 if( in_array( $field_type, array( 'textarea', 'textarea_small', 'textarea_code', 'wysiwyg' ) ) ) {
