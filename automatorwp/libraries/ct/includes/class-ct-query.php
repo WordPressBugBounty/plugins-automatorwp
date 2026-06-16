@@ -293,7 +293,7 @@ if ( ! class_exists( 'CT_Query' ) ) :
                 $orderby_array = array();
                 if ( is_array( $q['orderby'] ) ) {
                     foreach ( $q['orderby'] as $_orderby => $order ) {
-                        $orderby = addslashes_gpc( urldecode( $_orderby ) );
+                        $orderby = wp_slash( urldecode( $_orderby ) );
                         $parsed  = $this->parse_orderby( $orderby );
 
                         // Only allow certain values for safety.
@@ -306,7 +306,7 @@ if ( ! class_exists( 'CT_Query' ) ) :
                     $orderby = implode( ', ', $orderby_array );
 
                 } else {
-                    $q['orderby'] = addslashes_gpc( urldecode( $q['orderby'] ) );
+                    $q['orderby'] = wp_slash( urldecode( $q['orderby'] ) );
 
                     foreach ( explode( ' ', $q['orderby'] ) as $i => $orderby ) {
 

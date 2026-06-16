@@ -184,6 +184,11 @@ function automatorwp_automation_ui_integration_pro_choice( $integration_name, $a
         if( ! isset( $integration ) ) {
             continue;
         }
+
+        if( ! is_object( $integration ) ) {
+            continue;
+        }
+
         // Break if found the integration
         if( $integration->code === $integration_name ) {
             break;
@@ -468,7 +473,7 @@ add_action( 'automatorwp_automation_ui_after_integration_actions_choices', 'auto
  */
 function automatorwp_automation_ui_integration_plugin_installed( $integration ) {
 
-    if( $integration === null ) {
+    if( $integration === null  || ! is_object( $integration ) ) {
         return false;
     }
 
