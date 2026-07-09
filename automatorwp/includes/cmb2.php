@@ -719,3 +719,14 @@ function automatorwp_get_field_options( $field ) {
     return $field_options;
 
 }
+
+/**
+ * Clear callback for CMB2 fields (used as 'after_row' callback)
+ *
+ * @since 1.0.0
+ */
+function automatorwp_cmb2_div_clear_cb() {
+    ?>
+    <div class="clear"></div>
+    <?php
+}

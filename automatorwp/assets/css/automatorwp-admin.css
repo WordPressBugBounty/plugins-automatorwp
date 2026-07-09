@@ -794,6 +794,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     -webkit-animation: rotation 2s linear infinite;
     -moz-animation: rotation 2s linear infinite;
     animation: rotation 2s linear infinite;
+    line-height: 1 !important;
 }
 
 #automatorwp-automations-execution-options .automatorwp-run-automation.automatorwp-is-running,
@@ -924,6 +925,10 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     width: 24%;
 }
 
+.automatorwp-form .cmb-row.automatorwp-col-4 {
+    width: 32%;
+}
+
 .automatorwp-form .cmb-row.automatorwp-col-6 {
     width: 49%;
 }
@@ -945,6 +950,13 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 .automatorwp-form .cmb-row.automatorwp-col-3 + .cmb-row.automatorwp-col-3 + .cmb-row.automatorwp-col-3,
 .automatorwp-form .cmb-row.automatorwp-col-3 + .cmb-row.automatorwp-col-3 + .cmb-row.automatorwp-col-3 + .cmb-row.automatorwp-col-3 {
     width: 23%;
+    margin-left: 2%;
+}
+
+/*   4  |  4  |  4   */
+.automatorwp-form .cmb-row.automatorwp-col-4 + .cmb-row.automatorwp-col-4,
+.automatorwp-form .cmb-row.automatorwp-col-4 + .cmb-row.automatorwp-col-4 + .cmb-row.automatorwp-col-4 {
+    width: 32%;
     margin-left: 2%;
 }
 

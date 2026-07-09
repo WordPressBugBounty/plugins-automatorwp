@@ -101,6 +101,12 @@ function automatorwp_auto_logs_cleanup() {
             continue;
         }
 
+        // All users/posts and filters get removed directly
+        if( in_array( $trigger->type, array( 'automatorwp_all_users', 'automatorwp_all_posts', 'filter' ) )  ) {
+            $logs_ids[] = $log->id;
+            continue;
+        }
+
         $trigger_args = automatorwp_get_trigger( $trigger->type );
 
         // Anonymous triggers get removed directly
@@ -134,9 +140,9 @@ function automatorwp_auto_logs_cleanup() {
         $wpdb->query( "DELETE FROM {$logs} WHERE id IN ( " . implode( ', ', $logs_ids ) . " )" );
     }
 
-    // Actions, anonymous and filter logs
+    // Automations, actions, anonymous and filter logs
     // They don't need any specific check so is safe to remove them directly
-    $wpdb->query( "DELETE FROM {$logs} WHERE type IN ( 'action', 'anonymous', 'filter' ) AND date < '{$date}'" );
+    $wpdb->query( "DELETE FROM {$logs} WHERE type IN ( 'automation', 'action', 'anonymous', 'filter' ) AND date < '{$date}'" );
 
     /**
      * Available action to let other plugins process anything after the logs cleanup

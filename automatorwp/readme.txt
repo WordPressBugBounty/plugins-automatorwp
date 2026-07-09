@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.0
-Stable tag: 5.7.9.2
+Stable tag: 5.8.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -354,10 +354,15 @@ No, We're unable to provide custom development services, as our focus is develop
 
 == Changelog ==
 
+= 5.8.0 =
+
+* **Bug Fixes**
+* Fixed bug related to automatic cleanup of some types of logs.
+
 = 5.7.9.2 =
 
 * **Bug Fixes**
-* Fixed deprecated functions in the latest version of WordPress
+* Fixed deprecated functions in the latest version of WordPress.
 
 = 5.7.9.1 =
 
