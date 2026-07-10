@@ -480,6 +480,7 @@
             multiple: false,
             closeOnSelect: false,
             dropdownParent: dropdown_container,
+            matcher: automatorwp_select2_words_matcher,
             escapeMarkup: function(markup) { return markup; },
             templateResult: function(data) {
                 // Custom template result to allow HTML markup on select items

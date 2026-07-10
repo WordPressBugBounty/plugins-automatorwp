@@ -17,6 +17,7 @@ function automatorwp_selector( $this ) {
         placeholder: ( $this.data('placeholder') ? $this.data('placeholder') : automatorwp_admin_functions.selector_placeholder ),
         allowClear: true,
         multiple: ( $this[0].hasAttribute('multiple') ),
+        matcher: automatorwp_select2_words_matcher,
     };
 
     $this.automatorwp_select2( select2_args );
@@ -68,7 +69,8 @@ function automatorwp_post_selector( $this ) {
         theme: 'default automatorwp-select2',
         placeholder: ( $this.data('placeholder') ? $this.data('placeholder') : automatorwp_admin_functions.post_selector_placeholder ),
         allowClear: true,
-        multiple: ( $this[0].hasAttribute('multiple') )
+        multiple: ( $this[0].hasAttribute('multiple') ),
+        matcher: automatorwp_select2_words_matcher,
     };
 
     $this.automatorwp_select2( select2_args );
@@ -117,7 +119,8 @@ function automatorwp_term_selector( $this ) {
         theme: 'default automatorwp-select2',
         placeholder: ( $this.data('placeholder') ? $this.data('placeholder') : automatorwp_admin_functions.term_selector_placeholder ),
         allowClear: true,
-        multiple: ( $this[0].hasAttribute('multiple') )
+        multiple: ( $this[0].hasAttribute('multiple') ),
+        matcher: automatorwp_select2_words_matcher,
     };
 
     $this.automatorwp_select2( select2_args );
@@ -159,7 +162,8 @@ function automatorwp_user_selector( $this ) {
         theme: 'default automatorwp-select2',
         placeholder: ( $this.data('placeholder') ? $this.data('placeholder') : automatorwp_admin_functions.user_selector_placeholder ),
         allowClear: true,
-        multiple: ( $this[0].hasAttribute('multiple') )
+        multiple: ( $this[0].hasAttribute('multiple') ),
+        matcher: automatorwp_select2_words_matcher,
     };
 
     $this.automatorwp_select2( select2_args );
@@ -208,7 +212,8 @@ function automatorwp_object_selector( $this ) {
         theme: 'default automatorwp-select2',
         placeholder: ( $this.data('placeholder') ? $this.data('placeholder') : automatorwp_admin_functions.object_selector_placeholder ),
         allowClear: true,
-        multiple: ( $this[0].hasAttribute('multiple') )
+        multiple: ( $this[0].hasAttribute('multiple') ),
+        matcher: automatorwp_select2_words_matcher,
     };
 
     $this.automatorwp_select2( select2_args );
@@ -270,7 +275,8 @@ function automatorwp_ajax_selector( $this ) {
         theme: 'default automatorwp-select2',
         placeholder: ( $this.data('placeholder') ? $this.data('placeholder') : '' ),
         allowClear: true,
-        multiple: ( $this[0].hasAttribute('multiple') )
+        multiple: ( $this[0].hasAttribute('multiple') ),
+        matcher: automatorwp_select2_words_matcher,
     };
 
     $this.automatorwp_select2( select2_args );
@@ -600,6 +606,53 @@ function automatorwp_select2_ajax_process_results( response, params ) {
 }
 
 /**
+ * Helper function to check if text has any word of a term
+ *
+ * @since 1.0.0
+ *
+ * @param {String} text
+ * @param {String} term
+ *
+ * @return {boolean}
+ */
+function automatorwp_matches_by_word( text, term ) {
+
+    text = text.toUpperCase();
+    var words = term.toUpperCase().split(" ");
+    var found = true;
+
+    // Check if the text contains the term (separated in words)
+    for (var i =0; i < words.length; i++)
+        found = ( found && text.indexOf( words[i] ) >= 0 );
+
+    return found;
+
+}
+
+/**
+ * Select2 search matcher by word
+ *
+ * @since 1.0.0
+ *
+ * @param {Object} params
+ * @param {Object} data
+ *
+ * @return {mixed}
+ */
+function automatorwp_select2_words_matcher( params, data ) {
+
+    // Always return the object if there is nothing to compare
+    if ( params.term === undefined || params.term.trim() === '' ) return data;
+
+    // Return the object if any word matches
+    if ( automatorwp_matches_by_word( data.text, params.term ) ) return data;
+
+    // If it doesn't contain the term, don't return anything
+    return null;
+
+}
+
+/**
  * Custom search matcher for selects with groups on select2
  *
  * @since 1.0.0
@@ -615,13 +668,7 @@ function automatorwp_select2_optgroup_matcher( params, data ) {
     data.parentText = data.parentText   || '';
 
     // Always return the object if there is nothing to compare
-    if ( params.term === undefined ) {
-        return data;
-    }
-
-    if ( params.term.trim() === '' ) {
-        return data;
-    }
+    if ( params.term === undefined || params.term.trim() === '' ) return data;
 
     // Do a recursive check for options with children
     if ( data.children && data.children.length > 0 ) {
@@ -655,16 +702,8 @@ function automatorwp_select2_optgroup_matcher( params, data ) {
 
     }
 
-    // If the typed-in term matches the text of this term, or the text from any
-    // parent term, then it's a match.
-    var original = ( data.parentText + ' ' + data.text ).toUpperCase();
-    var term = params.term.toUpperCase();
-
-
-    // Check if the text contains the term
-    if ( original.indexOf( term ) > -1 ) {
-        return data;
-    }
+    // Check if term matches with this text or text from parent
+    if ( automatorwp_matches_by_word( ( data.parentText + ' ' + data.text ), params.term ) ) return data;
 
     // If it doesn't contain the term, don't return anything
     return null;

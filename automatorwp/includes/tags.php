@@ -75,7 +75,7 @@ function automatorwp_get_tags() {
     $tags['user']['tags']['user_login'] = array(
         'label'     => __( 'Username', 'automatorwp' ),
         'type'      => 'text',
-        'preview'   => 'automatorwp',
+        'preview'   => 'ruben_garcia',
     );
 
     $tags['user']['tags']['user_email'] = array(
@@ -87,23 +87,23 @@ function automatorwp_get_tags() {
     $tags['user']['tags']['display_name'] = array(
         'label'     => __( 'Display name', 'automatorwp' ),
         'type'      => 'text',
-        'preview'   => __( 'AutomatorWP Plugin', 'automatorwp' ),
+        'preview'   => 'Ruben Garcia',
     );
 
     $tags['user']['tags']['first_name'] = array(
         'label'     => __( 'First name', 'automatorwp' ),
         'type'      => 'text',
-        'preview'   => 'AutomatorWP',
+        'preview'   => 'Ruben',
     );
 
     $tags['user']['tags']['last_name'] = array(
         'label'     => __( 'Last name', 'automatorwp' ),
         'type'      => 'text',
-        'preview'   => __( 'Plugin', 'automatorwp' ),
+        'preview'   => 'Garcia',
     );
 
     $tags['user']['tags']['user_url'] = array(
-        'label'     => __( 'User\'s website URL', 'automatorwp' ),
+        'label'     => __( 'Website URL', 'automatorwp' ),
         'type'      => 'text',
         'preview'   => 'https://automatorwp.com',
     );
@@ -540,8 +540,9 @@ function automatorwp_get_tags_selector_group_html( $tags_group_id, $tags_group )
               data-icon="<?php echo esc_attr( $tags_group['icon'] ); ?>">
 
         <?php foreach( $tags_group['tags'] as $tag_id => $tag ) :
+            $preview = '<span>' . esc_html( __( 'Tag', 'automatorwp' ) ) . '</span> {' . esc_html( $tag_id ) . '}' . ( isset( $tag['preview'] ) ? '<span>' . esc_html( __( 'Preview', 'automatorwp' ) ) . '</span>' . htmlspecialchars( esc_attr( $tag['preview'] ) ) : '' );
             // Formatted text to make tags more visible
-            $text = '<strong>' . esc_attr( $tag['label'] ) . '</strong> <span>' . ( isset( $tag['preview'] ) ? htmlspecialchars( esc_attr( $tag['preview'] ) ) : '' ) . '</span>'; ?>
+            $text = '<strong>' . esc_attr( $tag['label'] ) . '</strong> <span>' . $preview . '</span>'; ?>
 
             <option value="<?php echo esc_attr( $tag_id ); ?>" data-text="<?php echo $text; ?>"><?php echo $tag['label']; ?></option>
         <?php endforeach; ?>
