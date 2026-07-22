@@ -114,18 +114,8 @@ class AutomatorWP_Tutor_LMS_User_Course extends AutomatorWP_Integration_Action {
                     )
                 );
 
-                // Get the students in the paid course
-                $obj_student=new \TUTOR\Course_List();
-                $list_students = $obj_student->course_enrollments_with_student_details( $course_id );
-                $user_exists = FALSE;
-
-                foreach( $list_students['enrollments'] as $student ){
-
-                    if ($user_id == $student->ID){
-                        $user_exists = TRUE;
-                    }
-
-                }
+                // Get the student in the paid course
+                $user_exists = tutor_utils()->is_enrolled( $course_id, $user_id );
 
                 if ( ! $user_exists ){
                     // Insert the post into the database
