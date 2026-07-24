@@ -57,8 +57,13 @@ function automatorwp_buddyboss_ajax_get_groups() {
     // Prepend option none
     $results = automatorwp_ajax_get_ajax_results_option_none( $results );
 
+    $response = array(
+        'results' => $results,
+        'more_results' => count( $results ),
+    );
+
     // Return our results
-    wp_send_json_success( $results );
+    wp_send_json_success( $response );
     die;
 
 }
