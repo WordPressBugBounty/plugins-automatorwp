@@ -18,13 +18,36 @@ function automatorwp_wordpress_ajax_get_taxonomies() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    $results = automatorwp_wordpress_get_taxonomies( isset( $_REQUEST['q'] ) ? $_REQUEST['q'] : '' );
+
+    // Prepend option none
+    $results = automatorwp_ajax_parse_extra_options( $results );
+
+    // Return our results
+    wp_send_json_success( $results );
+    die;
+
+}
+add_action( 'wp_ajax_automatorwp_wordpress_get_taxonomies', 'automatorwp_wordpress_ajax_get_taxonomies' );
+
+/**
+ * Function for selecting taxonomies
+ *
+ * @since 1.0.0
+ *
+ * @param string $search
+ *
+ * @return array
+ */
+function automatorwp_wordpress_get_taxonomies( $search = '' ) {
+
     global $wpdb;
 
     // Pull back the search string
-    $search = isset( $_REQUEST['q'] ) ? $wpdb->esc_like( sanitize_text_field( $_REQUEST['q'] ) ) : '';
+    $search = $wpdb->esc_like( sanitize_text_field( $search ) );
 
-    $taxonomies = automatorwp_wordpress_get_taxonomies();
-        
+    $taxonomies = automatorwp_wordpress_get_public_taxonomies();
+
     $results = array();
 
     // Parse terms results to match select2 results
@@ -42,15 +65,9 @@ function automatorwp_wordpress_ajax_get_taxonomies() {
         );
     }
 
-    // Prepend option none
-    $results = automatorwp_ajax_parse_extra_options( $results );
-
-    // Return our results
-    wp_send_json_success( $results );
-    die;
+    return $results;
 
 }
-add_action( 'wp_ajax_automatorwp_wordpress_get_taxonomies', 'automatorwp_wordpress_ajax_get_taxonomies' );
 
 /**
  * Ajax function for selecting terms
@@ -61,16 +78,42 @@ function automatorwp_wordpress_ajax_get_terms() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    $results = automatorwp_wordpress_get_terms(
+        isset( $_REQUEST['q'] ) ? $_REQUEST['q'] : '',
+        isset( $_REQUEST['table'] ) ? $_REQUEST['table'] : ''
+    );
+
+    // Prepend option none
+    $results = automatorwp_ajax_parse_extra_options( $results );
+
+    // Return our results
+    wp_send_json_success( $results );
+    die;
+
+}
+add_action( 'wp_ajax_automatorwp_wordpress_get_terms', 'automatorwp_wordpress_ajax_get_terms' );
+
+/**
+ * Function for selecting terms
+ *
+ * @since 1.0.0
+ *
+ * @param string $search
+ *
+ * @return array
+ */
+function automatorwp_wordpress_get_terms( $search = '', $taxonomy_id = '' ) {
+
     global $wpdb;
 
     // Pull back the search string
-    $search = isset( $_REQUEST['q'] ) ? $wpdb->esc_like( sanitize_text_field( $_REQUEST['q'] ) ) : '';
+    $search = $wpdb->esc_like( sanitize_text_field( $search ) );
 
     // Get the taxonomy
-    $taxonomy_id = isset( $_REQUEST['table'] ) ? sanitize_text_field( $_REQUEST['table'] ) : '';
+    $taxonomy_id = sanitize_text_field( $taxonomy_id );
 
-    $terms = automatorwp_wordpress_get_terms( $taxonomy_id );
-    
+    $terms = automatorwp_wordpress_get_taxonomy_terms( $taxonomy_id );
+
     $results = array();
 
     // Parse terms results to match select2 results
@@ -88,12 +131,6 @@ function automatorwp_wordpress_ajax_get_terms() {
         );
     }
 
-    // Prepend option none
-    $results = automatorwp_ajax_parse_extra_options( $results );
-
-    // Return our results
-    wp_send_json_success( $results );
-    die;
+    return $results;
 
 }
-add_action( 'wp_ajax_automatorwp_wordpress_get_terms', 'automatorwp_wordpress_ajax_get_terms' );

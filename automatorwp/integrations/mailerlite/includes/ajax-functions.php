@@ -17,6 +17,11 @@ function automatorwp_mailerlite_ajax_authorize() {
     // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     $prefix = 'automatorwp_mailerlite_';
 
     $url = automatorwp_mailerlite_get_url();
@@ -72,6 +77,11 @@ add_action( 'wp_ajax_automatorwp_mailerlite_authorize',  'automatorwp_mailerlite
 function automatorwp_mailerlite_ajax_get_groups() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 

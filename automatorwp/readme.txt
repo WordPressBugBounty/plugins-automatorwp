@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.0
-Stable tag: 5.8.3
+Stable tag: 5.8.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -11,86 +11,56 @@ Connect your WordPress plugins, sites & apps together to create automated workfl
 
 == Description ==
 
-[AutomatorWP](https://automatorwp.com "AutomatorWP") is a flexible and open-source automator plugin that lets you connect your WordPress plugins, sites and apps together and create automations between them.
+[AutomatorWP](https://automatorwp.com "AutomatorWP") is a flexible, open-source automator plugin that connects your WordPress plugins, sites and apps together to build powerful workflows with ease.
 
 You can create "automations" linked to your WordPress activities and when any of them happen, you can make other things happen accordingly.
 
-You can use these automations for automate sales, marketing, administrative tasks, learning and any other kind of processes you want letting you save time and get focused on your most important work.
+Automate sales, marketing, administrative tasks, learning experiences and countless other processes to save time, eliminate repetitive work, and focus on what matters most.
 
-Here is a video that lets you see how AutomatorWP works in less than 2 minutes!
+Watch the video below to see how AutomatorWP works in less than 2 minutes!
 
 https://youtu.be/vWqRcEO8SgY
 
 = Use automations to connect your plugins =
 
-Here are some automations samples to give you a quick idea of the possible combinations:
+Here are some automations samples to give you a quick idea of what you can build:
 
-When user purchases a **WooCommerce product**.
-Add a **WP Fusion tag** to the user.
+When user purchases a **WooCommerce product** > Add a **WP Fusion tag** to the user
 
-When user joins a **BuddyPress group**.
-Enroll user in a **LearnDash course**.
+When user joins a **BuddyPress group** > Enroll user in a **LearnDash course**
 
 Not only you can create one-to-one connections, also you can create automations with all the triggers and actions of your choice, such as the following one:
 
-When user creates a **bbPress forum topic**
-and completes a **H5P content**.
-
-Enroll user in a **LifterLMS course**
-add a **MemberPress membership** to the user
-and **email user** with instructions about how to access to the course.
+When user creates a **bbPress topic** and completes a **H5P content** > Enroll user in a **LifterLMS course**, add to **MemberPress membership** and  **email them** with the access instructions.
 
 The number of combinations and possibilities are unlimited!
 
-= Connect your plugins with web services and others WordPress sites =
+= Webhooks to keep your site connected =
 
-With the [Webhooks](https://automatorwp.com/add-ons/webhooks/)  add-on you are able to send and receive data from anywhere like external applications, web services or others WordPress sites.
+With the [Webhooks](https://automatorwp.com/add-ons/webhooks/) add-on you are able to send and receive data from anywhere and connect all your WordPress plugins with platforms like Zapier or Make.
 
-You can connect all your WordPress plugins with platforms like Zapier or Integromat, even you can connect your plugins from a site with the plugins of another site and everything with no code.
+Even you can connect your plugins from different sites!
+Example: User purchases a product on **Site A** > Enroll user in a course on **Site B**
 
-Any website, application or service with support to webhooks or with a Rest API can be connected with the Webhooks add-on and, in consequence, with your WordPress plugins!
+Anything with support to webhooks or a Rest API can be connected with the Webhooks add-on and, in consequence, with your WordPress plugins!
 
 [View Webhooks automations samples](https://automatorwp.com/docs/webhooks/automations-samples/)
-
-= Create automations easily =
-
-AutomatorWP includes an easy-to-use editor that you will quickly familiarize yourself with!
-
-[See it in action!](#screenshots)
 
 = Features =
 
 AutomatorWP is extremely powerful and infinitely extensible. Check out some of the built in features:
 
-**Unlimited triggers and actions:**
-Configure as many triggers and actions per automation as you want.
-
-**Logged-in and anonymous automations:**
-Create automations for logged-in users or for not logged-in visitors.
-
-**Scheduled and recurring automations:**
-Automations to run actions on all or on a filtered group of users manually, on a specific date or on a recurring basis.
-
-**All posts automations:**
-Create automated tasks that check your site posts and process actions on them like clean up the older posts or email administrators about pending ones.
-
-**Filters:**
-Filter any trigger or action with the conditions of your choice.
-
-**Required number of times:**
-Set the number of times required to complete a trigger like comment on a post 3 times.
-
-**Sequential triggers:**
-Force users to complete triggers in order to complete the automation.
-
-**Completion limits:**
-Limit automation's maximum completion times per user and globally.
-
-**Tags:**
-Tags to pass dynamic information from triggers to actions (with support to user and post metas).
-
-**Developer-friendly:**
-AutomatorWP is extremely flexible with plenty of hooks to add custom features and functionalities.
+* **Unlimited triggers and actions:** Configure as many triggers and actions per automation as you want.
+* **Logged-in and anonymous automations:** Create automations for logged-in users or for not logged-in visitors.
+* **Scheduled and recurring automations:** Automations to run actions on all or on a filtered group of users manually, on a specific date or on a recurring basis.
+* **All posts automations:** Create automated tasks that check your site posts and process actions on them like clean up the older posts or email administrators about pending ones.
+* **All users automations:** Create automations that can loop all or a group of users and process actions on them like remove inactive users or email new ones.
+* **Filters:** Filter any trigger or action with the **conditions** of your choice.
+* **Required number of times:** Set the number of times required to complete a trigger like comment on a post 3 times.
+* **Sequential triggers:** Force users to complete triggers in order to complete the automation.
+* **Completion limits:** Limit automation's maximum completion times per user and globally.
+* **Tags:** Tags to pass dynamic information from triggers to actions (with support to user and post metas).
+* **Developer-friendly:** AutomatorWP is extremely flexible with plenty of hooks to add custom features and functionalities.
 
 = Integrated with +200 WordPress plugins =
 
@@ -130,9 +100,10 @@ AutomatorWP works with different WordPress plugins, including:
 * [Everest Forms](https://automatorwp.com/add-ons/everest-forms/)
 * [Favorites](https://automatorwp.com/add-ons/favorites/)
 * [FluentBooking](https://automatorwp.com/add-ons/fluentbooking/)
-* [FluentBooking](https://automatorwp.com/add-ons/fluentcart/)
+* [FluentCart](https://automatorwp.com/add-ons/fluentcart/)
 * [FluentCRM](https://automatorwp.com/add-ons/fluentcrm/)
 * [Fluent Support](https://automatorwp.com/add-ons/fluent-support/)
+* [Fluent Forms](https://automatorwp.com/add-ons/fluentform/)
 * [Formidable Forms](https://automatorwp.com/add-ons/formidable-forms/)
 * [Forminator](https://automatorwp.com/add-ons/forminator/)
 * [GamiPress](https://automatorwp.com/add-ons/gamipress/)
@@ -191,7 +162,6 @@ AutomatorWP works with different WordPress plugins, including:
 * [WooCommerce Shipstation](https://automatorwp.com/add-ons/woocommerce-shipstation/)
 * [WP All Import](https://automatorwp.com/add-ons/wp-all-import/)
 * [WP Booking Calendar](https://automatorwp.com/add-ons/wp-booking-calendar/)
-* [WP Fluent Forms](https://automatorwp.com/add-ons/fluentform/)
 * [WP Fusion](https://automatorwp.com/add-ons/wp-fusion/)
 * [WP Job Manager](https://automatorwp.com/add-ons/wp-job-manager/)
 * [WP Polls](https://automatorwp.com/add-ons/wp-polls/)
@@ -206,13 +176,21 @@ AutomatorWP works with different WordPress plugins, including:
 * [WPLMS](https://automatorwp.com/add-ons/wplms/)
 * [WS Form](https://automatorwp.com/add-ons/ws-form/)
 
+= Integrated with AI Agents =
+
+AutomatorWP already connects with AI agents to create smarter workflows. We're continuously working on adding more AI integrations.
+
+* [Anthropic (Claude)](https://automatorwp.com/add-ons/anthropic-claude/)
+* [Google Gemini](https://automatorwp.com/add-ons/google-gemini/)
+* [Mistral AI](https://automatorwp.com/add-ons/mistral-ai/)
+* [Open AI (ChatGPT)](https://automatorwp.com/add-ons/openai/)
+
 = Integrated with external platforms =
 
 AutomatorWP can also work with external platforms, furthermore WordPress plugins, like these below:
 
 * [ActiveCampaign](https://automatorwp.com/add-ons/activecampaign/)
 * [Airtable](https://automatorwp.com/add-ons/airtable/)
-* [Anthropic (Claude)](https://automatorwp.com/add-ons/anthropic-claude/)
 * [AWeber](https://automatorwp.com/add-ons/aweber/)
 * [Bluesky](https://automatorwp.com/add-ons/bluesky/)
 * [Campaign Monitor](https://automatorwp.com/add-ons/campaign-monitor/)
@@ -221,7 +199,6 @@ AutomatorWP can also work with external platforms, furthermore WordPress plugins
 * [Facebook](https://automatorwp.com/add-ons/facebook/)
 * [HubSpot](https://automatorwp.com/add-ons/hubspot/)
 * [Google Calendar](https://automatorwp.com/add-ons/google-calendar/)
-* [Google Gemini](https://automatorwp.com/add-ons/google-gemini/)
 * [Google Sheets](https://automatorwp.com/add-ons/google-sheets/)
 * [IFTTT](https://automatorwp.com/add-ons/ifttt/)
 * [Instagram](https://automatorwp.com/add-ons/instagram/)
@@ -231,7 +208,6 @@ AutomatorWP can also work with external platforms, furthermore WordPress plugins
 * [Mailchimp](https://automatorwp.com/add-ons/mailchimp/)
 * [MailerLite](https://automatorwp.com/add-ons/mailerlite/)
 * [Make](https://automatorwp.com/add-ons/make/)
-* [Mistral AI](https://automatorwp.com/add-ons/mistral-ai/)
 * [Notion](https://automatorwp.com/add-ons/notion/)
 * [Twilio](https://automatorwp.com/add-ons/twilio/)
 * [Twitter](https://automatorwp.com/add-ons/twitter/)
@@ -353,6 +329,12 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 5.8.4 =
+
+* **Bug Fixes**
+* Fixed vulnerability.
+* ARForms: Fixed search function in form selector.
 
 = 5.8.3 =
 

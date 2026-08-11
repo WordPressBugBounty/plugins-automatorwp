@@ -557,14 +557,8 @@ class AutomatorWP_WordPress_Update_Posts extends AutomatorWP_Integration_Action 
     public function log_fields( $log_fields, $log, $object ) {
 
         // Bail if log is not assigned to an action
-        if( $log->type !== 'action' ) {
+        if( $log->type !== 'action' || $object->type !== $this->action )
             return $log_fields;
-        }
-
-        // Bail if action type don't match this action
-        if( $object->type !== $this->action ) {
-            return $log_fields;
-        }
 
         $log_fields['posts_found_info'] = array(
             'name' => __( 'Posts Filtered', 'automatorwp' ),

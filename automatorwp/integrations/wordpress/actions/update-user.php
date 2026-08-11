@@ -366,19 +366,19 @@ class AutomatorWP_WordPress_Update_User extends AutomatorWP_Integration_Action {
     public function log_fields( $log_fields, $log, $object ) {
 
         // Bail if log is not assigned to an action
-        if( $log->type !== 'action' ) {
+        if( $log->type !== 'action' || $object->type !== $this->action )
             return $log_fields;
-        }
-
-        // Bail if action type don't match this action
-        if( $object->type !== $this->action ) {
-            return $log_fields;
-        }
 
         $log_fields['user_info'] = array(
             'name' => __( 'User Information', 'automatorwp' ),
             'desc' => __( 'Information about the user created.', 'automatorwp' ),
             'type' => 'title',
+        );
+
+        $log_fields['user_id_meta'] = array(
+            'name' => __( 'User:', 'automatorwp' ),
+            'desc' => __( 'The user the action runs for.', 'automatorwp' ),
+            'type' => 'text',
         );
 
         $log_fields['user_login'] = array(

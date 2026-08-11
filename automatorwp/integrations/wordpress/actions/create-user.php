@@ -185,7 +185,7 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
 
         if( $this->user_id ) {
 
-            if( is_array( $action_options['user_meta'] ) ) {
+            if( isset( $action_options['user_meta'] ) && is_array( $action_options['user_meta'] ) ) {
 
                 foreach( $action_options['user_meta'] as $i => $meta ) {
 
@@ -215,7 +215,7 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
             // Send notification
             $notify = 'admin';
 
-            if( (bool) $action_options['send_user_notification'] ) {
+            if( isset( $action_options['send_user_notification'] ) && (bool) $action_options['send_user_notification'] ) {
                 $notify = 'both';
             }
 
@@ -270,9 +270,8 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
     public function log_meta( $log_meta, $action, $user_id, $action_options, $automation ) {
 
         // Bail if action type don't match this action
-        if( $action->type !== $this->action ) {
+        if( $action->type !== $this->action )
             return $log_meta;
-        }
 
         // Store user fields
         $user_fields = array(
@@ -296,10 +295,10 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
         $log_meta['user_meta'] = $this->user_meta;
 
         // Store result
-        if( $this->user_id ) {
-            $log_meta['result'] = __( 'User created correctly', 'automatorwp' );
-        } else if( is_wp_error( $this->user_id ) ) {
+        if( is_wp_error( $this->user_id ) ) {
             $log_meta['result'] = $this->user_id->get_error_message();
+        } else if( $this->user_id ) {
+            $log_meta['result'] = __( 'User created correctly', 'automatorwp' );
         } else {
             $log_meta['result'] = __( 'Could not create user', 'automatorwp' );
         }
@@ -320,20 +319,20 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
      */
     public function log_fields( $log_fields, $log, $object ) {
 
-        // Bail if log is not assigned to an action
-        if( $log->type !== 'action' ) {
+        // Bail if log is not assigned to this action
+        if( $log->type !== 'action' || $object->type !== $this->action )
             return $log_fields;
-        }
-
-        // Bail if action type don't match this action
-        if( $object->type !== $this->action ) {
-            return $log_fields;
-        }
 
         $log_fields['user_info'] = array(
             'name' => __( 'User Information', 'automatorwp' ),
             'desc' => __( 'Information about the user created.', 'automatorwp' ),
             'type' => 'title',
+        );
+
+        $log_fields['user_id_meta'] = array(
+            'name' => __( 'User:', 'automatorwp' ),
+            'desc' => __( 'The user the action runs for.', 'automatorwp' ),
+            'type' => 'text',
         );
 
         $log_fields['user_login'] = array(

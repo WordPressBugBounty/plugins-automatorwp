@@ -1,7 +1,10 @@
 (function ( $ ) {
     
     // On change taxonomy
-    $('body').on('change', '.automatorwp-action-posts-create-post .cmb2-id-taxonomy select, '
+    $('body').on('change', '.automatorwp-action-wordpress-create-post .cmb2-id-taxonomy select, '
+        + '.automatorwp-action-wordpress-update-post .cmb2-id-taxonomy select, '
+        + '.automatorwp-action-wordpress-update-multiple-posts .cmb2-id-taxonomy select, '
+        + '.automatorwp-action-posts-create-post .cmb2-id-taxonomy select, '
         + '.automatorwp-action-posts-update-post .cmb2-id-taxonomy select, '
         + '.automatorwp-action-posts-update-multiple-posts .cmb2-id-taxonomy select', function(e) {
         var taxonomy = $(this).closest('.cmb-row');

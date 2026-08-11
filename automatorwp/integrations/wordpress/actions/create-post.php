@@ -242,8 +242,8 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
             'post_password' => '',
         ) );
 
-        $post_taxonomy = $action_options['taxonomy'];
-        $post_term = $action_options['post_terms'];
+        $post_taxonomy = isset( $action_options['taxonomy'] ) ? $action_options['taxonomy'] : 'any';
+        $post_term = isset( $action_options['post_terms'] ) ? $action_options['post_terms'] : 'any';
         
         // Format post date
         if( ! empty( $post_data['post_date'] ) ) {
@@ -258,15 +258,18 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
         // Insert the post
         $this->post_id = wp_insert_post( $post_data );
 
-        // Add to term if is selected
-        if ( $post_taxonomy !== 'any' || $post_term !== 'any' ){
-            $term_data = get_term( $post_term );
-            wp_set_object_terms( $this->post_id, $term_data->term_id, $term_data->taxonomy, false );
-        }
-
         if( $this->post_id ) {
 
-            if( is_array( $action_options['post_meta'] ) ) {
+            // Add to term if is selected
+            if ( $post_taxonomy !== 'any' || $post_term !== 'any' ){
+                $term_data = get_term( $post_term );
+
+                if( $term_data instanceof WP_Term )
+                    wp_set_object_terms( $this->post_id, $term_data->term_id, $term_data->taxonomy, false );
+            }
+
+            // Update metas
+            if( isset( $action_options['post_meta'] ) && is_array( $action_options['post_meta'] ) ) {
 
                 foreach( $action_options['post_meta'] as $i => $meta ) {
 
@@ -407,14 +410,8 @@ class AutomatorWP_WordPress_Create_Post extends AutomatorWP_Integration_Action {
     public function log_fields( $log_fields, $log, $object ) {
 
         // Bail if log is not assigned to an action
-        if( $log->type !== 'action' ) {
+        if( $log->type !== 'action' || $object->type !== $this->action )
             return $log_fields;
-        }
-
-        // Bail if action type don't match this action
-        if( $object->type !== $this->action ) {
-            return $log_fields;
-        }
 
         $log_fields['post_info'] = array(
             'name' => __( 'Post Information', 'automatorwp' ),

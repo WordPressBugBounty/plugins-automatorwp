@@ -16,6 +16,11 @@ if( !defined( 'ABSPATH' ) ) exit;
 function automatorwp_arforms_ajax_get_forms() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     global $wpdb;
 
@@ -30,7 +35,7 @@ function automatorwp_arforms_ajax_get_forms() {
     foreach ( $forms as $form ) {
 
         if( ! empty( $search ) ) {
-            if( strpos( strtolower( $service['name'] ), strtolower( $search ) ) === false ) {
+            if( strpos( strtolower( $form['name'] ), strtolower( $search ) ) === false ) {
                 continue;
             }
         }

@@ -187,6 +187,9 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
         // Log meta data
         add_filter( 'automatorwp_user_completed_action_log_meta', array( $this, 'log_meta' ), 10, 5 );
 
+        // Log fields
+        add_filter( 'automatorwp_log_fields', array( $this, 'log_fields' ), 10, 5 );
+
         parent::hooks();
     }
 
@@ -206,9 +209,8 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
     public function log_meta( $log_meta, $action, $user_id, $action_options, $automation ) {
 
         // Bail if action type don't match this action
-        if( $action->type !== $this->action ) {
+        if( $action->type !== $this->action )
             return $log_meta;
-        }
 
         // Store user fields
         $user_fields = array(
@@ -229,6 +231,32 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
         $log_meta['user_id'] = $this->user_id;
 
         return $log_meta;
+    }
+
+    /**
+     * Action custom log fields
+     *
+     * @since 1.0.0
+     *
+     * @param array     $log_fields The log fields
+     * @param stdClass  $log        The log object
+     * @param stdClass  $object     The trigger/action/automation object attached to the log
+     *
+     * @return array
+     */
+    public function log_fields( $log_fields, $log, $object ) {
+
+        // Bail if log is not assigned to this action
+        if( $log->type !== 'action' || $object->type !== $this->action )
+            return $log_fields;
+
+        $log_fields['user_id_meta'] = array(
+            'name' => __( 'User:', 'automatorwp' ),
+            'desc' => __( 'The user the action runs for.', 'automatorwp' ),
+            'type' => 'text',
+        );
+
+        return $log_fields;
     }
 
 }

@@ -15,7 +15,7 @@ if( !defined( 'ABSPATH' ) ) exit;
 *
 * @return array
 */
-function automatorwp_wordpress_get_taxonomies() {
+function automatorwp_wordpress_get_public_taxonomies() {
 
     $taxonomies = array();
 
@@ -139,18 +139,19 @@ function automatorwp_wordpress_options_cb_term( $field ) {
 *
 * @return array
 */
-function automatorwp_wordpress_get_terms( $taxonomy_id ) {
+function automatorwp_wordpress_get_taxonomy_terms( $taxonomy_id ) {
 
     $terms = array();
+    $query_args = array( 'hide_empty' => false );
 
-    
-    $terms_taxonomy = get_terms(array(
-        'taxonomy' => $taxonomy_id,
-        'hide_empty' => false,
-    ));
+    if( ! empty( $taxonomy_id ) ) {
+        $query_args['taxonomy'] = $taxonomy_id;
+    }
+
+    $terms_taxonomy = get_terms( $query_args );
 
     // Add terms to array
-    foreach ($terms_taxonomy as $term) {
+    foreach ( $terms_taxonomy as $term ) {
         $terms[] = array(
             'id' => $term->term_id,
             'name' => $term->name,

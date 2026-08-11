@@ -17,6 +17,11 @@ function automatorwp_wpforo_ajax_get_forums() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     global $wpdb;
     $results = array();
 
@@ -80,6 +85,11 @@ add_action( 'wp_ajax_automatorwp_wpforo_get_forums', 'automatorwp_wpforo_ajax_ge
 function automatorwp_wpforo_ajax_get_topics() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 

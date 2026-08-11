@@ -75,6 +75,11 @@ function automatorwp_clickup_ajax_get_teams() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     global $wpdb;
 
     // Pull back the search string
@@ -117,6 +122,11 @@ add_action( 'wp_ajax_automatorwp_clickup_get_teams', 'automatorwp_clickup_ajax_g
 function automatorwp_clickup_ajax_get_spaces() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -164,6 +174,11 @@ function automatorwp_clickup_ajax_get_folders() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     global $wpdb;
 
     // Pull back the search string
@@ -210,6 +225,11 @@ function automatorwp_clickup_ajax_get_lists() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
 
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
+
     global $wpdb;
 
     // Pull back the search string
@@ -255,6 +275,11 @@ add_action( 'wp_ajax_automatorwp_clickup_get_lists', 'automatorwp_clickup_ajax_g
 function automatorwp_clickup_ajax_get_tasks() {
     // Security check, forces to die if not security passed
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
