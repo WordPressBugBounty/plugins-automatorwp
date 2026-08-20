@@ -14,8 +14,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @since 1.0.0
  */
 function automatorwp_autonami_ajax_get_tags() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -55,8 +60,13 @@ add_action( 'wp_ajax_automatorwp_autonami_get_tags', 'automatorwp_autonami_ajax_
  * @since 1.0.0
  */
 function automatorwp_autonami_ajax_get_lists() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 

@@ -14,8 +14,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @since 1.0.0
  */
 function automatorwp_wpcode_ajax_get_snippets() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     global $wpdb;
 
@@ -28,6 +33,12 @@ function automatorwp_wpcode_ajax_get_snippets() {
 
     // Parse snippet results to match select2 results
     foreach ( $snippets as $snippet ) {
+
+        if( ! empty( $search ) ) {
+            if( strpos( strtolower( $snippet['name'] ), strtolower( $search ) ) === false ) {
+                continue;
+            }
+        }
         
         $results[] = array(
             'id' => $snippet['id'],

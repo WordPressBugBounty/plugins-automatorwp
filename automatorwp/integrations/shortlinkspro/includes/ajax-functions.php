@@ -154,8 +154,13 @@ function automatorwp_shortlinkspro_get_categories( $search = '' ) {
  */
 function automatorwp_shortlinkspro_ajax_get_tags() {
 
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     $results = automatorwp_shortlinkspro_get_tags( isset( $_REQUEST['q'] ) ? $_REQUEST['q'] : '' );
 

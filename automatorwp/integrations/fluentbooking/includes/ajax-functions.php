@@ -2,7 +2,7 @@
 /**
  * Ajax Functions
  *
- * @package     AutomatorWP\Amelia\includes\Ajax_Functions
+ * @package     AutomatorWP\FluentBooking\includes\Ajax_Functions
  * @since       1.0.0
  */
 // Exit if accessed directly
@@ -14,8 +14,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @since 1.0.0
  */
 function automatorwp_fluentbooking_ajax_get_single_events() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     global $wpdb;
 
@@ -57,8 +62,13 @@ add_action( 'wp_ajax_automatorwp_fluentbooking_get_single_events', 'automatorwp_
  * @since 1.0.0
  */
 function automatorwp_fluentbooking_ajax_get_team_events() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     global $wpdb;
 

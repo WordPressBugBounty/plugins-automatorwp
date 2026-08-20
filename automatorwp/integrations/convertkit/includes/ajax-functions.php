@@ -64,8 +64,13 @@ add_action( 'wp_ajax_automatorwp_convertkit_authorize',  'automatorwp_convertkit
  * @since 1.0.0
  */
 function automatorwp_convertkit_ajax_get_forms() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -101,8 +106,13 @@ add_action( 'wp_ajax_automatorwp_convertkit_get_forms', 'automatorwp_convertkit_
  * @since 1.0.0
  */
 function automatorwp_convertkit_ajax_get_sequences() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -138,8 +148,13 @@ add_action( 'wp_ajax_automatorwp_convertkit_get_sequences', 'automatorwp_convert
  * @since 1.0.0
  */
 function automatorwp_convertkit_ajax_get_tags() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 

@@ -14,8 +14,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @since 1.0.0
  */
 function automatorwp_fluentcommunity_ajax_get_spaces() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -50,8 +55,13 @@ add_action( 'wp_ajax_automatorwp_fluentcommunity_get_spaces', 'automatorwp_fluen
  * @since 1.0.0
  */
 function automatorwp_fluentcommunity_ajax_get_courses() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -64,6 +74,13 @@ function automatorwp_fluentcommunity_ajax_get_courses() {
     $courses = automatorwp_fluentcommunity_get_courses();
 
     foreach( $courses as $course ) {
+
+        if( ! empty( $search ) ) {
+            if( strpos( strtolower( $course['title'] ), strtolower( $search ) ) === false ) {
+                continue;
+            }
+        }
+
         $results[] = array(
             'id' => $course['id'],
             'text' => $course['title'],

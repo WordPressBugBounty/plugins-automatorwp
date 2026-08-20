@@ -105,8 +105,13 @@ add_action( 'wp_ajax_automatorwp_mailchimp_delete_oauth_credentials', 'automator
  * @since 1.0.0
  */
 function automatorwp_mailchimp_ajax_get_lists() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -148,8 +153,13 @@ add_action( 'wp_ajax_automatorwp_mailchimp_get_lists', 'automatorwp_mailchimp_aj
  * @since 1.0.0
  */
 function automatorwp_mailchimp_ajax_get_tags() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     global $wpdb;
 
@@ -194,8 +204,13 @@ add_action( 'wp_ajax_automatorwp_mailchimp_get_tags', 'automatorwp_mailchimp_aja
  * @since 1.0.0
  */
 function automatorwp_mailchimp_ajax_get_campaigns() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -238,8 +253,13 @@ add_action( 'wp_ajax_automatorwp_mailchimp_get_campaigns', 'automatorwp_mailchim
  * @since 1.0.0
  */
 function automatorwp_mailchimp_ajax_get_templates() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 

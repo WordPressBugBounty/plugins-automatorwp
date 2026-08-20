@@ -15,8 +15,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @since 1.0.0
  */
 function automatorwp_wp_booking_calendar_ajax_get_bookings() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -28,7 +33,7 @@ function automatorwp_wp_booking_calendar_ajax_get_bookings() {
     // Get the bookings
     $bookings = $wpdb->get_results( $wpdb->prepare(
         "SELECT booking_id, sort_date FROM {$wpdb->prefix}booking WHERE  booking_id LIKE %s",
-        "%{$search}%"
+        "%%{$search}%%"
     ) );
 
     foreach( $bookings as $booking ) {

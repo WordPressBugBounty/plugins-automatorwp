@@ -15,8 +15,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  */
 
 function automatorwp_jetpack_crm_ajax_get_contact_tags() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     // Predefined jetpack crm type
     $type_id = ZBS_TYPE_CONTACT;
@@ -58,8 +63,13 @@ add_action( 'wp_ajax_automatorwp_jetpack_crm_get_contact_tags', 'automatorwp_jet
  */
 
 function automatorwp_jetpack_crm_ajax_get_company_tags() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
     
     // Predefined jetpack crm type
     $type_id = ZBS_TYPE_COMPANY;

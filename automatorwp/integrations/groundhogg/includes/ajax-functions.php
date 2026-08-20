@@ -14,8 +14,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  * @since 1.0.0
  */
 function automatorwp_groundhogg_ajax_get_tags() {
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     global $wpdb;
 
@@ -30,6 +35,7 @@ function automatorwp_groundhogg_ajax_get_tags() {
 
     // Parse tags results to match select2 results
     foreach ( $tags as $i => $tag ) {
+
         $results[] = array(
             'id'   => $tag->tag_id,
             'text' => $tag->tag_name

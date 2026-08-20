@@ -15,8 +15,13 @@ if( !defined( 'ABSPATH' ) ) exit;
  */
 function automatorwp_bbforms_ajax_get_forms() {
 
-    // Security check, forces to die if not security passed
+    // Security check
     check_ajax_referer( 'automatorwp_admin', 'nonce' );
+
+    // Permissions check
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) {
+        wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
+    }
 
     $results = automatorwp_bbforms_get_forms( isset( $_REQUEST['q'] ) ? $_REQUEST['q'] : '' );
 
