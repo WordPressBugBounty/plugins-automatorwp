@@ -1066,7 +1066,8 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 }
 
 /* Compatibility fix between CMB2 & WP 7.0 */
-.cmb2-wrap input[type=radio]:checked:focus {
+.cmb2-wrap input[type=radio]:checked:focus,
+.cmb2-wrap input[type="checkbox"]:checked:focus {
     background: var(--wp-admin-theme-color);
 }
 
