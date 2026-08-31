@@ -1068,15 +1068,26 @@ function automatorwp_utilities_number_condition_field() {
     return array(
         'name' => __( 'Condition:', 'automatorwp' ),
         'type' => 'select',
-        'options' => array(
-            'equal'             => __( 'equal to', 'automatorwp' ),
-            'not_equal'         => __( 'not equal to', 'automatorwp' ),
-            'less_than'         => __( 'less than', 'automatorwp' ),
-            'greater_than'      => __( 'greater than', 'automatorwp' ),
-            'less_or_equal'     => __( 'less or equal to', 'automatorwp' ),
-            'greater_or_equal'  => __( 'greater or equal to', 'automatorwp' ),
-        ),
+        'options' => automatorwp_number_condition_options(),
         'default' => 'equal'
+    );
+}
+
+/**
+ * Utility function to get the number condition options
+ *
+ * @since 6.0.0
+ *
+ * @return array
+ */
+function automatorwp_number_condition_options() {
+    return array(
+        'equal'             => __( 'equal to', 'automatorwp' ),
+        'not_equal'         => __( 'not equal to', 'automatorwp' ),
+        'less_than'         => __( 'less than', 'automatorwp' ),
+        'greater_than'      => __( 'greater than', 'automatorwp' ),
+        'less_or_equal'     => __( 'less or equal to', 'automatorwp' ),
+        'greater_or_equal'  => __( 'greater or equal to', 'automatorwp' ),
     );
 }
 
@@ -1920,5 +1931,81 @@ function automatorwp_utilities_get_user_fields() {
     $user_fields = apply_filters( 'automatorwp_utilities_get_user_fields', $user_fields );
 
     return $user_fields;
+
+}
+
+/**
+ * Get all public post types slugs
+ *
+ * @since 6.0.0
+ *
+ * @return array
+ */
+function automatorwp_get_post_types_slugs() {
+    $post_types = get_post_types( array( 'public' => true ), 'objects' );
+
+    return is_array( $post_types ) ? array_keys( $post_types ) : array();
+}
+
+/**
+ * Validates if value is in array ensuring to return a valid entry from the array
+ *
+ * @since 6.0.0
+ *
+ * @param string $value
+ * @param array $array
+ * @param mixed $default
+ *
+ * @return mixed
+ */
+function automatorwp_validate_from_array( $value, $array, $default = '' ) {
+    return is_array( $array ) && in_array( $value, $array ) ? $value : $default;
+}
+
+/**
+ * Get a random array entry for associative arrays
+ * For arrays without keys, use PHP array_rand() instead
+ *
+ * @since 6.0.0
+ *
+ * @param array $array
+ * @param mixed $default
+ *
+ * @return mixed
+ */
+function automatorwp_assoc_array_rand( $array, $default = false ) {
+
+    if( is_array( $array ) && count( $array ) ) {
+        $keys = array_keys( $array );
+
+        if( count( $keys ) === 1 ) {
+            return $array[ $keys[0] ];
+        } else {
+            return $array[ $keys[ array_rand( $keys ) ] ];
+        }
+    }
+
+    return $default;
+}
+
+/**
+ * Join a string with a natural language conjunction at the end (one, two, three or four).
+ *
+ * @since 6.0.0
+ *
+ * @param array $array Array of words
+ * @param string $join and|or
+ *
+ * @return string
+ */
+function automatorwp_join_words( $array, $join = '' ) {
+
+    if( $join === '' ) $join = __( 'and', 'automatorwp' );
+
+    $last = array_pop($array);
+
+    if ($array) return implode(', ', $array) . ' ' . $join . ' ' . $last;
+
+    return $last;
 
 }

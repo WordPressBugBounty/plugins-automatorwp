@@ -124,10 +124,10 @@ class CMB2_JS {
 
 		// if SCRIPT_DEBUG, we need to enqueue separately.
 		if ( $enqueue_wysiwyg ) {
-			wp_enqueue_script( 'cmb2-wysiwyg', CMB2_Utils::url( 'js/cmb2-wysiwyg.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION );
+			wp_enqueue_script( 'cmb2-wysiwyg', CMB2_Utils::url( 'js/cmb2-wysiwyg.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION, false );
 		}
 		if ( $enqueue_char_counter ) {
-			wp_enqueue_script( 'cmb2-char-counter', CMB2_Utils::url( 'js/cmb2-char-counter.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION );
+			wp_enqueue_script( 'cmb2-char-counter', CMB2_Utils::url( 'js/cmb2-char-counter.js' ), array( 'jquery', 'wp-util' ), CMB2_VERSION, false );
 		}
 
 		self::localize( $debug );
@@ -171,8 +171,8 @@ class CMB2_JS {
 	 * @since  2.0.7
 	 */
 	protected static function colorpicker_frontend() {
-		wp_register_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), CMB2_VERSION );
-		wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), array( 'iris' ), CMB2_VERSION );
+		wp_register_script( 'iris', admin_url( 'js/iris.min.js' ), array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), CMB2_VERSION, false );
+		wp_register_script( 'wp-color-picker', admin_url( 'js/color-picker.min.js' ), array( 'iris' ), CMB2_VERSION, false );
 		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', array(
 			'clear'         => esc_html__( 'Clear', 'cmb2' ),
 			'defaultString' => esc_html__( 'Default', 'cmb2' ),

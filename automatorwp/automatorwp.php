@@ -3,7 +3,7 @@
  * Plugin Name:     	AutomatorWP
  * Plugin URI:      	https://automatorwp.com
  * Description:     	Connect your WordPress plugins together and create automated workflows with no code!
- * Version:         	5.8.6
+ * Version:         	6.0.0
  * Author:          	AutomatorWP
  * Author URI:      	https://automatorwp.com/
  * Text Domain:     	automatorwp
@@ -99,8 +99,8 @@ final class AutomatorWP {
             self::$instance->constants();
             self::$instance->libraries();
             self::$instance->classes();
-            self::$instance->compatibility();
             self::$instance->includes();
+            self::$instance->modules();
             self::$instance->hooks();
 
         }
@@ -119,7 +119,7 @@ final class AutomatorWP {
     private function constants() {
 
         // Plugin version
-        define( 'AUTOMATORWP_VER', '5.8.6' );
+        define( 'AUTOMATORWP_VER', '6.0.0' );
 
         // Plugin file
         define( 'AUTOMATORWP_FILE', __FILE__ );
@@ -179,20 +179,6 @@ final class AutomatorWP {
     }
 
     /**
-	 * Include compatibility files
-	 *
-	 * @access      private
-	 * @since       4.2.0
-	 * @return      void
-	 */
-	private function compatibility() {
-
-		// GamiPress backward compatibility
-		require_once AUTOMATORWP_DIR . 'includes/compatibility/4.2.0.php';
-
-	}
-
-    /**
      * Include plugin files
      *
      * @access      private
@@ -201,7 +187,6 @@ final class AutomatorWP {
      */
     private function includes() {
 
-        // The rest of files
         require_once AUTOMATORWP_DIR . 'includes/admin.php';
         require_once AUTOMATORWP_DIR . 'includes/custom-tables.php';
         require_once AUTOMATORWP_DIR . 'includes/ajax-functions.php';
@@ -223,6 +208,19 @@ final class AutomatorWP {
         require_once AUTOMATORWP_DIR . 'includes/logs.php';
         require_once AUTOMATORWP_DIR . 'includes/users.php';
         require_once AUTOMATORWP_DIR . 'includes/utilities.php';
+
+    }
+
+    /**
+     * Include modules files
+     *
+     * @access      private
+     * @since       1.0.0
+     * @return      void
+     */
+    private function modules() {
+
+        require_once AUTOMATORWP_DIR . 'modules/ai-assistant/automatorwp-ai-assistant.php';
 
     }
 

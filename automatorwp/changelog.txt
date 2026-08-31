@@ -1,5 +1,594 @@
 == Changelog ==
 
+= 5.8.6 =
+
+* **Improvements**
+* Improved CSS compatibility between CMB2 & WP 7.1
+
+= 5.8.5 =
+
+* **Bug Fixes**
+* Fixed vulnerability.
+* Fixed search function in select fields.
+
+= 5.8.4 =
+
+* **Bug Fixes**
+* Fixed vulnerability.
+* ARForms: Fixed search function in form selector.
+
+= 5.8.3 =
+
+* **Improvements**
+* BuddyBoss: Improved group selector.
+* BuddyPress: Improved group selector.
+
+= 5.8.2 =
+
+* **Bug Fixes**
+* Tutor LMS: Fixed bug related to Enroll user in a course action.
+
+= 5.8.1 =
+
+* **Improvements**
+* Improved all searches of our selectors.
+* Improved the tag selector style.
+
+= 5.8.0 =
+
+* **Bug Fixes**
+* Fixed bug related to automatic cleanup of some types of logs.
+
+= 5.7.9.2 =
+
+* **Bug Fixes**
+* Fixed deprecated functions in the latest version of WordPress.
+
+= 5.7.9.1 =
+
+* **Bug Fixes**
+* Fix import automation options handler.
+
+= 5.7.9 =
+
+* **Bug Fixes**
+* Fix notice for review.
+
+= 5.7.8 =
+
+* **New Features**
+* WordPress: New trigger: Option gets updated with a value.
+* WordPress: New anonymous trigger: Option gets updated with a value.
+
+= 5.7.7 =
+
+* **New Features**
+* WordPress: New action: Update option.
+* WordPress: New action: Delete option.
+* New site tag: {option:name}.
+* **Improvements**
+* BuddyBoss: Improved check for events that publish activities containing attachments.
+
+= 5.7.6 =
+
+* **New Features**
+* Added a new quick way to add triggers and actions.
+* Added option to disable PRO recommendations.
+* **Improvements**
+* Added several improvements to the automation editor UI.
+* Added more aggressive style rules to prevent Elementor style rules in our UI.
+
+= 5.7.5 =
+
+* **Improvements**
++ Style improvements to match with WordPress 7.0.
+
+= 5.7.4 =
+
+* **New Features**
+* New integration: AffiliatePress.
+* AffiliatePress: New trigger: A user registers as an affiliate.
+* New integration: BookingPress.
+* BookingPress: New trigger: User is registered as a customer.
+* BookingPress: New trigger: Guest is registered as a customer.
+* New integration: Mail Mint.
+* Mail Mint: New trigger: User added to contacts.
+* Mail Mint: New trigger: A tag is added to user.
+* Mail Mint: New action: Add user to Mail Mint.
+* Mail Mint: New action: Add tag to user.
+
+= 5.7.3 =
+
+* **Improvements**
+* Improved security in some ajax requests.
+* Improved checks with empty expiration dates.
+* Improved security adding more escaping to logs entries display.
+
+= 5.7.2 =
+
+* **New Features**
+* Added the ability to set an expiration date to automations to get them automatically expired.
+* **Improvements**
+* Improved "Created on" field handler to allow handle date & time.
+
+= 5.7.1 =
+
+* **Bug Fixes**
+* Fixed bug in All users automations related to special characters in meta conditions.
+
+= 5.7.0 =
+
+* **New Features**
+* New integration: FluentCart.
+* FluentCart: New trigger: User completes a purchase.
+* FluentCart: New trigger: User purchases a product.
+* **Improvements**
+* FluentCRM: Result messages in action logs.
+
+= 5.6.9 =
+
+* **Improvements**
+* Mailchimp: Mailchimp SDK and guzzlehttp library updated to the latest version.
+
+= 5.6.8 =
+
+* **Improvements**
+* ActiveCampaign: Improved trigger handling.
+* **Bug fixes**
+* ActiveCampaign: Fixed vulnerability.
+* AWeber: Fixed vulnerability.
+* Bluesky: Fixed vulnerability.
+* Campaign Monitor: Fixed vulnerability.
+* MailerLite: Fixed vulnerability.
+
+= 5.6.7 =
+
+* **New Features**
+* New integration: MyCred.
+* MyCred: New trigger: User earns points.
+* MyCred: New action: Award points to user.
+
+= 5.6.6 =
+
+* **Improvements**
+* Fixed PHP Deprecated: strip_tags() notice for newer versions of PHP.
+
+= 5.6.5 =
+
+* **New Features**
+* New integration: Brizy.
+* Brizy: New trigger: User submits a form.
+* Brizy: New trigger: Guest submits a form.
+
+= 5.6.4 =
+
+* **Improvements**
+* CSS improvement in dashboard.
+
+= 5.6.3 =
+
+* **Bug fixes**
+* Fixed more instances of parsing numbers starting with 0.
+
+= 5.6.2 =
+
+* **Bug fixes**
+* Fixed different instances of parsing numbers starting with 0.
+
+= 5.6.1 =
+
+* **New Features**
+* New integration: Simple Feature Requests.
+* Simple Feature Requests: New trigger: User opens a feature request.
+* New integration: Masteriyo LMS.
+* Masteriyo LMS: New trigger: User completes a course.
+* Masteriyo LMS: New trigger: User completes a lesson.
+
+= 5.6.0 =
+
+* **Improvements**
+* Fixed typo.
+
+= 5.5.9 =
+
+* **Improvements**
+* WordPress: Added support for taxonomies in create and update posts actions.
+
+= 5.5.8 =
+* **New Features**
+* New integration: SureMembers.
+* SureMembers: New Trigger: Add user to a group.
+* SureMembers: New Action: User added to a group.
+* **Improvements**
+* WP Fusion: Fixed how to manage sequential numeric tags.
+
+= 5.5.7 =
+
+* **Improvements**
+* Tooltip library updated.
+
+= 5.5.6 =
+
+* **Bug Fixes**
+* Paid Membership Subscriptions: Fixed trigger to handle new user registrations.
+
+= 5.5.5 =
+
+* **Bug Fixes**
+* ActiveCampaign: Fixed bug related to first name and last name in add user action.
+
+= 5.5.4 =
+
+* **Developer Notes**
+* Tested with WordPress 6.9.
+
+= 5.5.3 =
+
+* **Bug Fixes**
+* JetEngine: Fixed error to get the post types.
+
+= 5.5.2 =
+
+* **Bug Fixes**
+* Links fixed in Add-ons section.
+
+= 5.5.1 =
+
+* **Bug Fixes**
+* Fixed bug related to dashboard integrations list.
+
+= 5.5.0 =
+
+* **Improvements**
+* Improved dashboard information.
+* Added tooltip library to improve descriptions.
+
+= 5.4.9 =
+
+* **New Features**
+* New integration: AWeber.
+* AWeber: New action: Add user to list.
+* AWeber: New action: Add tag to user.
+
+= 5.4.8 =
+
+* **Bug Fixes**
+* Fixed action "Add user to membership level" to include the expiration date to the Membership.
+
+= 5.4.7 =
+
+* **New Features**
+* LearnDash: Added support to assign multiples courses to Create Group action.
+
+= 5.4.6 =
+
+* **Bug Fixes**
+* Fixed bug related to anonymous automations when options were not configured.
+* Everest Forms: Fixed bug related to tag in anonymous trigger.
+
+= 5.4.5 =
+
+* **New Features**
+* New integration: Eventin.
+* Eventin: New trigger: User purchases a ticket for an event.
+
+= 5.4.4 =
+
+* **Improvements**
+* Improved Add-ons section view.
+
+= 5.4.3 =
+
+* **Bug Fixes**
+* Fixed bug related to tag IDs when cloning automations.
+
+= 5.4.2 =
+
+* **Improvements**
+* ActiveCampaign: Fixed deprecated function to adapt to the PHP latest version.
+
+= 5.4.1 =
+
+* **New Features**
+* New integration: Asgaros Forum.
+* Asgaros Forum: New trigger: User creates a topic on a forum.
+* Asgaros Forum: New trigger: User replies to a topic on a forum.
+* New integration: FluentBooking.
+* FluentBooking: New trigger: User schedules one-to-one meeting.
+* FluentBooking: New trigger: User schedules team meeting.
+
+= 5.4.0 =
+
+* **New Features**
+* New integration: BBForms.
+* BBForms: New trigger: User submits a form.
+* BBForms: New trigger: Guest submits a form.
+
+= 5.3.9 =
+
+* **Bug Fixes**
+* Thrive Apprentice: Fixed product selection.
+
+= 5.3.8 =
+
+* **Bug Fixes**
+* Fixed vulnerability.
+
+= 5.3.7 =
+
+* **Bug Fixes**
+* Fixed vulnerability.
+
+= 5.3.6 =
+
+* **Improvements**
+* Improved Upload File field when action is created.
+* Improved select field to select post fields.
+
+= 5.3.5 =
+
+* **Improvements**
+* ACF: Improved the selection of fields.
+
+= 5.3.4 =
+
+* **New Features**
+* New integration: Bluesky.
+* Bluesky: New action: Create a new post.
+* New integration: Campaign Monitor.
+* Campaign Monitor: New action: Add user to list.
+
+= 5.3.3 =
+
+* **Improvements**
+Improved anonymous automations.
+
+= 5.3.2 =
+
+* **Improvements**
+Improved how to display add-on information.
+
+= 5.3.1 =
+
+* **Improvements**
+* Improved filters to allow value 0 as condition.
+
+= 5.3.0 =
+
+* **Bug Fixes**
+* Fixed bug related to Redirect URL action.
+
+= 5.2.9 =
+
+* **Improvements**
+* Improved CT library.
+
+= 5.2.8 =
+
+* **Improvements**
+* Advanced Ads: Added support to Advanced Ads latest version.
+
+= 5.2.7 =
+
+* **Improvements**
+* Presto Player: Added support to Presto Player latest version.
+
+= 5.2.6 =
+
+* **Bug Fixes**
+* Vulnerability fixed related to All Post automations.
+
+= 5.2.5 =
+
+* **Bug Fixes**
+* Vulnerability Fixed.
+
+= 5.2.4 =
+
+* **New Features**
+* New integration: ShortLinks Pro.
+* ShortLinks Pro: New trigger: User clicks a link.
+* ShortLinks Pro: New trigger: User clicks a link from a category.
+* ShortLinks Pro: New trigger: User clicks a link from a tag.
+* ShortLinks Pro: New action: Create a link.
+
+= 5.2.3 =
+
+* **Improvements**
+* Improved tag usage in All Users Automations.
+
+= 5.2.2 =
+
+* **Improvements**
+* Improved CSS for switch checkbox.
+* Fixed vulnerability.
+* Improvement settings for minimum role to administer AutomatorWP.
+
+= 5.2.1.3 =
+
+* **Developer notes**
+* Updated CMB2 library.
+
+= 5.2.1.2 =
+
+* **Developer notes**
+* Updated CT library.
+
+= 5.2.1.1 =
+
+* **Developer notes**
+* Updated CT library.
+
+= 5.2.1 =
+
+* **Bug Fixes**
+* FluentCommunity: Fixed bug related to add comment trigger.
+
+= 5.2.0.1 =
+
+* **Developer notes**
+* Updated CT library.
+
+= 5.2.0 =
+
+* **Improvements**
+* Improved CT and CMB2 libraries.
+
+= 5.1.9.1 =
+
+* **Developer notes**
+* Updated PHP version required.
+* Updated license to meet WordPress org requirements.
+
+= 5.1.9 =
+
+* **Improvements**
+* ConvertKit: Improved connection to Kit.
+* Improved filter log extension.
+* **Developer Notes**
+* Added information on Dashboard about new Import File Automations.
+* Added information on Dashboard about new Restrict Content Automations.
+
+= 5.1.8 =
+
+* **Developer Notes**
+* Small fix to avoid slow loading related to metas.
+
+= 5.1.7.1 =
+
+* **Developer Notes**
+* Small fix.
+
+= 5.1.7 =
+
+* **Improvements**
+* Code optimization.
+* LearnPress: Added actions support with the latest LearnPress version.
+
+= 5.1.6 =
+
+* **Improvements**
+* Improved AutomatorWP menu.
+* Deprecated functions updated to adapt to PHP latest version.
+
+= 5.1.5 =
+
+* **Improvements**
+* Added support to file fields.
+* Fixed notice related to textdomain.
+
+= 5.1.4 =
+
+* **New Features**
+* New integration: FluentCommunity.
+* FluentCommunity: New trigger: User writes a post in a space.
+* FluentCommunity: New trigger: User adds a comment in a space.
+* FluentCommunity: New trigger: User joins a space.
+* FluentCommunity: New trigger: User completes a course.
+* FluentCommunity: New action: Add user to a space.
+* New integration: Paid Membership Subscriptions.
+* Paid Membership Subscriptions: New trigger: User purchases a subscription of a membership level.
+* **Improvements**
+* Improved automation export.
+
+= 5.1.3 =
+
+* **Improvements**
+* Improved role selection in triggers and actions.
+* Improved scheduled automations to avoid duplicate executions.
+
+= 5.1.2 =
+
+* **Developer note**
+* Updated minifid JS files.
+
+= 5.1.1 =
+
+* **Improvements**
+* Prevent to block automations UI if can not connect with automatorwp.com.
+
+= 5.1.0 =
+
+* **Bug fixes**
+* Fixed vulnerability related to importing automations.
+
+= 5.0.9 =
+
+* **Bug fixes**
+* LearnPress: Fixed bug related Enroll user in course action.
+
+= 5.0.8 =
+
+* **New Features**
+* New integration: Geodirectory.
+* Geodirectory: New trigger: User reviews a place.
+* Geodirectory: New trigger: User adds a new place.
+* Geodirectory: New trigger: Guest reviews a place.
+* New integration: Quiz and Survey Master.
+* Quiz and Survey Master: New trigger: User submits a Quiz.
+* Quiz and Survey Master: New trigger: Guest submits a Quiz.
+* New integration: Booking Calendar.
+* WP Booking Calendar: New trigger: A booking is approved.
+* WP Booking Calendar: New trigger: A booking is cancelled.
+
+= 5.0.7 =
+
+* **Bug fixes**
+* GamiPress: Fixed bug related to Earn points action.
+
+= 5.0.6 =
+
+* **Improvements**
+* Generator: Check to avoid false positives in security plugins.
+
+= 5.0.5 =
+
+* **Improvements**
+* Generator: Check to avoid false positives in security plugins.
+
+= 5.0.4 =
+
+* **Improvements**
+* MailerLite: Added support to MailerLite Classic.
+* **Developer Notes**
+* Fixed typo.
+
+= 5.0.3 =
+
+* **Bug Fixes**
+* Fixed tag replacement in trigger filters.
+
+= 5.0.2 =
+
+* **Improvements**
+* Formatter: Nested tags support.
+* Generator: Nested tags support.
+
+= 5.0.1 =
+
+* **New Features**
+* New integration: Everest Forms.
+* Everest Forms: New trigger: User submits a form.
+* Everest Forms: New trigger: Guest submits a form.
+* **Improvements**
+* Added check in Custom Tables library.
+* Added CSS improvement.
+
+= 5.0.0 =
+
+* **New Features**
+* Tags now supported in triggers (even all users and all posts setup).
+* Generator: Added {generate_hash( VALUE : ALGORITHM )} tag.
+* Generator: Added {generate_nonce( ACTION )} tag.
+* Formatter: Added {floor( VALUE )} tag.
+* Formatter: Added {ceil( VALUE )} tag.
+* Formatter: Added {lowercase( VALUE )} tag.
+* Formatter: Added {uppercase( VALUE )} tag.
+* **Improvements**
+* Generator: Improved hash selector.
+* **Developer Notes**
+* Moved old changelog to changelog.txt.
+
 = 4.4.7 =
 
 * **New Features**

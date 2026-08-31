@@ -488,14 +488,14 @@ function automatorwp_automations_custom_row_actions( $actions, $item ) {
         '<a href="%s" class="automatorwp-clone-automation" aria-label="%s">%s</a>',
         add_query_arg( array( 'automatorwp-action' => 'clone_automation' ), $url ),
         esc_attr( __( 'Clone', 'automatorwp' ) ),
-        __( 'Clone', 'automatorwp' )
+        esc_html__( 'Clone', 'automatorwp' )
     );
 
     $actions['url_export'] = sprintf(
         '<a href="%s" class="automatorwp-url-export-automation" aria-label="%s">%s</a>',
         add_query_arg( array( 'automatorwp-action' => 'url_export_automation' ), $url ),
         esc_attr( __( 'Export', 'automatorwp' ) ),
-        __( 'Export', 'automatorwp' )
+        esc_html__( 'Export', 'automatorwp' )
     );
 
     if( isset( $actions['delete'] ) ) {
@@ -511,7 +511,7 @@ function automatorwp_automations_custom_row_actions( $actions, $item ) {
             esc_attr( __( "Are you sure you want to delete this automation?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'automatorwp' ) ) .
             "');",
             esc_attr( __( 'Delete', 'automatorwp' ) ),
-            __( 'Delete', 'automatorwp' )
+            esc_html__( 'Delete', 'automatorwp' )
         );
     }
 
@@ -644,7 +644,7 @@ function automatorwp_automations_default_data( $default_data = array() ) {
     $default_data['type']           = $type;
     $default_data['user_id']        = get_current_user_id();
     $default_data['sequential']     = 0;
-    $default_data['times_per_user'] = 1;
+    $default_data['times_per_user'] = 0;
     $default_data['times']          = 0;
     $default_data['status']         = 'inactive';
     $default_data['date']           = date( 'Y-m-d H:i:s', current_time( 'timestamp' ) );
@@ -734,7 +734,7 @@ function automatorwp_automations_meta_boxes( ) {
                 'type' 	=> 'text',
                 'classes' 	=> 'automatorwp-auto-save',
                 'attributes' => array(
-                    'placeholder' => __( 'Enter title here', 'automatorwp' ),
+                    'placeholder' => __( 'Enter title here', 'automatorwp' ) . '...',
                 )
             ),
         ),
@@ -753,12 +753,7 @@ function automatorwp_automations_meta_boxes( ) {
                 'name' 	=> __( 'Type', 'automatorwp' ),
                 'type' 	=> 'select',
                 'options' => automatorwp_get_automation_types_labels(),
-                'js_controls' => array(
-                    'icon' => 'dashicons-star-filled',
-                    'edit_button' => false,
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
-                ),
+                'js_controls' => automatorwp_js_controls_options( 'star-filled' ),
                 'before_row' => 'js_controls_before',
                 'after_row' => 'js_controls_after',
             ),
@@ -772,12 +767,7 @@ function automatorwp_automations_meta_boxes( ) {
                 ),
                 'classes' => 'automatorwp-has-tooltip',
                 'after_field' => 'automatorwp_tooltip_cb',
-                'js_controls' => array(
-                    'icon' => 'dashicons-filter',
-                    'save_button'   => __( 'Save', 'automatorwp' ),
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
-                ),
+                'js_controls' => automatorwp_js_controls_options( 'update' ),
                 'before_row' => 'js_controls_before',
                 'after_row' => 'js_controls_after',
             ),
@@ -791,12 +781,7 @@ function automatorwp_automations_meta_boxes( ) {
                 ),
                 'classes' => 'automatorwp-has-tooltip',
                 'after_field' => 'automatorwp_tooltip_cb',
-                'js_controls' => array(
-                    'icon' => 'dashicons-admin-site',
-                    'save_button'   => __( 'Save', 'automatorwp' ),
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
-                ),
+                'js_controls' => automatorwp_js_controls_options( 'admin-site' ),
                 'before_row' => 'js_controls_before',
                 'after_row' => 'js_controls_after',
             ),
@@ -806,12 +791,7 @@ function automatorwp_automations_meta_boxes( ) {
                 'classes' 	=> 'automatorwp-user-selector',
                 'options_cb' => 'automatorwp_options_cb_users',
                 'display_cb' => 'automatorwp_display_cb_users',
-                'js_controls' => array(
-                    'icon' => 'dashicons-admin-users',
-                    'save_button'   => __( 'Save', 'automatorwp' ),
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
-                ),
+                'js_controls' => automatorwp_js_controls_options( 'admin-users' ),
                 'before_row' => 'js_controls_before',
                 'after_row' => 'js_controls_after',
             ),
@@ -822,8 +802,8 @@ function automatorwp_automations_meta_boxes( ) {
                 'js_controls' => array(
                     'icon' => 'dashicons-post-status',
                     'save_button'   => __( 'Save', 'automatorwp' ),
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
+                    'save_button_classes' => 'button button-compact button-primary',
+                    'cancel_button_classes' => 'button button-compact automatorwp-button-danger',
                 ),
                 'before_row' => 'js_controls_before',
                 'after_row' => 'js_controls_after',
@@ -842,12 +822,7 @@ function automatorwp_automations_meta_boxes( ) {
                 ),
                 'classes' => 'automatorwp-has-tooltip',
                 'after_field' => 'automatorwp_tooltip_cb',
-                'js_controls' => array(
-                    'icon' => 'dashicons-calendar',
-                    'save_button'   => __( 'Save', 'automatorwp' ),
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
-                ),
+                'js_controls' => automatorwp_js_controls_options( 'calendar' ),
                 'before_row' => 'js_controls_before',
                 'after_row' => 'js_controls_after', // Handled on automatorwp_automations_publishing_actions()
             ),
@@ -864,12 +839,7 @@ function automatorwp_automations_meta_boxes( ) {
                 ),
                 'classes' => 'automatorwp-has-tooltip',
                 'after_field' => 'automatorwp_tooltip_cb',
-                'js_controls' => array(
-                    'icon' => 'dashicons-clock',
-                    'save_button'   => __( 'Save', 'automatorwp' ),
-                    'save_button_classes' => 'button button-primary',
-                    'cancel_button_classes' => 'button automatorwp-button-danger',
-                ),
+                'js_controls' => automatorwp_js_controls_options( 'clock' ),
                 'before_row' => 'js_controls_before',
                 //'after_row' => 'js_controls_after', // Handled on automatorwp_automations_publishing_actions()
                 'after_row' => 'automatorwp_automations_publishing_actions',
@@ -882,8 +852,45 @@ function automatorwp_automations_meta_boxes( ) {
         )
     );
 
+    // Notes
+    automatorwp_add_meta_box(
+        'automatorwp-automations-notes',
+        __( 'Notes', 'automatorwp' ) . cmb_tooltip_get_html( __( 'Use this box to add internal notes about this automation.', 'automatorwp' ) ),
+        'automatorwp_automations',
+        array(
+            'notes' => array(
+                'name' 	=> __( 'Notes', 'automatorwp' ),
+                'type' 	=> 'textarea',
+                'classes' 	=> 'automatorwp-auto-save',
+                'attributes' => array(
+                    'rows' => 8,
+                    'placeholder' => __( 'Internal notes here', 'automatorwp' ) . '...',
+                )
+            ),
+        ),
+        array(
+            'priority' => 'default',
+            'context' => 'side',
+        )
+    );
+
 }
 add_action( 'cmb2_admin_init', 'automatorwp_automations_meta_boxes' );
+
+/**
+ * Helper function to reduce code
+ *
+ * @param string $icon
+ * @return array
+ */
+function automatorwp_js_controls_options( $icon = 'automatorwp' ) {
+    return array(
+        'icon' => 'dashicons-' . $icon,
+        'save_button'   => __( 'Save', 'automatorwp' ),
+        'save_button_classes' => 'button button-compact button-primary',
+        'cancel_button_classes' => 'button button-compact automatorwp-button-danger',
+    );
+}
 
 /**
  * Expiration escape callback.
@@ -957,14 +964,14 @@ function automatorwp_automations_publishing_actions( $field_args, $field ) {
         '<a href="%s" class="automatorwp-clone-automation" aria-label="%s">%s</a>',
         add_query_arg( array( 'automatorwp-action' => 'clone_automation' ), $url ),
         esc_attr( __( 'Clone', 'automatorwp' ) ),
-        __( 'Clone', 'automatorwp' )
+        automatorwp_dashicon( 'admin-page' ) . esc_html__( 'Clone', 'automatorwp' )
     );
 
     $actions['url_export'] = sprintf(
         '<a href="%s" class="automatorwp-url-export-automation" aria-label="%s">%s</a>',
         add_query_arg( array( 'automatorwp-action' => 'url_export_automation' ), $url ),
         esc_attr( __( 'Export', 'automatorwp' ) ),
-        __( 'Export', 'automatorwp' )
+        automatorwp_dashicon( 'cloud-upload' ) . esc_html__( 'Export', 'automatorwp' )
     );
 
     /**
@@ -980,12 +987,6 @@ function automatorwp_automations_publishing_actions( $field_args, $field ) {
     $actions = apply_filters( 'automatorwp_automations_edit_actions', $actions, $automation )
     ?>
     <div id="major-publishing-actions">
-
-        <div id="automatorwp-automation-actions">
-            <?php foreach( $actions as $action => $action_html ) : ?>
-                <div id="automatorwp-automation-action-<?php echo esc_attr( $action ); ?>" class="automatorwp-automation-action"><?php echo $action_html; ?></div>
-            <?php endforeach; ?>
-        </div>
 
         <?php if( $automation->status === 'inactive' ) : ?>
 
@@ -1007,6 +1008,12 @@ function automatorwp_automations_publishing_actions( $field_args, $field ) {
 
         <?php endif; ?>
 
+        <div id="automatorwp-automation-actions">
+            <?php foreach( $actions as $action => $action_html ) : ?>
+                <div id="automatorwp-automation-action-<?php echo esc_attr( $action ); ?>" class="automatorwp-automation-action"><?php echo $action_html; ?></div>
+            <?php endforeach; ?>
+        </div>
+
         <div id="delete-action">
             <?php
             printf(
@@ -1016,7 +1023,7 @@ function automatorwp_automations_publishing_actions( $field_args, $field ) {
                 esc_attr( __( "Are you sure you want to delete this automation?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete.", 'automatorwp' ) ) .
                 "');",
                 esc_attr( __( 'Delete', 'automatorwp' ) ),
-                __( 'Delete', 'automatorwp' )
+                automatorwp_dashicon( 'trash' ) . esc_html__( 'Delete', 'automatorwp' )
             );
             ?>
         </div>

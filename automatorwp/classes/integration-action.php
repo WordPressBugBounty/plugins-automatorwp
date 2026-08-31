@@ -61,7 +61,9 @@ class AutomatorWP_Integration_Action {
         }
 
         // Execute action hook
-        add_action( 'automatorwp_execute_action', array( $this, 'maybe_execute' ), 10, 5 );
+        //add_action( 'automatorwp_execute_action', array( $this, 'maybe_execute' ), 10, 5 );
+        // NOTE: Needs to run on "maybe_execute" to pass correctly the arguments
+        add_action( 'automatorwp_execute_action_' . $this->action, array( $this, 'maybe_execute' ), 10, 5 );
 
     }
 

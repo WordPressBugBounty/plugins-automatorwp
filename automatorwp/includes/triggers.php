@@ -354,6 +354,14 @@ function automatorwp_get_triggers_in_use() {
         return $cache;
     }
 
+    $cache = get_transient( 'automatorwp_triggers_in_use' );
+
+    // If result is in a transient, return it
+    if( is_array( $cache ) && count( $cache ) ) {
+        ct_reset_setup_table();
+        return $cache;
+    }
+
     $triggers_in_use = array();
     $results = $wpdb->get_results( "SELECT t.type FROM {$ct_table->db->table_name} AS t GROUP BY t.type" );
 
@@ -365,6 +373,9 @@ function automatorwp_get_triggers_in_use() {
 
     // Cache function result
     automatorwp_set_cache( 'triggers_in_use', $triggers_in_use );
+
+    // Store the result for a day
+    set_transient( 'automatorwp_triggers_in_use', $triggers_in_use, HOUR_IN_SECONDS * 24 );
 
     return $triggers_in_use;
 

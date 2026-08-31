@@ -8,7 +8,7 @@
  * Plugin URI: https://github.com/rubengc/cmb2-field-switch
  * GitHub Plugin URI: https://github.com/rubengc/cmb2-field-switch
  * Description: CMB2 field to make checkboxes and radios look as a WordPress Gutenberg switch.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: GamiPress
  * Author URI: https://gamipress.com/
  * License: GPLv2+
@@ -29,7 +29,7 @@ if( ! class_exists( 'RGC_CMB2_Field_Switch' ) ) {
         /**
          * Current version number
          */
-        const VERSION = '1.0.0';
+        const VERSION = '1.0.1';
 
         /**
          * Initialize the plugin by hooking into CMB2

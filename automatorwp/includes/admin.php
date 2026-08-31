@@ -11,6 +11,7 @@ if( !defined( 'ABSPATH' ) ) exit;
 
 // Admin includes
 require_once AUTOMATORWP_DIR . 'includes/admin/notices.php';
+require_once AUTOMATORWP_DIR . 'includes/admin/plugins.php';
 require_once AUTOMATORWP_DIR . 'includes/admin/upgrades.php';
 // Admin pages
 require_once AUTOMATORWP_DIR . 'includes/admin/pages/dashboard.php';

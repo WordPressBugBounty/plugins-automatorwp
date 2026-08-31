@@ -579,7 +579,7 @@ function automatorwp_clone_automation( $automation_id, $user_id = 0 ) {
 
     $automation = ( array ) $automation;
 
-    // Setup the new automation info
+    // Set up the new automation info
     unset( $automation['id'] );
     $automation['title'] .= ( ! empty( $automation['title'] ) ? ' ' : '' ) . __( '(Cloned)', 'automatorwp' );
     $automation['user_id'] = $user_id;

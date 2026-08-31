@@ -1325,6 +1325,8 @@ function automatorwp_execute_action( $action = null, $user_id = 0, $event = arra
      * @param stdClass  $automation         The action's automation object
      */
     do_action( 'automatorwp_execute_action', $action, $user_id, $event, $action_options, $automation );
+    // Run hook based on action type
+    do_action( "automatorwp_execute_action_{$action->type}", $action, $user_id, $event, $action_options, $automation );
 
     $log_meta = array();
 

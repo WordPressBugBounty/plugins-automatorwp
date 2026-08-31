@@ -59,9 +59,13 @@ function automatorwp_run_scheduled_automations() {
     $automations = AutomatorWP()->db->automations;
     $automations_meta = AutomatorWP()->db->automations_meta;
 
+    // Bail if tables are not yet created
+    if( ! automatorwp_database_table_exists( $automations ) ) return;
+
     $loop_types = automatorwp_get_automation_loop_types();
 
     $patterns = implode( ', ', array_fill( 0, count( $loop_types ), '%s' ) );
+
 
     // Get scheduled automations
     $results = $wpdb->get_results( $wpdb->prepare( "

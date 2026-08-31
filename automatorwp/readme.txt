@@ -1,13 +1,13 @@
-=== AutomatorWP - Automator plugin for no-code automations, webhooks & custom integrations in WordPress ===
+=== AutomatorWP - No-Code Workflow Automation, Integration & Webhooks Plugin, now with AI ===
 Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flabernardez
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.1
-Stable tag: 5.8.6
+Stable tag: 6.0.0
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Connect your WordPress plugins, sites & apps together to create automated workflows with the most powerful no-code automator plugin!
+Automate your WordPress workflows by connecting your plugins, sites, and apps with this powerful no-code automation plugin! AI assistant included!
 
 == Description ==
 
@@ -17,7 +17,7 @@ You can create "automations" linked to your WordPress activities and when any of
 
 Automate sales, marketing, administrative tasks, learning experiences and countless other processes to save time, eliminate repetitive work, and focus on what matters most.
 
-Watch the video below to see how AutomatorWP works in less than 2 minutes!
+See how it works in less than 2 minutes! 👇
 
 https://youtu.be/vWqRcEO8SgY
 
@@ -26,21 +26,20 @@ https://youtu.be/vWqRcEO8SgY
 Here are some automations samples to give you a quick idea of what you can build:
 
 When user purchases a **WooCommerce product** > Add a **WP Fusion tag** to the user
-
 When user joins a **BuddyPress group** > Enroll user in a **LearnDash course**
 
-Not only you can create one-to-one connections, also you can create automations with all the triggers and actions of your choice, such as the following one:
+Also, you can combine multiple triggers and actions to build advanced automations like this:
 
-When user creates a **bbPress topic** and completes a **H5P content** > Enroll user in a **LifterLMS course**, add to **MemberPress membership** and  **email them** with the access instructions.
+When user creates a **bbPress topic** and completes a **H5P content** > Enroll user in a **LifterLMS course**, add to **MemberPress membership** and  **email user** with the access instructions.
 
 The number of combinations and possibilities are unlimited!
 
 = Webhooks to keep your site connected =
 
-With the [Webhooks](https://automatorwp.com/add-ons/webhooks/) add-on you are able to send and receive data from anywhere and connect all your WordPress plugins with platforms like Zapier or Make.
+With [Webhooks](https://automatorwp.com/add-ons/webhooks/) you can send and receive data from anywhere, connecting all your WordPress plugins with platforms like Zapier or Make.
 
-Even you can connect your plugins from different sites!
-Example: User purchases a product on **Site A** > Enroll user in a course on **Site B**
+Even you can connect your plugins from different sites! Example:
+User purchases a product on **Site A** > Enroll user in a course on **Site B**
 
 Anything with support to webhooks or a Rest API can be connected with the Webhooks add-on and, in consequence, with your WordPress plugins!
 
@@ -48,19 +47,63 @@ Anything with support to webhooks or a Rest API can be connected with the Webhoo
 
 = Features =
 
-AutomatorWP is extremely powerful and infinitely extensible. Check out some of the built in features:
+AutomatorWP is extremely powerful and infinitely extensible. Check out some of the built-in features:
 
+* **Own your data:** AutomatorWP works entirely inside your WordPress, not as a SaaS or a credits-based platform with no artificial usage limits.
 * **Unlimited triggers and actions:** Configure as many triggers and actions per automation as you want.
-* **Logged-in and anonymous automations:** Create automations for logged-in users or for not logged-in visitors.
+* **Logged-in and anonymous automations:** AutomatorWP can work for both, logged-in users and for not logged-in visitors.
 * **Scheduled and recurring automations:** Automations to run actions on all or on a filtered group of users manually, on a specific date or on a recurring basis.
-* **All posts automations:** Create automated tasks that check your site posts and process actions on them like clean up the older posts or email administrators about pending ones.
-* **All users automations:** Create automations that can loop all or a group of users and process actions on them like remove inactive users or email new ones.
+* **Loop automations:** Create automations that can loop all or a group of posts or users to process actions on them like remove inactive users or email administrators about pending posts.
 * **Filters:** Filter any trigger or action with the **conditions** of your choice.
 * **Required number of times:** Set the number of times required to complete a trigger like comment on a post 3 times.
 * **Sequential triggers:** Force users to complete triggers in order to complete the automation.
 * **Completion limits:** Limit automation's maximum completion times per user and globally.
 * **Tags:** Tags to pass dynamic information from triggers to actions (with support to user and post metas).
+* **AI Assistant included:** Our AI assistant is ready to help you design, create and manage your automations, with the addition to execute any action available in AutomatorWP!
 * **Developer-friendly:** AutomatorWP is extremely flexible with plenty of hooks to add custom features and functionalities.
+
+= Powerful AI Assistant included! =
+
+AutomatorWP includes a powerful AI Assistant designed to help you effortlessly design, create, and manage automations using natural language. Its features include:
+
+**Build automations in seconds** 📜
+Describe what you want to automate and the Assistant creates the entire automation ready for you to review and activate!
+
+Example Prompts:
+```
+New automation: when a user enrolls in "Course A", add to "Group A"
+```
+```
+When a user purchases "Product A", add the tag "Customer", award "Badge A" and send a welcome email
+```
+
+**Note:** Yes, for a "welcome email" instruction, the Assistant composes the entire email for you!
+
+**Run actions directly** 🚀
+The Assistant can run any action available in AutomatorWP, giving you thousands of possibilities!
+
+In addition, the Assistant logs every execution, allowing you see what has been executed, the parameters passed and the action(s) result(s).
+
+Example Prompts:
+```
+Enroll John Doe on "Course A" and award "Badge A"
+```
+```
+Add Ruben Garcia to "Membership A" and change its role to "Contributor"
+```
+
+**Update existing automations** ✏️
+Made to help you save time, the Assistant can update existing automations effortlessly.
+
+Example Prompts:
+```
+Add the actions award 10 points and send welcome email to "Automation A"
+```
+```
+Add a trigger for complete "Course A" to "Automation B"
+```
+
+**Note:** This assistant uses the WP AI Connectors. Without a configured connector, it won't be able to perform any tasks.
 
 = Integrated with +200 WordPress plugins =
 
@@ -178,7 +221,7 @@ AutomatorWP works with different WordPress plugins, including:
 
 = Integrated with AI Agents =
 
-AutomatorWP already connects with AI agents to create smarter workflows. We're continuously working on adding more AI integrations.
+AutomatorWP connects with AI agents to create smarter workflows. We're continuously working on adding more AI integrations.
 
 * [Anthropic (Claude)](https://automatorwp.com/add-ons/anthropic-claude/)
 * [Google Gemini](https://automatorwp.com/add-ons/google-gemini/)
@@ -187,7 +230,7 @@ AutomatorWP already connects with AI agents to create smarter workflows. We're c
 
 = Integrated with external platforms =
 
-AutomatorWP can also work with external platforms, furthermore WordPress plugins, like these below:
+AutomatorWP can work with external platforms, furthermore WordPress plugins, like:
 
 * [ActiveCampaign](https://automatorwp.com/add-ons/activecampaign/)
 * [Airtable](https://automatorwp.com/add-ons/airtable/)
@@ -221,17 +264,17 @@ If you’re looking for something endorsed and maintained by the developers who 
 
 * [Webhooks](https://automatorwp.com/add-ons/webhooks/): Send and receive data from webhooks to connect all your plugins with web services like Zapier or Integromat or even to connect different WordPress sites.
 * [Schedule Actions](https://automatorwp.com/add-ons/schedule-actions/): Schedule any action to run after a time delay of your choice.
-* [Calculator](https://automatorwp.com/add-ons/calculator/): can perform mathematical calculations on tags like sums, subtractions, multiplications, divisions and even apply functions such as abs, sin, cos among others.
-* [Formatter](https://automatorwp.com/add-ons/formatter/): is able to apply different formats to tags like convert, replace or extract anything from strings, numbers or dates even remove the HTML from a content.
-* [Generator](https://automatorwp.com/add-ons/generator/): lets you generate content like random strings, random numbers, emails even hashes and WordPress nonces.
-* [QR Code](https://automatorwp.com/add-ons/qr-code/): will create QR codes from links or texts with different styles, formats and colors.
+* [Calculator](https://automatorwp.com/add-ons/calculator/): Perform mathematical calculations on tags like sums, subtractions, multiplications, divisions and even apply functions such as abs, sin, cos among others.
+* [Formatter](https://automatorwp.com/add-ons/formatter/): Apply different formats to tags like convert, replace or extract anything from strings, numbers or dates even remove the HTML from a content.
+* [Generator](https://automatorwp.com/add-ons/generator/): Generate content like random strings, random numbers, emails even hashes and WordPress nonces.
+* [QR Code](https://automatorwp.com/add-ons/qr-code/): Create QR codes from links or texts with different styles, formats and colors.
 * [Multimedia Content](https://automatorwp.com/add-ons/multimedia-content/): New triggers based on multimedia content creation and interaction.
 * [Block Users](https://automatorwp.com/add-ons/block-users/): Block users and roles for being able to complete any automation of your choice.
 * [Button](https://automatorwp.com/add-ons/button/) & [Link](https://automatorwp.com/add-ons/link/): Launch any automation through buttons and links clicks.
-* [Restrict Content](https://automatorwp.com/add-ons/restrict-content/): allows you to manage access to any post or page.
-* [Custom User Fields](https://automatorwp.com/add-ons/custom-user-fields/): allows you to create new fields for WordPress users.
-* [CSV](https://automatorwp.com/add-ons/csv/): adds new trigger to let you read content from a CSV or Google Sheets spreadsheet.
-* [User Lists](https://automatorwp.com/add-ons/user-lists/): lets you to create, organize, and manage user lists .
+* [Restrict Content](https://automatorwp.com/add-ons/restrict-content/): Manage access to any post or page.
+* [Custom User Fields](https://automatorwp.com/add-ons/custom-user-fields/): Create new custom fields for WordPress users.
+* [CSV](https://automatorwp.com/add-ons/csv/): Manage content from CSV files or Google Sheets spreadsheets.
+* [User Lists](https://automatorwp.com/add-ons/user-lists/): Create, organize, and manage user lists .
 
 [View all add-ons](https://automatorwp.com/add-ons/)
 
@@ -244,8 +287,8 @@ AutomatorWP includes +600 triggers, actions and filters from +200 plugins & plat
 If you like AutomatorWP, you will love our other plugins!
 
 * [GamiPress](https://wordpress.org/plugins/gamipress/) - Flexible gamification plugin to reward your users with points, achievements, badges & ranks based on their activity in your WordPress.
-* [ShortLinks Pro](https://wordpress.org/plugins/shortlinkspro/) - The most complete link management plugin that not only powers WordPress websites with shortened URLs, also empowers site owners to create clean, branded and unique affiliate links easily.
-* [BBForms](https://wordpress.org/plugins/bbforms/) - BBForms is a code form plugin designed to help you build multipurpose forms in seconds!
+* [ShortLinks Pro](https://wordpress.org/plugins/shortlinkspro/) - Complete link management plugin that not only powers WordPress websites with shortened URLs, also empowers site owners to create clean, branded and unique affiliate links easily.
+* [BBForms](https://wordpress.org/plugins/bbforms/) - Code form plugin designed to help you build multipurpose forms in seconds!
 
 == Installation ==
 
@@ -267,20 +310,31 @@ If you like AutomatorWP, you will love our other plugins!
 1. Powerful editor that anyone can learn to use in no time.
 2. Triggers and actions to connect your favorite WordPress plugins.
 3. Every trigger and action option is completely configurable.
-4. Tags lets you pass trigger information to actions.
-5. Flexible log system that will keep you informed about who is completing automations.
+4. Built-in AI assistant ready to help you design, create and manage your automations and able to execute any action available!
+5. Tags lets you pass trigger information to actions.
+6. Flexible log system that will keep you informed about who is completing automations.
 
 == Frequently Asked Questions ==
 
+= What makes AutomatorWP unique? =
+
+Unlike other automation plugins, AutomatorWP runs entirely on your own site.
+
+Your data stays under your control, with no mandatory external accounts, no remote server connections, and no artificial token-based limitations.
+
+Plus, all external connections are made directly between your site and the platform.
+
+For example, when connecting to Google Sheets, AutomatorWP communicates directly with your own Google project. There's no intermediary server handling your data. Everything goes straight from your site to the platform.
+
 = What does automation, trigger and action means? =
 
-Automations are the basic building block of AutomatorWP and they have 2 main parts: triggers and actions.
+Automations are the basic building block of AutomatorWP, they have 2 main parts: triggers and actions.
 
-Triggers are the part that determines when an automation will run a perform it's actions. Triggers are known as "When this happens".
+Triggers are the part that determines when an automation will run and perform its actions. Triggers are known as "When this happens".
 
 Actions are the part that determines what an automation will perform after all it's triggers gets completed. Actions are known as "Do this".
 
-You can setup an automation like this:
+You can set up an automation like this:
 Trigger: When user visits a post.
 Action: Send email to the user.
 
@@ -330,591 +384,21 @@ No, We're unable to provide custom development services, as our focus is develop
 
 == Changelog ==
 
-= 5.8.6 =
-
-* **Improvements**
-* Improved CSS compatibility between CMB2 & WP 7.1
-
-= 5.8.5 =
-
-* **Bug Fixes**
-* Fixed vulnerability.
-* Fixed search function in select fields.
-
-= 5.8.4 =
-
-* **Bug Fixes**
-* Fixed vulnerability.
-* ARForms: Fixed search function in form selector.
-
-= 5.8.3 =
-
-* **Improvements**
-* BuddyBoss: Improved group selector.
-* BuddyPress: Improved group selector.
-
-= 5.8.2 =
-
-* **Bug Fixes**
-* Tutor LMS: Fixed bug related to Enroll user in a course action.
-
-= 5.8.1 =
-
-* **Improvements**
-* Improved all searches of our selectors.
-* Improved the tag selector style.
-
-= 5.8.0 =
-
-* **Bug Fixes**
-* Fixed bug related to automatic cleanup of some types of logs.
-
-= 5.7.9.2 =
-
-* **Bug Fixes**
-* Fixed deprecated functions in the latest version of WordPress.
-
-= 5.7.9.1 =
-
-* **Bug Fixes**
-* Fix import automation options handler.
-
-= 5.7.9 =
-
-* **Bug Fixes**
-* Fix notice for review.
-
-= 5.7.8 =
+= 6.0.0 =
 
 * **New Features**
-* WordPress: New trigger: Option gets updated with a value.
-* WordPress: New anonymous trigger: Option gets updated with a value.
-
-= 5.7.7 =
-
-* **New Features**
-* WordPress: New action: Update option.
-* WordPress: New action: Delete option.
-* New site tag: {option:name}.
+* Added the AI Assistant!!!
+* AI Assistant: New Ability: Create and update automations.
+* AI Assistant: New Ability: Run an action (yes, run any action(s) directly).
+* AI Assistant: New Ability: Add triggers and actions to existing automations.
+* New setting on AutomatorWP > Settings > General > Disable AI Assistant.
+* New log type: Action (Run directly) for actions that have been run directly (like through the AI Assistant).
+* Added AI Assistant information (prompt and generated params) to log entries.
+* Added "Notes" field to automations for team notes!
 * **Improvements**
-* BuddyBoss: Improved check for events that publish activities containing attachments.
-
-= 5.7.6 =
-
-* **New Features**
-* Added a new quick way to add triggers and actions.
-* Added option to disable PRO recommendations.
-* **Improvements**
-* Added several improvements to the automation editor UI.
-* Added more aggressive style rules to prevent Elementor style rules in our UI.
-
-= 5.7.5 =
-
-* **Improvements**
-+ Style improvements to match with WordPress 7.0.
-
-= 5.7.4 =
-
-* **New Features**
-* New integration: AffiliatePress.
-* AffiliatePress: New trigger: A user registers as an affiliate.
-* New integration: BookingPress.
-* BookingPress: New trigger: User is registered as a customer.
-* BookingPress: New trigger: Guest is registered as a customer.
-* New integration: Mail Mint.
-* Mail Mint: New trigger: User added to contacts.
-* Mail Mint: New trigger: A tag is added to user.
-* Mail Mint: New action: Add user to Mail Mint.
-* Mail Mint: New action: Add tag to user.
-
-= 5.7.3 =
-
-* **Improvements**
-* Improved security in some ajax requests.
-* Improved checks with empty expiration dates.
-* Improved security adding more escaping to logs entries display.
-
-= 5.7.2 =
-
-* **New Features**
-* Added the ability to set an expiration date to automations to get them automatically expired.
-* **Improvements**
-* Improved "Created on" field handler to allow handle date & time.
-
-= 5.7.1 =
-
-* **Bug Fixes**
-* Fixed bug in All users automations related to special characters in meta conditions.
-
-= 5.7.0 =
-
-* **New Features**
-* New integration: FluentCart.
-* FluentCart: New trigger: User completes a purchase.
-* FluentCart: New trigger: User purchases a product.
-* **Improvements**
-* FluentCRM: Result messages in action logs.
-
-= 5.6.9 =
-
-* **Improvements**
-* Mailchimp: Mailchimp SDK and guzzlehttp library updated to the latest version.
-
-= 5.6.8 =
-
-* **Improvements**
-* ActiveCampaign: Improved trigger handling.
-* **Bug fixes**
-* ActiveCampaign: Fixed vulnerability.
-* AWeber: Fixed vulnerability.
-* Bluesky: Fixed vulnerability.
-* Campaign Monitor: Fixed vulnerability.
-* MailerLite: Fixed vulnerability.
-
-= 5.6.7 =
-
-* **New Features**
-* New integration: MyCred.
-* MyCred: New trigger: User earns points.
-* MyCred: New action: Award points to user.
-
-= 5.6.6 =
-
-* **Improvements**
-* Fixed PHP Deprecated: strip_tags() notice for newer versions of PHP.
-
-= 5.6.5 =
-
-* **New Features**
-* New integration: Brizy.
-* Brizy: New trigger: User submits a form.
-* Brizy: New trigger: Guest submits a form.
-
-= 5.6.4 =
-
-* **Improvements**
-* CSS improvement in dashboard.
-
-= 5.6.3 =
-
-* **Bug fixes**
-* Fixed more instances of parsing numbers starting with 0.
-
-= 5.6.2 =
-
-* **Bug fixes**
-* Fixed different instances of parsing numbers starting with 0.
-
-= 5.6.1 =
-
-* **New Features**
-* New integration: Simple Feature Requests.
-* Simple Feature Requests: New trigger: User opens a feature request.
-* New integration: Masteriyo LMS.
-* Masteriyo LMS: New trigger: User completes a course.
-* Masteriyo LMS: New trigger: User completes a lesson.
-
-= 5.6.0 =
-
-* **Improvements**
-* Fixed typo.
-
-= 5.5.9 =
-
-* **Improvements**
-* WordPress: Added support for taxonomies in create and update posts actions.
-
-= 5.5.8 =
-* **New Features**
-* New integration: SureMembers.
-* SureMembers: New Trigger: Add user to a group.
-* SureMembers: New Action: User added to a group.
-* **Improvements**
-* WP Fusion: Fixed how to manage sequential numeric tags.
-
-= 5.5.7 =
-
-* **Improvements**
-* Tooltip library updated.
-
-= 5.5.6 =
-
-* **Bug Fixes**
-* Paid Membership Subscriptions: Fixed trigger to handle new user registrations.
-
-= 5.5.5 =
-
-* **Bug Fixes**
-* ActiveCampaign: Fixed bug related to first name and last name in add user action.
-
-= 5.5.4 =
-
+* Several improvements to all UI elements.
+* Added more information about the internal processes on action logs.
+* Set times per user to "Unlimited" by default.
 * **Developer Notes**
-* Tested with WordPress 6.9.
-
-= 5.5.3 =
-
-* **Bug Fixes**
-* JetEngine: Fixed error to get the post types.
-
-= 5.5.2 =
-
-* **Bug Fixes**
-* Links fixed in Add-ons section.
-
-= 5.5.1 =
-
-* **Bug Fixes**
-* Fixed bug related to dashboard integrations list.
-
-= 5.5.0 =
-
-* **Improvements**
-* Improved dashboard information.
-* Added tooltip library to improve descriptions.
-
-= 5.4.9 =
-
-* **New Features**
-* New integration: AWeber.
-* AWeber: New action: Add user to list.
-* AWeber: New action: Add tag to user.
-
-= 5.4.8 =
-
-* **Bug Fixes**
-* Fixed action "Add user to membership level" to include the expiration date to the Membership.
-
-= 5.4.7 =
-
-* **New Features**
-* LearnDash: Added support to assign multiples courses to Create Group action.
-
-= 5.4.6 =
-
-* **Bug Fixes**
-* Fixed bug related to anonymous automations when options were not configured.
-* Everest Forms: Fixed bug related to tag in anonymous trigger.
-
-= 5.4.5 =
-
-* **New Features**
-* New integration: Eventin.
-* Eventin: New trigger: User purchases a ticket for an event.
-
-= 5.4.4 =
-
-* **Improvements**
-* Improved Add-ons section view.
-
-= 5.4.3 =
-
-* **Bug Fixes**
-* Fixed bug related to tag IDs when cloning automations.
-
-= 5.4.2 =
-
-* **Improvements**
-* ActiveCampaign: Fixed deprecated function to adapt to the PHP latest version.
-
-= 5.4.1 =
-
-* **New Features**
-* New integration: Asgaros Forum.
-* Asgaros Forum: New trigger: User creates a topic on a forum.
-* Asgaros Forum: New trigger: User replies to a topic on a forum.
-* New integration: FluentBooking.
-* FluentBooking: New trigger: User schedules one-to-one meeting.
-* FluentBooking: New trigger: User schedules team meeting.
-
-= 5.4.0 =
-
-* **New Features**
-* New integration: BBForms.
-* BBForms: New trigger: User submits a form.
-* BBForms: New trigger: Guest submits a form.
-
-= 5.3.9 =
-
-* **Bug Fixes**
-* Thrive Apprentice: Fixed product selection.
-
-= 5.3.8 =
-
-* **Bug Fixes**
-* Fixed vulnerability.
-
-= 5.3.7 =
-
-* **Bug Fixes**
-* Fixed vulnerability.
-
-= 5.3.6 =
-
-* **Improvements**
-* Improved Upload File field when action is created.
-* Improved select field to select post fields.
-
-= 5.3.5 =
-
-* **Improvements**
-* ACF: Improved the selection of fields.
-
-= 5.3.4 =
-
-* **New Features**
-* New integration: Bluesky.
-* Bluesky: New action: Create a new post.
-* New integration: Campaign Monitor.
-* Campaign Monitor: New action: Add user to list.
-
-= 5.3.3 =
-
-* **Improvements**
-Improved anonymous automations.
-
-= 5.3.2 =
-
-* **Improvements**
-Improved how to display add-on information.
-
-= 5.3.1 =
-
-* **Improvements**
-* Improved filters to allow value 0 as condition.
-
-= 5.3.0 =
-
-* **Bug Fixes**
-* Fixed bug related to Redirect URL action.
-
-= 5.2.9 =
-
-* **Improvements**
-* Improved CT library.
-
-= 5.2.8 =
-
-* **Improvements**
-* Advanced Ads: Added support to Advanced Ads latest version.
-
-= 5.2.7 =
-
-* **Improvements**
-* Presto Player: Added support to Presto Player latest version.
-
-= 5.2.6 =
-
-* **Bug Fixes**
-* Vulnerability fixed related to All Post automations.
-
-= 5.2.5 =
-
-* **Bug Fixes**
-* Vulnerability Fixed.
-
-= 5.2.4 =
-
-* **New Features**
-* New integration: ShortLinks Pro.
-* ShortLinks Pro: New trigger: User clicks a link.
-* ShortLinks Pro: New trigger: User clicks a link from a category.
-* ShortLinks Pro: New trigger: User clicks a link from a tag.
-* ShortLinks Pro: New action: Create a link.
-
-= 5.2.3 =
-
-* **Improvements**
-* Improved tag usage in All Users Automations.
-
-= 5.2.2 =
-
-* **Improvements**
-* Improved CSS for switch checkbox.
-* Fixed vulnerability.
-* Improvement settings for minimum role to administer AutomatorWP.
-
-= 5.2.1.3 =
-
-* **Developer notes**
-* Updated CMB2 library.
-
-= 5.2.1.2 =
-
-* **Developer notes**
-* Updated CT library.
-
-= 5.2.1.1 =
-
-* **Developer notes**
-* Updated CT library.
-
-= 5.2.1 =
-
-* **Bug Fixes**
-* FluentCommunity: Fixed bug related to add comment trigger.
-
-= 5.2.0.1 =
-
-* **Developer notes**
-* Updated CT library.
-
-= 5.2.0 =
-
-* **Improvements**
-* Improved CT and CMB2 libraries.
-
-= 5.1.9.1 =
-
-* **Developer notes**
-* Updated PHP version required.
-* Updated license to meet WordPress org requirements.
-
-= 5.1.9 =
-
-* **Improvements**
-* ConvertKit: Improved connection to Kit.
-* Improved filter log extension.
-* **Developer Notes**
-* Added information on Dashboard about new Import File Automations.
-* Added information on Dashboard about new Restrict Content Automations.
-
-= 5.1.8 =
-
-* **Developer Notes**
-* Small fix to avoid slow loading related to metas.
-
-= 5.1.7.1 =
-
-* **Developer Notes**
-* Small fix.
-
-= 5.1.7 =
-
-* **Improvements**
-* Code optimization.
-* LearnPress: Added actions support with the latest LearnPress version. 
-
-= 5.1.6 =
-
-* **Improvements**
-* Improved AutomatorWP menu.
-* Deprecated functions updated to adapt to PHP latest version. 
-
-= 5.1.5 =
-
-* **Improvements**
-* Added support to file fields.
-* Fixed notice related to textdomain.
-
-= 5.1.4 =
-
-* **New Features**
-* New integration: FluentCommunity.
-* FluentCommunity: New trigger: User writes a post in a space.
-* FluentCommunity: New trigger: User adds a comment in a space.
-* FluentCommunity: New trigger: User joins a space.
-* FluentCommunity: New trigger: User completes a course.
-* FluentCommunity: New action: Add user to a space.
-* New integration: Paid Membership Subscriptions.
-* Paid Membership Subscriptions: New trigger: User purchases a subscription of a membership level.
-* **Improvements**
-* Improved automation export.
-
-= 5.1.3 =
-
-* **Improvements**
-* Improved role selection in triggers and actions.
-* Improved scheduled automations to avoid duplicate executions.
-
-= 5.1.2 =
-
-* **Developer note**
-* Updated minifid JS files.
-
-= 5.1.1 =
-
-* **Improvements**
-* Prevent to block automations UI if can not connect with automatorwp.com.
-
-= 5.1.0 =
-
-* **Bug fixes**
-* Fixed vulnerability related to importing automations.
-
-= 5.0.9 =
-
-* **Bug fixes**
-* LearnPress: Fixed bug related Enroll user in course action.
-
-= 5.0.8 =
-
-* **New Features**
-* New integration: Geodirectory.
-* Geodirectory: New trigger: User reviews a place.
-* Geodirectory: New trigger: User adds a new place.
-* Geodirectory: New trigger: Guest reviews a place.
-* New integration: Quiz and Survey Master.
-* Quiz and Survey Master: New trigger: User submits a Quiz.
-* Quiz and Survey Master: New trigger: Guest submits a Quiz.
-* New integration: Booking Calendar.
-* WP Booking Calendar: New trigger: A booking is approved.
-* WP Booking Calendar: New trigger: A booking is cancelled.
-
-= 5.0.7 =
-
-* **Bug fixes**
-* GamiPress: Fixed bug related to Earn points action.
-
-= 5.0.6 =
-
-* **Improvements**
-* Generator: Check to avoid false positives in security plugins.
-
-= 5.0.5 =
-
-* **Improvements**
-* Generator: Check to avoid false positives in security plugins.
-
-= 5.0.4 =
-
-* **Improvements**
-* MailerLite: Added support to MailerLite Classic.
-* **Developer Notes**
-* Fixed typo.
-
-= 5.0.3 =
-
-* **Bug Fixes**
-* Fixed tag replacement in trigger filters.
-
-= 5.0.2 =
-
-* **Improvements**
-* Formatter: Nested tags support.
-* Generator: Nested tags support.
-
-= 5.0.1 =
-
-* **New Features**
-* New integration: Everest Forms.
-* Everest Forms: New trigger: User submits a form.
-* Everest Forms: New trigger: Guest submits a form.
-* **Improvements**
-* Added check in Custom Tables library.
-* Added CSS improvement.
-
-= 5.0.0 =
-
-* **New Features**
-* Tags now supported in triggers (even all users and all posts setup).
-* Generator: Added {generate_hash( VALUE : ALGORITHM )} tag.
-* Generator: Added {generate_nonce( ACTION )} tag.
-* Formatter: Added {floor( VALUE )} tag.
-* Formatter: Added {ceil( VALUE )} tag.
-* Formatter: Added {lowercase( VALUE )} tag.
-* Formatter: Added {uppercase( VALUE )} tag.
-* **Improvements**
-* Generator: Improved hash selector.
-* **Developer Notes**
-* Moved old changelog to changelog.txt.
+* Moved old changelog to changelog.txt file.
+* Set AutomatorWP 6.0.0 as the new stable release! :)

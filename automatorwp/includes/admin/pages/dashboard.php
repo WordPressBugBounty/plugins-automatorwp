@@ -110,57 +110,59 @@ function automatorwp_dashboard_page() {
                 <?php automatorwp_dashboard_apps_section(); ?>
 
                 <?php // Documentation ?>
-                <h1><?php echo esc_html_e( 'Documentation', 'automatorwp' ); ?></h1>
+                <div class="automatorwp-dashboard-docs-section">
+                    <h1><?php echo esc_html_e( 'Documentation', 'automatorwp' ); ?></h1>
 
-                <div id="postbox-container-1" class="postbox-container">
-                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+                    <div id="postbox-container-1" class="postbox-container">
+                        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
 
-                        <?php // Getting started ?>
+                            <?php // Getting started ?>
+                            <?php automatorwp_dashboard_box( array(
+                                'id' => 'docs',
+                                'title' => __( 'Getting started', 'automatorwp' ),
+                                'content_cb' => 'automatorwp_dashboard_docs_box',
+                            ) ); ?>
+
+                        </div>
+                    </div>
+
+                    <div id="postbox-container-2" class="postbox-container">
+                        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+
+                            <?php // Features ?>
+                            <?php automatorwp_dashboard_box( array(
+                                'id' => 'features',
+                                'title' => __( 'Features', 'automatorwp' ),
+                                'content_cb' => 'automatorwp_dashboard_features_box',
+                            ) ); ?>
+
+                        </div>
+                    </div>
+
+                    <div id="postbox-container-3" class="postbox-container">
+                        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+
+                            <?php // Advanced Features ?>
+                            <?php automatorwp_dashboard_box( array(
+                                'id' => 'advanced',
+                                'title' => __( 'Advanced features', 'automatorwp' ),
+                                'content_cb' => 'automatorwp_dashboard_advanced_features_box',
+                            ) ); ?>
+
+                        </div>
+                    </div>
+
+                    <div id="postbox-container-4" class="postbox-container">
+                        <div id="normal-sortables" class="meta-box-sortables ui-sortable">
+
+                        <?php // Support ?>
                         <?php automatorwp_dashboard_box( array(
-                            'id' => 'docs',
-                            'title' => __( 'Getting started', 'automatorwp' ),
-                            'content_cb' => 'automatorwp_dashboard_docs_box',
+                                'id' => 'support',
+                                'title' => __( 'Support', 'automatorwp' ),
+                                'content_cb' => 'automatorwp_dashboard_support_box',
                         ) ); ?>
 
-                    </div>
-                </div>
-
-                <div id="postbox-container-2" class="postbox-container">
-                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-
-                        <?php // Features ?>
-                        <?php automatorwp_dashboard_box( array(
-                            'id' => 'features',
-                            'title' => __( 'Features', 'automatorwp' ),
-                            'content_cb' => 'automatorwp_dashboard_features_box',
-                        ) ); ?>
-
-                    </div>
-                </div>
-
-                <div id="postbox-container-3" class="postbox-container">
-                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-
-                        <?php // Advanced Features ?>
-                        <?php automatorwp_dashboard_box( array(
-                            'id' => 'advanced',
-                            'title' => __( 'Advanced features', 'automatorwp' ),
-                            'content_cb' => 'automatorwp_dashboard_advanced_features_box',
-                        ) ); ?>
-
-                    </div>
-                </div>
-
-                <div id="postbox-container-4" class="postbox-container">
-                    <div id="normal-sortables" class="meta-box-sortables ui-sortable">
-
-                    <?php // Support ?>
-                    <?php automatorwp_dashboard_box( array(
-                            'id' => 'support',
-                            'title' => __( 'Support', 'automatorwp' ),
-                            'content_cb' => 'automatorwp_dashboard_support_box',
-                    ) ); ?>
-
+                        </div>
                     </div>
                 </div>
 
@@ -1010,16 +1012,21 @@ function automatorwp_dashboard_docs_box() {
     <ul>
         <li><a href="https://automatorwp.com/docs/getting-started/what-is-automatorwp/" target="_blank"><?php esc_html_e( 'What is AutomatorWP?', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/automations/" target="_blank"><?php esc_html_e( 'Automations', 'automatorwp' ); ?></a></li>
-        <li><a href="https://automatorwp.com/docs/getting-started/anonymous-automations/" target="_blank"><?php esc_html_e( 'Anonymous Automations', 'automatorwp' ); ?></a></li>
-        <li><a href="https://automatorwp.com/docs/getting-started/all-users-automations/" target="_blank"><?php esc_html_e( 'All Users Automations', 'automatorwp' ); ?></a></li>
-        <li><a href="https://automatorwp.com/docs/getting-started/all-posts-automations/" target="_blank"><?php esc_html_e( 'All Posts Automations', 'automatorwp' ); ?></a></li>
-        <li><a href="https://automatorwp.com/docs/getting-started/import-file-automations/" target="_blank"><?php esc_html_e( 'Import File Automations', 'automatorwp' ); ?></a></li>
-        <li><a href="https://automatorwp.com/docs/getting-started/restrict-content-automations/" target="_blank"><?php esc_html_e( 'Restrict Content Automations', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/triggers/" target="_blank"><?php esc_html_e( 'Triggers', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/actions/" target="_blank"><?php esc_html_e( 'Actions', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/filters/" target="_blank"><?php esc_html_e( 'Filters', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/tags/" target="_blank"><?php esc_html_e( 'Tags', 'automatorwp' ); ?></a></li>
         <li><a href="https://automatorwp.com/docs/getting-started/logs/" target="_blank"><?php esc_html_e( 'Logs', 'automatorwp' ); ?></a></li>
+        <li>
+            <h3><?php esc_html_e( 'Automation Types', 'automatorwp' ); ?></h3>
+            <ul>
+                <li><a href="https://automatorwp.com/docs/getting-started/anonymous-automations/" target="_blank"><?php esc_html_e( 'Anonymous Automations', 'automatorwp' ); ?></a></li>
+                <li><a href="https://automatorwp.com/docs/getting-started/all-users-automations/" target="_blank"><?php esc_html_e( 'All Users Automations', 'automatorwp' ); ?></a></li>
+                <li><a href="https://automatorwp.com/docs/getting-started/all-posts-automations/" target="_blank"><?php esc_html_e( 'All Posts Automations', 'automatorwp' ); ?></a></li>
+                <li><a href="https://automatorwp.com/docs/getting-started/import-file-automations/" target="_blank"><?php esc_html_e( 'Import File Automations', 'automatorwp' ); ?></a></li>
+                <li><a href="https://automatorwp.com/docs/getting-started/restrict-content-automations/" target="_blank"><?php esc_html_e( 'Restrict Content Automations', 'automatorwp' ); ?></a></li>
+            </ul>
+        </li>
     </ul>
     <?php
 }
@@ -1034,6 +1041,7 @@ function automatorwp_dashboard_features_box() {
     <ul>
         <li>
             <ul>
+                <li><a href="https://automatorwp.com/docs/features/ai-assistant/" target="_blank"><?php esc_html_e( 'AI Assistant', 'automatorwp' ); ?></a></li>
                 <li><a href="https://automatorwp.com/docs/features/sequential-triggers/" target="_blank"><?php esc_html_e( 'Sequential triggers', 'automatorwp' ); ?></a></li>
                 <li><a href="https://automatorwp.com/docs/features/redirect-users/" target="_blank"><?php esc_html_e( 'Redirect users', 'automatorwp' ); ?></a></li>
                 <li><a href="https://automatorwp.com/docs/features/import-export-automations-through-url/" target="_blank"><?php esc_html_e( 'Import & Export automations through URL', 'automatorwp' ); ?></a></li>

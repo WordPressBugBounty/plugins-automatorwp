@@ -38,6 +38,39 @@
 }
 
 /* -------------------------------------------
+    AutomatorWP boxes style
+   ------------------------------------------- */
+
+.admin_page_edit_automatorwp_automations .postbox,
+.admin_page_edit_automatorwp_logs .postbox,
+.automatorwp_settings .postbox,
+.automatorwp-automation-item,
+.automatorwp-option-form-container {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 16px rgba(0, 0, 100, 0.1);
+}
+
+.admin_page_edit_automatorwp_automations #major-publishing-actions,
+.admin_page_edit_automatorwp_logs #major-publishing-actions {
+    border-radius: 0 0 8px 8px;
+}
+
+.admin_page_edit_automatorwp_automations .postbox-header,
+.admin_page_edit_automatorwp_logs .postbox-header,
+.automatorwp_settings .postbox-header {
+    border: none;
+}
+
+#automatorwp-automations-execution-options .handle-actions,
+#automatorwp-automations-save-changes .handle-actions,
+#automatorwp-automations-notes .handle-actions,
+#automatorwp_log_data .handle-actions,
+#automatorwp_log_details .handle-actions {
+    display: none !important;
+}
+
+/* -------------------------------------------
     Automations Edit Screen
    ------------------------------------------- */
 
@@ -124,8 +157,34 @@
 }
 
 /* Automation actions */
+#automatorwp-automations-save-changes .cmb-field-js-controls-before .cmb-field-js-controls-icon {
+    opacity: 0.6;
+}
+
+#automatorwp-automations-save-changes .cmb-field-js-controls-edit {
+    text-decoration: none;
+}
+
+#automatorwp-automations-save-changes #automatorwp-automation-actions,
+#automatorwp-automations-save-changes #delete-action {
+    display: inline-block;
+    margin-top: 6px;
+}
+
 #automatorwp-automations-save-changes #automatorwp-automation-actions .automatorwp-automation-action {
     margin-bottom: 6px;
+    margin-right: 6px;
+    display: inline-block;
+}
+
+#automatorwp-automations-save-changes #automatorwp-automation-actions .automatorwp-automation-action a,
+#automatorwp-automations-save-changes #delete-action a {
+    text-decoration: none;
+}
+
+#automatorwp-automations-save-changes #delete-action a .dashicons {
+    vertical-align: sub;
+    font-size: 18px;
 }
 
 /* Publishing actions */
@@ -148,6 +207,31 @@
 
 #automatorwp-automations-save-changes .submitdelete {
     color: #a00;
+}
+
+/* Automation Notes */
+#automatorwp-automations-notes .cmb-th {
+    display: none !important;
+}
+
+#automatorwp-automations-notes .inside,
+#automatorwp-automations-notes .inside .cmb2-metabox .cmb-row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+#automatorwp-automations-notes textarea {
+    border: 0;
+    box-shadow: none;
+    margin-bottom: -2px;
+    border-radius: 8px;
+}
+
+#automatorwp-automations-notes .cmb-tooltip {
+    margin-left: 8px;
+}
+#automatorwp-automations-notes .cmb-tooltip .dashicons {
+    opacity: 0.3;
 }
 
 /* Triggers and actions box */
@@ -200,6 +284,10 @@
 .automatorwp-sequential-field .cmb-td {
     float: left;
     padding: 0;
+}
+
+.automatorwp-sequential-field .dashicons-cmb-tooltip {
+    opacity: 0.3;
 }
 
 /* Integration icon */
@@ -342,8 +430,6 @@
 /* Automation items */
 .automatorwp-automation-item {
     display: flex;
-    border: 1px solid #ccd0d4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
     background: #fff;
     padding: 1em 1em 1em 0;
     margin-bottom: 1em;
@@ -368,7 +454,7 @@
     font-weight: 500;
     color: #72777c;
     border: 1px solid #ccd0d4;
-    border-radius: 50px;
+    border-radius: 4px;
     display: inline-block;
     padding: 0 0.6em;
     margin-bottom: 0.5em;
@@ -393,11 +479,8 @@
 }
 
 .automatorwp-automation-item-label > .button {
-    min-height: 32px;
-    line-height: 2;
-    padding: 0 12px;
+    padding: 0 8px !important;
     margin: 0 !important;
-    font-size: 14px;
 }
 
 .automatorwp-no-grab {
@@ -433,19 +516,24 @@
     color: #e15151;
 }
 
+.automatorwp-automation-item-actions .automatorwp-automation-item-action .cmb-tooltip-desc {
+    width: max-content;
+}
+
 /* Automation item options */
 
 .button.automatorwp-button,
 .automatorwp-option.button:not(.button-primary):not(.automatorwp-button-success):not(.automatorwp-button-danger):not(.automatorwp-button-dark) {
-    border: none;
-    color: #444;
-    background: #e5e5e5;
+    border-color: #555;
+    color: #555;
+    background: transparent;
 }
 
 .button.automatorwp-button:hover,
 .automatorwp-option.button:not(.button-primary):not(.automatorwp-button-success):not(.automatorwp-button-danger):not(.automatorwp-button-dark):hover {
     background: #ddd;
     color: #444;
+    border-color: #444;
 }
 
 .button.automatorwp-button:focus,
@@ -454,13 +542,12 @@
 .automatorwp-option.button:not(.button-primary):not(.automatorwp-button-success):not(.automatorwp-button-danger):not(.automatorwp-button-dark):active {
     background: #cfcfcf;
     color: #444;
+    border-color: #444;
 }
 
 /* Option form */
 .automatorwp-option-form-container {
-    background: #f5f5f5;
-    border: 1px solid #ccd0d4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #f6f7f7;
     padding: 1em 1.5em 1.5em;
     margin-top: 1em;
     cursor: auto; /* Disable cursor grab  */
@@ -867,10 +954,10 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
     content: "";
     display: block;
     border-left: 2px dashed #ccd0d4;
-    height: 29px;
+    height: 28px;
     position: absolute;
     left: -14px;
-    top: -45px;
+    top: -41px;
 }
 
 .automatorwp-automation-item-filter .automatorwp-automation-item-details {
@@ -973,6 +1060,7 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 
 .automatorwp-form select {
     margin-top: 0 !important;
+    line-height: 1;
 }
 
 .automatorwp-form input::placeholder,
@@ -1499,20 +1587,20 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
    ------------------------------------------- */
 
 .automatorwp-form .cmb-field-js-controls-before + .cmb-row {
-    background: #f5f5f5;
-    border: 1px solid #ccd0d4 !important;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #f6f7f7;
+    border: 1px solid #ddd !important;
     border-bottom: 0 !important;
     padding: 8px 6px !important;
+    border-radius: 8px 8px 0 0;
 }
 
 .automatorwp-form .cmb-field-js-controls-after {
-    background: #f5f5f5;
-    border: 1px solid #ccd0d4;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    background: #f6f7f7;
+    border: 1px solid #ddd;
     margin-top: 0;
     border-top: 0;
     padding: 4px 6px 8px;
+    border-radius:  0 0 8px 8px;
 }
 
 /* -------------------------------------------
@@ -1619,10 +1707,10 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 }
 
 #automatorwp_log_data .cmb-type-title {
-    border: 1px solid #ddd;
+    border: 1px solid #dcdcde;
     border-left: 0;
     border-right: 0;
-    background: #f5f5f5;
+    background: #f6f7f7;
     margin: 5px -12px;
 }
 
@@ -1755,22 +1843,22 @@ body.is-automatorwp-loop #cmb-field-js-controls-times_per_user-after {
 }
 
 .button.automatorwp-button-danger {
-    background: #e15151;
-    border: #e15151;
-    color: #fff;
+    background: transparent;
+    border-color: #e15151;
+    color: #e15151;
 }
 
 .button.automatorwp-button-danger:hover {
-    background: #de3b3b;
-    border: #de3b3b;
-    color: #fff;
+    background: transparent;
+    border-color: #de3b3b;
+    color: #de3b3b;
 }
 
 .button.automatorwp-button-danger:focus,
 .button.automatorwp-button-danger:active {
-    background: #da2525;
-    border: #da2525;
-    color: #fff;
+    background: transparent;
+    border-color: #da2525;
+    color: #da2525;
 }
 
 .button.automatorwp-button-dark {
@@ -2362,6 +2450,7 @@ body.automatorwp_page_automatorwp_add_ons {
     cursor: auto;
     user-select: auto;
     font-size: 16px;
+    padding: 8px 10px !important;
 }
 
 .automatorwp-dashboard .postbox .hndle .button {
@@ -2585,12 +2674,14 @@ body.automatorwp_page_automatorwp_add_ons {
 }
 
 .automatorwp-dashboard .automatorwp-dashboard-video .automatorwp-dashboard-video-image {
-    height: 58px;
+    height: 60px;
     overflow: hidden;
+    margin-right: 6px;
 }
 
 .automatorwp-dashboard .automatorwp-dashboard-video .automatorwp-dashboard-video-image img {
     margin-top: -13px;
+    margin-left: -10px;
 }
 
 .automatorwp-dashboard .automatorwp-dashboard-video .automatorwp-dashboard-video-details .automatorwp-dashboard-video-title {
@@ -2627,6 +2718,7 @@ body.automatorwp_page_automatorwp_add_ons {
     clear: both;
     text-align: center;
     font-size: 16px;
+    margin: 0 auto;
     padding-top: 20px;
 }
 
@@ -2637,6 +2729,8 @@ body.automatorwp_page_automatorwp_add_ons {
 }
 
 .automatorwp-dashboard .automatorwp-dashboard-add-ons-section {
+    display: flex !important;
+    flex-wrap: wrap;
     margin: 0 !important;
 }
 
@@ -2784,6 +2878,11 @@ body.automatorwp_page_automatorwp_add_ons {
         display: block;
         clear: both;
     }
+}
+
+/* Docs */
+.automatorwp-dashboard .automatorwp-dashboard-docs-section .postbox-header .hndle {
+    padding-bottom: 0 !important;
 }
 
 /* Plugins */

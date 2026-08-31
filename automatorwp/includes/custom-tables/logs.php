@@ -215,7 +215,7 @@ add_filter( 'manage_automatorwp_logs_sortable_columns', 'automatorwp_manage_logs
  * @param string $column_name
  * @param integer $object_id
  */
-function automatorwp_manage_logs_custom_column(  $column_name, $object_id ) {
+function automatorwp_manage_logs_custom_column( $column_name, $object_id ) {
 
     // Setup vars
     $log = ct_get_object( $object_id );
@@ -334,9 +334,7 @@ function automatorwp_manage_logs_custom_column(  $column_name, $object_id ) {
             $time = date( 'H:i:s', strtotime( $log->date ) );
             ?>
 
-            <span class="automatorwp-log-date"><?php echo $date; ?></span>
-            <br>
-            <span class="automatorwp-log-time"><?php echo $time; ?></span>
+            <span class="automatorwp-log-date"><?php echo $date; ?></span> <span class="automatorwp-log-time"><?php echo $time; ?></span>
 
             <?php
             break;
@@ -386,9 +384,9 @@ add_action( 'add_meta_boxes', 'automatorwp_add_logs_meta_boxes' );
  *
  * @since  1.0.0
  *
- * @param  stdClass $object The current object
+ * @param  stdClass $log The current log
  */
-function automatorwp_log_details_meta_box( $object = null ) {
+function automatorwp_log_details_meta_box( $log = null ) {
 
     global $ct_table;
 
@@ -403,11 +401,11 @@ function automatorwp_log_details_meta_box( $object = null ) {
             <div id="misc-publishing-actions">
 
                 <div class="misc-pub-section misc-pub-post-status">
-                    <?php echo __( 'Type:', 'automatorwp' ); ?> <span id="post-status-display"><?php echo isset( $log_types[$object->type] ) ? $log_types[$object->type] : esc_html( $object->type ) ; ?></span>
+                    <?php echo __( 'Type:', 'automatorwp' ); ?> <span id="post-status-display"><?php echo isset( $log_types[$log->type] ) ? $log_types[$log->type] : esc_html( $log->type ) ; ?></span>
                 </div>
 
                 <div class="misc-pub-section misc-pub-post-user" id="user">
-                    <?php $user = get_userdata( $object->user_id ); ?>
+                    <?php $user = get_userdata( $log->user_id ); ?>
                     <?php echo __( 'User:', 'automatorwp' ); ?> <span id="post-user-display"><?php
                         if( $user ) {
                             if( current_user_can( 'edit_users' ) ) {
@@ -422,10 +420,11 @@ function automatorwp_log_details_meta_box( $object = null ) {
                         } else {
                             echo '';
                         } ?></span>
+                        <?php do_action( 'automatorwp_log_details_meta_box_after_user', $log ); ?>
                 </div>
 
                 <div class="misc-pub-section curtime misc-pub-curtime">
-                    <span id="timestamp"><?php echo __( 'Date:', 'automatorwp' ); ?> <b><?php echo date( 'Y/m/d H:i:s', strtotime( $object->date ) ); ?></b></span>
+                    <span id="timestamp"><?php echo __( 'Date:', 'automatorwp' ); ?> <b><?php echo date( 'Y/m/d H:i:s', strtotime( $log->date ) ); ?></b></span>
                 </div>
 
             </div>
@@ -438,12 +437,12 @@ function automatorwp_log_details_meta_box( $object = null ) {
                 <?php
                 printf(
                     '<a href="%s" class="submitdelete deletion" onclick="%s" aria-label="%s">%s</a>',
-                    ct_get_delete_link( $ct_table->name, $object->id ),
+                    ct_get_delete_link( $ct_table->name, $log->id ),
                     "return confirm('" .
                     esc_attr( __( "Are you sure you want to delete this item?\\n\\nClick \\'Cancel\\' to go back, \\'OK\\' to confirm the delete." ) ) .
                     "');",
-                    esc_attr( __( 'Delete permanently' ) ),
-                    __( 'Delete Permanently' )
+                    esc_attr( __( 'Delete', 'automatorwp' ) ),
+                    __( 'Delete', 'automatorwp' )
                 );
                 ?>
             </div>
@@ -493,6 +492,13 @@ function automatorwp_log_data_meta_box( $object = null ) {
         }
 
         $field['attributes']['type'] = 'hidden';
+
+        // Update to use tooltips
+        if( isset( $field['desc'] ) && $field['type'] !== 'title' ) {
+            $field['tooltip'] = $field['desc'];
+            $field['label_cb'] = 'cmb_tooltip_label_cb';
+            unset( $field['desc'] );
+        }
 
         // Add the field to the form
         $cmb2->add_field( $field );
@@ -597,6 +603,31 @@ function automatorwp_get_log_fields( $log ) {
         'desc' => __( 'Post assigned to this log.', 'automatorwp' ),
         'type' => 'text',
     );
+
+    /**
+     * Filter to override the log if needed
+     *
+     * @since 6.0.0
+     *
+     * @param stdClass  $log        The log object
+     * @param stdClass  $object     The trigger/action/automation object attached to the log
+     *
+     * @return stdClass
+     */
+    $log = apply_filters( 'automatorwp_log_fields_log', $log, $object );
+
+    /**
+     * Filter to override the object if needed
+     *
+     * @since 6.0.0
+     *
+     * @param stdClass  $object     The trigger/action/automation object attached to the log
+     * @param stdClass  $log        The log object
+     *
+     * @return stdClass
+     */
+    $object = apply_filters( 'automatorwp_log_fields_object', $object, $log );
+
 
     /**
      * Filter to set custom log fields
@@ -834,6 +865,80 @@ function automatorwp_log_post_id_field_display( $value, $field_args, $field, $lo
 
 }
 add_filter( 'automatorwp_log_post_id_field_value_display', 'automatorwp_log_post_id_field_display', 10, 4 );
+
+/**
+ * User id field display
+ *
+ * @since 1.0.0
+ *
+ * @param string        $value      Field value
+ * @param array         $field_args Field parameters
+ * @param CMB2_Field    $field      Field object
+ * @param stdClass      $log        Log object
+ *
+ * @return string
+ */
+function automatorwp_log_user_id_field_display( $value, $field_args, $field, $log ) {
+
+    ct_setup_table( 'automatorwp_logs' );
+    $value = ct_get_object_meta( $log->id, 'user_id', true );
+    ct_reset_setup_table();
+
+    $user = get_userdata( $value );
+
+    if( $user ) {
+
+        if( current_user_can( 'edit_user', $user->ID ) ) {
+            $value = '<a href="' . get_edit_user_link( $user->ID ) . '">' . $user->display_name . '</a>';
+        } else {
+            $value = $user->display_name;
+        }
+
+    } else {
+        $value = __( '(No user assigned)', 'automatorwp' );
+    }
+
+    return $value;
+
+}
+add_filter( 'automatorwp_log_user_id_field_value_display', 'automatorwp_log_user_id_field_display', 10, 4 );
+
+/**
+ * User id (from log meta "user_id") field display
+ *
+ * @since 1.0.0
+ *
+ * @param string        $value      Field value
+ * @param array         $field_args Field parameters
+ * @param CMB2_Field    $field      Field object
+ * @param stdClass      $log        Log object
+ *
+ * @return string
+ */
+function automatorwp_log_user_id_meta_field_display( $value, $field_args, $field, $log ) {
+
+    ct_setup_table( 'automatorwp_logs' );
+    $value = ct_get_object_meta( $log->id, 'user_id', true );
+    ct_reset_setup_table();
+
+    $user = get_userdata( $value );
+
+    if( $user ) {
+
+        if( current_user_can( 'edit_user', $user->ID ) ) {
+            $value = '<a href="' . get_edit_user_link( $user->ID ) . '">' . $user->display_name . '</a>';
+        } else {
+            $value = $user->display_name;
+        }
+
+    } else {
+        $value = __( '(No user assigned)', 'automatorwp' );
+    }
+
+    return $value;
+
+}
+add_filter( 'automatorwp_log_user_id_meta_field_value_display', 'automatorwp_log_user_id_meta_field_display', 10, 4 );
 
 /**
  * Automation field display

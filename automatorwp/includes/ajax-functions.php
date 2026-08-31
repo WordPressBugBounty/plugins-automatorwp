@@ -113,6 +113,11 @@ function automatorwp_ajax_add_automation_item() {
 
         $tags_html = '';
 
+        if( $item_type === 'trigger' )
+            delete_transient( 'automatorwp_triggers_in_use' );
+        else if( $item_type === 'action' )
+            delete_transient( 'automatorwp_actions_in_use' );
+
         // Set up the trigger tags html
         if( $item_type === 'trigger' ) {
 
@@ -127,6 +132,7 @@ function automatorwp_ajax_add_automation_item() {
 
         // Set up the action tags html
         if( $item_type === 'action' ) {
+
             // Get the action tags
             $tags = automatorwp_get_action_tags( (object) $object );
 
@@ -142,11 +148,10 @@ function automatorwp_ajax_add_automation_item() {
             'tags_html' => $tags_html,
         ) );
     } else {
-        if( $item_type === 'trigger' ) {
+        if( $item_type === 'trigger' )
             wp_send_json_error( __( 'Trigger can\'t be created.', 'automatorwp' ) );
-        } else if( $item_type === 'action' ) {
+        else if( $item_type === 'action' )
             wp_send_json_error( __( 'Action can\'t be created.', 'automatorwp' ) );
-        }
     }
 
 }
@@ -184,6 +189,11 @@ function automatorwp_ajax_delete_automation_item() {
     ct_delete_object( $id );
 
     ct_reset_setup_table();
+
+    if( $item_type === 'trigger' )
+        delete_transient( 'automatorwp_triggers_in_use' );
+    else if( $item_type === 'action' )
+        delete_transient( 'automatorwp_actions_in_use' );
 
     // Send back a successful response
     wp_send_json_success( __( 'Item deleted.', 'automatorwp' ) );

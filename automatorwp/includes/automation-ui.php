@@ -226,10 +226,10 @@ function automatorwp_automation_ui_triggers_meta_box( $automation, $type ) {
 
     <?php // Sequential ?>
     <div class="automatorwp-sequential-field cmb2-switch">
-        <label for="sequential"><?php _e( 'Sequential', 'automatorwp' ); ?></label>
+        <label for="sequential"><?php _e( 'Sequential', 'automatorwp' ); ?> <?php echo cmb_tooltip_get_html( __( 'Check this option to force users to complete triggers in order.', 'automatorwp' ) ) ?></label>
         <div class="cmb-td">
             <input type="checkbox" id="sequential" name="sequential" class="automatorwp-auto-save" value="1" <?php checked( $automation->sequential, 1 ); ?> />
-            <label for="sequential"><span class="cmb2-metabox-description"><?php _e( 'Check this option to force users to complete triggers in order.', 'automatorwp' ); ?></span></label>
+            <label for="sequential"><span class="cmb2-metabox-description"></span></label>
         </div>
     </div>
 
@@ -529,7 +529,7 @@ function automatorwp_automation_ui_add_item_form( $automation, $item_type ) {
 
                 <?php endif; ?>
 
-                <button type="button" class="button automatorwp-button-danger automatorwp-cancel-choice-select"><?php _e( 'Cancel', 'automatorwp' ); ?></button>
+                <button type="button" class="button button-compact automatorwp-button-danger automatorwp-cancel-choice-select"><?php _e( 'Cancel', 'automatorwp' ); ?></button>
 
             </div>
 
@@ -722,7 +722,10 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
             <?php if( ! empty( $actions ) ) : ?>
                 <div class="automatorwp-automation-item-actions">
                     <?php foreach( $actions as $action => $action_args ) : ?>
-                    <div class="automatorwp-automation-item-action automatorwp-automation-item-action-<?php echo $action; ?>" title="<?php echo esc_attr( $action_args['label'] ); ?>"><span class="dashicons dashicons-<?php echo $action_args['icon']; ?>"></span></div>
+                    <div class="automatorwp-automation-item-action automatorwp-automation-item-action-<?php echo $action; ?> cmb-tooltip">
+                        <span class="dashicons dashicons-<?php echo $action_args['icon']; ?>"></span>
+                        <span class="cmb-tooltip-desc cmb-tooltip-top"><?php echo esc_html( $action_args['label'] ); ?></span>
+                    </div>
                     <?php endforeach; ?>
 
                 </div>
@@ -802,8 +805,8 @@ function automatorwp_automation_item_edit_html( $object, $item_type, $automation
                      */
                     do_action( 'automatorwp_automation_ui_before_option_form', $object, $item_type, $option, $args ); ?>
 
-                    <button type="button" class="button button-primary automatorwp-save-option-form"><?php _e( 'Save', 'automatorwp' ); ?></button>
-                    <button type="button" class="button automatorwp-button-danger automatorwp-cancel-option-form"><?php _e( 'Cancel', 'automatorwp' ); ?></button>
+                    <button type="button" class="button button-compact button-primary automatorwp-save-option-form"><?php _e( 'Save', 'automatorwp' ); ?></button>
+                    <button type="button" class="button button-compact automatorwp-button-danger automatorwp-cancel-option-form"><?php _e( 'Cancel', 'automatorwp' ); ?></button>
 
                     <div class="automatorwp-spinner" style="display: none;">
                         <span class="spinner is-active"></span>
@@ -1229,10 +1232,10 @@ function automatorwp_get_automation_item_option_replacement( $object, $item_type
 
     if( $context === 'edit' ) {
 
-        $option_class = 'button button-primary';
+        $option_class = 'button button-compact button-primary';
 
         if( $object->type === 'filter' ) {
-            $option_class = 'button';
+            $option_class = 'button button-compact';
         }
 
         /**
@@ -1240,7 +1243,7 @@ function automatorwp_get_automation_item_option_replacement( $object, $item_type
          *
          * @since 1.2.4
          *
-         * @param string    $option_class   The option class, by default "button button-primary"
+         * @param string    $option_class   The option class
          * @param stdClass  $object         The trigger/action object
          * @param string    $item_type      The item type (trigger|action)
          * @param string    $option         The option name
