@@ -691,6 +691,7 @@ function automatorwp_get_app_plugins() {
         'convertkit',
         'facebook',
         'google-calendar',
+        'google-drive',
         'google-gemini',
         'google-sheets',
         'hubspot',

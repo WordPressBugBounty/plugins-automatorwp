@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.1
-Stable tag: 6.0.0
+Stable tag: 6.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -172,6 +172,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [MasterStudy LMS](https://automatorwp.com/add-ons/masterstudy-lms/)
 * [MemberPress](https://automatorwp.com/add-ons/memberpress/)
 * [Meta Box](https://automatorwp.com/add-ons/meta-box/)
+* [MetForm](https://automatorwp.com/add-ons/metform/)
 * [Modern Events Calendar](https://automatorwp.com/add-ons/modern-events-calendar/)
 * [MyCred](https://automatorwp.com/add-ons/mycred/)
 * [Newsletter](https://automatorwp.com/add-ons/newsletter/)
@@ -242,6 +243,7 @@ AutomatorWP can work with external platforms, furthermore WordPress plugins, lik
 * [Facebook](https://automatorwp.com/add-ons/facebook/)
 * [HubSpot](https://automatorwp.com/add-ons/hubspot/)
 * [Google Calendar](https://automatorwp.com/add-ons/google-calendar/)
+* [Google Drive](https://automatorwp.com/add-ons/google-drive/)
 * [Google Sheets](https://automatorwp.com/add-ons/google-sheets/)
 * [IFTTT](https://automatorwp.com/add-ons/ifttt/)
 * [Instagram](https://automatorwp.com/add-ons/instagram/)
@@ -383,6 +385,13 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 6.0.1 =
+
+* **New Features**
+* New integration: MetForm.
+* MetForm: New trigger: User submits a form.
+* MetForm: New trigger: Guest submits a form.
 
 = 6.0.0 =
 
