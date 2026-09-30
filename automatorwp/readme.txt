@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.1
-Stable tag: 6.0.2
+Stable tag: 6.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -168,6 +168,7 @@ AutomatorWP works with different WordPress plugins, including:
 * [LifterLMS](https://automatorwp.com/add-ons/lifterlms/)
 * [Mail Mint](https://automatorwp.com/add-ons/mail-mint/)
 * [MailPoet](https://automatorwp.com/add-ons/mailpoet/)
+* [MailerPress](https://automatorwp.com/add-ons/mailerpress/)
 * [Masteriyo LMS](https://automatorwp.com/add-ons/masteriyo-lms/)
 * [MasterStudy LMS](https://automatorwp.com/add-ons/masterstudy-lms/)
 * [MemberPress](https://automatorwp.com/add-ons/memberpress/)
@@ -385,6 +386,15 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 6.0.3 =
+
+* **New Features**
+* New integration: MailerPress.
+* MailerPress: New trigger: User added to contacts.
+* MailerPress: New trigger: A tag is added to user.
+* MailerPress: New action: Add user to MailerPress.
+* MailerPress: New action: Add tag to user.
 
 = 6.0.2 =
 
