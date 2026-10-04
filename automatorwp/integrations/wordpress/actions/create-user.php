@@ -171,14 +171,21 @@ class AutomatorWP_WordPress_Create_User extends AutomatorWP_Integration_Action {
         // Check the user role
         $roles = automatorwp_get_editable_roles();
 
-        if( ! isset( $roles[$user_data['role']] ) ) {
+        if( ! isset( $roles[$user_data['role']] ) )
             $user_data['role'] = 'subscriber';
+
+        // Check if role comes from role_custom (which could come from a tag)
+        if( $action_options['role_custom'] === 'administrator' ) {
+            // Security filter to allows through code create administrator users if not desired
+            $allow_admin = apply_filters( 'automatorwp_allow_create_admin_user_from_custom_role', false, $action, $user_id, $action_options, $automation );
+
+            if( ! $allow_admin )
+                $user_data['role'] = 'subscriber';
         }
 
         // Generate the user password
-        if( empty( $user_data['user_pass'] ) ) {
+        if( empty( $user_data['user_pass'] ) )
             $user_data['user_pass'] = wp_generate_password( 24 );
-        }
 
         // Insert the user
         $this->user_id = wp_insert_user( $user_data );

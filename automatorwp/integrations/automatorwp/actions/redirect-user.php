@@ -165,6 +165,10 @@ class AutomatorWP_WordPress_Redirect_User extends AutomatorWP_Integration_Action
         check_ajax_referer( 'automatorwp', 'nonce' );
 
         $user_id = absint( $_REQUEST['user_id'] );
+
+        // Bail if user received is not the logged in
+        if( $user_id !== get_current_user_id() )
+            wp_send_json_error( __( 'You\'re not allowed to perform this action.', 'automatorwp' ) );
         
         // Get the redirect URL for this user
         $url = get_option( 'automatorwp_redirect_url_' . $user_id, '' );
