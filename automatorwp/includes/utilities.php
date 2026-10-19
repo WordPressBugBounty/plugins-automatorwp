@@ -1477,6 +1477,47 @@ function automatorwp_get_editable_roles() {
 }
 
 /**
+ * Get the applicable role preventing dangerous roles
+ *
+ * @since 6.0.5
+ *
+ * @param string    $role               Desired role to apply
+ * @param stdClass  $action             The action object
+ * @param int       $user_id            The user ID (0 on anonymous automations)
+ * @param array     $action_options     The action's stored options (with tags already passed)
+ * @param stdClass  $automation         The action's automation object
+ *
+ * @return string
+ */
+function automatorwp_get_applicable_role( $role, $action, $user_id, $action_options, $automation ) {
+
+    $roles = automatorwp_get_editable_roles();
+
+    // Bail if not is an editable role
+    if( ! isset( $roles[$user_data['role']] ) ) return 'subscriber';
+
+    $role_obj = get_role( $role );
+
+    // Bail if role not found
+    if( ! $role_obj ) return 'subscriber';
+
+    $dangerous_caps = array( 'manage_options', 'promote_users', 'edit_users', 'delete_users', 'install_plugins' );
+
+    // Check dangerous capabilities
+    if( array_intersect( array_keys( $role_obj->capabilities ), $dangerous_caps ) ) {
+
+        $allow_dangerous_roles = apply_filters( 'automatorwp_allow_dangerous_roles', false, $role, $action, $user_id, $action_options, $automation );
+
+        // Bail if role has dangerous capabilities
+        if( ! $allow_dangerous_roles ) return 'subscriber';
+    }
+
+    // All ok, role is not dungerous
+    return $role;
+
+}
+
+/**
  * Helper function to pull all values of an array to a single level
  *
  * -------------------------------------

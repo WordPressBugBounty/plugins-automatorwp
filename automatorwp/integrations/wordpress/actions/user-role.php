@@ -105,9 +105,8 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
         $user_id_target = absint( $action_options['user_id'] );
         $this->user_data = array();
 
-        if( $user_id_target === 0 ) {
+        if( $user_id_target === 0 )
             $user_id_target = $user_id;
-        }
 
         $user = get_userdata( $user_id_target );
 
@@ -124,31 +123,20 @@ class AutomatorWP_WordPress_User_Role extends AutomatorWP_Integration_Action {
             'display_name',
         );
 
-        foreach( $user_fields as $user_field ) {
-                $this->user_data[$user_field] = $user->$user_field;
-        }
+        foreach( $user_fields as $user_field )
+            $this->user_data[$user_field] = $user->$user_field;
 
         // Bail if user does not exists
-        if( ! $user ) {
-            return;
-        }
+        if( ! $user ) return;
 
         // Ensure operation default value
-        if( empty( $operation ) ) {
-            $operation = 'add';
-        }
+        if( empty( $operation ) ) $operation = 'add';
 
         // Bail if empty role to assign
-        if( $role === 'any' || empty( $role ) ) {
-            return;
-        }
+        if( $role === 'any' || empty( $role ) ) return;
 
-        $roles = automatorwp_get_editable_roles();
-
-        // Bail if empty role to assign
-        if( ! isset( $roles[$role] ) ) {
-            return;
-        }
+        // Check the user role
+        $role = automatorwp_get_applicable_role( $role, $action, $user_id, $action_options, $automation );
 
         switch ( $operation ) {
             case 'add':

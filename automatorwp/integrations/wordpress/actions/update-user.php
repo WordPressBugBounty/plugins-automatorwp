@@ -190,9 +190,8 @@ class AutomatorWP_WordPress_Update_User extends AutomatorWP_Integration_Action {
         $this->result = array();
 
         // User ID
-        if( empty( $action_options['user_id'] ) ) {
+        if( empty( $action_options['user_id'] ) )
             $action_options['user_id'] = $user_id;
-        }
 
         $this->user_id = absint( $action_options['user_id'] );
         $user = get_userdata( $this->user_id );
@@ -228,14 +227,9 @@ class AutomatorWP_WordPress_Update_User extends AutomatorWP_Integration_Action {
             }
         }
 
-        // Role
-        $roles = automatorwp_get_editable_roles();
-
-        if( ! isset( $roles[$role] ) ) {
-            $this->result[] = sprintf( __( 'Invalid role: %1$s.', 'automatorwp' ), $role );
-        } else {
-            $user_data['role'] = $role;
-        }
+        // Check the user role
+        if( $role !== '' && $role !== 'any' )
+            $user_data['role'] = automatorwp_get_applicable_role( $role, $action, $user_id, $action_options, $automation );
 
         // The rest fields
         $user_fields = array(
@@ -247,9 +241,8 @@ class AutomatorWP_WordPress_Update_User extends AutomatorWP_Integration_Action {
         );
 
         foreach( $user_fields as $user_field ) {
-            if( ! empty( $action_options[$user_field] ) ) {
+            if( ! empty( $action_options[$user_field] ) )
                 $user_data[$user_field] = $action_options[$user_field];
-            }
         }
 
         // User meta

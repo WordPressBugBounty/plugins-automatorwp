@@ -484,12 +484,7 @@ class AutomatorWP_WordPress_Anonymous_User extends AutomatorWP_Integration_Actio
         ) );
 
         // Check the user role
-        $roles = automatorwp_get_editable_roles();
-
-        // Bail if empty role to assign
-        if( ! isset( $roles[$user_data['role']] ) ) {
-            $user_data['role'] = 'subscriber';
-        }
+        $user_data['role'] = automatorwp_get_applicable_role( $user_data['role'], $action, 0, $action_options, $automation );
 
         // Generate the user password
         if( empty( $user_data['user_pass'] ) ) {
