@@ -17,11 +17,9 @@ You can create "automations" linked to your WordPress activities and when any of
 
 Automate sales, marketing, administrative tasks, learning experiences and countless other processes to save time, eliminate repetitive work, and focus on what matters most.
 
-See how it works in less than 2 minutes! 👇
-
 https://youtu.be/vWqRcEO8SgY
 
-= Use automations to connect your plugins =
+= ⚡ Use automations to connect your plugins =
 
 Here are some automations samples to give you a quick idea of what you can build:
 
@@ -34,7 +32,7 @@ When user creates a **bbPress topic** and completes a **H5P content** > Enroll u
 
 The number of combinations and possibilities are unlimited!
 
-= Webhooks to keep your site connected =
+= 🛜 Webhooks to keep your site connected =
 
 With [Webhooks](https://automatorwp.com/add-ons/webhooks/) you can send and receive data from anywhere, connecting all your WordPress plugins with platforms like Zapier or Make.
 
@@ -45,69 +43,55 @@ Anything with support to webhooks or a Rest API can be connected with the Webhoo
 
 [View Webhooks automations samples](https://automatorwp.com/docs/webhooks/automations-samples/)
 
-= Features =
-
-AutomatorWP is extremely powerful and infinitely extensible. Check out some of the built-in features:
+= 🔥 Features =
 
 * **Own your data:** AutomatorWP works entirely inside your WordPress, not as a SaaS or a credits-based platform with no artificial usage limits.
 * **Unlimited triggers and actions:** Configure as many triggers and actions per automation as you want.
-* **Logged-in and anonymous automations:** AutomatorWP can work for both, logged-in users and for not logged-in visitors.
+* **Logged-in and anonymous automations:** AutomatorWP can work for both, logged-in users and guest visitors.
 * **Scheduled and recurring automations:** Automations to run actions on all or on a filtered group of users manually, on a specific date or on a recurring basis.
-* **Loop automations:** Create automations that can loop all or a group of posts or users to process actions on them like remove inactive users or email administrators about pending posts.
+* **Loop automations:** Automations that can loop all or a group of posts or users to process actions on them like remove inactive users or email administrators about pending posts.
 * **Filters:** Filter any trigger or action with the **conditions** of your choice.
 * **Required number of times:** Set the number of times required to complete a trigger like comment on a post 3 times.
 * **Sequential triggers:** Force users to complete triggers in order to complete the automation.
 * **Completion limits:** Limit automation's maximum completion times per user and globally.
-* **Tags:** Tags to pass dynamic information from triggers to actions (with support to user and post metas).
-* **AI Assistant included:** Our AI assistant is ready to help you design, create and manage your automations, with the addition to execute any action available in AutomatorWP!
-* **Developer-friendly:** AutomatorWP is extremely flexible with plenty of hooks to add custom features and functionalities.
+* **Tags:** To pass dynamic information from triggers to actions (with support to user and post metas).
+* **AI Assistant included:** Ready to help you design, create and manage your automations, with the addition to execute any action available in AutomatorWP!
+* **Developer-friendly:** Extremely flexible with plenty of hooks to add custom functionalities.
 
-= Powerful AI Assistant included! =
+= ✨ AI Assistant included! =
 
-AutomatorWP includes a powerful AI Assistant designed to help you effortlessly design, create, and manage automations using natural language. Its features include:
+Built-in AI Assistant designed to design, create, and manage automations using natural language. Its features include:
 
-**Build automations in seconds** 📜
-Describe what you want to automate and the Assistant creates the entire automation ready for you to review and activate!
+📜 **Build automations in seconds:** Describe what you want to automate and the Assistant creates the entire automation ready for you to review and activate!
 
-Example Prompts:
-```
-New automation: when a user enrolls in "Course A", add to "Group A"
-```
+Example Prompt:
 ```
 When a user purchases "Product A", add the tag "Customer", award "Badge A" and send a welcome email
 ```
 
 **Note:** Yes, for a "welcome email" instruction, the Assistant composes the entire email for you!
 
-**Run actions directly** 🚀
-The Assistant can run any action available in AutomatorWP, giving you thousands of possibilities!
+🚀 **Run actions directly:** The Assistant can run any action available in AutomatorWP, giving you thousands of possibilities!
 
-In addition, the Assistant logs every execution, allowing you see what has been executed, the parameters passed and the action(s) result(s).
+In addition, it will log every execution, allowing you see what has been executed, the parameters passed and the action(s) result(s).
 
 Example Prompts:
 ```
 Enroll John Doe on "Course A" and award "Badge A"
 ```
-```
-Add Ruben Garcia to "Membership A" and change its role to "Contributor"
-```
 
-**Update existing automations** ✏️
-Made to help you save time, the Assistant can update existing automations effortlessly.
+✏️ **Update existing automations:** Made to help you save time, the Assistant can update existing automations effortlessly.
 
-Example Prompts:
+Example Prompt:
 ```
 Add the actions award 10 points and send welcome email to "Automation A"
-```
-```
-Add a trigger for complete "Course A" to "Automation B"
 ```
 
 **Note:** This assistant uses the WP AI Connectors. Without a configured connector, it won't be able to perform any tasks.
 
-= Integrated with +200 WordPress plugins =
+= ⚙️ Integrated with +300 WordPress plugins =
 
-AutomatorWP works with different WordPress plugins, including:
+AutomatorWP includes +600 triggers, actions and filters from +300 plugins & platforms for free, including:
 
 * [ActiveMember360](https://automatorwp.com/add-ons/activemember360/)
 * [Advanced Ads](https://automatorwp.com/add-ons/advanced-ads/)
@@ -261,7 +245,7 @@ AutomatorWP can work with external platforms, furthermore WordPress plugins, lik
 * [Zapier](https://automatorwp.com/add-ons/zapier/)
 * [Zoom](https://automatorwp.com/add-ons/zoom/)
 
-= Powerful add-ons to extend AutomatorWP =
+= ⭐ Add-ons to extend AutomatorWP =
 
 If you’re looking for something endorsed and maintained by the developers who built AutomatorWP, there are a plethora of premium add-ons, the most popular of which include:
 
@@ -281,17 +265,11 @@ If you’re looking for something endorsed and maintained by the developers who 
 
 [View all add-ons](https://automatorwp.com/add-ons/)
 
-= Included triggers, actions and filters =
+= ♥️ More plugins from the AutomatorWP team =
 
-AutomatorWP includes +600 triggers, actions and filters from +200 plugins & platforms for free, all of them listed [here](https://automatorwp.com/all-triggers-and-actions/).
-
-= More plugins from the AutomatorWP team =
-
-If you like AutomatorWP, you will love our other plugins!
-
-* [GamiPress](https://wordpress.org/plugins/gamipress/) - Flexible gamification plugin to reward your users with points, achievements, badges & ranks based on their activity in your WordPress.
-* [ShortLinks Pro](https://wordpress.org/plugins/shortlinkspro/) - Complete link management plugin that not only powers WordPress websites with shortened URLs, also empowers site owners to create clean, branded and unique affiliate links easily.
-* [BBForms](https://wordpress.org/plugins/bbforms/) - Code form plugin designed to help you build multipurpose forms in seconds!
+🕹️ [GamiPress](https://wordpress.org/plugins/gamipress/) - Gamification plugin to boost engagement by rewarding users with points, achievements, badges & ranks.
+🔗 [ShortLinks Pro](https://wordpress.org/plugins/shortlinkspro/) - Link management plugin for shortened URLs & branded affiliate links.
+📋 [BBForms](https://wordpress.org/plugins/bbforms/) - Code form plugin designed to help you build multipurpose forms in seconds!
 
 == Installation ==
 
