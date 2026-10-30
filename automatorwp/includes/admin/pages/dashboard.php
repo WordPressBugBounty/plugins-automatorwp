@@ -1140,6 +1140,12 @@ function automatorwp_dashboard_plugins_box() {
                 <span>BBForms</span>
             </a>
         </li>
+        <li>
+            <a href="https://wordpress.org/plugins/whatavatar/" target="_blank">
+                <img src="<?php echo esc_attr( $url . 'whatavatar.svg' ); ?>" class="our-plugins-img our-plugins-whatavatar" loading="lazy">
+                <span>WhatAvatar</span>
+            </a>
+        </li>
     </ul>
     <?php
 }

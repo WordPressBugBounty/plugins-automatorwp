@@ -60,9 +60,9 @@ class CMB2_Options_Hookup extends CMB2_Hookup {
 
 		// Register setting to cmb2 group.
 		register_setting( 'cmb2', $this->option_key, array(
-            'type' => 'array',
-            'sanitize_callback' => 'cmb2_settings_sanitization_cb',
-        ) );
+			'type'              => 'array',
+			'sanitize_callback' => 'cmb2_sanitize_option_passthrough',
+		) );
 
 		// Handle saving the data.
 		add_action( 'admin_post_' . $this->option_key, array( $this, 'save_options' ) );
@@ -203,7 +203,7 @@ class CMB2_Options_Hookup extends CMB2_Hookup {
 				<h2><?php echo wp_kses_post( $this->cmb->prop( 'title' ) ); ?></h2>
 			<?php endif; ?>
 			<?php $this->options_page_tab_nav_output(); ?>
-			<form class="cmb-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST" id="<?php echo $this->cmb->cmb_id; ?>" enctype="multipart/form-data" encoding="multipart/form-data">
+			<form class="cmb-form" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" method="POST" id="<?php echo esc_attr( $this->cmb->cmb_id ); ?>" enctype="multipart/form-data" encoding="multipart/form-data">
 				<input type="hidden" name="action" value="<?php echo esc_attr( $this->option_key ); ?>">
 				<?php $this->options_page_metabox(); ?>
 				<?php submit_button( esc_attr( $this->cmb->prop( 'save_button' ) ), 'primary', 'submit-cmb' ); ?>
@@ -374,19 +374,4 @@ class CMB2_Options_Hookup extends CMB2_Hookup {
 				throw new Exception( sprintf( esc_html__( 'Invalid %1$s property: %2$s', 'cmb2' ), __CLASS__, $field ) );
 		}
 	}
-}
-
-if( ! function_exists( 'cmb2_settings_sanitization_cb' ) ) {
-    function cmb2_settings_sanitization_cb( $settings ) {
-        global $cmb2_settings_sanitizated;
-
-        if( $cmb2_settings_sanitizated === true ) {
-            return $settings;
-        }
-
-        $cmb2_settings_sanitizated = true;
-
-        return map_deep( $settings, 'sanitize_text_field' );
-    }
-
 }

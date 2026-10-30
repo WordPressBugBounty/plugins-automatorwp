@@ -1494,7 +1494,7 @@ function automatorwp_get_applicable_role( $role, $action, $user_id, $action_opti
     $roles = automatorwp_get_editable_roles();
 
     // Bail if not is an editable role
-    if( ! isset( $roles[$user_data['role']] ) ) return 'subscriber';
+    if( ! isset( $roles[$role] ) ) return 'subscriber';
 
     $role_obj = get_role( $role );
 

@@ -9,9 +9,6 @@
  * @link      https://cmb2.io
  */
 
-// Exit if accessed directly
-if( !defined( 'ABSPATH' ) ) exit;
-
 /**
  * Function to encapsulate the CMB2 bootstrap process.
  *

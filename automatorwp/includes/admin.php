@@ -108,6 +108,13 @@ function automatorwp_get_try_option() {
         );
     }
 
+    if( ! class_exists( 'WhatAvatar' ) ) {
+        $options[] = array(
+            'label' => __( 'Try WhatAvatar!', 'automatorwp' ),
+            'slug' => 'whatavatar'
+        );
+    }
+
     $count = count( $options );
 
     // Bail if no options found
