@@ -152,6 +152,9 @@ function automatorwp_zoom_authorize_display_cb( $field_args, $field ) {
  */
 function automatorwp_zoom_maybe_authorize_complete() {
 
+    // Bail if not is an allowed user
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) return;
+
     if( isset( $_GET['code'] )
         && isset( $_GET['state'] )
         && isset( $_GET['page'] ) && $_GET['page'] == 'automatorwp_settings'

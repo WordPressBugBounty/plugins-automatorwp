@@ -152,6 +152,9 @@ function automatorwp_aweber_authorize_display_cb( $field_args, $field ) {
  */
 function automatorwp_aweber_maybe_authorize_complete() {
 
+    // Bail if not is an allowed user
+    if( ! current_user_can( automatorwp_get_manager_capability() ) ) return;
+
     if( isset( $_GET['code'] )
         && isset( $_GET['page'] ) && $_GET['page'] == 'automatorwp_settings'
         && isset( $_GET['tab'] ) && $_GET['tab'] == 'opt-tab-aweber' ) {

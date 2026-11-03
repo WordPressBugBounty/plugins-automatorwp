@@ -26,9 +26,9 @@ class AutomatorWP_WhatAvatar_Unlock_Avatar_Part_Action extends AutomatorWP_Integ
             'integration'       => $this->integration,
             'label'             => __( 'Unlock avatar part', 'automatorwp' ),
             'select_option'     => __( 'Unlock <strong>avatar part</strong>', 'automatorwp' ),
-            /* translators: %1$s: Avatar Part. */
+            /* translators: %1$s: Avatar Part %2$s: User */
             'edit_label'        => sprintf( __( 'Unlock %1$s to %2$s', 'automatorwp' ), '{avatar_part}', '{user}' ),
-            /* translators: %1$s: Avatar Part */
+            /* translators: %1$s: Avatar Part %2$s: User */
             'log_label'         => sprintf( __( 'Unlock %1$s to %2$s', 'automatorwp' ), '{avatar_part}', '{user}' ),
             'options'           => array(
                 'avatar_part' => automatorwp_utilities_ajax_selector_option( array(

@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.1
-Stable tag: 6.0.6
+Stable tag: 6.0.7
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -365,6 +365,11 @@ No, We're unable to provide custom development services, as our focus is develop
 
 == Changelog ==
 
+= 6.0.7 =
+
+* **Improvements**
+* Security improvements in Zoom & Aweber authorization process.
+
 = 6.0.6 =
 
 * **New Features**
@@ -372,8 +377,6 @@ No, We're unable to provide custom development services, as our focus is develop
 * WhatAvatar: New action: Unlock avatar part.
 * **Improvements**
 * Updated the CMB2 library to the latest version.
-* **Bug Fixes**
-* Fixed bug related to role selection in Create user actions.
 
 = 6.0.5 =
 
