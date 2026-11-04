@@ -46,8 +46,11 @@ function automatorwp_aweber_ajax_authorize() {
     // Scopes to read and write
     $scope = 'account.read list.read list.write subscriber.read subscriber.write';
 
+    // Generate a unique state
+    $state = wp_create_nonce( 'automatorwp_aweber_auth_' . sanitize_key( home_url() ) );
+
     $admin_url = admin_url('admin.php?page=automatorwp_settings&tab=opt-tab-aweber');
-    $redirect_url = 'https://auth.aweber.com/oauth2/authorize?response_type=code&client_id=' . $client_id . '&redirect_uri=' . urlencode( $admin_url ) . '&scope=' . urlencode( $scope );
+    $redirect_url = 'https://auth.aweber.com/oauth2/authorize?response_type=code&client_id=' . $client_id . '&state=' . urlencode( $state ) . '&redirect_uri=' . urlencode( $admin_url ) . '&scope=' . urlencode( $scope );
 
     // Return the redirect URL
     wp_send_json_success( array(

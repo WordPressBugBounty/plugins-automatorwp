@@ -42,8 +42,10 @@ function automatorwp_zoom_ajax_authorize() {
     // Update settings
     update_option( 'automatorwp_settings', $settings );
 
-    $state = $prefix . $platform;
-    $admin_url = str_replace( 'http://', 'https://', get_admin_url() )  . 'admin.php?page=automatorwp_settings&tab=opt-tab-zoom';
+    // Generate a unique state
+    $state = wp_create_nonce( 'automatorwp_zoom_auth_' . sanitize_key( $platform ) . sanitize_key( home_url() ) );
+
+    $admin_url = str_replace( 'http://', 'https://', get_admin_url() )  . 'admin.php?page=automatorwp_settings&tab=opt-tab-zoom&platform=' . urlencode( $platform );
     $redirect_url = 'https://zoom.us/oauth/authorize?response_type=code&client_id=' . $client_id . '&state=' . urlencode( $state ) . '&redirect_uri=' . urlencode( $admin_url );
 
     // Return the redirect URL

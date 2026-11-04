@@ -156,8 +156,14 @@ function automatorwp_aweber_maybe_authorize_complete() {
     if( ! current_user_can( automatorwp_get_manager_capability() ) ) return;
 
     if( isset( $_GET['code'] )
+        && isset( $_GET['state'] )
         && isset( $_GET['page'] ) && $_GET['page'] == 'automatorwp_settings'
         && isset( $_GET['tab'] ) && $_GET['tab'] == 'opt-tab-aweber' ) {
+
+        $state = sanitize_text_field( wp_unslash( $_GET['state'] ) );
+
+        // Bail if state is not from this site
+        if( ! wp_verify_nonce( $state, 'automatorwp_aweber_auth_' . sanitize_key( home_url() ) ) ) return;
 
         $client_id = automatorwp_aweber_get_option( 'client_id', '' );
         $client_secret = automatorwp_aweber_get_option( 'client_secret', '' );
@@ -178,16 +184,12 @@ function automatorwp_aweber_maybe_authorize_complete() {
         $response = wp_remote_post( 'https://auth.aweber.com/oauth2/token', $params );
 
         // Bail if can't contact with the server
-        if ( is_wp_error( $response ) ) {
-            return;
-        }
+        if ( is_wp_error( $response ) ) return;
 
         $body = json_decode( wp_remote_retrieve_body( $response ) );
 
         // Bail on receive an error
-        if( isset( $body->error ) ) {
-            return;
-        }
+        if( isset( $body->error ) ) return;
 
         $auth = array(
             'access_token'  => $body->access_token,

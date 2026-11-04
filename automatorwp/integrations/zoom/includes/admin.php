@@ -157,10 +157,16 @@ function automatorwp_zoom_maybe_authorize_complete() {
 
     if( isset( $_GET['code'] )
         && isset( $_GET['state'] )
+        && isset( $_GET['platform'] )
         && isset( $_GET['page'] ) && $_GET['page'] == 'automatorwp_settings'
         && isset( $_GET['tab'] ) && $_GET['tab'] == 'opt-tab-zoom' ) {
 
-        $platform = str_replace( 'automatorwp_zoom_', '', $_GET['state'] );
+        $platform = sanitize_text_field( wp_unslash( $_GET['platform'] ) );
+        $state = sanitize_text_field( wp_unslash( $_GET['state'] ) );
+
+        // Bail if state is not from this site
+        if( ! wp_verify_nonce( $state, 'automatorwp_zoom_auth_' . sanitize_key( $platform ) . sanitize_key( home_url() ) ) ) return;
+
         $client_id = automatorwp_zoom_get_option( $platform . '_client_id', '' );
         $client_secret = automatorwp_zoom_get_option( $platform . '_client_secret', '' );
 
@@ -172,7 +178,7 @@ function automatorwp_zoom_maybe_authorize_complete() {
             ),
             'body'	=> array(
                 'grant_type'	=> 'authorization_code',
-                'redirect_uri'	=> str_replace( 'http://', 'https://', get_admin_url() ) . 'admin.php?page=automatorwp_settings&tab=opt-tab-zoom',
+                'redirect_uri'	=> str_replace( 'http://', 'https://', get_admin_url() ) . 'admin.php?page=automatorwp_settings&tab=opt-tab-zoom&platform=' . urlencode( $platform ),
                 'code'			=> $_GET['code']
             )
         );
