@@ -71,11 +71,15 @@ class AutomatorWP_WP_Fusion_Add_Tag extends AutomatorWP_Integration_Trigger {
 
         $tags = wp_fusion()->settings->get( 'available_tags' );
 
-        if( is_array( $tags ) ) {
-            foreach ( $tags as $id => $tag ) {
-                $options[$id] = $tag;
-            }
-        }
+        if ( $tags ) {
+			foreach ( $tags as $tag_id => $tag ) {
+				if ( is_array( $tag ) && isset( $tag['label'] ) ) {
+					$options[ $tag_id ] = $tag['label'];
+				} else {
+					$options[ $tag_id ] = $tag;
+				}
+			}
+		}
 
         return $options;
 
