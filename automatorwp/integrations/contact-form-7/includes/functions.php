@@ -56,10 +56,8 @@ function automatorwp_contact_form_7_get_form_fields_values( $form, $submission )
 
     }
 
-    // Check for AutomatorWP 1.4.4
-    if( function_exists( 'automatorwp_utilities_pull_array_values' ) ) {
-        $form_fields = automatorwp_utilities_pull_array_values( $form_fields );
-    }
+    // Pull array values
+    $form_fields = automatorwp_utilities_pull_array_values( $form_fields );
 
     return $form_fields;
 

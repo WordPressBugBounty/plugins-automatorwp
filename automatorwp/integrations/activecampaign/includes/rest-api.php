@@ -20,6 +20,7 @@ function automatorwp_activecampaign_rest_api_init() {
         'methods' => 'POST',
         'callback' => 'automatorwp_activecampaign_rest_api_cb',
         'permission_callback' => '__return_true',
+        'show_in_index'       => false,
     ) );
 
 }

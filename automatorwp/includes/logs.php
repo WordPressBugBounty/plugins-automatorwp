@@ -70,6 +70,11 @@ function automatorwp_insert_log( $log_data = array(), $log_meta = array() ) {
             // Sanitize vars
             $meta_key = sanitize_key( $meta_key );
             $meta_key = wp_unslash( $meta_key );
+
+            // Sanitize meta value
+            $meta_value = automatorwp_sanitize_log_meta_value( $meta_value, $meta_key, $original_meta_value, $original_meta_key, $log_data, $log_meta );
+
+            // Apply the standard meta value sanitizations
             $meta_value = wp_unslash( $meta_value );
             $meta_value = esc_sql( $meta_value );
             $meta_value = sanitize_meta( $meta_key, $meta_value, $ct_table->name );
@@ -110,6 +115,18 @@ function automatorwp_insert_log( $log_data = array(), $log_meta = array() ) {
 
     return $log_id;
 
+}
+
+function automatorwp_sanitize_log_meta_value( $meta_value, $meta_key, $original_meta_value, $original_meta_key, $log_data, $log_meta ) {
+
+    if( is_string( $meta_value ) ) {
+        $meta_value = wp_kses_post( $meta_value );
+    }
+
+    $meta_value = apply_filters( 'automatorwp_sanitize_log_meta_value', $meta_value, $meta_key, $original_meta_value, $original_meta_key, $log_data, $log_meta );
+
+
+    return $meta_value;
 }
 
 /**

@@ -94,10 +94,8 @@ function automatorwp_caldera_forms_get_form_fields_values( $form, $entry_id ) {
         $form_fields[$field_name] = $field_value;
     }
 
-    // Check for AutomatorWP 1.4.4
-    if( function_exists( 'automatorwp_utilities_pull_array_values' ) ) {
-        $form_fields = automatorwp_utilities_pull_array_values( $form_fields );
-    }
+    // Pull array values
+    $form_fields = automatorwp_utilities_pull_array_values( $form_fields );
 
     return $form_fields;
 
