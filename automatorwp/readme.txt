@@ -3,7 +3,7 @@ Contributors: automatorwp, rubengc, eneribs, dioni00, tinocalvo, pacogon, flaber
 Tags: automator, automation, zapier, webhooks, marketing
 Requires at least: 4.4
 Tested up to: 7.1
-Stable tag: 6.1.0
+Stable tag: 6.1.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -167,6 +167,7 @@ AutomatorWP includes +600 triggers, actions and filters from +300 plugins & plat
 * [Popup Maker](https://automatorwp.com/add-ons/popup-maker/)
 * [Presto Player](https://automatorwp.com/add-ons/presto-player/)
 * [PrettyLinks](https://automatorwp.com/add-ons/pretty-link/)
+* [PublishPress Cart](https://automatorwp.com/add-ons/publishpress-cart/)
 * [Quiz and Survey Master](https://automatorwp.com/add-ons/qsm/)
 * [Restrict Content Pro](https://automatorwp.com/add-ons/restrict-content-pro/)
 * [Sensei LMS](https://automatorwp.com/add-ons/sensei-lms/)
@@ -364,6 +365,12 @@ Yes, AutomatorWP is stored in the official WordPress plugins repository where yo
 No, We're unable to provide custom development services, as our focus is developing the core AutomatorWP plugin, and the official AutomatorWP add-ons.
 
 == Changelog ==
+
+= 6.1.1 =
+
+* **New Features**
+* New integration: PublishPress Cart.
+* PublishPress Cart: New trigger: User purchases a product.
 
 = 6.1.0 =
 
