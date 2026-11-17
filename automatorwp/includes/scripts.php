@@ -290,6 +290,8 @@ function automatorwp_enqueue_admin_functions_script() {
  */
 function automatorwp_enqueue_admin_bar_scripts() {
 
+    if( ! (bool) automatorwp_get_option( 'admin_bar', false ) ) return;
+    
     wp_enqueue_style( 'automatorwp-admin-bar-css' );
 
 }

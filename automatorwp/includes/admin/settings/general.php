@@ -37,9 +37,9 @@ function automatorwp_settings_general_meta_boxes( $meta_boxes ) {
                 'label_cb' => 'cmb_tooltip_label_cb',
                 'type'      => 'text',
             ),
-            'disable_admin_bar_menu' => array(
-                'name'      => __( 'Disable Top Bar Menu', 'automatorwp' ),
-                'tooltip'      => __( 'Check this option to disable the AutomatorWP top bar menu.', 'automatorwp' ),
+            'admin_bar' => array(
+                'name'      => __( 'Enable Admin Bar', 'automatorwp' ),
+                'tooltip'      => __( 'Check this option to enable the AutomatorWP admin bar menu.', 'automatorwp' ),
                 'label_cb' => 'cmb_tooltip_label_cb',
                 'type'      => 'checkbox',
                 'classes'   => 'cmb2-switch',

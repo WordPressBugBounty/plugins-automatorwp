@@ -166,9 +166,7 @@ function automatorwp_admin_bar_menu( $wp_admin_bar ) {
     }
 
     // Bail if admin bar menu disabled
-    if( (bool) automatorwp_get_option( 'disable_admin_bar_menu', false ) ) {
-        return;
-    }
+    if( ! (bool) automatorwp_get_option( 'admin_bar', false ) ) return;
 
     // AutomatorWP
     $wp_admin_bar->add_node( array(
@@ -217,9 +215,7 @@ function automatorwp_admin_bar_menu_bottom( $wp_admin_bar ) {
     }
 
     // Bail if admin bar menu disabled
-    if( (bool) automatorwp_get_option( 'disable_admin_bar_menu', false ) ) {
-        return;
-    }
+    if( ! (bool) automatorwp_get_option( 'admin_bar', false ) ) return;
 
     // Licenses
     $wp_admin_bar->add_node( array(
@@ -258,14 +254,10 @@ add_action( 'admin_bar_menu', 'automatorwp_admin_bar_menu_bottom', 999 );
 function automatorwp_try_admin_bar_submenu( $wp_admin_bar ) {
 
     // Bail if current user can't manage
-    if ( ! current_user_can( automatorwp_get_manager_capability() ) ) {
-        return;
-    }
+    if ( ! current_user_can( automatorwp_get_manager_capability() ) ) return;
 
     // Bail if admin bar menu disabled
-    if( (bool) automatorwp_get_option( 'disable_admin_bar_menu', false ) ) {
-        return;
-    }
+    if( ! (bool) automatorwp_get_option( 'admin_bar', false ) ) return;
 
     $option = automatorwp_get_try_option();
 
