@@ -1791,6 +1791,21 @@ function automatorwp_utilities_parse_condition_to_sql( $field, $condition, $valu
 
     global $wpdb;
 
+    // Get allowed fields.
+    $allowed_fields = array_merge(
+        array_keys( automatorwp_utilities_get_post_fields() ),
+        array_keys( automatorwp_utilities_get_user_fields() )
+    );
+
+    // Validate field identifier, optionally including a table alias.
+    if (
+        ! is_string( $field )
+        || ! preg_match( '/^(?:[a-zA-Z_][a-zA-Z0-9_]*\.)?([a-zA-Z_][a-zA-Z0-9_]*)$/', $field, $matches )
+        || ! in_array( $matches[1], $allowed_fields, true )
+    ) {
+        return '1 = 0';
+    }
+
     $operator = '=';
 
     switch( $condition ) {
